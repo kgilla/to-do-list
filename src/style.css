@@ -1,0 +1,16 @@
+#title {
+  font-size: 2rem;
+  padding: 2%;
+  background: red;
+  border: solid 1px #000;
+  text-align: center;
+}
+
+#side-nav {
+  width: 10%;
+  height: 90vh;
+  padding: 5%;
+  background: goldenrod;
+  border: solid 1px #000;
+}
+
