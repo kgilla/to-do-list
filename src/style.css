@@ -1,16 +1,93 @@
-#title {
-  font-size: 2rem;
-  padding: 2%;
-  background: red;
-  border: solid 1px #000;
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
 
-#side-nav {
-  width: 10%;
-  height: 90vh;
-  padding: 5%;
-  background: goldenrod;
-  border: solid 1px #000;
+body {
+  display: flex;
 }
+
+/* side nav */
+
+#side-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20%;
+  height: 100vh;
+  padding: 2%;
+  font-family: 'Courier New', Courier, monospace;
+  background: peachpuff;
+  border-right: solid 1px #aaa;
+}
+
+.nav-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+}
+
+#upper-nav {
+  font-size: 1.5rem;
+  justify-content: space-around;
+}
+
+#mid-nav {
+ flex: 2;
+ justify-content: flex-start;
+}
+
+#lower-nav {
+  flex: 0.5;
+  justify-content: flex-end;
+}
+
+#brand {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+nav a {
+  color: #000;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+#sub-heading {
+  font-size: 1.5rem;
+  text-decoration: underline;
+  margin-bottom: 5%;
+}
+
+#project-list {
+  list-style: circle;
+}
+
+.nav-item {
+
+}
+
+
+/* main heading */
+
+#main-header {
+  width: 80vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2%;
+  border: peru 1px solid;
+}
+
+#header {
+  font-size: 2rem;
+}
+
+#new-task {
+  text-align: right;
+}
+
 
