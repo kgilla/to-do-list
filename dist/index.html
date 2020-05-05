@@ -13,11 +13,11 @@
         <a href="#" class="nav-item" id="urgent">Urgent  ></a>
       </div>
       <div class="nav-section" id="mid-nav">
-        <div id="project-box">
-          <h2 class="sub-heading">Projects</h2>
+        <h2 class="sub-heading">Projects</h2>
+        <div id="project-box"></div>
+        <div id="project-form-box">
           <a href="#" class="nav-item" id="new-project">+</a>
         </div>
-        
       </div>
       <div class="nav-section" id="lower-nav">
         <a href="#" class="nav-link">Twitter</a>
@@ -36,7 +36,7 @@
       <div id="content"></div>
     </main>
     <div id="form-overlay" class="hidden">
-      <form id="task-form" class="hidden">
+      <form id="task-form" class="hidden" onsubmit="getformdata">
         <h2 class="sub-heading">Add New Task</h2>
         <a href="#" id="form-close">X</a>
         <input type="text" id="form-title" class="form-input" placeholder="Task Name">
