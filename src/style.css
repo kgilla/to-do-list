@@ -2,8 +2,8 @@
   box-sizing: border-box;
 }
 
-body {
-  display: flex;
+#main, header, form {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* side nav */
@@ -15,9 +15,9 @@ body {
   width: 20%;
   height: 100vh;
   padding: 2%;
-  font-family: 'Courier New', Courier, monospace;
   background: peachpuff;
   border-right: solid 1px #aaa;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .nav-section {
@@ -42,6 +42,17 @@ body {
   justify-content: flex-end;
 }
 
+#project-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#new-project {
+  font-size: 3rem;
+  padding-left: 2%;
+}
+
 #brand {
   font-size: 2.5rem;
   font-weight: bold;
@@ -56,30 +67,28 @@ nav a:hover {
   text-decoration: underline;
 }
 
-#sub-heading {
-  font-size: 1.5rem;
-  text-decoration: underline;
-  margin-bottom: 5%;
+.sub-heading {
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 #project-list {
   list-style: circle;
 }
 
-.nav-item {
-
-}
-
-
 /* main heading */
 
 #main-header {
+  position: absolute;
+  top: 0;
+  left: 20%;
   width: 80vw;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 2%;
-  border: peru 1px solid;
+  align-items: center;
+  padding: 1% 5%;
+  border-bottom: #aaa 1px solid;
 }
 
 #header {
@@ -87,7 +96,77 @@ nav a:hover {
 }
 
 #new-task {
+  padding: 1%;
+  border: 1px solid #666;
+  border-radius: 5px;
+  background:peachpuff;
   text-align: right;
+  font-size: 1.25rem;
 }
 
+/* form stuff */
 
+form {
+  position: fixed;
+  left: 33.33%;
+  top: 12.5%;
+  height: 75%;
+  width: 33.33%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background: #eee;
+  border: solid #aaa 1px;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-input {
+  width: 90%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 3%;
+  font-size: 1.2rem;
+}
+
+.form-input:focus {
+  border: darkturquoise 3px solid;
+}
+
+#form-close {
+  position: absolute;
+  right: 2%;
+  top: 2%;
+  color: #000;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: red;
+}
+
+#form-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#form-textarea {
+  height: 25%;
+  width: 90%;
+  resize: none;
+}
+
+#form-submit {
+  background: darkturquoise;
+}
+
+#form-submit:hover {
+  background: lightseagreen;
+}
+
+.hidden {
+  display: none;
+}

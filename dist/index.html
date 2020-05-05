@@ -2,22 +2,22 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>To-Do-List</title>
+    <title>Get-Er-Done</title>
   </head>
   <body>
     <nav id="side-nav">
-      <h1 id="brand">To-Do-List</h1>
+      <h1 id="brand">Get-Er-Done</h1>
       <div class="nav-section" id="upper-nav">
         <a href="#" class="nav-item" id="dashboard">Dashboard  ></a>
         <a href="#" class="nav-item" id="upcoming">Upcoming  ></a>
         <a href="#" class="nav-item" id="urgent">Urgent  ></a>
       </div>
       <div class="nav-section" id="mid-nav">
-        <h2 class="nav-item" id="sub-heading">Projects</h2>
-        <ul id="project-list">
-          <li><a href="#" class="project"></a></li>
-        </ul>
-        <a href="#" class="nav-item" id="new-project">New Project</a>
+        <div id="project-box">
+          <h2 class="sub-heading">Projects</h2>
+          <a href="#" class="nav-item" id="new-project">+</a>
+        </div>
+        
       </div>
       <div class="nav-section" id="lower-nav">
         <a href="#" class="nav-link">Twitter</a>
@@ -25,15 +25,28 @@
         <a href="#" class="nav-link">Instagram</a>
       </div>
     </nav>
+
     <main id="main">
+      
       <header id="main-header">
-        <h1 id="header">gdgdfgd</h1>
+        <h1 id="header"></h1>
         <button id="new-task">New Task</button>
       </header>
-      <div id="content">
 
-      </div>
+      <div id="content"></div>
     </main>
+    <div id="form-overlay" class="hidden">
+      <form id="task-form" class="hidden">
+        <h2 class="sub-heading">Add New Task</h2>
+        <a href="#" id="form-close">X</a>
+        <input type="text" id="form-title" class="form-input" placeholder="Task Name">
+        <input type="date" id="form-date" class="form-input">
+        <textarea id="form-textarea" class="form-input"></textarea>
+        <input type="button" id="form-submit" class="form-input" value="Create Task">
+      </form>
+    </div>
     <script src="main.js"></script>
   </body>
 </html>
+
+
