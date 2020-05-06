@@ -5,39 +5,26 @@
     <title>Get-Er-Done</title>
   </head>
   <body>
+
+    <header id="top-banner">
+      <a href="#" id="brand">Get-Er-Done</a>
+    </header>
+
     <nav id="side-nav">
-      <h1 id="brand">Get-Er-Done</h1>
-      <div class="nav-section" id="upper-nav">
-        <a href="#" class="nav-item" id="dashboard">Dashboard  ></a>
-        <a href="#" class="nav-item" id="upcoming">Upcoming  ></a>
-        <a href="#" class="nav-item" id="urgent">Urgent  ></a>
+      <div id="project-form-box">
+        <a href="#" id="new-project">Add Project +</a>
+        <div id="project-form"></div>
       </div>
-      <div class="nav-section" id="mid-nav">
-        <h2 class="sub-heading">Projects</h2>
-        <div id="project-box"></div>
-        <div id="project-form-box">
-          <a href="#" class="nav-item" id="new-project">+</a>
-        </div>
-      </div>
-      <div class="nav-section" id="lower-nav">
-        <a href="#" class="nav-link">Twitter</a>
-        <a href="#" class="nav-link">Facebook</a>
-        <a href="#" class="nav-link">Instagram</a>
-      </div>
+      <div id="projects"></div>
     </nav>
 
     <main id="main">
-      
-      <header id="main-header">
-        <h1 id="header"></h1>
-        <button id="new-task">New Task</button>
-      </header>
-
       <div id="content"></div>
+      <button id="new-task">Task +</button>
     </main>
     <div id="form-overlay" class="hidden">
       <form id="task-form" class="hidden" onsubmit="getformdata">
-        <h2 class="sub-heading">Add New Task</h2>
+        <h2 id="task-form-heading">Add New Task</h2>
         <a href="#" id="form-close">X</a>
         <input type="text" id="form-title" class="form-input" placeholder="Task Name">
         <input type="date" id="form-date" class="form-input">

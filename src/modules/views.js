@@ -6,10 +6,9 @@ const views = (() => {
   const main = document.querySelector('#content');
   
   /* sidenav selectors */
-  const dashboard = document.querySelector("#dashboard");
-  const upcoming = document.querySelector('#upcoming');
-  const urgent = document.querySelector('#urgent');
   const newProject = document.querySelector('#new-project');
+  const projectForm = document.querySelector('#project-form');
+  const projectList = document.querySelector('#projects'); 
 
   /* header selectors */
   const newTask = document.querySelector('#new-task');
@@ -20,9 +19,6 @@ const views = (() => {
   const taskForm = document.querySelector('#task-form');
   const formClose = document.querySelector('#form-close');
   const createTaskButton = document.querySelector('#form-submit');
-
-  const projectFormBox = document.querySelector('#project-box');
-  const projectBox = document.querySelector('#project-box'); 
 
   const createElement = (type, attributes, text, place) => {
     let element = document.createElement(type);
@@ -40,9 +36,10 @@ const views = (() => {
   }
 
   const showProjectForm= () => {
-    projectFormBox.innerHTML = "";
-    let form = createElement("input", {class: "form-input", placeholder: "Project Name"}, "", projectFormBox );
+    projectForm.innerHTML = "";
+    let form = createElement("input", {class: "project-form", placeholder: "Project Name", id: "project-form"}, "", projectForm);
     form.addEventListener('keydown', getProjectData);
+    form.focus();
   }
 
   const getTaskData = () => {
@@ -54,14 +51,15 @@ const views = (() => {
   const getProjectData = (event) => {
     if (event.key == "Enter") { 
       projects.create(event.target.value);
+      projectForm.innerHTML = "";
       renderProjects();
     }
   }
 
   const renderProjects = () => {
-    projectBox.innerHTML = "";
+    projectList.innerHTML = "";
     projects.index.forEach(project => {
-      createElement("a", {class: "project"}, project.name, projectBox);
+      createElement('a', {class: "project", href: "#"}, project.name, projectList);
     });
   }
 
@@ -69,34 +67,16 @@ const views = (() => {
     main.innerHTML = "";
     tasks.index.forEach(task => {
       let taskBox = createElement("div", {class: "task-box"}, "", main);
-      createElement("h2", {class: 'task-title'}, task.title, taskBox); 
       createElement("h3", {class: 'task-date'}, task.dueDate, taskBox); 
+      createElement("h2", {class: 'task-title'}, task.title, taskBox); 
     });
   }
 
-  const makeUpcoming = () => {
-    header.textContent = 'Upcoming';
-    renderTasks();
-  }
-
-  const makeUrgent = () => {
-    header.textContent = 'Urgent';
-  }
-
-  const makeDashboard = () => {
-    header.textContent = 'Dashboard';
-  };
-
   /* event listeners */
-  dashboard.addEventListener('click', makeDashboard);
-  upcoming.addEventListener('click', makeUpcoming); 
-  urgent.addEventListener('click', makeUrgent);
   newTask.addEventListener('click', showTaskForm);
   formClose.addEventListener('click', showTaskForm);
   createTaskButton.addEventListener('click', getTaskData);
   newProject.addEventListener('click', showProjectForm);
-
-  makeDashboard();
 
   return {renderTasks};
 
