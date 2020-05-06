@@ -5,8 +5,8 @@ const projects = (() => {
   let index = [];
 
   const test = () => {
-    for (let i = 0; i < 10; i++) {
-      let project = projectMaker("titiies");
+    for (let i = 0; i < 1; i++) {
+      let project = projectMaker("My Project!");
       index.push(project);
     }  
     views.renderProjects();

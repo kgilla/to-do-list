@@ -19,64 +19,59 @@ body {
   justify-content: center;
   align-items: center;
   grid-area: 1/1/2/6;
-  min-height: 9vh;
-  border-bottom: 1px solid #999;
-  background:  #1976d2 ;
+  background:   #eaf2f8 ;
 }
 
 #brand {
-  color: #fff;
+  color: #000;
   font-size: 2.5vw;
+  font-weight: bold;
   padding: 0 1.5vw;
   text-decoration: none;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 /* side nav */
 
 #side-nav {
   grid-area: 2/1/6/2;
-  border-right: solid 1px #ccc;
+  border-right: solid 1px #eaf2f8 ;
   overflow: hidden;
 }
 
 #project-header-box {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  border-bottom: 1px solid #aaa;
-  background: #eee;
-}
-
-#new-project-header, #new-project {
-  padding: 1vw;
-  text-align: center;
-  font-size: 1.5vw;
-  font-weight: bold;
-  text-decoration: none;
-  color: #000;
+  border-bottom: 1px solid  #eaf2f8 ;
 }
 
 #new-project-header {
-  flex: 2;
+  padding: 1.5vw;
+  font-size: 2vw;
+  font-weight: bold;
 }
 
 #new-project {
-  flex: 1;
-  background: #d27519; 
+  padding:  0 1.2vh;
+  background: #1976d2;
+  border: none;
+  border-radius: 50%; 
+  text-decoration: none;
+  color: #fff;
+  font-size: 3vw;
   text-align: center;
 }
 
 #new-project:hover {
-  background: #c16408;
+  background: #0865c1;
 }
 
 #project-form {
   flex: 1;
   padding: 1vh;
-  border: 1px solid #d27519;
+  border: 2px solid #1976d2;
   border-radius: 5px;
-  font-size: 1.5vw;
+  font-size: 1.4vw;
 
 }
 
@@ -88,25 +83,22 @@ body {
 
 .project {
   font-size: 1.5vw;
-  color: #111;
+  color: #000;
   text-decoration: none;
-  margin: 1vh 0;
-  padding: 1vh;
+  padding: 1vw;
+  margin: 0.5vh 0;
 }
 
 .project:hover {
-  background: #ccc;
-  border: 1px solid #bbb;
-  border-radius: 1vh;
+  background: #eaf2f8;
+  border-radius: 5px;
 }
 
 /* main stuff */
 
 #main {
   grid-area: 2/2/6/6;
-  display: flex;
-  flex-direction: column;
-  margin: 0 5vw;
+  margin: 2vw 5vw;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -130,7 +122,6 @@ body {
   user-select: none;
 }
 
-
 #new-task {
   position: fixed;
   bottom: 0;
@@ -138,10 +129,14 @@ body {
   padding: 2vw 1vw;
   margin: 1vw;
   background: #1976d2;
-  border: 1px solid #999;
-  border-radius: 9vw;
+  border: none;
+  border-radius: 50%;
   color: #fff;
   font-size: 1.2vw;
+}
+
+#new-task:hover {
+  background: #0865c1;
 }
 
 /* form stuff */
