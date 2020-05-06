@@ -4,8 +4,15 @@ const tasks = (() => {
 
   let index = [];
 
-  const taskMaker = (title, dueDate, description) => {
-    return {title, dueDate, description};
+  const test = () => {
+    for (let i = 0; i < 20; i++) {
+      let task = taskMaker("poop", "2020-05-12", "Fun Times");
+      index.push(task);
+    } views.renderTasks();
+  }
+
+  const taskMaker = (title, dueDate, priority, description) => {
+    return {title, dueDate, priority, description};
   };
 
   const create = (taskData) => {
@@ -14,7 +21,7 @@ const tasks = (() => {
     views.renderTasks();
   }
 
-  return {create, index};
+  return {create, index, test};
 
 })();
 

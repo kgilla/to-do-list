@@ -4,8 +4,17 @@ const projects = (() => {
 
   let index = [];
 
+  const test = () => {
+    for (let i = 0; i < 10; i++) {
+      let project = projectMaker("titiies");
+      index.push(project);
+    }  
+    views.renderProjects();
+  }
+
   const projectMaker = (name) => {
-    return {name};
+    let tasks = [];
+    return {name, tasks};
   }
 
   const create = (projectData) => {
@@ -13,7 +22,7 @@ const projects = (() => {
     index.push(project);
   }
 
-  return {index, create};
+  return {index, create, test};
 
 })();
 

@@ -8,7 +8,7 @@ body {
   min-height: 100vh;
   max-width: 100vw;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 7.5vh repeat(4, 1fr);
+  grid-template-rows: 9vh repeat(4, 1fr);
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -16,9 +16,10 @@ body {
 
 #top-banner {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   grid-area: 1/1/2/6;
+  min-height: 9vh;
   border-bottom: 1px solid #999;
   background:  #1976d2 ;
 }
@@ -28,53 +29,61 @@ body {
   font-size: 2.5vw;
   padding: 0 1.5vw;
   text-decoration: none;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 /* side nav */
 
 #side-nav {
   grid-area: 2/1/6/2;
-  padding: 0.5vw;
-  background: #ddd;
   border-right: solid 1px #ccc;
   overflow: hidden;
 }
 
-#project-form-box {
+#project-header-box {
   display: flex;
-  position: absolute;
-  border-bottom: solid 1px #aaa;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #aaa;
+  background: #eee;
+}
+
+#new-project-header, #new-project {
+  padding: 1vw;
+  text-align: center;
+  font-size: 1.5vw;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+}
+
+#new-project-header {
+  flex: 2;
+}
+
+#new-project {
+  flex: 1;
+  background: #d27519; 
+  text-align: center;
+}
+
+#new-project:hover {
+  background: #c16408;
 }
 
 #project-form {
   flex: 1;
-  padding: 0.5vh;
+  padding: 1vh;
+  border: 1px solid #d27519;
+  border-radius: 5px;
   font-size: 1.5vw;
-}
 
-#new-project {
-  padding: 1vw;
-  font-size: 1.5vw;
-  text-decoration: none;
-  font-weight: bold;
-  color: #333;
 }
 
 #projects {
-  position: relative;
-  top: 8vh;
-  left: 0.5vw;
   display: flex;
-  flex-direction: column;
-  margin-right: 1vw;
-}
-
-.project-box {
-  display: flex;
-  align-items: center;
-  margin: 1vh 0;
-  padding: 1vh;
-  border-bottom: 1px solid #1976d2;
+  flex-direction: column-reverse;
+  padding: 1vw;
 }
 
 .project {
@@ -83,7 +92,6 @@ body {
   text-decoration: none;
   margin: 1vh 0;
   padding: 1vh;
-  border-bottom: 1px solid #1976d2;
 }
 
 .project:hover {
@@ -103,7 +111,8 @@ body {
 }
 
 #content {
-  margin: 1vh 5vw;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .task-box {
@@ -118,11 +127,12 @@ body {
 
 .task-title, .task-date, #task-form-heading {
   font-size: 1.5vw;
+  user-select: none;
 }
 
 
 #new-task {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
   padding: 2vw 1vw;
@@ -138,47 +148,42 @@ body {
 
 form {
   position: fixed;
-  left: 33.33%;
-  top: 12.5%;
-  height: 75%;
+  right: 0;
+  top: 1%;
+  height: 98%;
   width: 33.33%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  padding: 1vw 2vw;
   background: #eee;
-  border: solid #aaa 0.5vh;
+  border-left: solid #ddd 1px;
   border-radius: 1vh;
   font-family: Arial, Helvetica, sans-serif;
 }
 
+#form-heading {
+  font-size: 2vw;
+  font-weight: bold;
+}
+
 .form-input {
-  width: 90%;
-  border: 1px solid #ccc;
+  width: 100%;
+  border: 1px solid #aaa;
   border-radius: 5px;
   padding: 0.5vw;
   font-size: 1.5vw;
 }
 
-.form-input:focus {
-  border: darkturquoise 3px solid;
-}
-
-#form-close {
-  position: absolute;
-  right: 2%;
-  top: 2%;
-  padding: 0.5vw 0.75vw;
-  background:#333;
-  border: 1px solid black;
-  border-radius: 9vw;
-  color: #fff;
+.form-label {
+  font-weight: 600;
   font-size: 1.5vw;
-  text-decoration: none;
+  text-align: left;
 }
 
-#form-close:hover {
-  background: #111;
+.form-input:focus {
+  border: #1976d2 1px solid;
 }
 
 #form-overlay {
@@ -191,17 +196,18 @@ form {
 }
 
 #form-textarea {
-  height: 25%;
-  width: 90%;
+  height: 30%;
+  width: 100%;
   resize: none;
 }
 
 #form-submit {
-  background: darkturquoise;
+  background: #1976d2;
+  color: #fff;
 }
 
 #form-submit:hover {
-  background: lightseagreen;
+  background: #0865c1;
 }
 
 .hidden {

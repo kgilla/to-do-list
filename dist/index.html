@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+
 <html>
+  
   <head>
     <meta charset="UTF-8">
     <title>Get-Er-Done</title>
   </head>
+  
   <body>
 
     <header id="top-banner">
@@ -11,10 +14,11 @@
     </header>
 
     <nav id="side-nav">
-      <div id="project-form-box">
-        <a href="#" id="new-project">Add Project +</a>
-        <div id="project-form"></div>
+      <div id="project-header-box">
+        <h2 id="new-project-header">Projects</h2>
+        <a href="#" id="new-project">+</a>
       </div>
+     
       <div id="projects"></div>
     </nav>
 
@@ -22,18 +26,42 @@
       <div id="content"></div>
       <button id="new-task">Task +</button>
     </main>
+    
     <div id="form-overlay" class="hidden">
-      <form id="task-form" class="hidden" onsubmit="getformdata">
-        <h2 id="task-form-heading">Add New Task</h2>
-        <a href="#" id="form-close">X</a>
-        <input type="text" id="form-title" class="form-input" placeholder="Task Name">
-        <input type="date" id="form-date" class="form-input">
-        <textarea id="form-textarea" class="form-input"></textarea>
-        <input type="button" id="form-submit" class="form-input" value="Create Task">
+      
+      <form id="task-form" class="hidden">
+        <h2 id="form-heading">Add New Task</h2>
+
+        <label for="i1" class="form-label">Task Name</label>
+        <input type="text" id="form-title" class="form-input" placeholder="what do you need to do?" name="i1">
+
+        <label for="i2" class="form-label">Due Date</label>
+        <input type="date" id="form-date" class="form-input" name="i2">
+
+        <div id="radio-box">
+          <label for="radio-box" class="form-label">Priority Level</label>
+          <br><br>
+          <input type="radio" name="r1" value="high">
+          <label for="r1" class="radio-label">High</label>
+          <input type="radio" name="r1" value="medium">
+          <label for="r1" class="radio-label">Medium</label>
+          <input type="radio" name="r1" value="low">
+          <label for="r1" class="radio-label">Low</label>
+        </div>
+
+        <label for="i3" class="form-label">Task Description</label>
+        <textarea id="form-textarea" class="form-input" name="i3" placeholder="This is a good place to explain what needs to be done"></textarea>
+
+        <input type="button" name="submit" id="form-submit" class="form-input" value="Create Task">
+      
       </form>
+    
     </div>
+    
     <script src="main.js"></script>
+  
   </body>
-</html>
+
+  </html>
 
 
