@@ -1,10 +1,9 @@
 import {tasks} from './tasks';
-import { projects } from './projects';
+import {projects} from './projects';
 
 const views = (() => {
 
   const main = document.querySelector('#content');
-  let formOpen = false;
   
   /* sidenav selectors */
   const newProject = document.querySelector('#new-project');
@@ -19,6 +18,10 @@ const views = (() => {
   const taskForm = document.querySelector('#task-form');
   const createTaskButton = document.querySelector('#form-submit');
 
+  /* element states */
+  let formOpen = false;
+  let selectedProject = "";
+
   const createElement = (type, attributes, text, place) => {
     let element = document.createElement(type);
     Object.keys(attributes).forEach(key => {
@@ -31,13 +34,18 @@ const views = (() => {
 
   /* project views */
 
+  const projectInit = () => {
+    projectList.firstChild.classList.toggle('selected');
+    selectedProject = projects.index[0];
+  }
+
   const showProjectForm= () => {
-    if (formOpen == true) {
-      projectList.removeChild(projectList.lastChild);
-      formOpen = false;
-    } else {
-      makeProjectForm();
-    }
+    formOpen == true ? closeProjectForm() : makeProjectForm();
+  }
+
+  const closeProjectForm = () => {
+    projectList.removeChild(projectList.lastChild);
+    formOpen = false;
   }
 
   const makeProjectForm = () => {
@@ -49,17 +57,40 @@ const views = (() => {
 
   const getProjectData = (event) => {
     if (event.key == "Enter") { 
+      closeProjectForm();
       projects.create(event.target.value);
-      renderProjects();
     }
   }
 
+  const selectProject = (event) => {
+    selectedProject = projects.index.find(p => p.name == event.target.textContent);
+    if (event.target.classList.includes('selected')) {
+      console.log(true);
+    }
+    // selectedProjectDom.classList.toggle("selected");
+    // event.target.classList.toggle("selected");
+    // selectedProjectDom = event.target;
+  }
+
+  const renderNewProject = (project) => {
+    let p = createElement('a', {class: "project", href: "#"}, project.name, projectList);
+    p.addEventListener('click', selectProject)
+  }
+
+  /* multiple project rendering */
+
+  const projectListeners = () => {
+    document.querySelectorAll('.project').forEach(project => {
+      project.addEventListener('click', selectProject);
+    });
+  }
+
   const renderProjects = () => {
-    formOpen = false;
     projectList.innerHTML = "";
-    projects.index.forEach(project => {
+    projects.index.forEach((project, i)=> {
       createElement('a', {class: "project", href: "#"}, project.name, projectList);
     });
+    projectListeners();
   }
 
   /* task views */
@@ -78,16 +109,19 @@ const views = (() => {
   const getTaskData = () => {
     let radio = document.querySelector('input[type="radio"]:checked').value
     let taskData = [taskForm[0].value, taskForm[1].value, radio, taskForm[5].value];
-    tasks.create(taskData);
+    tasks.create(taskData, selectedProject);
     showTaskForm();
   }
 
-  const renderTasks = () => {
+  const renderNewTask = (task) => {
+    
+  }
+
+  const renderTasks = (project) => {
     main.innerHTML = "";
-    tasks.index.forEach((task, i) => {
-      let t = createElement("div", {class: "task-box", data: i}, "", main);
+    project.tasks.forEach(task => {
+      let t = createElement("div", {class: "task-box"}, "", main);
       createElement("h2", {class: 'task-title'}, task.title, t); 
-      createElement("h3", {class: 'task-date'}, task.dueDate, t); 
     });
   }
 
@@ -106,7 +140,7 @@ const views = (() => {
   newProject.addEventListener('click', showProjectForm);
   main.addEventListener('click', expandTask);
 
-  return {renderTasks, renderProjects};
+  return {renderTasks, renderNewTask, renderProjects, renderNewProject, projectInit};
 
 })();
 

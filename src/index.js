@@ -2,7 +2,9 @@ import './assets/stylesheets/reset.css';
 import './assets/stylesheets/style.css';
 import {tasks} from './modules/tasks';
 import {projects} from './modules/projects';
-import './modules/views';
+import {views} from './modules/views';
 
-tasks.test();
 projects.test();
+// tasks.test(projects.index[0]);
+// views.renderTasks(projects.index[0]);
+views.projectInit();
