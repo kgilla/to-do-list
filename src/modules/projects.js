@@ -3,19 +3,18 @@ import { views } from "./views";
 const projects = (() => {
   let index = [];
 
-  const test = () => {
-    for (let i = 0; i < 1; i++) {
-      let project = projectMaker("My Project!");
-      index.push(project);
-    }
-    views.renderProjects();
+  const findProject = (element) => {
+    let p = index.find((p) => p.name == element.textContent);
+    return p;
   };
 
   const projectMaker = (name) => {
     let tasks = [];
+    let taskCount = tasks.length;
     return {
       name,
       tasks,
+      taskCount,
     };
   };
 
@@ -25,10 +24,17 @@ const projects = (() => {
     views.renderNewProject(project);
   };
 
+  const init = () => {
+    let p = projectMaker("My Project!");
+    index.push(p);
+    return p;
+  };
+
   return {
     index,
     create,
-    test,
+    findProject,
+    init,
   };
 })();
 

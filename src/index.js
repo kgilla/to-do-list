@@ -4,6 +4,10 @@ import { tasks } from "./modules/tasks";
 import { projects } from "./modules/projects";
 import { views } from "./modules/views";
 
-projects.test();
-tasks.test(projects.index[0]);
-views.projectInit();
+const init = () => {
+  let p = projects.init();
+  tasks.init(p);
+  views.init(p);
+};
+
+init();

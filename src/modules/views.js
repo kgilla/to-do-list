@@ -19,7 +19,7 @@ const views = (() => {
 
   /* element states */
   let formOpen = false;
-  let selectedProject;
+  let currentProject = "";
 
   // element creator
 
@@ -35,10 +35,12 @@ const views = (() => {
 
   /* project views */
 
-  const projectInit = () => {
+  const init = (p) => {
+    renderProjects();
+    renderTasks(p);
     projectList.firstChild.classList.toggle("selected");
-    selectedProject = projects.index[0];
-    heading.textContent = selectedProject.name;
+    heading.textContent = p.name;
+    currentProject = p;
   };
 
   const showProjectForm = () => {
@@ -73,14 +75,19 @@ const views = (() => {
     }
   };
 
+  const switchProjects = () => {};
+
+  //switch project
+  //switch class for old and new
+  //render new project tasks
+  //switch heading and count
+
   const selectProject = (event) => {
-    selectedProject = projects.index.find(
-      (p) => p.name == event.target.textContent
-    );
+    currentProject = projects.findProject(event.target);
     document.querySelector(".selected").classList.toggle("selected");
     event.target.classList.toggle("selected");
-    renderTasks(selectedProject);
-    heading.textContent = selectedProject.name;
+    renderTasks(currentProject);
+    heading.textContent = currentProject.name;
   };
 
   const renderNewProject = (project) => {
@@ -134,14 +141,13 @@ const views = (() => {
   };
 
   const getTaskData = () => {
-    let radio = document.querySelector('input[type="radio"]:checked').value;
     let taskData = [
       taskForm[0].value,
       taskForm[1].value,
-      radio,
+      document.querySelector('input[type="radio"]:checked').value,
       taskForm[5].value,
     ];
-    tasks.create(taskData, selectedProject);
+    tasks.create(taskData, currentProject);
     showTaskForm();
   };
 
@@ -164,9 +170,9 @@ const views = (() => {
     );
   };
 
-  const renderTasks = (project) => {
+  const renderTasks = (p) => {
     main.innerHTML = "";
-    project.tasks.forEach((task) => {
+    p.tasks.forEach((task) => {
       let t = createElement(
         "div",
         {
@@ -206,7 +212,7 @@ const views = (() => {
     renderNewTask,
     renderProjects,
     renderNewProject,
-    projectInit,
+    init,
   };
 })();
 
