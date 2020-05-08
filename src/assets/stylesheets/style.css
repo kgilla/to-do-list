@@ -6,6 +6,7 @@
 }
 
 * {
+  line-height: 1.5;
   box-sizing: border-box;
   font-family: "myFont";
   color: #222;
@@ -16,7 +17,7 @@ body {
   min-height: 100vh;
   max-width: 100vw;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 60px repeat(5, 1fr);
+  grid-template-rows: 4rem 4rem repeat(5, 1fr);
   font-family: "myFont";
   background: rgb(243, 245, 249);
   color: rgb(74, 95, 120);
@@ -26,66 +27,89 @@ body {
 /* top header */
 
 #top-banner {
-  height: 60px;
+  height: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
   grid-area: 1/1/2/6;
   background: rgb(24, 37, 56);
-  border-bottom: 1px solid #a9cce3;
 }
 
 #brand {
   color: #fff;
   font-size: 2rem;
-  font-weight: bold;
-  padding: 0 1.5vw;
   text-decoration: none;
 }
 
-/* side nav */
+/* sub-header */
 
-#side-nav {
-  grid-area: 2/1/7/2;
-  border-right: solid 1px #d4e6f1;
-  padding: 0.5rem;
-  overflow: hidden;
+#sub-header {
+  grid-area: 2/1/3/6;
+  display: grid;
+  align-self: center;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 4rem;
+  background: #203148;
 }
 
 #project-header-box {
+  grid-column: 1/2;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-bottom: 1px solid #d4e6f1;
 }
 
 #new-project-header {
-  padding: 1vw 0;
+  color: #fff;
   font-size: 1.5rem;
-  font-weight: bold;
 }
 
 #new-project {
-  padding: 0 0.5rem;
+  padding: 0.25rem 0.5rem;
   background: #2980b9;
-  border: none;
+  border: #aaa solid 0.1rem;
   border-radius: 50%;
   text-decoration: none;
   color: #fff;
-  font-size: 2rem;
-  text-align: center;
+  font-size: 1.2rem;
 }
 
 #new-project:hover {
   background: #2471a3;
 }
 
+#new-task {
+  grid-column: 5/ 6;
+  place-self: center;
+  width: 75%;
+  height:50%;
+  background: #2980b9;
+  border: solid 0.1rem #aaa;
+  border-radius: 0.25rem;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+#new-task:hover {
+  background: #2471a3;
+}
+
+/* side nav */
+
+#side-nav {
+  grid-area: 3/1/8/2;
+  border-right: solid 0.1rem #d4e6f1;
+  padding: 0.5rem;
+  overflow: hidden;
+}
+
 #project-form {
   flex: 1;
   padding: 0.5rem;
-  border: 2px solid #2980b9;
-  border-radius: 5px;
-  font-size: 0.8rem;
+  margin: 0.5rem 0;
+  border: 0.1rem solid #2980b9;
+  border-radius: 0.25rem;
+  font-size: 1rem;
 }
 
 #projects {
@@ -98,10 +122,9 @@ body {
   justify-content: space-between;
   align-items: center;
   font-size: 1rem;
-  color: #000;
   text-decoration: none;
-  padding: 0.6rem 0.4rem;
-  margin: 0.75rem 0;
+  padding: 0.8rem 0.4rem;
+  margin: 0.2rem 0;
 }
 
 .project-name {
@@ -111,24 +134,21 @@ body {
 
 .project:hover {
   background: #d4e6f1;
-  border-radius: 5px;
+  border-radius: 0.25rem;
 }
 
 /* main stuff */
 
 #main {
-  grid-area: 2/2/6/6;
+  grid-area: 3/2/8/6;
   font-family: "myFont";
 }
 
 #project-heading {
-  padding: 1rem;
   font-size: 1.5rem;
-  font-weight: bold;
 }
 
-#content {
-  min-height: 80%;
+#content, #project-heading {
   margin: 2vw 10vw;
 }
 
@@ -138,62 +158,39 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
-  border-bottom: 1px solid #aaa;
-  border-radius: 5px;
-}
-
-.secret-box {
-  grid-area: 2/1/5/6;
+  height: 3rem;
+  margin: 0.5rem 0;
+  background: #fff;
+  border-bottom: 0.1rem solid #ddd;
+  border-radius: 0.25rem;
 }
 
 .task-title {
   font-size: 1.2rem;
   grid-area: 1/1/2/6;
-  border: 1px solid #000;
-  place-self: center;
-}
-
-.task-date {
-  border: 1px solid #000;
-  place-self: center;
-}
-
-.task-description {
-  border: 1px solid #000;
-  font-size: 2rem;
   place-self: center;
 }
 
 .task-expand {
-  width: 20%;
   font-size: 2rem;
   text-align: center;
-  border: 1px solid #000;
   grid-area: 5/3/6/6;
   place-self: center;
 }
-#task-form-heading {
-  font-size: 1.5vw;
-  user-select: none;
+
+.secret-box {
+  grid-area: 2/1/5/6;
+  background: lightcyan;
+  border: 1px black solid;
 }
 
-#new-task {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  padding: 2vw 1vw;
-  margin: 0.5vw 1vw;
-  background: #2980b9;
-  border: none;
-  border-radius: 50%;
-  color: #fff;
-  font-size: 1.5vw;
-  font-weight: bold;
+.task-date {
+  place-self: center;
 }
 
-#new-task:hover {
-  background: #2471a3;
+.task-description {
+  font-size: 2rem;
+  place-self: center;
 }
 
 /* form stuff */
@@ -201,66 +198,67 @@ body {
 form {
   position: fixed;
   right: 0;
-  top: 1%;
-  height: 98%;
-  width: 33.33%;
+  top: 2%;
+  height: 96%;
+  width: 35%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
-  padding: 1vw 2vw;
-  background: #f4f6f6;
-  border-left: solid #ddd 1px;
-  border-radius: 1vh;
-  font-family: Arial, Helvetica, sans-serif;
+  padding: 1rem;
+  background: rgb(243, 245, 249);
+  border: solid #ddd 0.1rem;
+  border-radius: 0.25rem;
+  font-family: 'myFont';
 }
 
 #form-heading {
-  font-size: 2vw;
-  font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .form-input {
   width: 100%;
-  border: 1px solid #aaa;
-  border-radius: 5px;
-  padding: 0.5vw;
-  font-size: 1.5vw;
+  border: 0.1rem solid #aaa;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  font-size: 1.2rem;
 }
 
 .form-label {
-  font-weight: 600;
-  font-size: 1.5vw;
-  text-align: left;
+  font-size: 1.2rem;
 }
 
 .form-input:focus {
-  border: #2471a3 1px solid;
-}
-
-#form-overlay,
-#task-overlay {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.5);
+  border: #2471a3 0.1rem solid;
 }
 
 #form-textarea {
-  height: 30%;
+  height: 35%;
   width: 100%;
   resize: none;
 }
 
 #form-submit {
+  width: 100%;
+  padding: 0.5rem 0;
+  border: 0.1rem solid #203148  ;
+  border-radius: 0.25rem;
   background: #1976d2;
+  font-size: 1.2rem;
   color: #fff;
 }
 
 #form-submit:hover {
   background: #2471a3;
+}
+
+#form-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 /* class toggles */
@@ -271,7 +269,6 @@ form {
 
 .selected {
   background: #d4e6f1;
-  border-bottom: solid 1px #1976d2;
   border-radius: 5px;
 }
 
