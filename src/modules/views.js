@@ -27,7 +27,7 @@ const views = (() => {
 
   // element creator
 
-  const createElement = (type, attributes, text, place) => {
+  const maker = (type, attributes, text, place) => {
     let element = document.createElement(type);
     Object.keys(attributes).forEach((key) => {
       element.setAttribute(key, attributes[key]);
@@ -73,7 +73,7 @@ const views = (() => {
 
   const makeProjectForm = () => {
     let attr = { placeholder: "Project Name", id: "project-form" };
-    let form = createElement("input", attr, "", projectList);
+    let form = maker("input", attr, "", projectList);
     form.addEventListener("keydown", getProjectData);
     form.focus();
     formOpen = true;
@@ -87,9 +87,9 @@ const views = (() => {
   };
 
   const renderNewProject = (project) => {
-    let p = createElement("div", { class: "project" }, "", projectList);
-    createElement("h3", { class: "project-name" }, project.name, p);
-    createElement("h3", { class: "project-count" }, "0", p);
+    let p = maker("div", { class: "project" }, "", projectList);
+    maker("h3", { class: "project-name" }, project.name, p);
+    maker("h3", { class: "project-count" }, "0", p);
     p.addEventListener("click", selectProject);
     projects.findProject(project.name).element = p;
   };
@@ -99,9 +99,9 @@ const views = (() => {
   const renderProjects = () => {
     projectList.innerHTML = "";
     projects.index.forEach((project) => {
-      let p = createElement("div", { class: "project" }, "", projectList);
-      createElement("h3", { class: "project-name" }, project.name, p);
-      createElement("h3", { class: "project-count" }, project.taskCount(), p);
+      let p = maker("div", { class: "project" }, "", projectList);
+      maker("h3", { class: "project-name" }, project.name, p);
+      maker("h3", { class: "project-count" }, project.taskCount(), p);
       p.addEventListener("click", selectProject);
       projects.findProject(project.name).element = p;
     });
@@ -131,56 +131,32 @@ const views = (() => {
     showTaskForm();
   };
 
-  const expandTask = () => {
-    event.currentTarget.nextSibling.classList.toggle("hidden");
-    event.target.parentNode.classList.toggle("grow");
+  const expandTask = (event) => {
+    event.currentTarget.childNodes[3].classList.toggle("hidden");
+    event.currentTarget.classList.toggle("grow");
   };
 
-  const taskDetails = (task, parent) => {
-    let e = createElement("div", { class: "hidden secret-box" }, "", parent);
-    createElement(
-      "h2",
-      { class: "task-date" },
-      `Date To Be Completed: ${task.dueDate}`,
-      e
-    );
-    createElement(
-      "h3",
-      { class: "task-priority" },
-      `Priority Level: task.priority`,
-      e
-    );
-    createElement(
-      "p",
-      { class: "task-details" },
-      `Details: ${task.description}`,
-      e
-    );
+  const renderTask = (task) => {
+    let t = maker("div", { class: `task-box ${task.priority}` }, "", main);
+    maker("input", { class: "checkBox", type: "checkbox" }, "", t);
+    maker("h2", { class: "task-title" }, task.title, t);
+    maker("a", { class: "task-expand" }, "^", t);
+    t.addEventListener("click", expandTask);
+
+    let s = maker("div", { class: "hidden secret-box" }, "", t);
+    maker("h2", { class: "task-date" }, `Due Date: ${task.dueDate}`, s);
+    maker("p", { class: "task-details" }, `Details: ${task.description}`, s);
   };
 
   const renderNewTask = (task) => {
-    let t = createElement("div", { class: "task-box" }, "", main);
-    createElement("input", { class: "checkBox", type: "checkbox" }, "", t);
-    createElement("h2", { class: "task-title" }, task.title, t);
-    createElement("a", { class: "task-expand" }, "^", t).addEventListener(
-      "click",
-      expandTask
-    );
-    taskDetails(task, t);
+    renderTask(task);
     currentProject.element.lastChild.textContent = currentProject.taskCount();
   };
 
   const renderTasks = (p) => {
     main.innerHTML = "";
     p.tasks.forEach((task) => {
-      let t = createElement("div", { class: "task-box" }, "", main);
-      createElement("input", { class: "checkBox", type: "checkbox" }, "", t);
-      createElement("h2", { class: "task-title" }, task.title, t);
-      createElement("a", { class: "task-expand" }, "^", t).addEventListener(
-        "click",
-        expandTask
-      );
-      taskDetails(task, t);
+      renderTask(task);
     });
   };
 

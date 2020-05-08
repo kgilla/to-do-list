@@ -82,7 +82,7 @@ body {
   grid-column: 5/ 6;
   place-self: center;
   width: 75%;
-  height:50%;
+  height: 50%;
   background: #2980b9;
   border: solid 0.1rem #aaa;
   border-radius: 0.25rem;
@@ -148,7 +148,8 @@ body {
   font-size: 1.5rem;
 }
 
-#content, #project-heading {
+#content,
+#project-heading {
   margin: 2vw 10vw;
 }
 
@@ -158,7 +159,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 3rem;
   margin: 0.5rem 0;
   background: #fff;
   border-bottom: 0.1rem solid #ddd;
@@ -168,14 +168,11 @@ body {
 .task-title {
   font-size: 1.2rem;
   grid-area: 1/1/2/6;
-  place-self: center;
 }
 
 .task-expand {
-  font-size: 2rem;
-  text-align: center;
+  font-size: 1.5rem;
   grid-area: 5/3/6/6;
-  place-self: center;
 }
 
 .secret-box {
@@ -185,12 +182,31 @@ body {
 }
 
 .task-date {
-  place-self: center;
 }
 
 .task-description {
-  font-size: 2rem;
+  font-size: 1.4rem;
   place-self: center;
+}
+
+.grow {
+  display: grid;
+  height: 15rem;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  /* border-top: 0.5rem solid green; */
+}
+
+.high {
+  border-top: 0.2rem solid #cb4335;
+}
+
+.medium {
+  border-top: 0.2rem solid #d4ac0d;
+}
+
+.low {
+  border-top: 0.2rem solid #229954;
 }
 
 /* form stuff */
@@ -209,7 +225,7 @@ form {
   background: rgb(243, 245, 249);
   border: solid #ddd 0.1rem;
   border-radius: 0.25rem;
-  font-family: 'myFont';
+  font-family: "myFont";
 }
 
 #form-heading {
@@ -241,7 +257,7 @@ form {
 #form-submit {
   width: 100%;
   padding: 0.5rem 0;
-  border: 0.1rem solid #203148  ;
+  border: 0.1rem solid #203148;
   border-radius: 0.25rem;
   background: #1976d2;
   font-size: 1.2rem;
@@ -272,10 +288,22 @@ form {
   border-radius: 5px;
 }
 
-.grow {
+/* .grow {
   display: grid;
-  height: 200px;
+  height: 15rem;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  border: 2px solid green;
+  border-top: 0.5rem solid green;
 }
+
+.high {
+  border-top: 0.5rem solid red;
+}
+
+.medium {
+  border-top: 0.5rem solid yellow;
+}
+
+.low {
+  border-top: 0.5rem solid green;
+} */
