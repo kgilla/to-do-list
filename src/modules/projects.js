@@ -26,7 +26,7 @@ const projects = (() => {
   const create = (projectData) => {
     let project = projectMaker(projectData);
     index.push(project);
-    views.renderNewProject(project);
+    views.renderProject(project);
   };
 
   const init = () => {

@@ -36,38 +36,46 @@
     <form id="task-form" class="hidden">
       <h2 id="form-heading">Add New Task</h2>
 
-      <label for="i1" class="form-label">Task Name</label>
-      <input
-        type="text"
-        id="form-title"
-        class="form-input"
-        placeholder="what do you need to do?"
-        name="i1"
-        required
-      />
-
-      <label for="i2" class="form-label">Due Date</label>
-      <input type="date" id="form-date" class="form-input" name="i2" required />
-
-      <div id="radio-box">
+      <div class="form-section">
+        <label for="i1" class="form-label">Task Name</label>
+        <input
+          type="text"
+          id="form-title"
+          class="form-input"
+          placeholder="what do you need to do?"
+          name="i1"
+          required
+        >
+      </div>
+     
+      <div class="form-section">
+        <label for="i2" class="form-label">Due Date</label>
+        <input type="date" id="form-date" class="form-input" name="i2" required>
+      </div>
+      
+      <div class="form-section">
         <label for="radio-box" class="form-label">Priority Level</label>
-        <br /><br />
-        <input type="radio" name="r1" value="high" />
-        <label for="r1" class="radio-label">High</label>
-        <input type="radio" name="r1" value="medium" checked />
-        <label for="r1" class="radio-label">Medium</label>
-        <input type="radio" name="r1" value="low" />
-        <label for="r1" class="radio-label">Low</label>
+        
+        <div id="radio-buttons">
+          <input type="radio" name="r1" value="high" id="high" />
+          <label for="high" class="radio-label">High</label>
+          <input type="radio" name="r1" value="medium" id="medium" checked />
+          <label for="medium" class="radio-label">Medium</label>
+          <input type="radio" name="r1" value="low" id="low" />
+          <label for="low" class="radio-label">Low</label>
+        </div>
       </div>
 
-      <label for="i3" class="form-label">Task Description</label>
-      <textarea
-        id="form-textarea"
-        class="form-input"
-        name="i3"
-        placeholder="This is a good place to explain what needs to be done"
-        required
-      ></textarea>
+      <div class="form-section">
+        <label for="i3" class="form-label">Task Description</label>
+        <textarea
+          id="form-textarea"
+          class="form-input"
+          name="i3"
+          placeholder="This is a good place to explain what needs to be done"
+          required
+        ></textarea>
+      </div>
 
       <input type="button" id="form-submit" value="Create Task" />
     </form>

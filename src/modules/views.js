@@ -113,22 +113,41 @@ const views = (() => {
   };
 
   const expandTask = (event) => {
-    event.currentTarget.childNodes[3].classList.toggle("hidden");
-    event.currentTarget.classList.toggle("grow");
+    if (event.target == event.currentTarget.firstChild) {
+      event.target.classList.toggle('task-complete');
+    } else {
+      console.log(event.target);
+      event.currentTarget.classList.toggle('hidden');
+      event.currentTarget.nextSibling.classList.toggle('hidden');
+    }
+    
   };
+
+  // const completeTask = (event) => {
+  //   event.currentTarget.textContent = 'Done!'
+  //   event.currentTarget.classList.toggle('task-complete');
+  // }
 
   const renderTask = (task) => {
     //base task elements
     let t = maker("div", { class: `task-box ${task.priority}` }, "", main);
-    maker("input", { class: "checkBox", type: "checkbox" }, "", t);
-    maker("h2", { class: "task-title" }, task.title, t);
-    maker("a", { class: "task-expand" }, "^", t);
-    t.addEventListener("click", expandTask);
+   
+    let r = maker('div', {class: 'task-regular'}, '', t);
+    maker("button", { class: "complete-button"}, "Done?", r);
+    let b = maker('span', {class: 'info-box-regular'}, "", r);
+    maker("h2", { class: "title-regular" }, task.title, b);
+    maker("p", { class: "date-regular" }, task.dueDate, b);
 
     //expanded task elements
-    let s = maker("div", { class: "hidden secret-box" }, "", t);
-    maker("h2", { class: "task-date" }, `Due Date: ${task.dueDate}`, s);
-    maker("p", { class: "task-details" }, `Details: ${task.description}`, s);
+    let s = maker("div", { class: "hidden task-expanded" }, "", t);
+    maker("h2", { class: "title-expanded" }, task.title, s);
+    maker("input", { class: "date-expanded", type: 'date', value: task.dueDate}, '', s);
+    maker("textarea", { class: "description-expanded" }, task.description, s);
+    maker('button', {class: 'save-changes'}, "Save Changes", s);
+    let g = maker("button", { class: "delete-task" }, "Delete Task", s);
+    
+    r.addEventListener("click", expandTask);
+    // but.addEventListener('click', completeTask);
   };
 
   const renderNewTask = (task) => {
