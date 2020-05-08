@@ -4,20 +4,24 @@ import { projects } from "./projects";
 const views = (() => {
   const main = document.querySelector("#content");
 
-  /* sidenav selectors */
+  // sidenav selectors
+
   const newProject = document.querySelector("#new-project");
   const projectList = document.querySelector("#projects");
 
-  /* header selectors */
+  // header selectors
+
   const newTask = document.querySelector("#new-task");
   const heading = document.querySelector("#project-heading");
 
-  /* task form selectors */
+  // task form selectors
+
   const formOverlay = document.querySelector("#form-overlay");
   const taskForm = document.querySelector("#task-form");
   const createTaskButton = document.querySelector("#form-submit");
 
-  /* element states */
+  // element states
+
   let formOpen = false;
   let currentProject = "";
 
@@ -33,7 +37,7 @@ const views = (() => {
     return element;
   };
 
-  /* project views */
+  // project views
 
   const init = (p) => {
     renderProjects();
@@ -42,6 +46,21 @@ const views = (() => {
     heading.textContent = p.name;
     currentProject = p;
   };
+
+  const selectProject = (event) => {
+    let target = event.currentTarget;
+    currentProject = projects.findProject(target.firstChild.textContent);
+    update();
+  };
+
+  const update = () => {
+    document.querySelector(".selected").classList.toggle("selected");
+    currentProject.element.classList.toggle("selected");
+    renderTasks(currentProject);
+    heading.textContent = currentProject.name;
+  };
+
+  // project creation
 
   const showProjectForm = () => {
     formOpen == true ? closeProjectForm() : makeProjectForm();
@@ -53,16 +72,8 @@ const views = (() => {
   };
 
   const makeProjectForm = () => {
-    let form = createElement(
-      "input",
-      {
-        class: "project-form",
-        placeholder: "Project Name",
-        id: "project-form",
-      },
-      "",
-      projectList
-    );
+    let attr = { placeholder: "Project Name", id: "project-form" };
+    let form = createElement("input", attr, "", projectList);
     form.addEventListener("keydown", getProjectData);
     form.focus();
     formOpen = true;
@@ -75,56 +86,25 @@ const views = (() => {
     }
   };
 
-  const switchProjects = () => {};
-
-  //switch project
-  //switch class for old and new
-  //render new project tasks
-  //switch heading and count
-
-  const selectProject = (event) => {
-    currentProject = projects.findProject(event.target);
-    document.querySelector(".selected").classList.toggle("selected");
-    event.target.classList.toggle("selected");
-    renderTasks(currentProject);
-    heading.textContent = currentProject.name;
-  };
-
   const renderNewProject = (project) => {
-    let p = createElement(
-      "a",
-      {
-        class: "project",
-        href: "#",
-      },
-      project.name,
-      projectList
-    );
+    let p = createElement("div", { class: "project" }, "", projectList);
+    createElement("h3", { class: "project-name" }, project.name, p);
+    createElement("h3", { class: "project-count" }, "0", p);
     p.addEventListener("click", selectProject);
+    projects.findProject(project.name).element = p;
   };
 
   /* multiple project rendering */
 
-  const projectListeners = () => {
-    document.querySelectorAll(".project").forEach((project) => {
-      project.addEventListener("click", selectProject);
-    });
-  };
-
   const renderProjects = () => {
     projectList.innerHTML = "";
-    projects.index.forEach((project, i) => {
-      createElement(
-        "a",
-        {
-          class: "project",
-          href: "#",
-        },
-        project.name,
-        projectList
-      );
+    projects.index.forEach((project) => {
+      let p = createElement("div", { class: "project" }, "", projectList);
+      createElement("h3", { class: "project-name" }, project.name, p);
+      createElement("h3", { class: "project-count" }, project.taskCount(), p);
+      p.addEventListener("click", selectProject);
+      projects.findProject(project.name).element = p;
     });
-    projectListeners();
   };
 
   /* task views */
@@ -151,52 +131,57 @@ const views = (() => {
     showTaskForm();
   };
 
-  const renderNewTask = (task) => {
-    let t = createElement(
-      "div",
-      {
-        class: "task-box",
-      },
-      "",
-      main
-    );
+  const expandTask = () => {
+    event.currentTarget.nextSibling.classList.toggle("hidden");
+    event.target.parentNode.classList.toggle("grow");
+  };
+
+  const taskDetails = (task, parent) => {
+    let e = createElement("div", { class: "hidden secret-box" }, "", parent);
     createElement(
       "h2",
-      {
-        class: "task-title",
-      },
-      task.title,
-      t
+      { class: "task-date" },
+      `Date To Be Completed: ${task.dueDate}`,
+      e
     );
+    createElement(
+      "h3",
+      { class: "task-priority" },
+      `Priority Level: task.priority`,
+      e
+    );
+    createElement(
+      "p",
+      { class: "task-details" },
+      `Details: ${task.description}`,
+      e
+    );
+  };
+
+  const renderNewTask = (task) => {
+    let t = createElement("div", { class: "task-box" }, "", main);
+    createElement("input", { class: "checkBox", type: "checkbox" }, "", t);
+    createElement("h2", { class: "task-title" }, task.title, t);
+    createElement("a", { class: "task-expand" }, "^", t).addEventListener(
+      "click",
+      expandTask
+    );
+    taskDetails(task, t);
+    currentProject.element.lastChild.textContent = currentProject.taskCount();
   };
 
   const renderTasks = (p) => {
     main.innerHTML = "";
     p.tasks.forEach((task) => {
-      let t = createElement(
-        "div",
-        {
-          class: "task-box",
-        },
-        "",
-        main
+      let t = createElement("div", { class: "task-box" }, "", main);
+      createElement("input", { class: "checkBox", type: "checkbox" }, "", t);
+      createElement("h2", { class: "task-title" }, task.title, t);
+      createElement("a", { class: "task-expand" }, "^", t).addEventListener(
+        "click",
+        expandTask
       );
-      createElement(
-        "h2",
-        {
-          class: "task-title",
-        },
-        task.title,
-        t
-      );
+      taskDetails(task, t);
     });
-  };
-
-  const expandTask = () => {
-    if (event.target.attributes[1] != undefined) {
-      let target = tasks.index[event.target.attributes[1].value];
-      // console.log(target);
-    }
   };
 
   /* event listeners */
@@ -205,7 +190,6 @@ const views = (() => {
   newTask.addEventListener("click", showTaskForm);
   createTaskButton.addEventListener("click", getTaskData);
   newProject.addEventListener("click", showProjectForm);
-  main.addEventListener("click", expandTask);
 
   return {
     renderTasks,

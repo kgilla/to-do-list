@@ -3,17 +3,22 @@ import { views } from "./views";
 const projects = (() => {
   let index = [];
 
-  const findProject = (element) => {
-    let p = index.find((p) => p.name == element.textContent);
-    return p;
+  const findProject = (name) => {
+    return index.find((p) => p.name == name);
   };
 
   const projectMaker = (name) => {
     let tasks = [];
-    let taskCount = tasks.length;
+    let element = "";
+
+    const taskCount = () => {
+      return tasks.length;
+    };
+
     return {
       name,
       tasks,
+      element,
       taskCount,
     };
   };

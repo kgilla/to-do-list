@@ -21,54 +21,52 @@
     </nav>
 
     <main id="main">
-      <div id="info-box">
-        <h2 id="project-heading">Wow Such heading</h2>
-        <h2 id="task-count">5</h2>
-      </div>
-
+      <h2 id="project-heading">Wow Such heading</h2>
       <div id="content"></div>
 
       <button id="new-task">Task +</button>
     </main>
 
-    <div id="form-overlay" class="hidden">
-      <form id="task-form" class="hidden">
-        <h2 id="form-heading">Add New Task</h2>
+    <div id="form-overlay" class="hidden"></div>
 
-        <label for="i1" class="form-label">Task Name</label>
-        <input
-          type="text"
-          id="form-title"
-          class="form-input"
-          placeholder="what do you need to do?"
-          name="i1"
-        />
+    <form id="task-form" class="hidden">
+      <h2 id="form-heading">Add New Task</h2>
 
-        <label for="i2" class="form-label">Due Date</label>
-        <input type="date" id="form-date" class="form-input" name="i2" />
+      <label for="i1" class="form-label">Task Name</label>
+      <input
+        type="text"
+        id="form-title"
+        class="form-input"
+        placeholder="what do you need to do?"
+        name="i1"
+        required
+      />
 
-        <div id="radio-box">
-          <label for="radio-box" class="form-label">Priority Level</label>
-          <br /><br />
-          <input type="radio" name="r1" value="high" />
-          <label for="r1" class="radio-label">High</label>
-          <input type="radio" name="r1" value="medium" />
-          <label for="r1" class="radio-label">Medium</label>
-          <input type="radio" name="r1" value="low" />
-          <label for="r1" class="radio-label">Low</label>
-        </div>
+      <label for="i2" class="form-label">Due Date</label>
+      <input type="date" id="form-date" class="form-input" name="i2" required />
 
-        <label for="i3" class="form-label">Task Description</label>
-        <textarea
-          id="form-textarea"
-          class="form-input"
-          name="i3"
-          placeholder="This is a good place to explain what needs to be done"
-        ></textarea>
+      <div id="radio-box">
+        <label for="radio-box" class="form-label">Priority Level</label>
+        <br /><br />
+        <input type="radio" name="r1" value="high" />
+        <label for="r1" class="radio-label">High</label>
+        <input type="radio" name="r1" value="medium" checked />
+        <label for="r1" class="radio-label">Medium</label>
+        <input type="radio" name="r1" value="low" />
+        <label for="r1" class="radio-label">Low</label>
+      </div>
 
-        <input type="button" id="form-submit" value="Create Task" />
-      </form>
-    </div>
+      <label for="i3" class="form-label">Task Description</label>
+      <textarea
+        id="form-textarea"
+        class="form-input"
+        name="i3"
+        placeholder="This is a good place to explain what needs to be done"
+        required
+      ></textarea>
+
+      <input type="button" id="form-submit" value="Create Task" />
+    </form>
 
     <script src="main.js"></script>
   </body>
