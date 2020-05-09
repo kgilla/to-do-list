@@ -113,41 +113,42 @@ const views = (() => {
   };
 
   const expandTask = (event) => {
-    if (event.target == event.currentTarget.firstChild) {
-      event.target.classList.toggle('task-complete');
-    } else {
+    if (event.target != event.currentTarget.firstChild) {
       console.log(event.target);
-      event.currentTarget.classList.toggle('hidden');
-      event.currentTarget.nextSibling.classList.toggle('hidden');
+      event.currentTarget.classList.toggle("hidden");
+      event.currentTarget.nextSibling.classList.toggle("hidden");
     }
-    
   };
 
-  // const completeTask = (event) => {
-  //   event.currentTarget.textContent = 'Done!'
-  //   event.currentTarget.classList.toggle('task-complete');
-  // }
+  const completeTask = (event) => {
+    event.currentTarget.classList.toggle("task-complete");
+    event.currentTarget.nextSibling.classList.toggle("text-done");
+  };
 
   const renderTask = (task) => {
     //base task elements
-    let t = maker("div", { class: `task-box ${task.priority}` }, "", main);
-   
-    let r = maker('div', {class: 'task-regular'}, '', t);
-    maker("button", { class: "complete-button"}, "Done?", r);
-    let b = maker('span', {class: 'info-box-regular'}, "", r);
-    maker("h2", { class: "title-regular" }, task.title, b);
-    maker("p", { class: "date-regular" }, task.dueDate, b);
+    let t = maker("div", { class: "task-box" }, "", main);
+
+    let r = maker("div", { class: "task-regular" }, "", t);
+    let a = maker("a", { class: `complete-button ${task.priority}` }, "", r);
+    maker("h2", { class: "title-regular" }, task.title, r);
+    maker("p", { class: "date-regular" }, task.dueDate, r);
 
     //expanded task elements
     let s = maker("div", { class: "hidden task-expanded" }, "", t);
     maker("h2", { class: "title-expanded" }, task.title, s);
-    maker("input", { class: "date-expanded", type: 'date', value: task.dueDate}, '', s);
+    maker(
+      "input",
+      { class: "date-expanded", type: "date", value: task.dueDate },
+      "",
+      s
+    );
     maker("textarea", { class: "description-expanded" }, task.description, s);
-    maker('button', {class: 'save-changes'}, "Save Changes", s);
+    maker("button", { class: "save-changes" }, "Save Changes", s);
     let g = maker("button", { class: "delete-task" }, "Delete Task", s);
-    
+
     r.addEventListener("click", expandTask);
-    // but.addEventListener('click', completeTask);
+    a.addEventListener("click", completeTask);
   };
 
   const renderNewTask = (task) => {

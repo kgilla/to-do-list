@@ -17,9 +17,8 @@ body {
   min-height: 100vh;
   max-width: 100vw;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 4rem 4rem repeat(5, 1fr);
+  grid-template-rows: 6rem 6rem 1fr;
   font-family: "myFont";
-  background: rgb(243, 245, 249);
   color: rgb(74, 95, 120);
   box-sizing: border-box;
 }
@@ -27,7 +26,7 @@ body {
 /* top header */
 
 #top-banner {
-  height: 4rem;
+  height: 6rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,7 +36,7 @@ body {
 
 #brand {
   color: #fff;
-  font-size: 2rem;
+  font-size: 3rem;
   text-decoration: none;
 }
 
@@ -48,7 +47,7 @@ body {
   display: grid;
   align-self: center;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 4rem;
+  grid-template-rows: 6rem;
   background: #203148;
 }
 
@@ -61,34 +60,35 @@ body {
 
 #new-project-header {
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 #new-project {
-  padding: 0.25rem 0.5rem;
-  background: #d35400 ;
-  border:  #e67e22  solid 0.1rem;
+  padding: 0.666rem 1rem;
+  background: #d35400;
+  border: #e67e22 solid 0.1rem;
   border-radius: 50%;
   text-decoration: none;
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 2rem;
 }
 
 /* green hovers */
-#new-project:hover, #new-task:hover {
-  background: #e67e22 ;
+#new-project:hover,
+#new-task:hover {
+  background: #e67e22;
 }
 
 #new-task {
   grid-column: 5/ 6;
   place-self: center;
-  width: 75%;
+  width: 75 %;
   height: 50%;
-  background:  #d35400 ;
-  border: solid 0.1rem #e67e22 ;
+  background: #d35400;
+  border: solid 0.1rem #e67e22;
   border-radius: 0.25rem;
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 2rem;
 }
 
 /* side nav */
@@ -142,12 +142,12 @@ body {
 }
 
 #project-heading {
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 #content,
 #project-heading {
-  margin: 2vw 10vw;
+  margin: 2vw 5vw;
 }
 
 /* task stuff */
@@ -156,44 +156,37 @@ body {
   box-shadow: 0 4px 2px -2px #aaa;
 }
 
-/* regular task size */ 
+/* regular task size */
 .task-regular {
-  height: 5rem;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 4rem;
+  grid-template-columns: 4rem repeat(1, 1fr);
+  grid-template-rows: 5rem;
+  align-items: center;
   margin: 1rem 0;
-  border: 0.1rem solid #fff;
-  border-left: none;
-  border-radius: 0.5rem;
   background: #fff;
 }
 .task-regular:hover {
-  border-bottom: 0.1rem solid #333;
 }
 
 .complete-button {
   grid-column: 1/2;
-  margin: 1rem 2.5rem;
-  border: 0.1rem solid #aaa;
-  border-radius: 0.25rem; 
-}
-
-.info-box-regular {
-  grid-column: 2/5;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  height: 66%;
+  width: 70%;
+  place-self: center;
+  border: 0.2rem solid #aaa;
+  border-radius: 50%;
+  outline: none;
 }
 
 .title-regular {
-  font-size: 1.2rem;
-  padding: 1rem;
+  grid-column: 2/4;
+  font-size: 2rem;
 }
 
 .date-regular {
-  font-size: 1rem;
-  font-style: italic;
+  grid-column: 4/6;
+  font-size: 1.5rem;
+  color: #555;
 }
 
 /* expanded task */
@@ -203,17 +196,15 @@ body {
   display: grid;
   grid-template-columns: 2rem repeat(5, 1fr) 2rem;
   grid-template-rows: repeat(7, 1fr);
-  margin: 1rem 0;
-  padding: 1rem;
   border: 0.1rem solid #ddd;
   border-left: none;
-  border-radius: 0.5rem;
+  border-radius: 0 0.5rem 0.5rem 0;
   background: #fff;
 }
 
 .title-expanded {
- grid-area: 1/2/2/5;
- font-size: 1.5rem;
+  grid-area: 1/2/2/5;
+  font-size: 1.5rem;
 }
 
 .date-expanded {
@@ -247,28 +238,27 @@ body {
   font-size: 1rem;
 }
 .grow {
+}
 
+.text-done {
+  text-decoration: line-through;
 }
 
 .task-complete {
-  background:#229954 ;
+  background: #229954;
+  border: 0.2rem solid #333;
 }
 
 .high {
-  border-left: 1rem solid   #a93226  ;
-  border-radius: 0.5rem;
+  border: 0.2rem solid #a93226;
 }
 
 .medium {
-  border-left: 1rem solid   #d4ac0d ;
-  border-radius: 0.5rem;
-
+  border: 0.2rem solid #d4ac0d;
 }
 
 .low {
-  border-left: 1rem solid  #229954 ;
-  border-radius: 0.5rem;
-
+  border: 0.2rem solid #229954;
 }
 
 /* form stuff */
@@ -279,9 +269,9 @@ form {
   justify-content: space-between;
   position: fixed;
   right: 0;
-  top: 2%;
-  height: 96%;
-  width: 27.5rem;
+  top: auto;
+  height: ;
+  width: 33%;
   padding: 1.5rem;
   background: rgb(243, 245, 249);
   border: solid #aaa 0.1rem;
@@ -310,7 +300,7 @@ form {
 }
 
 .form-input:focus {
-  border:  #2e86c1  0.1rem solid;
+  border: #2e86c1 0.1rem solid;
 }
 
 #form-heading {
@@ -327,17 +317,17 @@ form {
   padding: 0.5rem 0;
   border: 0.1rem solid #203148;
   border-radius: 0.25rem;
-  background:  #2e86c1 ;
+  background: #2e86c1;
   color: #fff;
   font-size: 1rem;
 }
 
 #form-submit:hover {
-  background:  #3498db ;
+  background: #3498db;
 }
 
 #form-overlay {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   min-height: 100vh;
