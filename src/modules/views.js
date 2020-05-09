@@ -34,24 +34,29 @@ const views = (() => {
 
   // project views
   const init = (p) => {
-    renderProjects();
+    renderProject(p);
     renderTasks(p);
-    projectList.firstChild.classList.toggle("selected");
     heading.textContent = p.name;
     currentProject = p;
+    currentProject.element.classList.toggle('selected');
   };
 
-  const selectProject = (event) => {
-    let target = event.currentTarget;
-    currentProject = projects.findProject(target.firstChild.textContent);
-    update();
-  };
-
-  const update = () => {
-    document.querySelector(".selected").classList.toggle("selected");
-    renderTasks(currentProject);
-    currentProject.element.classList.toggle("selected");
+  const updateDom = () => {
+    currentProject.element.classList.toggle('selected');
     heading.textContent = currentProject.name;
+    renderTasks(currentProject);
+  }
+
+  const rerenderDom = () => {
+    renderProjects();
+    updateDom();
+  }
+
+  const changeProject = (event) => {
+    let name = event.currentTarget.firstChild.textContent;
+    currentProject.element.classList.toggle('selected');
+    currentProject = projects.findProject(name);
+    updateDom();
   };
 
   // project creation
@@ -82,9 +87,9 @@ const views = (() => {
   const renderProject = (project) => {
     let p = maker("div", { class: "project" }, "", projectList);
     maker("h3", { class: "project-name" }, project.name, p);
-    maker("h3", { class: "project-count" }, "0", p);
-    p.addEventListener("click", selectProject);
-    projects.findProject(project.name).element = p;
+    maker("h3", { class: "project-count" }, `${project.tasks.length}`, p);
+    p.addEventListener("click", changeProject);
+    project.element = p;
   };
 
   /* multiple project rendering */
@@ -125,6 +130,31 @@ const views = (() => {
     event.currentTarget.nextSibling.classList.toggle("text-done");
   };
 
+  const getTaskIndex = (event) => {
+    let t = event.currentTarget.parentNode.firstChild.textContent;
+    let d = currentProject.tasks.indexOf(projects.findTask(currentProject, t));
+    return d;
+  }
+
+  const closeTask = (event) => {
+    let taskBox = event.currentTarget.parentNode.parentNode;
+    taskBox.firstChild.classList.toggle('hidden');
+    taskBox.lastChild.classList.toggle('hidden');
+  }
+
+  const updateTask = (event) => {
+    let task = currentProject.tasks[getTaskIndex(event)];
+    task.description = event.currentTarget.previousSibling.value;
+    task.dueDate = event.currentTarget.previousSibling.previousSibling.value;
+    closeTask(event);
+    renderTasks(currentProject);
+  }
+
+  const deleteTask = (event) => {
+    currentProject.tasks.splice(getTaskIndex(event), 1);
+    rerenderDom();
+  }
+
   const renderTask = (task) => {
     //base task elements
     let t = maker("div", { class: "task-box" }, "", main);
@@ -133,6 +163,9 @@ const views = (() => {
     let a = maker("a", { class: `complete-button ${task.priority}` }, "", r);
     maker("h2", { class: "title-regular" }, task.title, r);
     maker("p", { class: "date-regular" }, task.dueDate, r);
+
+    r.addEventListener("click", expandTask);
+    a.addEventListener("click", completeTask);
 
     //expanded task elements
     let s = maker("div", { class: "hidden task-expanded" }, "", t);
@@ -144,16 +177,16 @@ const views = (() => {
       s
     );
     maker("textarea", { class: "description-expanded" }, task.description, s);
-    maker("button", { class: "save-changes" }, "Save Changes", s);
-    let g = maker("button", { class: "delete-task" }, "Delete Task", s);
+    let save = maker("button", { class: "save-changes" }, "Save Task", s);
+    let remove = maker("button", { class: "delete-task" }, "Delete", s);
 
-    r.addEventListener("click", expandTask);
-    a.addEventListener("click", completeTask);
+    save.addEventListener('click', updateTask);
+    remove.addEventListener('click', deleteTask);
+   
   };
 
   const renderNewTask = (task) => {
     renderTask(task);
-    currentProject.element.lastChild.textContent = currentProject.taskCount();
   };
 
   const renderTasks = (p) => {

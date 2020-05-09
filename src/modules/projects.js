@@ -5,7 +5,11 @@ const projects = (() => {
 
   const findProject = (name) => {
     return index.find((p) => p.name == name);
-  };
+  }
+
+  const findTask = (project, taskTitle) => {
+    return project.tasks.find((task) => task.title == taskTitle);
+  }
 
   const projectMaker = (name) => {
     let tasks = [];
@@ -39,6 +43,7 @@ const projects = (() => {
     index,
     create,
     findProject,
+    findTask,
     init,
   };
 })();
