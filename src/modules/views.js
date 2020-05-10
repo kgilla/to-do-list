@@ -33,30 +33,40 @@ const views = (() => {
   };
 
   // project views
+
   const init = (p) => {
-    renderProject(p);
-    renderTasks(p);
-    heading.textContent = p.name;
     currentProject = p;
-    currentProject.element.classList.toggle('selected');
+    renderProjects();
+    initDom();
   };
 
-  const updateDom = () => {
-    currentProject.element.classList.toggle('selected');
+  const initDom = () => {
+    renderTasks(currentProject);
+    heading.textContent = currentProject.name;
+    projectList.firstChild.classList.toggle("selected");
+  };
+
+  const render = () => {
+    let selected = document.querySelector(".selected").getAttribute("data");
+    renderProjects();
+    projectList.childNodes[selected].classList.toggle("selected");
     heading.textContent = currentProject.name;
     renderTasks(currentProject);
-  }
-
-  const rerenderDom = () => {
-    renderProjects();
-    updateDom();
-  }
+  };
 
   const changeProject = (event) => {
-    let name = event.currentTarget.firstChild.textContent;
-    currentProject.element.classList.toggle('selected');
-    currentProject = projects.findProject(name);
-    updateDom();
+    document.querySelector(".selected").classList.toggle("selected");
+    event.currentTarget.classList.toggle("selected");
+    currentProject = projects.index[event.currentTarget.getAttribute("data")];
+    render();
+  };
+
+  const newProjectChanger = (project) => {
+    currentProject = project;
+    renderProjects();
+    renderTasks(currentProject);
+    heading.textContent = currentProject.name;
+    projectList.lastChild.classList.toggle("selected");
   };
 
   // project creation
@@ -84,21 +94,22 @@ const views = (() => {
     }
   };
 
-  const renderProject = (project) => {
-    let p = maker("div", { class: "project" }, "", projectList);
+  const renderProject = (project, i) => {
+    let p = maker("div", { class: "project", data: i }, "", projectList);
     maker("h3", { class: "project-name" }, project.name, p);
     maker("h3", { class: "project-count" }, `${project.tasks.length}`, p);
     p.addEventListener("click", changeProject);
-    project.element = p;
   };
 
   /* multiple project rendering */
+
   const renderProjects = () => {
     projectList.innerHTML = "";
-    projects.index.forEach((project) => renderProject(project));
+    projects.index.forEach((project, i) => renderProject(project, i));
   };
 
-  /* task views */
+  /* task form stuff */
+
   const showform = () => {
     formOverlay.classList.toggle("hidden");
     form.classList.toggle("hidden");
@@ -117,84 +128,89 @@ const views = (() => {
     showform();
   };
 
+  //task functions
+
   const expandTask = (event) => {
     if (event.target != event.currentTarget.firstChild) {
-      console.log(event.target);
       event.currentTarget.classList.toggle("hidden");
       event.currentTarget.nextSibling.classList.toggle("hidden");
     }
   };
 
   const completeTask = (event) => {
+    let task = getTaskFromIndex(event.currentTarget.parentNode);
+    event.currentTarget.classList.toggle(task.priority);
     event.currentTarget.classList.toggle("task-complete");
-    event.currentTarget.nextSibling.classList.toggle("text-done");
+    event.currentTarget.parentNode.children[1].classList.toggle("text-done");
+    event.currentTarget.parentNode.children[2].classList.toggle("text-done");
   };
 
-  const getTaskIndex = (event) => {
-    let t = event.currentTarget.parentNode.firstChild.textContent;
-    let d = currentProject.tasks.indexOf(projects.findTask(currentProject, t));
-    return d;
-  }
+  const getTaskFromIndex = (taskBox) => {
+    return currentProject.tasks[taskBox.getAttribute("data")];
+  };
 
   const closeTask = (event) => {
     let taskBox = event.currentTarget.parentNode.parentNode;
-    taskBox.firstChild.classList.toggle('hidden');
-    taskBox.lastChild.classList.toggle('hidden');
-  }
+    taskBox.firstChild.classList.toggle("hidden");
+    taskBox.lastChild.classList.toggle("hidden");
+  };
 
   const updateTask = (event) => {
-    let task = currentProject.tasks[getTaskIndex(event)];
+    let task = getTaskFromIndex(event.currentTarget.parentNode);
     task.description = event.currentTarget.previousSibling.value;
     task.dueDate = event.currentTarget.previousSibling.previousSibling.value;
     closeTask(event);
     renderTasks(currentProject);
-  }
+  };
 
   const deleteTask = (event) => {
-    currentProject.tasks.splice(getTaskIndex(event), 1);
-    rerenderDom();
-  }
+    currentProject.tasks.splice(
+      event.currentTarget.parentNode.getAttribute("data"),
+      1
+    );
+    render();
+  };
 
-  const renderTask = (task) => {
-    //base task elements
-    let t = maker("div", { class: "task-box" }, "", main);
+  // task maker
 
-    let r = maker("div", { class: "task-regular" }, "", t);
+  const makeRegularTaskElements = (task, r) => {
     let a = maker("a", { class: `complete-button ${task.priority}` }, "", r);
     maker("h2", { class: "title-regular" }, task.title, r);
     maker("p", { class: "date-regular" }, task.dueDate, r);
 
-    r.addEventListener("click", expandTask);
     a.addEventListener("click", completeTask);
-
-    //expanded task elements
-    let s = maker("div", { class: "hidden task-expanded" }, "", t);
-    maker("h2", { class: "title-expanded" }, task.title, s);
-    maker(
-      "input",
-      { class: "date-expanded", type: "date", value: task.dueDate },
-      "",
-      s
-    );
-    maker("textarea", { class: "description-expanded" }, task.description, s);
-    let save = maker("button", { class: "save-changes" }, "Save Task", s);
-    let remove = maker("button", { class: "delete-task" }, "Delete", s);
-
-    save.addEventListener('click', updateTask);
-    remove.addEventListener('click', deleteTask);
-   
   };
 
-  const renderNewTask = (task) => {
-    renderTask(task);
+  const makeExpandedTaskElements = (task, e) => {
+    maker("h2", { class: "title-expanded" }, task.title, e);
+    let data = { class: "date-expanded", type: "date", value: task.dueDate };
+    maker("input", data, "", e);
+    maker("textarea", { class: "description-expanded" }, task.description, e);
+
+    let save = maker("button", { class: "save-changes" }, "Save Task", e);
+    let remove = maker("button", { class: "delete-task" }, "Delete", e);
+    save.addEventListener("click", updateTask);
+    remove.addEventListener("click", deleteTask);
+  };
+
+  const renderTask = (task, index) => {
+    let t = maker("div", { class: "task-box", data: index }, "", main);
+    let r = maker("div", { class: "task-regular", data: index }, "", t);
+    let e = maker("div", { class: "hidden task-expanded", data: index }, "", t);
+
+    r.addEventListener("click", expandTask);
+
+    makeRegularTaskElements(task, r);
+    makeExpandedTaskElements(task, e);
   };
 
   const renderTasks = (p) => {
     main.innerHTML = "";
-    p.tasks.forEach((task) => renderTask(task));
+    p.tasks.forEach((task, i) => renderTask(task, i));
   };
 
   /* event listeners */
+
   formOverlay.addEventListener("click", formClose);
   newTask.addEventListener("click", showform);
   createTaskButton.addEventListener("click", getTaskData);
@@ -202,9 +218,9 @@ const views = (() => {
 
   return {
     renderTasks,
-    renderNewTask,
     renderProjects,
-    renderProject,
+    newProjectChanger,
+    render,
     init,
   };
 })();

@@ -5,7 +5,9 @@
   font-style: normal;
 }
 
-html { font-size: 100%; } 
+html {
+  font-size: 16px;
+}
 
 * {
   line-height: 1.5;
@@ -67,8 +69,8 @@ body {
 
 #new-project {
   padding: 0.333rem 0.666rem;
-  background:  #0288d1 ;
-  border:  #039be5  solid 0.1rem;
+  background: #0288d1;
+  border: #039be5 solid 0.1rem;
   border-radius: 50%;
   text-decoration: none;
   color: #fff;
@@ -76,8 +78,10 @@ body {
 }
 
 /* green hovers */
-#new-project:hover, .save-changes:hover,
-#new-task:hover, #form-submit:hover {
+#new-project:hover,
+.save-changes:hover,
+#new-task:hover,
+#form-submit:hover {
   background: #039be5;
 }
 
@@ -86,8 +90,8 @@ body {
   place-self: center;
   width: 66%;
   height: 50%;
-  background:  #0288d1 ;
-  border:  #039be5  solid 0.1rem;
+  background: #0288d1;
+  border: #039be5 solid 0.1rem;
   border-radius: 0.25rem;
   color: #fff;
   font-size: 1.5rem;
@@ -203,7 +207,7 @@ body {
 }
 
 .title-expanded {
-  grid-area: 1/1/2/4 ;
+  grid-area: 1/1/2/4;
   font-size: 1.8rem;
   place-self: center;
 }
@@ -217,18 +221,17 @@ body {
 
 .description-expanded {
   grid-area: 1/4/7/7;
-  padding: 0.5rem;  
+  padding: 0.5rem;
   border: 0.1rem solid #aaa;
   border-radius: 0.25rem;
   resize: none;
   font-size: 1.2rem;
-
 }
 
 .save-changes {
   grid-area: 5/1/6/3;
-  background:  #0288d1 ;
-  border:  #039be5  solid 0.1rem;
+  background: #0288d1;
+  border: #039be5 solid 0.1rem;
   border-radius: 0.25rem;
   color: #fff;
   font-size: 1.2rem;
@@ -252,20 +255,24 @@ body {
 }
 
 .task-complete {
+  border: none;
   background: #229954;
-  border: 0.2rem solid #333;
+  /* border: 0.2rem solid #333; */
 }
 
 .high {
   border: 0.2rem solid #a93226;
+  background: #d98880;
 }
 
 .medium {
   border: 0.2rem solid #d4ac0d;
+  background: #f9e79f;
 }
 
 .low {
   border: 0.2rem solid #229954;
+  background: #a9dfbf;
 }
 
 /* form stuff */
@@ -275,10 +282,10 @@ form {
   flex-direction: column;
   justify-content: space-between;
   position: fixed;
-  right: 0;
-  top: 5%;
-  height: 90%;
-  width: 33%;
+  right: 33vw;
+  top: 20vh;
+  height: 60vh;
+  width: 33vw;
   padding: 1.5rem;
   background: rgb(243, 245, 249);
   border: solid #aaa 0.1rem;
@@ -322,8 +329,8 @@ form {
 #form-submit {
   width: 100%;
   padding: 0.5rem 0;
-  background:  #0288d1 ;
-  border:  #039be5  solid 0.1rem;
+  background: #0288d1;
+  border: #039be5 solid 0.1rem;
   border-radius: 0.25rem;
   color: #fff;
   font-size: 1rem;
