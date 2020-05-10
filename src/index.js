@@ -25,7 +25,7 @@ const init = () => {
   localStorage.length > 0 ? getIndex() : freshStart();
 }
 
-// window.localStorage.clear();
+window.localStorage.clear();
 
 init();
 
