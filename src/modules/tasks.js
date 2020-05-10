@@ -14,6 +14,7 @@ const tasks = (() => {
   const create = (taskData, project) => {
     let task = taskMaker(...taskData);
     project.tasks.push(task);
+    projects.save(project);
     views.render();
   };
 

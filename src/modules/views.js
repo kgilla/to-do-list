@@ -161,6 +161,7 @@ const views = (() => {
     task.dueDate = event.currentTarget.previousSibling.previousSibling.value;
     closeTask(event);
     renderTasks(currentProject);
+    projects.save(currentProject);
   };
 
   const deleteTask = (event) => {
@@ -169,6 +170,7 @@ const views = (() => {
       1
     );
     render();
+    projects.save(currentProject);
   };
 
   // task maker

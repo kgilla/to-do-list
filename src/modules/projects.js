@@ -15,19 +15,22 @@ const projects = (() => {
   const create = (projectData) => {
     let project = projectMaker(projectData);
     index.push(project);
-    saveProject(project);
+    save(project);
     views.newProjectChanger(project);
-  };
+  }
 
-  const saveProject = (project) => {
+  const save = (project) => {
     window.localStorage.setItem(project.name, JSON.stringify(project));
-  };
+  }
 
   return {
     index,
     create,
+    save,
     projectMaker,
   };
 })();
 
 export { projects };
+
+
