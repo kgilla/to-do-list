@@ -122,7 +122,7 @@ const views = (() => {
   };
 
   const getTaskData = () => {
-    let radio = document.querySelector('input[type="radio"]:checked').value;
+    let radio = document.querySelector("input[type=radio]:checked").value;
     let taskData = [form[0].value, form[1].value, radio, form[5].value];
     tasks.create(taskData, currentProject);
     showform();
@@ -155,10 +155,15 @@ const views = (() => {
     taskBox.lastChild.classList.toggle("hidden");
   };
 
-  const updateTask = (event) => {
+  const taskChanger = (event) => {
     let task = getTaskFromIndex(event.currentTarget.parentNode);
-    task.description = event.currentTarget.previousSibling.value;
-    task.dueDate = event.currentTarget.previousSibling.previousSibling.value;
+    task.description = event.currentTarget.previousSibling.lastChild.value;
+    task.dueDate = event.currentTarget.parentNode.childNodes[1].lastChild.value;
+    task.priority = document.querySelector('input[type="radio"]:checked').value;
+  };
+
+  const updateTask = (event) => {
+    taskChanger(event);
     closeTask(event);
     renderTasks(currentProject);
     projects.save(currentProject);
@@ -185,13 +190,50 @@ const views = (() => {
 
   const makeExpandedTaskElements = (task, e) => {
     maker("h2", { class: "title-expanded" }, task.title, e);
-    let data = { class: "date-expanded", type: "date", value: task.dueDate };
-    maker("input", data, "", e);
-    maker("textarea", { class: "description-expanded" }, task.description, e);
 
-    let save = maker("button", { class: "save-changes" }, "Save Task", e);
+    // date edit input
+    let d = maker("div", { class: "e-date-box" }, "", e);
+    let data = { class: "date-expanded", type: "date", value: task.dueDate };
+    maker(
+      "label",
+      { for: "date-expanded", class: "e-form-label" },
+      "Due Date:",
+      d
+    );
+    maker("input", data, "", d);
+
+    // priority edit input
+    let p = maker("div", { class: "e-radio-box" }, "", e);
+    maker("label", { for: "e-r", class: "e-form-label" }, "Task Priority:", p);
+
+    maker("label", { for: "high", class: "e-form-label" }, " High", p);
+    maker("input", { type: "radio", name: "e", value: "high" }, "", p);
+
+    maker("label", { for: "medium", class: "e-form-label" }, "| Medium", p);
+    maker("input", { type: "radio", name: "e", value: "medium" }, "Medium", p);
+
+    maker("label", { for: "low", class: "e-form-label" }, "| Low", p);
+    maker("input", { type: "radio", name: "e", value: "low" }, "", p);
+
+    // description edit input
+    let t = maker("div", { class: "e-text-box" }, "", e);
+    maker(
+      "label",
+      { for: "description-expanded", class: "e-form-label" },
+      "Task Description",
+      t
+    );
+    maker("textarea", { class: "description-expanded" }, task.description, t);
+
+    // buttons
+    let update = maker(
+      "button",
+      { class: "save-changes" },
+      "Save & Close Task",
+      e
+    );
     let remove = maker("button", { class: "delete-task" }, "Delete", e);
-    save.addEventListener("click", updateTask);
+    update.addEventListener("click", updateTask);
     remove.addEventListener("click", deleteTask);
   };
 

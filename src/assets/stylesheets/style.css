@@ -80,7 +80,6 @@ body {
 
 /* green hovers */
 #new-project:hover,
-.save-changes:hover,
 #new-task:hover,
 #form-submit:hover {
   background: #039be5;
@@ -152,12 +151,6 @@ body {
   margin: 2vw 5vw;
 }
 
-/* task stuff */
-
-.task-box {
-  box-shadow: 0 4px 2px -2px #aaa;
-}
-
 /* regular task size */
 .task-regular {
   display: grid;
@@ -166,6 +159,7 @@ body {
   align-items: center;
   margin: 2rem 0;
   background: #fff;
+  box-shadow: 0 4px 2px -2px #aaa;
 }
 .task-regular:hover {
 }
@@ -196,61 +190,98 @@ body {
 /* expanded task */
 
 .task-expanded {
-  height: 20rem;
+  height: 25rem;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  padding: 1rem;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(10, 1fr);
   margin: 2rem 0;
-  background:  #fdfefe ;
-  border: 0.1rem solid #203148;
-  border-radius: 0.25rem;
+  padding: 1rem;
+  background: #fdfefe;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 2px -2px #aaa;
 }
 
 .title-expanded {
-  grid-area: 1/1/3/4;
+  grid-area: 1/1/2/8;
+  text-align: center;
+  padding: 0.5rem;
+  margin: -1rem -1rem 0 -1rem;
+  background: #203148;
+  border-radius: 0.5rem 0.5rem 0 0;
+  color: #fff;
   font-size: 1.5rem;
 }
 
+.e-date-box {
+  grid-area: 2/1/4/3;
+  place-self: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.e-radio-box {
+  grid-area: 2/3/4/6;
+  place-self: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.e-text-box {
+  grid-area: 4/1/8/6;
+}
+
+.e-form-label {
+  font-size: 1.4rem;
+  color: #000;
+  font-weight: bold;
+}
 .date-expanded {
-  grid-area: 3/1/4/3;
-  border: 0.1rem solid #203148;
-  border-radius: 0.25rem;
-  background: #fff;
+  padding: 0.25rem;
   font-size: 1.2rem;
+  place-self: center;
 }
 
 .description-expanded {
-  grid-area: 1/5/6/9;
   width: 100%;
   height: 100%;
-  place-self: center;
   padding: 0.5rem;
-  border: 0.1rem solid #203148;
-  border-radius: 0.25rem;
-  background: #fff;
   resize: none;
   font-size: 1.2rem;
 }
 
+.description-expanded:focus,
+.date-expanded:focus {
+  border: #2e86c1 0.1rem solid;
+}
+
 .save-changes {
-  grid-area: 5/1/6/3;
+  grid-area: 10/1/11/5;
+  width: 90%;
   padding: 0.5rem;
-  background:  #eaf2f8 ;
+  background: #eaf2f8;
   border: #039be5 solid 0.2rem;
   border-radius: 0.25rem;
   font-size: 1.2rem;
 }
 
+.save-changes:hover {
+  background: #a9cce3;
+}
+
 .delete-task {
-  grid-area: 5/4/6/5;
+  grid-area: 10/5/11/6;
+  width: 90%;
   padding: 0.5rem;
-  background: #f9ebea ;
+  background: #f9ebea;
   border: 0.2rem solid #a93226;
   border-radius: 0.25rem;
   font-size: 1.2rem;
 }
-.grow {
+
+.delete-task:hover {
+  background: #e6b0aa;
 }
 
 .text-done {
@@ -281,14 +312,13 @@ body {
 /* form stuff */
 
 form {
+  place-self: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: fixed;
-  right: 0;
-  top: 2rem;
-  height: 40rem;
-  width: 25rem;
+  height: 50rem;
+  width: 30rem;
   padding: 1.5rem;
   background: rgb(243, 245, 249);
   border: solid #aaa 0.1rem;
@@ -308,12 +338,12 @@ form {
   border: 0.1rem solid #d4e6f1;
   border-radius: 0.25rem;
   padding: 0.5rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .form-label {
   padding: 0.5rem 0;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .form-input:focus {
@@ -336,7 +366,7 @@ form {
   border: #039be5 solid 0.1rem;
   border-radius: 0.25rem;
   color: #fff;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 #form-overlay {
@@ -357,4 +387,15 @@ form {
 .selected {
   background: #d4e6f1;
   border-radius: 5px;
+}
+
+@media screen and (min-width: 1300px) {
+  html {
+    font-size: 20px;
+  }
+
+  #content,
+  #project-heading {
+    margin: 2vw 10vw;
+  }
 }
