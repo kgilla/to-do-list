@@ -122,9 +122,10 @@ const views = (() => {
   };
 
   const getTaskData = () => {
-    let radio = document.querySelector("input[type=radio]:checked").value;
+    let radio = document.querySelector("input[name=r1]:checked").value;
     let taskData = [form[0].value, form[1].value, radio, form[5].value];
     tasks.create(taskData, currentProject);
+    form.reset();
     showform();
   };
 
@@ -157,9 +158,10 @@ const views = (() => {
 
   const taskChanger = (event) => {
     let task = getTaskFromIndex(event.currentTarget.parentNode);
+    let name = "re" + event.currentTarget.parentNode.getAttribute("data");
     task.description = event.currentTarget.previousSibling.lastChild.value;
     task.dueDate = event.currentTarget.parentNode.childNodes[1].lastChild.value;
-    task.priority = document.querySelector('input[type="radio"]:checked').value;
+    task.priority = document.querySelector(`input[name=${name}]:checked`).value;
   };
 
   const updateTask = (event) => {
@@ -188,7 +190,7 @@ const views = (() => {
     a.addEventListener("click", completeTask);
   };
 
-  const makeExpandedTaskElements = (task, e) => {
+  const makeExpandedTaskElements = (task, e, index) => {
     maker("h2", { class: "title-expanded" }, task.title, e);
 
     // date edit input
@@ -203,18 +205,32 @@ const views = (() => {
     maker("input", data, "", d);
 
     // priority edit input
+    let q = `re${index}`;
+
     let p = maker("div", { class: "e-radio-box" }, "", e);
-    maker("label", { for: "e-r", class: "e-form-label" }, "Task Priority:", p);
+    maker("label", { for: q, class: "e-form-label" }, "Task Priority:", p);
 
     maker("label", { for: "high", class: "e-form-label" }, " High", p);
-    maker("input", { type: "radio", name: "e", value: "high" }, "", p);
+    let h = maker("input", { type: "radio", name: q, value: "high" }, "", p);
 
     maker("label", { for: "medium", class: "e-form-label" }, "| Medium", p);
-    maker("input", { type: "radio", name: "e", value: "medium" }, "Medium", p);
+    let m = maker(
+      "input",
+      { type: "radio", name: q, value: "medium" },
+      "Medium",
+      p
+    );
 
     maker("label", { for: "low", class: "e-form-label" }, "| Low", p);
-    maker("input", { type: "radio", name: "e", value: "low" }, "", p);
+    let l = maker("input", { type: "radio", name: q, value: "low" }, "", p);
 
+    if (task.priority == "high") {
+      h.setAttribute("checked", "");
+    } else if (task.priority == "medium") {
+      m.setAttribute("checked", "");
+    } else {
+      l.setAttribute("checked", "");
+    }
     // description edit input
     let t = maker("div", { class: "e-text-box" }, "", e);
     maker(
@@ -226,12 +242,7 @@ const views = (() => {
     maker("textarea", { class: "description-expanded" }, task.description, t);
 
     // buttons
-    let update = maker(
-      "button",
-      { class: "save-changes" },
-      "Save & Close Task",
-      e
-    );
+    let update = maker("button", { class: "save-changes" }, "Save & Close", e);
     let remove = maker("button", { class: "delete-task" }, "Delete", e);
     update.addEventListener("click", updateTask);
     remove.addEventListener("click", deleteTask);
@@ -245,7 +256,7 @@ const views = (() => {
     r.addEventListener("click", expandTask);
 
     makeRegularTaskElements(task, r);
-    makeExpandedTaskElements(task, e);
+    makeExpandedTaskElements(task, e, index);
   };
 
   const renderTasks = (p) => {

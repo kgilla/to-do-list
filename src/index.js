@@ -32,7 +32,8 @@ init();
 /* things we need to do:
 
 add form validations so you cant make duplicate projects/tasks or blank
-add form resets so form data doesnt persist
 add sorting functions and a few default project buckets which show tasks
+add ability to delete and rename Projects
+add icons to projects and elsewhere to make things look better
 
 */
