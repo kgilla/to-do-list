@@ -7,20 +7,22 @@
   </head>
 
   <body>
-    <header id="top-banner">
-      <a href="#" id="brand">Get-Er-Done</a>
-    </header>
-
     <header id="sub-header">
       <div id="project-header-box">
         <h2 id="new-project-header">Projects</h2>
         <a href="#" id="new-project">+</a>
       </div>
-
+      <a href="#" id="brand">Get-Er-Done</a>
       <button id="new-task">New Task</button>
     </header>
 
     <nav id="side-nav">
+      <div class="project" id="allTasks">
+        <h3 href="#" class="project-name">
+          <i class="fas fa-clipboard"></i> All Tasks
+        </h3>
+        <h3 class="project-count">0</h3>
+      </div>
       <div id="projects"></div>
     </nav>
 
@@ -77,7 +79,6 @@
           class="form-input"
           name="i3"
           placeholder="This is a good place to explain what needs to be done"
-          required
         ></textarea>
       </div>
 

@@ -7,6 +7,7 @@ const views = (() => {
   // sidenav selectors
   const newProject = document.querySelector("#new-project");
   const projectList = document.querySelector("#projects");
+  const index = document.querySelector("#allTasks");
 
   // header selectors
   const newTask = document.querySelector("#new-task");
@@ -46,6 +47,11 @@ const views = (() => {
     projectList.firstChild.classList.toggle("selected");
   };
 
+  const showIndex = () => {
+    //hide new task button
+    // display all projects with a heading and show all
+  };
+
   const render = () => {
     let selected = document.querySelector(".selected").getAttribute("data");
     renderProjects();
@@ -80,7 +86,10 @@ const views = (() => {
   };
 
   const makeProjectForm = () => {
-    let attr = { placeholder: "Project Name", id: "project-form" };
+    let attr = {
+      placeholder: "Project Name",
+      id: "project-form",
+    };
     let form = maker("input", attr, "", projectList);
     form.addEventListener("keydown", getProjectData);
     form.focus();
@@ -89,8 +98,14 @@ const views = (() => {
 
   const getProjectData = (event) => {
     if (event.key == "Enter") {
-      closeProjectForm();
-      projects.create(event.target.value);
+      if (event.currentTarget.value == "") {
+        let form = document.querySelector("#project-form");
+        form.classList.toggle("error");
+        setTimeout((f) => form.classList.toggle("error"), 500);
+      } else {
+        closeProjectForm();
+        projects.create(event.target.value);
+      }
     }
   };
 
@@ -121,18 +136,35 @@ const views = (() => {
     }
   };
 
+  const validateForm = () => {
+    if (form[0].value == "") {
+      form[0].classList.toggle("error");
+      setTimeout((f) => form[0].classList.toggle("error"), 500);
+    } else if (form[1].value == "") {
+      form[1].classList.toggle("error");
+      setTimeout((f) => form[1].classList.toggle("error"), 500);
+    } else {
+      let radio = document.querySelector("input[name=r1]:checked").value;
+      return [form[0].value, form[1].value, radio, form[5].value];
+    }
+  };
+
   const getTaskData = () => {
-    let radio = document.querySelector("input[name=r1]:checked").value;
-    let taskData = [form[0].value, form[1].value, radio, form[5].value];
-    tasks.create(taskData, currentProject);
-    form.reset();
-    showform();
+    let taskData = validateForm();
+    if (taskData) {
+      tasks.create(taskData, currentProject);
+      form.reset();
+      showform();
+    }
   };
 
   //task functions
 
   const expandTask = (event) => {
-    if (event.target != event.currentTarget.firstChild) {
+    if (
+      event.target != event.currentTarget.firstChild &&
+      event.target != event.currentTarget.firstChild.firstChild
+    ) {
       event.currentTarget.classList.toggle("hidden");
       event.currentTarget.nextSibling.classList.toggle("hidden");
     }
@@ -140,10 +172,12 @@ const views = (() => {
 
   const completeTask = (event) => {
     let task = getTaskFromIndex(event.currentTarget.parentNode);
-    event.currentTarget.classList.toggle(task.priority);
-    event.currentTarget.classList.toggle("task-complete");
-    event.currentTarget.parentNode.children[1].classList.toggle("text-done");
-    event.currentTarget.parentNode.children[2].classList.toggle("text-done");
+    let circle = event.currentTarget;
+    circle.firstChild.classList.toggle("hidden");
+    circle.classList.toggle(task.priority);
+    circle.classList.toggle("task-complete");
+    circle.parentNode.children[1].classList.toggle("text-done");
+    circle.parentNode.children[2].classList.toggle("text-done");
   };
 
   const getTaskFromIndex = (taskBox) => {
@@ -181,13 +215,14 @@ const views = (() => {
   };
 
   // task maker
-
   const makeRegularTaskElements = (task, r) => {
-    let a = maker("a", { class: `complete-button ${task.priority}` }, "", r);
+    let b = maker("a", { class: `complete-button ${task.priority}` }, "", r);
+    let a = maker("i", { class: "fas fa-check checkmark hidden" }, "", b);
     maker("h2", { class: "title-regular" }, task.title, r);
     maker("p", { class: "date-regular" }, task.dueDate, r);
 
-    a.addEventListener("click", completeTask);
+    // a.addEventListener("click", completeTask);
+    b.addEventListener("click", completeTask);
   };
 
   const makeExpandedTaskElements = (task, e, index) => {
@@ -243,6 +278,7 @@ const views = (() => {
 
     // buttons
     let update = maker("button", { class: "save-changes" }, "Save & Close", e);
+    maker("i", { class: "fas fa-trash-alt" }, "", update);
     let remove = maker("button", { class: "delete-task" }, "Delete", e);
     update.addEventListener("click", updateTask);
     remove.addEventListener("click", deleteTask);
@@ -270,6 +306,7 @@ const views = (() => {
   newTask.addEventListener("click", showform);
   createTaskButton.addEventListener("click", getTaskData);
   newProject.addEventListener("click", showProjectForm);
+  index.addEventListener("click", showIndex);
 
   return {
     renderTasks,

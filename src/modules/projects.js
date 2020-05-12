@@ -17,11 +17,11 @@ const projects = (() => {
     index.push(project);
     save(project);
     views.newProjectChanger(project);
-  }
+  };
 
   const save = (project) => {
     window.localStorage.setItem(project.name, JSON.stringify(project));
-  }
+  };
 
   return {
     index,
@@ -32,5 +32,3 @@ const projects = (() => {
 })();
 
 export { projects };
-
-

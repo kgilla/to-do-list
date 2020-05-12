@@ -17,6 +17,7 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
     "typeface-open-sans": "0.0.75",
     "typefaces": "0.0.1"
   }
