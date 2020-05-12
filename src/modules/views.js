@@ -33,7 +33,7 @@ const views = (() => {
     return element;
   };
 
-  // project views
+  // project init needs work
 
   const init = (p) => {
     currentProject = p;
@@ -51,6 +51,8 @@ const views = (() => {
     //hide new task button
     // display all projects with a heading and show all
   };
+
+  // functions for maintaining state during renders
 
   const render = () => {
     let selected = document.querySelector(".selected").getAttribute("data");
@@ -75,7 +77,8 @@ const views = (() => {
     projectList.lastChild.classList.toggle("selected");
   };
 
-  // project creation
+  // project form functions
+
   const showProjectForm = () => {
     formOpen == true ? closeProjectForm() : makeProjectForm();
   };
@@ -86,11 +89,12 @@ const views = (() => {
   };
 
   const makeProjectForm = () => {
-    let attr = {
-      placeholder: "Project Name",
-      id: "project-form",
-    };
-    let form = maker("input", attr, "", projectList);
+    let form = maker(
+      "input",
+      { placeholder: "Project Name", id: "project-form" },
+      "",
+      projectList
+    );
     form.addEventListener("keydown", getProjectData);
     form.focus();
     formOpen = true;
@@ -109,6 +113,8 @@ const views = (() => {
     }
   };
 
+  // main project rendering
+
   const renderProject = (project, i) => {
     let p = maker("div", { class: "project", data: i }, "", projectList);
     maker("h3", { class: "project-name" }, project.name, p);
@@ -116,14 +122,12 @@ const views = (() => {
     p.addEventListener("click", changeProject);
   };
 
-  /* multiple project rendering */
-
   const renderProjects = () => {
     projectList.innerHTML = "";
     projects.index.forEach((project, i) => renderProject(project, i));
   };
 
-  /* task form stuff */
+  /* task form functions */
 
   const showform = () => {
     formOverlay.classList.toggle("hidden");
@@ -170,14 +174,19 @@ const views = (() => {
     }
   };
 
+  const markTaskComplete = (task, b) => {
+    b.firstChild.classList.toggle("hidden");
+    b.classList.toggle(task.priority);
+    b.classList.toggle("task-complete");
+    b.parentNode.children[1].classList.toggle("text-done");
+    b.parentNode.children[2].classList.toggle("text-done");
+  };
+
   const completeTask = (event) => {
     let task = getTaskFromIndex(event.currentTarget.parentNode);
     let circle = event.currentTarget;
-    circle.firstChild.classList.toggle("hidden");
-    circle.classList.toggle(task.priority);
-    circle.classList.toggle("task-complete");
-    circle.parentNode.children[1].classList.toggle("text-done");
-    circle.parentNode.children[2].classList.toggle("text-done");
+    markTaskComplete(task, circle);
+    task.done == false ? (task.done = true) : (task.done = false);
   };
 
   const getTaskFromIndex = (taskBox) => {
@@ -215,20 +224,21 @@ const views = (() => {
   };
 
   // task maker
+
   const makeRegularTaskElements = (task, r) => {
     let b = maker("a", { class: `complete-button ${task.priority}` }, "", r);
-    let a = maker("i", { class: "fas fa-check checkmark hidden" }, "", b);
+    maker("i", { class: "fas fa-check checkmark hidden" }, "", b);
     maker("h2", { class: "title-regular" }, task.title, r);
     maker("p", { class: "date-regular" }, task.dueDate, r);
-
-    // a.addEventListener("click", completeTask);
     b.addEventListener("click", completeTask);
+    if (task.done == true) {
+      markTaskComplete(task, b);
+    }
   };
 
-  const makeExpandedTaskElements = (task, e, index) => {
-    maker("h2", { class: "title-expanded" }, task.title, e);
+  // expanded task elements
 
-    // date edit input
+  const renderDate = (task, e) => {
     let d = maker("div", { class: "e-date-box" }, "", e);
     let data = { class: "date-expanded", type: "date", value: task.dueDate };
     maker(
@@ -238,27 +248,9 @@ const views = (() => {
       d
     );
     maker("input", data, "", d);
+  };
 
-    // priority edit input
-    let q = `re${index}`;
-
-    let p = maker("div", { class: "e-radio-box" }, "", e);
-    maker("label", { for: q, class: "e-form-label" }, "Task Priority:", p);
-
-    maker("label", { for: "high", class: "e-form-label" }, " High", p);
-    let h = maker("input", { type: "radio", name: q, value: "high" }, "", p);
-
-    maker("label", { for: "medium", class: "e-form-label" }, "| Medium", p);
-    let m = maker(
-      "input",
-      { type: "radio", name: q, value: "medium" },
-      "Medium",
-      p
-    );
-
-    maker("label", { for: "low", class: "e-form-label" }, "| Low", p);
-    let l = maker("input", { type: "radio", name: q, value: "low" }, "", p);
-
+  const selectPriority = (task, l, m, h) => {
     if (task.priority == "high") {
       h.setAttribute("checked", "");
     } else if (task.priority == "medium") {
@@ -266,7 +258,28 @@ const views = (() => {
     } else {
       l.setAttribute("checked", "");
     }
-    // description edit input
+  };
+
+  const renderRadios = (task, e, index) => {
+    let q = `re${index}`;
+
+    let p = maker("div", { class: "e-radio-box" }, "", e);
+    maker("label", { for: q, class: "e-form-label" }, "Task Priority:", p);
+    maker("label", { for: "high", class: "e-form-label" }, " High", p);
+    let h = maker("input", { type: "radio", name: q, value: "high" }, "", p);
+    maker("label", { for: "medium", class: "e-form-label" }, "| Medium", p);
+    let m = maker(
+      "input",
+      { type: "radio", name: q, value: "medium" },
+      "Medium",
+      p
+    );
+    maker("label", { for: "low", class: "e-form-label" }, "| Low", p);
+    let l = maker("input", { type: "radio", name: q, value: "low" }, "", p);
+    selectPriority(task, l, m, h);
+  };
+
+  const renderDescription = (task, e) => {
     let t = maker("div", { class: "e-text-box" }, "", e);
     maker(
       "label",
@@ -275,13 +288,22 @@ const views = (() => {
       t
     );
     maker("textarea", { class: "description-expanded" }, task.description, t);
+  };
 
-    // buttons
+  const renderTaskButtons = (e) => {
     let update = maker("button", { class: "save-changes" }, "Save & Close", e);
-    maker("i", { class: "fas fa-trash-alt" }, "", update);
-    let remove = maker("button", { class: "delete-task" }, "Delete", e);
+    let remove = maker("button", { class: "delete-task" }, "Delete ", e);
+    maker("i", { class: "fas fa-trash-alt" }, "", remove);
     update.addEventListener("click", updateTask);
     remove.addEventListener("click", deleteTask);
+  };
+
+  const makeExpandedTaskElements = (task, e, index) => {
+    maker("h2", { class: "title-expanded" }, task.title, e);
+    renderDate(task, e);
+    renderRadios(task, e, index);
+    renderDescription(task, e);
+    renderTaskButtons(e);
   };
 
   const renderTask = (task, index) => {

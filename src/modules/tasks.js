@@ -3,11 +3,13 @@ import { projects } from "./projects";
 
 const tasks = (() => {
   const taskMaker = (title, dueDate, priority, description) => {
+    let done = false;
     return {
       title,
       dueDate,
       priority,
       description,
+      done,
     };
   };
 

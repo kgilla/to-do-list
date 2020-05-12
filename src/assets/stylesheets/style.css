@@ -1,4 +1,4 @@
-@import "~@fortawesome/fontawesome-free/css/all.css";
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
 
 @font-face {
   font-family: "myFont";
@@ -32,7 +32,7 @@ body {
 
 /* sub-header */
 
-#sub-header {
+#header {
   grid-area: 1/1/2/6;
   display: grid;
   align-self: center;
@@ -167,7 +167,6 @@ body {
   justify-content: center;
   height: 50%;
   width: 50%;
-  border: 0.2rem solid #aaa;
   border-radius: 50%;
   outline: none;
 }
@@ -276,11 +275,14 @@ body {
   grid-area: 10/4/11/6;
   place-self: flex-end;
   width: 90%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   padding: 0.5rem;
   background: #f9ebea;
   border: 0.2rem solid #a93226;
   border-radius: 0.25rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .delete-task:hover {
@@ -292,9 +294,7 @@ body {
 }
 
 .task-complete {
-  border: none;
-  background: #229954;
-  /* border: 0.2rem solid #333; */
+  background: #0288d1;
 }
 
 .high {
