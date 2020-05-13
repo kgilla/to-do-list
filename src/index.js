@@ -3,31 +3,33 @@ import "./assets/stylesheets/style.css";
 import { tasks } from "./modules/tasks";
 import { projects } from "./modules/projects";
 import { views } from "./modules/views";
+import { taskViews } from "./modules/taskViews";
+import { projectViews } from "./modules/projectViews";
 
-const freshStart = () => {
-  let p = projects.projectMaker("First Project");
-  let t = tasks.taskMaker("Welcome!", "", "low", "Have fun and be productive!");
-  p.tasks.push(t);
-  projects.index.push(p);
-  projects.save(p);
-  views.init(p);
-};
+// const freshStart = () => {
+//   // let p = projects.projectMaker("First Project");
+//   // let t = tasks.taskMaker("Welcome!", "", "low", "Have fun and be productive!");
+//   // p.tasks.push(t);
+//   // projects.index.push(p);
+//   // projects.save(p);
+//   // views.init(p);
+// };
 
-const getIndex = () => {
-  for (let i = 0; i < localStorage.length; i++) {
-    let p = window.localStorage.key(i);
-    projects.index.push(JSON.parse(window.localStorage.getItem(p)));
-  }
-  views.init(projects.index[0]);
-};
+// const getIndex = () => {
+//   for (let i = 0; i < localStorage.length; i++) {
+//     let p = window.localStorage.key(i);
+//     projects.index.push(JSON.parse(window.localStorage.getItem(p)));
+//   }
+//   views.init(projects.index[0]);
+// };
 
-const init = () => {
-  localStorage.length > 0 ? getIndex() : freshStart();
-};
+// const init = () => {
+//   localStorage.length > 0 ? getIndex() : freshStart();
+// };
 
-window.localStorage.clear();
+// window.localStorage.clear();
 
-init();
+// init();
 
 /* things we need to do:
 
@@ -37,3 +39,9 @@ add ability to delete and rename Projects
 add icons to projects and elsewhere to make things look better
 
 */
+
+// project deletion
+// get user input, ask again
+// assign new current project, either index or first project in projects.index
+// find & remove project from index && local storage
+// render new project stuff

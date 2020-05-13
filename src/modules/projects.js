@@ -1,4 +1,5 @@
 import { views } from "./views";
+import { projectViews } from "./projectViews";
 
 const projects = (() => {
   let index = [];
@@ -16,7 +17,7 @@ const projects = (() => {
     let project = projectMaker(projectData);
     index.push(project);
     save(project);
-    views.newProjectChanger(project);
+    projectViews.newProjectChanger(project);
   };
 
   const save = (project) => {

@@ -1,5 +1,6 @@
-import { views } from "./views";
+import { taskViews } from "./taskViews";
 import { projects } from "./projects";
+import { views } from "./views";
 
 const tasks = (() => {
   const taskMaker = (title, dueDate, priority, description) => {
@@ -14,10 +15,9 @@ const tasks = (() => {
   };
 
   const create = (taskData, project) => {
-    let task = taskMaker(...taskData);
-    project.tasks.push(task);
+    project.tasks.push(taskMaker(...taskData));
     projects.save(project);
-    views.render();
+    views.render(project);
   };
 
   return {
