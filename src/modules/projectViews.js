@@ -53,18 +53,27 @@ const projectViews = (() => {
     open == null ? openProjectForm() : closeProjectForm();
   };
 
+  const spinulator = () => {
+    newProject.classList.toggle("open-form");
+    newProject.children[0].classList.toggle("hidden");
+    newProject.children[1].classList.toggle("hidden");
+    setTimeout((f) => newProject.classList.toggle("open-form"), 300);
+  };
+
   const closeProjectForm = () => {
     projectList.removeChild(projectList.lastChild);
+    spinulator();
   };
 
   const openProjectForm = () => {
     let form = maker(
       "input",
-      { placeholder: "Project Name", id: "project-form" },
+      { placeholder: "Project Name", id: "project-form", class: "slide-in" },
       "",
       projectList
     );
     form.addEventListener("keydown", getProjectData);
+    spinulator();
     form.focus();
   };
 

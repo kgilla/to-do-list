@@ -25,7 +25,9 @@ const taskViews = (() => {
 
   const showform = () => {
     formOverlay.classList.toggle("hidden");
+    formOverlay.classList.toggle("curtain");
     form.classList.toggle("hidden");
+    form.classList.toggle("curtain");
   };
 
   const formClose = () => {
@@ -68,6 +70,7 @@ const taskViews = (() => {
     ) {
       event.currentTarget.classList.toggle("hidden");
       event.currentTarget.nextSibling.classList.toggle("hidden");
+      event.currentTarget.nextSibling.classList.toggle("unroll");
     }
   };
 
@@ -101,18 +104,18 @@ const taskViews = (() => {
     return c.tasks[taskBox.getAttribute("data")];
   };
 
-  const closeTask = (event) => {
-    let taskBox = event.currentTarget.parentNode.parentNode;
-    taskBox.firstChild.classList.toggle("hidden");
-    taskBox.lastChild.classList.toggle("hidden");
-  };
-
   const taskChanger = (event) => {
     let task = getTaskFromIndex(event.currentTarget.parentNode);
     let name = "re" + event.currentTarget.parentNode.getAttribute("data");
     task.description = event.currentTarget.previousSibling.lastChild.value;
     task.dueDate = event.currentTarget.parentNode.childNodes[1].lastChild.value;
     task.priority = document.querySelector(`input[name=${name}]:checked`).value;
+  };
+
+  const closeTask = (event) => {
+    let taskBox = event.currentTarget.parentNode.parentNode;
+    taskBox.firstChild.classList.toggle("hidden");
+    taskBox.lastChild.classList.toggle("hidden");
   };
 
   const updateTask = (event) => {
@@ -211,15 +214,16 @@ const taskViews = (() => {
   };
 
   const makeExpandedTaskElements = (task, e, index) => {
-    maker("h2", { class: "title-expanded" }, task.title, e);
+    let h = maker("h2", { class: "title-expanded" }, task.title, e);
     renderDate(task, e);
     renderRadios(task, e, index);
     renderDescription(task, e);
     renderTaskButtons(e);
+    h.addEventListener("click", closeTask);
   };
 
   const renderTask = (task, index) => {
-    let t = maker("div", { class: "task-box", data: index }, "", main);
+    let t = maker("div", { class: "task-box slide-in", data: index }, "", main);
     let r = maker("div", { class: "task-regular", data: index }, "", t);
     let e = maker("div", { class: "hidden task-expanded", data: index }, "", t);
 

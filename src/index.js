@@ -5,8 +5,13 @@ import { projects } from "./modules/projects";
 import { views } from "./modules/views";
 
 const freshStart = () => {
-  let p = projects.projectMaker("First Project");
-  let t = tasks.taskMaker("Welcome!", "", "low", "Have fun and be productive!");
+  let p = projects.projectMaker("Welcome!");
+  let t = tasks.taskMaker(
+    "Click On Me!",
+    "",
+    "low",
+    "Welcome to Get ER Done! Feel free to make projects, make tasks, and check them off! Have fun and be productive!"
+  );
   p.tasks.push(t);
   projects.index.push(p);
   projects.save(p);
