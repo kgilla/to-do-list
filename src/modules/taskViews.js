@@ -93,6 +93,7 @@ const taskViews = (() => {
     let circle = event.currentTarget;
     markTaskComplete(task, circle);
     task.done == false ? (task.done = true) : (task.done = false);
+    projects.save(currentProject());
   };
 
   const getTaskFromIndex = (taskBox) => {

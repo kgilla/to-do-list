@@ -1,6 +1,4 @@
-import { tasks } from "./tasks";
 import { taskViews } from "./taskViews";
-import { projects } from "./projects";
 import { projectViews } from "./projectViews";
 
 const views = (() => {
@@ -33,6 +31,12 @@ const views = (() => {
   //   });
   // };
 
+  const init = (project) => {
+    projectViews.renderProjects();
+    taskViews.renderTasks(project, true);
+    document.querySelector("#projects").firstChild.classList.toggle("selected");
+  };
+
   const render = (project) => {
     projectViews.rerenderProjects();
     taskViews.renderTasks(project, true);
@@ -52,7 +56,7 @@ const views = (() => {
     );
   };
 
-  return { render, renderHome };
+  return { render, renderHome, init };
 })();
 
 export { views };

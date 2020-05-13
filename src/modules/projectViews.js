@@ -1,4 +1,3 @@
-import { tasks } from "./tasks";
 import { projects } from "./projects";
 import { taskViews } from "./taskViews";
 import { views } from "./views";
@@ -89,10 +88,20 @@ const projectViews = (() => {
     }
   };
 
+  const showCan = () => {
+    event.currentTarget.lastChild.lastChild.classList.toggle("hidden");
+  };
+
   const deleteProject = () => {
     let i = event.currentTarget.parentNode.parentNode.getAttribute("data");
+    let name = projects.index[i].name;
+    projects.deleteProject(name);
     projects.index.splice(i, 1);
-    views.renderHome();
+    if (projects.index.length == 0) {
+      views.renderHome();
+    } else {
+      views.init(projects.index[0]);
+    }
   };
 
   // main project rendering
@@ -104,7 +113,10 @@ const projectViews = (() => {
     maker("h3", { class: "project-name" }, project.name, b);
     let d = maker("div", { class: "d-box" }, "", p);
     maker("h3", { class: "project-count" }, `${project.tasks.length}`, d);
-    let del = maker("i", { class: "fas fa-trash-alt delete" }, "", d);
+    let del = maker("i", { class: "fas fa-trash-alt delete hidden" }, "", d);
+
+    p.addEventListener("mouseenter", showCan);
+    p.addEventListener("mouseleave", showCan);
 
     p.addEventListener("click", changeProject);
     del.addEventListener("click", deleteProject);

@@ -1,4 +1,3 @@
-import { views } from "./views";
 import { projectViews } from "./projectViews";
 
 const projects = (() => {
@@ -21,13 +20,18 @@ const projects = (() => {
   };
 
   const save = (project) => {
-    window.localStorage.setItem(project.name, JSON.stringify(project));
+    localStorage.setItem(project.name, JSON.stringify(project));
+  };
+
+  const deleteProject = (name) => {
+    localStorage.removeItem(name);
   };
 
   return {
     index,
     create,
     save,
+    deleteProject,
     projectMaker,
   };
 })();

@@ -1,4 +1,3 @@
-import { taskViews } from "./taskViews";
 import { projects } from "./projects";
 import { views } from "./views";
 
