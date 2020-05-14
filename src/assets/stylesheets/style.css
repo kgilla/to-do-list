@@ -491,7 +491,7 @@ form {
 }
 
 .curtain {
-  animation: curtain 0.3s linear;
+  animation: curtain 0.2s linear;
 }
 
 .unroll {
@@ -513,7 +513,7 @@ form {
 
 @keyframes unroll {
   0% {
-    height: 4rem;
+    height: 8rem;
   }
   100% {
     height: 18rem;

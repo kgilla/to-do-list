@@ -116,6 +116,7 @@ const taskViews = (() => {
     let taskBox = event.currentTarget.parentNode.parentNode;
     taskBox.firstChild.classList.toggle("hidden");
     taskBox.lastChild.classList.toggle("hidden");
+    taskBox.lastChild.classList.toggle("unroll");
   };
 
   const updateTask = (event) => {
@@ -223,7 +224,7 @@ const taskViews = (() => {
   };
 
   const renderTask = (task, index) => {
-    let t = maker("div", { class: "task-box slide-in", data: index }, "", main);
+    let t = maker("div", { class: "task-box", data: index }, "", main);
     let r = maker("div", { class: "task-regular", data: index }, "", t);
     let e = maker("div", { class: "hidden task-expanded", data: index }, "", t);
 
