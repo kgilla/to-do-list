@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "deploy": "gh-pages -d dist",
+    "start:dev": "webpack-dev-server"
   },
   "author": "Kgilla",
   "license": "ISC",
@@ -16,7 +18,10 @@
     "sass-loader": "^10.0.2",
     "style-loader": "^1.2.1",
     "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "gh-pages": "^3.1.0"
+  }
 }

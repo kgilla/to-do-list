@@ -1,1 +1,1217 @@
-!function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)r.d(n,o,function(t){return e[t]}.bind(null,o));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="",r(r.s=4)}([function(e,t,r){var n=r(1),o=r(2);"string"==typeof(o=o.__esModule?o.default:o)&&(o=[[e.i,o,""]]);var i={insert:"head",singleton:!1};n(o,i);e.exports=o.locals||{}},function(e,t,r){"use strict";var n,o=function(){return void 0===n&&(n=Boolean(window&&document&&document.all&&!window.atob)),n},i=function(){var e={};return function(t){if(void 0===e[t]){var r=document.querySelector(t);if(window.HTMLIFrameElement&&r instanceof window.HTMLIFrameElement)try{r=r.contentDocument.head}catch(e){r=null}e[t]=r}return e[t]}}(),a=[];function s(e){for(var t=-1,r=0;r<a.length;r++)if(a[r].identifier===e){t=r;break}return t}function l(e,t){for(var r={},n=[],o=0;o<e.length;o++){var i=e[o],l=t.base?i[0]+t.base:i[0],d=r[l]||0,c="".concat(l," ").concat(d);r[l]=d+1;var u=s(c),f={css:i[1],media:i[2],sourceMap:i[3]};-1!==u?(a[u].references++,a[u].updater(f)):a.push({identifier:c,updater:h(f,t),references:1}),n.push(c)}return n}function d(e){var t=document.createElement("style"),n=e.attributes||{};if(void 0===n.nonce){var o=r.nc;o&&(n.nonce=o)}if(Object.keys(n).forEach((function(e){t.setAttribute(e,n[e])})),"function"==typeof e.insert)e.insert(t);else{var a=i(e.insert||"head");if(!a)throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");a.appendChild(t)}return t}var c,u=(c=[],function(e,t){return c[e]=t,c.filter(Boolean).join("\n")});function f(e,t,r,n){var o=r?"":n.media?"@media ".concat(n.media," {").concat(n.css,"}"):n.css;if(e.styleSheet)e.styleSheet.cssText=u(t,o);else{var i=document.createTextNode(o),a=e.childNodes;a[t]&&e.removeChild(a[t]),a.length?e.insertBefore(i,a[t]):e.appendChild(i)}}function m(e,t,r){var n=r.css,o=r.media,i=r.sourceMap;if(o?e.setAttribute("media",o):e.removeAttribute("media"),i&&btoa&&(n+="\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(i))))," */")),e.styleSheet)e.styleSheet.cssText=n;else{for(;e.firstChild;)e.removeChild(e.firstChild);e.appendChild(document.createTextNode(n))}}var p=null,g=0;function h(e,t){var r,n,o;if(t.singleton){var i=g++;r=p||(p=d(t)),n=f.bind(null,r,i,!1),o=f.bind(null,r,i,!0)}else r=d(t),n=m.bind(null,r,t),o=function(){!function(e){if(null===e.parentNode)return!1;e.parentNode.removeChild(e)}(r)};return n(e),function(t){if(t){if(t.css===e.css&&t.media===e.media&&t.sourceMap===e.sourceMap)return;n(e=t)}else o()}}e.exports=function(e,t){(t=t||{}).singleton||"boolean"==typeof t.singleton||(t.singleton=o());var r=l(e=e||[],t);return function(e){if(e=e||[],"[object Array]"===Object.prototype.toString.call(e)){for(var n=0;n<r.length;n++){var o=s(r[n]);a[o].references--}for(var i=l(e,t),d=0;d<r.length;d++){var c=s(r[d]);0===a[c].references&&(a[c].updater(),a.splice(c,1))}r=i}}}},function(e,t,r){(t=r(3)(!1)).push([e.i,"@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap);"]),t.push([e.i,'html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:"";content:none}table{border-collapse:collapse;border-spacing:0}form{width:100%;max-width:30rem;justify-self:center;display:flex;flex-direction:column;justify-content:space-between;position:fixed;top:10%;padding:1rem;background:#f4f4f4;border-radius:.5rem;font-family:"Roboto",sans-serif;z-index:6}#form-heading{margin-bottom:1rem;font-size:1.4rem;font-weight:700;text-align:center}.form-section{display:flex;flex-direction:column;justify-content:space-between;margin-bottom:1rem;width:100%}.form-input{width:100%;border:.1rem solid #aaa;border-radius:.25rem;padding:.5rem;font-family:inherit;font-size:1rem}.form-label{padding:.5rem 0;font-size:1rem}.form-input:focus{outline:none;box-shadow:0 0 0 1.5pt #1976d2}.form-textarea{width:100%;min-height:10rem;resize:none;font-family:inherit}#form-submit{width:100%;padding:.5rem 0;background:#1976d2;border:none;border-radius:.5rem;color:#fff;font-size:1rem}#form-submit:hover{cursor:pointer;filter:brightness(90%)}#form-overlay{position:fixed;left:0;top:0;min-height:100vh;width:100vw;background-color:rgba(0,0,0,.5);z-index:5}#header{position:fixed;width:100%;grid-area:1/1/2/6;display:grid;grid-template-columns:2rem 1fr 2rem;align-content:center;height:4rem;padding:0 2rem;justify-content:center;align-items:center;background:#203148}.brand{grid-column:2/3;justify-self:center;color:#fff;font-size:1.8rem;font-weight:900;text-align:center}#expand-nav{grid-column:1/2;border:none;background:none;color:#fff;font-size:2rem}#expand-nav :hover{cursor:pointer}#side-nav{position:fixed;top:4rem;bottom:auto;width:15rem;background:#f3f5f9;border-right:solid .1rem #ddd;z-index:3;transition:all .7s ease-in-out}.collapse{left:-20rem}.expand{left:0}#project-header-box{display:grid;grid-template-columns:repeat(4, 1fr);grid-template-rows:4rem;margin-bottom:.5rem;border-bottom:.1rem solid #ddd}#new-project-header{grid-column:1/3;place-self:center;color:#000;font-size:1.4rem;font-weight:700}#new-project{grid-column:4/5;place-self:center;display:flex;align-items:center;justify-content:center;height:2.5rem;width:2.5rem;background:#1976d2;border-radius:50%}#plus{color:#fff;font-size:1.4rem}#new-project:hover{background:#1e88e5;cursor:pointer}#project-form{position:relative;padding:.5rem;margin:.5rem;border:none;border-radius:.5rem;font-size:1rem}#project-form :focus{outline:none;border:none}#projects{height:calc(100vh - 9rem);padding-bottom:1rem;overflow-y:auto}#projects:last-child{margin-bottom:1rem}.project{display:flex;justify-content:space-between;align-items:center;padding:1rem;margin:.2rem;border-radius:.5rem;font-size:1rem;font-weight:500;text-decoration:none}.project:hover{background:#fff;cursor:pointer}.p-box{display:flex;justify-content:space-between;align-items:center}.project-name{padding:0 .5rem}.d-box{display:flex;justify-content:flex-end;align-content:center}.d-box:hover{cursor:pointer}.delete{padding-left:.5rem}.task-regular{display:grid;grid-template-columns:5rem repeat(1, 1fr);grid-template-rows:4rem;align-items:center;margin:1rem 0;border-bottom:.1rem solid #eee}.task-regular:hover{cursor:pointer}.complete-button{grid-column:1/2;place-self:center;display:flex;align-items:center;justify-content:center;height:60%;width:50%;border-radius:50%;outline:none}.complete-button:hover{animation:grow .3s linear;animation-iteration-count:1}.checkmark{color:#fff;font-size:1.5rem}.title-regular{grid-column:2/4;padding:0 2rem;font-size:1.2rem;font-weight:500}.date-regular{grid-column:4/6;padding:0 2rem;font-size:1rem;color:#555}.task-expanded{width:100%;display:flex;flex-direction:column;margin:1rem 0;padding:1rem;border:.1rem solid #ddd;border-radius:.5rem;background:#fff;box-shadow:0 10px 6px -6px #666}.title-expanded{text-align:center;background:#fff;color:#000;font-size:1.2rem;font-weight:700}.e-options{display:flex;justify-content:space-between}.date-expanded{font-family:"Roboto",sans-serif}.button-box{display:flex;justify-content:space-between;align-items:center}.save-changes{width:60%;padding:.5rem;background:#1976d2;border:none;border-radius:.5rem;color:#fff;font-size:1rem}.check{padding-left:.5rem;color:#fff;font-size:1rem}.save-changes:hover{background:#1e88e5;cursor:pointer}.delete-task{padding:.5rem;background:#666;border:none;border-radius:.5rem;color:#fff;font-size:1rem}.trash{padding-left:.5rem;color:#fff;font-size:1rem}.delete-task:hover{background:#555;cursor:pointer}.text-done{text-decoration:line-through;color:#ccc}.task-complete{background:#1976d2}.high{border:.2rem solid #a93226;background:#f9ebea}.medium{border:.2rem solid #d4ac0d;background:#fef9e7}.low{border:.2rem solid #229954;background:#e9f7ef}html{font-size:16px}*{line-height:1.5;box-sizing:border-box}body{display:grid;min-height:100vh;max-width:100vw;grid-template-columns:repeat(5, 1fr);grid-template-rows:4rem 1fr;background:#fff;box-sizing:border-box;font-family:"Roboto",sans-serif}#main{margin:0 5vw}.large{grid-area:2/2/3/6}.small{grid-area:2/1/3/6}.project-container{height:4rem;display:flex;justify-content:space-between;align-items:center}.project-heading{font-size:1.4rem;font-weight:700}.new-task{padding:.5rem 1rem;border:none;background:#1976d2;border-radius:.5rem;color:#fff;font-size:1rem}.new-task:hover{cursor:pointer;background:#1e88e5}.welcome-mat{position:relative;top:25%;text-align:center}.welcome-header{color:#ccc;font-size:1.5rem}.surprise{padding:3rem;color:#ccc;font-size:4rem}.hidden{display:none}.selected{background:#fff}.error{position:relative;animation:shake .1s linear;animation-iteration-count:3}.open-form{animation:spin .3s linear}.curtain{animation:curtain .2s linear}.slide-in{animation:slide-in .2s linear}@keyframes slide-in{0%{left:-20vw}100%{left:0}}@keyframes curtain{0%{top:-100vh}100%{top:0vh}}@keyframes spin{0%{rotate:0}100%{rotate:180deg}}@keyframes shake{0%{left:-5px}100%{right:-5px}}@keyframes grow{0%{height:60%;width:50%}25%{height:65%;width:55%}50%{height:70%;width:60%}75%{height:65%;width:55%}100%{height:60%;width:50%}}@media screen and (max-width: 599px){.e-options{flex-direction:column}}@media screen and (min-width: 600px){.e-options{flex-direction:column}}@media screen and (min-width: 900px){.e-options{flex-direction:row}}',""]),e.exports=t},function(e,t,r){"use strict";e.exports=function(e){var t=[];return t.toString=function(){return this.map((function(t){var r=function(e,t){var r=e[1]||"",n=e[3];if(!n)return r;if(t&&"function"==typeof btoa){var o=(a=n,s=btoa(unescape(encodeURIComponent(JSON.stringify(a)))),l="sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(s),"/*# ".concat(l," */")),i=n.sources.map((function(e){return"/*# sourceURL=".concat(n.sourceRoot||"").concat(e," */")}));return[r].concat(i).concat([o]).join("\n")}var a,s,l;return[r].join("\n")}(t,e);return t[2]?"@media ".concat(t[2]," {").concat(r,"}"):r})).join("")},t.i=function(e,r,n){"string"==typeof e&&(e=[[null,e,""]]);var o={};if(n)for(var i=0;i<this.length;i++){var a=this[i][0];null!=a&&(o[a]=!0)}for(var s=0;s<e.length;s++){var l=[].concat(e[s]);n&&o[l[0]]||(r&&(l[2]?l[2]="".concat(r," and ").concat(l[2]):l[2]=r),t.push(l))}},t}},function(e,t,r){"use strict";r.r(t);r(0);const n=(()=>{const e=document.querySelector("#main");window.innerWidth>900?e.classList.add("large"):e.classList.add("small");const t=(e,t,r,n)=>{let o=document.createElement(e);return Object.keys(t).forEach(e=>{o.setAttribute(e,t[e])}),o.textContent=r,n.appendChild(o),o};return window.addEventListener("resize",()=>{window.innerWidth<900?(e.classList.remove("large"),e.classList.add("small")):window.innerWidth>900&&(e.classList.add("large"),e.classList.remove("small"))}),{render:e=>{i.rerenderProjects(),o.renderTasks(e,!0)},renderHome:()=>{e.innerHTML="",i.renderProjects();let r=t("div",{class:"welcome-mat"},"",e);t("h2",{class:"welcome-header"},"Its Time To Get-Er-Done!",r),t("i",{class:"far fa-sticky-note surprise"},"",r),t("h2",{class:"welcome-header"},"Create A Project To Get Started!",r)},init:e=>{i.renderProjects(),o.renderTasks(e,!0),document.querySelector("#projects").firstChild.classList.toggle("selected")}}})(),o=(()=>{const e=document.querySelector("#main"),t=document.querySelector("#form-overlay"),r=document.querySelector("#task-form"),o=document.querySelector("#form-submit"),i=(e,t,r,n)=>{let o=document.createElement(e);return Object.keys(t).forEach(e=>{o.setAttribute(e,t[e])}),o.textContent=r,n.appendChild(o),o},l=()=>{t.classList.toggle("hidden"),t.classList.toggle("curtain"),r.classList.toggle("hidden"),r.classList.toggle("curtain")},d=e=>{e.classList.toggle("error"),setTimeout(t=>e.classList.toggle("error"),500)},c=e=>{e.target!=e.currentTarget.firstChild&&e.target!=e.currentTarget.firstChild.firstChild&&(e.currentTarget.classList.toggle("hidden"),e.currentTarget.nextSibling.classList.toggle("hidden"))},u=()=>{let e=document.querySelector(".selected");if(null!=e)return a.index[e.getAttribute("data")];alert("select a project")},f=(e,t)=>{t.firstChild.classList.toggle("hidden"),t.classList.toggle(e.priority),t.classList.toggle("task-complete"),t.parentNode.children[1].classList.toggle("text-done"),t.parentNode.children[2].classList.toggle("text-done")},m=e=>{console.log(e.currentTarget.parentNode.attributes[1].value);let t=p(e.currentTarget.parentNode.attributes[1].value),r=e.currentTarget;f(t,r),0==t.done?t.done=!0:t.done=!1,a.save(u())},p=e=>u().tasks[e],g=e=>{let t=e.currentTarget.parentNode.parentNode;t.firstChild.classList.toggle("hidden"),t.lastChild.classList.toggle("hidden"),t.lastChild.classList.toggle("unroll")},h=e=>{(e=>{let t=e.currentTarget.parentNode.parentNode.attributes[1].value,r=p(t);r.newDate=document.querySelector('[name="e-date"]').value,r.priority=document.querySelector(`[name="e-radio-${t}"]:checked`).value,r.newDescription=document.querySelector('[name="e-description"]').value})(e),g(e),x(u(),!0),a.save(u())},b=e=>{let t=e.currentTarget.parentNode.getAttribute("data"),r=u();r.tasks.splice(t,1),n.render(r),a.save(u())},v=(e,t,r)=>{let n=i("div",{class:"e-options"},"",t);((e,t)=>{let r=i("div",{class:"form-section"},"",t),n={class:"form-input date-expanded",type:"date",name:"e-date",value:e.dueDate};i("label",{for:"date-expanded",class:"form-label"},"Due Date:",r),i("input",n,"",r)})(e,n),((e,t,r)=>{let n="e-radio-"+r,o=i("div",{class:"form-section"},"",t);i("label",{for:n,class:"form-label"},"Task Priority",o);let a=i("div",{class:"radio-buttons"},"",o),s=i("input",{type:"radio",name:n,value:"high"},"",a);i("label",{for:"high",class:"e-form-label"},"High",a);let l=i("input",{type:"radio",name:n,value:"medium"},"Medium",a);i("label",{for:"medium",class:"e-form-label"},"Medium",a);let d=i("input",{type:"radio",name:n,value:"low"},"",a);i("label",{for:"low",class:"e-form-label"},"Low",a),((e,t,r,n)=>{"high"==e.priority?n.setAttribute("checked",""):"medium"==e.priority?r.setAttribute("checked",""):t.setAttribute("checked","")})(e,d,l,s)})(e,n,r)},y=(e,t,r)=>{let n=i("h2",{class:"title-expanded"},e.title,t);v(e,t,r),((e,t)=>{let r=i("div",{class:"form-section"},"",t);i("label",{for:"e-description",class:"form-label"},"Task Description",r),i("textarea",{class:"form-input form-textarea",name:"e-description"},e.description,r)})(e,t),(e=>{let t=i("div",{class:"button-box"},"",e),r=i("button",{class:"save-changes"},"Save & Close",t);i("i",{class:"fas fa-check check"},"",r);let n=i("button",{class:"delete-task"},"Delete ",t);i("i",{class:"fas fa-trash-alt trash"},"",n),r.addEventListener("click",h),n.addEventListener("click",b)})(t),n.addEventListener("click",g)},k=(t,r)=>{let n=i("div",{class:"task-box",data:r},"",e),o=i("div",{class:"task-regular",data:r},"",n),a=i("div",{class:"hidden task-expanded",data:r},"",n);o.addEventListener("click",c),((e,t)=>{let r=i("a",{class:"complete-button "+e.priority},"",t);i("i",{class:"fas fa-check checkmark hidden"},"",r),i("h2",{class:"title-regular"},e.title,t),i("p",{class:"date-regular"},e.dueDate,t),r.addEventListener("click",m),1==e.done&&f(e,r)})(t,o),y(t,a,r)},w=t=>{let r=i("div",{class:"project-container"},"",e);i("h2",{class:"project-heading"},t.name,r),i("button",{class:"new-task"},"Add Task",r).addEventListener("click",l)},x=(t,r)=>{1==r&&(e.innerHTML=""),0==t.tasks.length?(w(t),(()=>{let t=i("div",{class:"welcome-mat"},"",e);i("h2",{class:"welcome-header"},"Wow Such Empty!",t),i("i",{class:"far fa-surprise surprise"},"",t),i("h2",{class:"welcome-header"},"Could You Be Done... Everything?!",t)})()):(w(t),t.tasks.forEach((e,t)=>k(e,t)))};return t.addEventListener("click",e=>{e.target==t&&l()}),o.addEventListener("click",()=>{let e=(()=>{if(""==r[0].value)d(r[0]);else{if(""!=r[1].value){let e=document.querySelector("input[name=r1]:checked").value;return[r[0].value,r[1].value,e,r[5].value]}d(r[1])}})();e&&(s.create(e,u()),r.reset(),l())}),{renderTasks:x}})(),i=(()=>{const e=document.querySelector("#new-project"),t=document.querySelector("#projects"),r=document.querySelector("#side-nav"),i=document.querySelector("#expand-nav");window.innerWidth<900&&r.classList.add("collapse"),window.innerWidth>900&&i.classList.add("hidden");let s="";const l=(e,t,r,n)=>{let o=document.createElement(e);return Object.keys(t).forEach(e=>{o.setAttribute(e,t[e])}),o.textContent=r,n.appendChild(o),o},d=()=>{let e=document.querySelector(".selected").getAttribute("data");v(),t.childNodes[e].classList.toggle("selected")},c=e=>{e.target!=e.currentTarget.lastChild.lastChild&&(document.querySelector(".selected").classList.toggle("selected"),e.currentTarget.classList.toggle("selected"),s=a.index[e.currentTarget.getAttribute("data")],d(),o.renderTasks(s,!0),window.innerWidth<900&&y())},u=()=>{e.classList.toggle("open-form"),setTimeout(t=>e.classList.toggle("open-form"),300)},f=()=>{t.removeChild(t.lastChild),u()},m=()=>{let e=l("input",{placeholder:"Project Name",id:"project-form",class:"slide-in"},"",t);e.addEventListener("keydown",g),u(),e.focus(),document.activeElement.scrollIntoView()},p=()=>{let e=document.querySelector("#project-form");e.classList.toggle("error"),setTimeout(t=>e.classList.toggle("error"),500)},g=e=>{let t=e.currentTarget.value;"Enter"==e.key&&(""==t||null!=a.index.find(e=>e.name==t)?p():(f(),a.create(e.target.value)))},h=()=>{event.currentTarget.lastChild.lastChild.classList.toggle("hidden")},b=()=>{let e=event.currentTarget.parentNode.parentNode.getAttribute("data"),t=a.index[e].name;a.deleteProject(t),a.index.splice(e,1),0==a.index.length?n.renderHome():n.init(a.index[0])},v=()=>{t.innerHTML="",a.index.forEach((e,r)=>((e,r)=>{let n=l("div",{class:"project",data:r},"",t),o=l("div",{class:"p-box"},"",n);l("i",{class:"far fa-calendar-check project-icon"},"",o),l("h3",{class:"project-name"},e.name,o);let i=l("div",{class:"d-box"},"",n);l("h3",{class:"project-count"},""+e.tasks.length,i);let a=l("i",{class:"fas fa-trash-alt delete hidden"},"",i);n.addEventListener("mouseenter",h),n.addEventListener("mouseleave",h),n.addEventListener("click",c),a.addEventListener("click",b)})(e,r))},y=()=>{r.classList.toggle("collapse"),r.classList.toggle("slide-in")};return e.addEventListener("click",()=>{null==document.querySelector("#project-form")?m():f()}),window.addEventListener("resize",()=>{window.innerWidth<900?(r.classList.add("collapse"),i.classList.remove("hidden")):window.innerWidth>900&&(r.classList.remove("collapse"),i.classList.add("hidden"))}),i.addEventListener("click",y),{renderProjects:v,newProjectChanger:e=>{s=e,v(),o.renderTasks(s,!0),t.lastChild.classList.toggle("selected")},rerenderProjects:d}})(),a=(()=>{let e=[];const t=e=>({name:e,tasks:[]}),r=e=>{localStorage.setItem(e.name,JSON.stringify(e))};return{index:e,create:n=>{let o=t(n);e.push(o),r(o),i.newProjectChanger(o)},save:r,deleteProject:e=>{localStorage.removeItem(e)},projectMaker:t}})(),s=(()=>{const e=(e,t,r,n)=>({title:e,dueDate:t,priority:r,description:n,done:!1});return{create:(t,r)=>{r.tasks.push(e(...t)),a.save(r),n.render(r)},taskMaker:e}})();localStorage.length>0?(()=>{for(let e=0;e<localStorage.length;e++){let t=window.localStorage.key(e);a.index.push(JSON.parse(window.localStorage.getItem(t)))}n.init(a.index[0])})():(()=>{let e=a.projectMaker("Welcome!"),t=s.taskMaker("Click On Me!","","low","Welcome to Get ER Done! Feel free to make projects, make tasks, and check them off! Have fun and be productive!");e.tasks.push(t),a.index.push(e),a.save(e),n.init(e)})()}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _assets_stylesheets_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _assets_stylesheets_main_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_stylesheets_main_scss__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _modules_tasks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
+/* harmony import */ var _modules_projects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6);
+/* harmony import */ var _modules_views__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9);
+
+
+
+
+
+const freshStart = () => {
+  let p = _modules_projects__WEBPACK_IMPORTED_MODULE_2__["projects"].projectMaker("Welcome!");
+  let t = _modules_tasks__WEBPACK_IMPORTED_MODULE_1__["tasks"].taskMaker(
+    "Click On Me!",
+    "",
+    "low",
+    "Welcome to Get ER Done! Feel free to make projects, make tasks, and check them off! Have fun and be productive!"
+  );
+  p.tasks.push(t);
+  _modules_projects__WEBPACK_IMPORTED_MODULE_2__["projects"].index.push(p);
+  _modules_projects__WEBPACK_IMPORTED_MODULE_2__["projects"].save(p);
+  _modules_views__WEBPACK_IMPORTED_MODULE_3__["views"].init(p);
+};
+
+const getIndex = () => {
+  for (let i = 0; i < localStorage.length; i++) {
+    let p = window.localStorage.key(i);
+    _modules_projects__WEBPACK_IMPORTED_MODULE_2__["projects"].index.push(JSON.parse(window.localStorage.getItem(p)));
+  }
+  _modules_views__WEBPACK_IMPORTED_MODULE_3__["views"].init(_modules_projects__WEBPACK_IMPORTED_MODULE_2__["projects"].index[0]);
+};
+
+const init = () => {
+  localStorage.length > 0 ? getIndex() : freshStart();
+};
+
+// uncomment to remove saves!
+// window.localStorage.clear();
+
+init();
+
+/* things we need to do:
+
+add sorting functions and a few default project buckets which show tasks
+add ability to delete and rename Projects
+
+*/
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(2);
+            var content = __webpack_require__(3);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var isOldIE = function isOldIE() {
+  var memo;
+  return function memorize() {
+    if (typeof memo === 'undefined') {
+      // Test for IE <= 9 as proposed by Browserhacks
+      // @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+      // Tests for existence of standard globals is to allow style-loader
+      // to operate correctly into non-standard environments
+      // @see https://github.com/webpack-contrib/style-loader/issues/177
+      memo = Boolean(window && document && document.all && !window.atob);
+    }
+
+    return memo;
+  };
+}();
+
+var getTarget = function getTarget() {
+  var memo = {};
+  return function memorize(target) {
+    if (typeof memo[target] === 'undefined') {
+      var styleTarget = document.querySelector(target); // Special case to return head of iframe instead of iframe itself
+
+      if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+        try {
+          // This will throw an exception if access to iframe is blocked
+          // due to cross-origin restrictions
+          styleTarget = styleTarget.contentDocument.head;
+        } catch (e) {
+          // istanbul ignore next
+          styleTarget = null;
+        }
+      }
+
+      memo[target] = styleTarget;
+    }
+
+    return memo[target];
+  };
+}();
+
+var stylesInDom = [];
+
+function getIndexByIdentifier(identifier) {
+  var result = -1;
+
+  for (var i = 0; i < stylesInDom.length; i++) {
+    if (stylesInDom[i].identifier === identifier) {
+      result = i;
+      break;
+    }
+  }
+
+  return result;
+}
+
+function modulesToDom(list, options) {
+  var idCountMap = {};
+  var identifiers = [];
+
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i];
+    var id = options.base ? item[0] + options.base : item[0];
+    var count = idCountMap[id] || 0;
+    var identifier = "".concat(id, " ").concat(count);
+    idCountMap[id] = count + 1;
+    var index = getIndexByIdentifier(identifier);
+    var obj = {
+      css: item[1],
+      media: item[2],
+      sourceMap: item[3]
+    };
+
+    if (index !== -1) {
+      stylesInDom[index].references++;
+      stylesInDom[index].updater(obj);
+    } else {
+      stylesInDom.push({
+        identifier: identifier,
+        updater: addStyle(obj, options),
+        references: 1
+      });
+    }
+
+    identifiers.push(identifier);
+  }
+
+  return identifiers;
+}
+
+function insertStyleElement(options) {
+  var style = document.createElement('style');
+  var attributes = options.attributes || {};
+
+  if (typeof attributes.nonce === 'undefined') {
+    var nonce =  true ? __webpack_require__.nc : undefined;
+
+    if (nonce) {
+      attributes.nonce = nonce;
+    }
+  }
+
+  Object.keys(attributes).forEach(function (key) {
+    style.setAttribute(key, attributes[key]);
+  });
+
+  if (typeof options.insert === 'function') {
+    options.insert(style);
+  } else {
+    var target = getTarget(options.insert || 'head');
+
+    if (!target) {
+      throw new Error("Couldn't find a style target. This probably means that the value for the 'insert' parameter is invalid.");
+    }
+
+    target.appendChild(style);
+  }
+
+  return style;
+}
+
+function removeStyleElement(style) {
+  // istanbul ignore if
+  if (style.parentNode === null) {
+    return false;
+  }
+
+  style.parentNode.removeChild(style);
+}
+/* istanbul ignore next  */
+
+
+var replaceText = function replaceText() {
+  var textStore = [];
+  return function replace(index, replacement) {
+    textStore[index] = replacement;
+    return textStore.filter(Boolean).join('\n');
+  };
+}();
+
+function applyToSingletonTag(style, index, remove, obj) {
+  var css = remove ? '' : obj.media ? "@media ".concat(obj.media, " {").concat(obj.css, "}") : obj.css; // For old IE
+
+  /* istanbul ignore if  */
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = replaceText(index, css);
+  } else {
+    var cssNode = document.createTextNode(css);
+    var childNodes = style.childNodes;
+
+    if (childNodes[index]) {
+      style.removeChild(childNodes[index]);
+    }
+
+    if (childNodes.length) {
+      style.insertBefore(cssNode, childNodes[index]);
+    } else {
+      style.appendChild(cssNode);
+    }
+  }
+}
+
+function applyToTag(style, options, obj) {
+  var css = obj.css;
+  var media = obj.media;
+  var sourceMap = obj.sourceMap;
+
+  if (media) {
+    style.setAttribute('media', media);
+  } else {
+    style.removeAttribute('media');
+  }
+
+  if (sourceMap && btoa) {
+    css += "\n/*# sourceMappingURL=data:application/json;base64,".concat(btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))), " */");
+  } // For old IE
+
+  /* istanbul ignore if  */
+
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    while (style.firstChild) {
+      style.removeChild(style.firstChild);
+    }
+
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var singleton = null;
+var singletonCounter = 0;
+
+function addStyle(obj, options) {
+  var style;
+  var update;
+  var remove;
+
+  if (options.singleton) {
+    var styleIndex = singletonCounter++;
+    style = singleton || (singleton = insertStyleElement(options));
+    update = applyToSingletonTag.bind(null, style, styleIndex, false);
+    remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+  } else {
+    style = insertStyleElement(options);
+    update = applyToTag.bind(null, style, options);
+
+    remove = function remove() {
+      removeStyleElement(style);
+    };
+  }
+
+  update(obj);
+  return function updateStyle(newObj) {
+    if (newObj) {
+      if (newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap) {
+        return;
+      }
+
+      update(obj = newObj);
+    } else {
+      remove();
+    }
+  };
+}
+
+module.exports = function (list, options) {
+  options = options || {}; // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+  // tags it will allow on a page
+
+  if (!options.singleton && typeof options.singleton !== 'boolean') {
+    options.singleton = isOldIE();
+  }
+
+  list = list || [];
+  var lastIdentifiers = modulesToDom(list, options);
+  return function update(newList) {
+    newList = newList || [];
+
+    if (Object.prototype.toString.call(newList) !== '[object Array]') {
+      return;
+    }
+
+    for (var i = 0; i < lastIdentifiers.length; i++) {
+      var identifier = lastIdentifiers[i];
+      var index = getIndexByIdentifier(identifier);
+      stylesInDom[index].references--;
+    }
+
+    var newLastIdentifiers = modulesToDom(newList, options);
+
+    for (var _i = 0; _i < lastIdentifiers.length; _i++) {
+      var _identifier = lastIdentifiers[_i];
+
+      var _index = getIndexByIdentifier(_identifier);
+
+      if (stylesInDom[_index].references === 0) {
+        stylesInDom[_index].updater();
+
+        stylesInDom.splice(_index, 1);
+      }
+    }
+
+    lastIdentifiers = newLastIdentifiers;
+  };
+};
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(4);
+exports = ___CSS_LOADER_API_IMPORT___(false);
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap);"]);
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap);"]);
+// Module
+exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block;\n}\n\nbody {\n  line-height: 1;\n}\n\nol, ul {\n  list-style: none;\n}\n\nblockquote, q {\n  quotes: none;\n}\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: \"\";\n  content: none;\n}\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\n/* form stuff */\nform {\n  width: 96%;\n  max-width: 30rem;\n  justify-self: center;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  position: fixed;\n  top: 10%;\n  padding: 1rem;\n  background: #fff;\n  color: #333;\n  border-radius: 0.5rem;\n  font-family: \"Roboto\", sans-serif;\n  z-index: 6;\n}\n\n#form-heading {\n  margin-bottom: 1rem;\n  font-size: 1.4rem;\n  font-weight: 700;\n  text-align: center;\n}\n\n.form-section {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  margin-bottom: 1rem;\n  width: 100%;\n}\n\n.form-input {\n  width: 100%;\n  border: 0.1rem solid #ddd;\n  border-radius: 0.25rem;\n  padding: 0.5rem;\n  font-family: inherit;\n  font-size: 1rem;\n}\n\n.form-label {\n  padding: 0.5rem 0;\n  font-size: 1rem;\n}\n\n.form-input:focus {\n  outline: none;\n  box-shadow: 0 0 0 1.5pt #1976d2;\n}\n\n.form-textarea {\n  width: 100%;\n  min-height: 10rem;\n  resize: none;\n  font-family: inherit;\n}\n\n#form-submit {\n  width: 100%;\n  padding: 0.5rem 0;\n  background: #1976d2;\n  border: none;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n#form-submit:hover {\n  cursor: pointer;\n  filter: brightness(90%);\n}\n\n#form-overlay {\n  position: fixed;\n  left: 0;\n  top: 0;\n  min-height: 100vh;\n  width: 100vw;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 5;\n}\n\n/* header */\n#header {\n  position: fixed;\n  width: 100%;\n  grid-area: 1/1/2/6;\n  display: grid;\n  grid-template-columns: 2rem 1fr 2rem;\n  align-content: center;\n  height: 4rem;\n  padding: 0 2rem;\n  justify-content: center;\n  align-items: center;\n  background: #203148;\n}\n\n.brand {\n  grid-column: 2/3;\n  justify-self: center;\n  color: #fff;\n  font-size: 1.8rem;\n  font-weight: 900;\n  text-align: center;\n}\n\n#expand-nav {\n  grid-column: 1/2;\n  border: none;\n  background: none;\n  color: #fff;\n  font-size: 2rem;\n}\n#expand-nav :hover {\n  cursor: pointer;\n}\n\n/* side nav */\n#side-nav {\n  position: fixed;\n  top: 4rem;\n  bottom: auto;\n  width: 15rem;\n  background: #f3f5f9;\n  z-index: 3;\n  transition: all 0.7s ease-in-out;\n}\n\n.collapse {\n  left: -20rem;\n}\n\n.expand {\n  left: 0;\n}\n\n#project-header-box {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  grid-template-rows: 4rem;\n  margin-bottom: 0.5rem;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n#new-project-header {\n  grid-column: 1/3;\n  place-self: center;\n  color: #000;\n  font-size: 1.4rem;\n  font-weight: 700;\n}\n\n#new-project {\n  grid-column: 4/5;\n  place-self: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 2.5rem;\n  width: 2.5rem;\n  background: #1976d2;\n  border-radius: 50%;\n}\n\n#plus {\n  color: #fff;\n  font-size: 1.4rem;\n}\n\n#new-project:hover {\n  background: #1e88e5;\n  cursor: pointer;\n}\n\n#project-form {\n  position: relative;\n  padding: 0.5rem;\n  margin: 0.5rem;\n  border: none;\n  border-radius: 0.5rem;\n  font-size: 1rem;\n}\n#project-form :focus {\n  outline: none;\n  border: none;\n}\n\n#projects {\n  height: calc(100vh - 9rem);\n  padding-bottom: 1rem;\n  overflow-y: auto;\n}\n\n#projects:last-child {\n  margin-bottom: 1rem;\n}\n\n.project {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1rem;\n  margin: 0.2rem;\n  border-radius: 0.5rem;\n  font-size: 1rem;\n  font-weight: 500;\n  text-decoration: none;\n}\n\n.project:hover {\n  background: #fff;\n  cursor: pointer;\n}\n\n.p-box {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.project-name {\n  padding: 0 0.5rem;\n}\n\n.d-box {\n  display: flex;\n  justify-content: flex-end;\n  align-content: center;\n}\n\n.d-box:hover {\n  cursor: pointer;\n}\n\n.delete {\n  padding-left: 0.5rem;\n}\n\n/* regular task size */\n.task-regular {\n  display: grid;\n  grid-template-columns: 5rem repeat(1, 1fr);\n  grid-template-rows: 4rem;\n  align-items: center;\n  margin: 1rem 0;\n  border-bottom: 0.1rem solid #eee;\n}\n\n.task-regular:hover {\n  cursor: pointer;\n}\n\n.complete-button {\n  grid-column: 1/2;\n  place-self: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 60%;\n  width: 50%;\n  border-radius: 50%;\n  outline: none;\n}\n\n.complete-button:hover {\n  animation: grow 0.3s linear;\n  animation-iteration-count: 1;\n}\n\n.checkmark {\n  color: #fff;\n  font-size: 1.5rem;\n}\n\n.title-regular {\n  grid-column: 2/4;\n  padding: 0 2rem;\n  font-size: 1.2rem;\n  font-weight: 500;\n}\n\n.date-regular {\n  grid-column: 4/6;\n  padding: 0 2rem;\n  font-size: 1rem;\n  color: #555;\n}\n\n/* expanded task */\n.task-expanded {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  margin: 1rem 0;\n  padding: 1rem;\n  border: 0.1rem solid #ddd;\n  border-radius: 0.5rem;\n  background: #eee;\n  box-shadow: 0 10px 6px -6px #666;\n  font-family: \"Roboto\", sans-serif;\n}\n\n.title-expanded {\n  text-align: center;\n  color: #000;\n  font-size: 1.2rem;\n  font-weight: 700;\n}\n\n.e-options {\n  display: flex;\n  justify-content: space-between;\n}\n\n.date-expanded {\n  width: 100%;\n  max-width: 10rem;\n  font-family: \"Roboto\", sans-serif;\n}\n\n.radio-buttons {\n  width: 100%;\n  max-width: 20rem;\n}\n.radio-buttons input {\n  border: 0;\n  height: 1rem;\n  width: 1rem;\n  margin: 0 0.5rem;\n}\n\n.button-box {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.save-changes {\n  width: 60%;\n  padding: 0.5rem;\n  background: #1976d2;\n  border: none;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.check {\n  padding-left: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.save-changes:hover {\n  background: #1e88e5;\n  cursor: pointer;\n}\n\n.delete-task {\n  padding: 0.5rem;\n  background: #666;\n  border: none;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.trash {\n  padding-left: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.delete-task:hover {\n  background: #555;\n  cursor: pointer;\n}\n\n.text-done {\n  text-decoration: line-through;\n  color: #ccc;\n}\n\n.task-complete {\n  background: #1976d2;\n}\n\n.high {\n  border: 0.2rem solid #a93226;\n  background: #f9ebea;\n}\n\n.medium {\n  border: 0.2rem solid #d4ac0d;\n  background: #fef9e7;\n}\n\n.low {\n  border: 0.2rem solid #229954;\n  background: #e9f7ef;\n}\n\nhtml {\n  font-size: 16px;\n}\n\n* {\n  line-height: 1.5;\n  box-sizing: border-box;\n}\n\nbody {\n  display: grid;\n  min-height: 100vh;\n  max-width: 100vw;\n  grid-template-columns: repeat(5, 1fr);\n  grid-template-rows: 4rem 1fr;\n  background: #fff;\n  box-sizing: border-box;\n  font-family: \"Roboto\", sans-serif;\n}\n\n/* main stuff */\n#main {\n  margin: 0 5vw;\n}\n\n.large {\n  grid-area: 2/2/3/6;\n}\n\n.small {\n  grid-area: 2/1/3/6;\n}\n\n.project-container {\n  height: 4rem;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.project-heading {\n  font-size: 1.4rem;\n  font-weight: 700;\n}\n\n.new-task {\n  padding: 0.5rem 1rem;\n  border: none;\n  background: #1976d2;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.new-task:hover {\n  cursor: pointer;\n  background: #1e88e5;\n}\n\n/* text spots in center */\n.welcome-mat {\n  position: relative;\n  top: 25%;\n  text-align: center;\n}\n\n.welcome-header {\n  color: #ccc;\n  font-size: 1.5rem;\n}\n\n.surprise {\n  padding: 3rem;\n  color: #ccc;\n  font-size: 4rem;\n}\n\n/* class toggles */\n.hidden {\n  display: none;\n}\n\n.selected {\n  background: #fff;\n}\n\n.error {\n  position: relative;\n  animation: shake 0.1s linear;\n  animation-iteration-count: 3;\n}\n\n.open-form {\n  animation: spin 0.3s linear;\n}\n\n.curtain {\n  animation: curtain 0.2s linear;\n}\n\n.slide-in {\n  animation: slide-in 0.2s linear;\n}\n\n@keyframes slide-in {\n  0% {\n    left: -20vw;\n  }\n  100% {\n    left: 0;\n  }\n}\n@keyframes curtain {\n  0% {\n    top: -100vh;\n  }\n  100% {\n    top: 0vh;\n  }\n}\n@keyframes spin {\n  0% {\n    rotate: 0;\n  }\n  100% {\n    rotate: 180deg;\n  }\n}\n@keyframes shake {\n  0% {\n    left: -5px;\n  }\n  100% {\n    right: -5px;\n  }\n}\n@keyframes grow {\n  0% {\n    height: 60%;\n    width: 50%;\n  }\n  25% {\n    height: 65%;\n    width: 55%;\n  }\n  50% {\n    height: 70%;\n    width: 60%;\n  }\n  75% {\n    height: 65%;\n    width: 55%;\n  }\n  100% {\n    height: 60%;\n    width: 50%;\n  }\n}\n@media screen and (max-width: 599px) {\n  .e-options {\n    flex-direction: column;\n  }\n}\n@media screen and (min-width: 600px) {\n  .e-options {\n    flex-direction: column;\n  }\n}\n@media screen and (min-width: 900px) {\n  .e-options {\n    flex-direction: row;\n  }\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+// eslint-disable-next-line func-names
+module.exports = function (useSourceMap) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item, useSourceMap);
+
+      if (item[2]) {
+        return "@media ".concat(item[2], " {").concat(content, "}");
+      }
+
+      return content;
+    }).join('');
+  }; // import a list of modules into the list
+  // eslint-disable-next-line func-names
+
+
+  list.i = function (modules, mediaQuery, dedupe) {
+    if (typeof modules === 'string') {
+      // eslint-disable-next-line no-param-reassign
+      modules = [[null, modules, '']];
+    }
+
+    var alreadyImportedModules = {};
+
+    if (dedupe) {
+      for (var i = 0; i < this.length; i++) {
+        // eslint-disable-next-line prefer-destructuring
+        var id = this[i][0];
+
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+
+    for (var _i = 0; _i < modules.length; _i++) {
+      var item = [].concat(modules[_i]);
+
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
+      if (mediaQuery) {
+        if (!item[2]) {
+          item[2] = mediaQuery;
+        } else {
+          item[2] = "".concat(mediaQuery, " and ").concat(item[2]);
+        }
+      }
+
+      list.push(item);
+    }
+  };
+
+  return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+  var content = item[1] || ''; // eslint-disable-next-line prefer-destructuring
+
+  var cssMapping = item[3];
+
+  if (!cssMapping) {
+    return content;
+  }
+
+  if (useSourceMap && typeof btoa === 'function') {
+    var sourceMapping = toComment(cssMapping);
+    var sourceURLs = cssMapping.sources.map(function (source) {
+      return "/*# sourceURL=".concat(cssMapping.sourceRoot || '').concat(source, " */");
+    });
+    return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+  }
+
+  return [content].join('\n');
+} // Adapted from convert-source-map (MIT)
+
+
+function toComment(sourceMap) {
+  // eslint-disable-next-line no-undef
+  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+  var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
+  return "/*# ".concat(data, " */");
+}
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tasks", function() { return tasks; });
+/* harmony import */ var _projects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6);
+/* harmony import */ var _views__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9);
+
+
+
+const tasks = (() => {
+  const taskMaker = (title, dueDate, priority, description) => {
+    let done = false;
+    return {
+      title,
+      dueDate,
+      priority,
+      description,
+      done,
+    };
+  };
+
+  const create = (taskData, project) => {
+    project.tasks.push(taskMaker(...taskData));
+    _projects__WEBPACK_IMPORTED_MODULE_0__["projects"].save(project);
+    _views__WEBPACK_IMPORTED_MODULE_1__["views"].render(project);
+  };
+
+  return {
+    create,
+    taskMaker,
+  };
+})();
+
+
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projects", function() { return projects; });
+/* harmony import */ var _projectViews__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
+
+
+const projects = (() => {
+  let index = [];
+
+  const projectMaker = (name) => {
+    let tasks = [];
+
+    return {
+      name,
+      tasks,
+    };
+  };
+
+  const create = (projectData) => {
+    let project = projectMaker(projectData);
+    index.push(project);
+    save(project);
+    _projectViews__WEBPACK_IMPORTED_MODULE_0__["projectViews"].newProjectChanger(project);
+  };
+
+  const save = (project) => {
+    localStorage.setItem(project.name, JSON.stringify(project));
+  };
+
+  const deleteProject = (name) => {
+    localStorage.removeItem(name);
+  };
+
+  return {
+    index,
+    create,
+    save,
+    deleteProject,
+    projectMaker,
+  };
+})();
+
+
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectViews", function() { return projectViews; });
+/* harmony import */ var _projects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6);
+/* harmony import */ var _taskViews__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
+/* harmony import */ var _views__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9);
+
+
+
+
+const projectViews = (() => {
+  const newProject = document.querySelector("#new-project");
+  const projectList = document.querySelector("#projects");
+  const sideNav = document.querySelector("#side-nav");
+  const expandNav = document.querySelector("#expand-nav");
+
+  window.innerWidth < 900 ? sideNav.classList.add("collapse") : null;
+  window.innerWidth > 900 ? expandNav.classList.add("hidden") : null;
+
+  // element states
+  let currentProject = "";
+
+  // element creator
+  const maker = (type, attributes, text, place) => {
+    let element = document.createElement(type);
+    Object.keys(attributes).forEach((key) => {
+      element.setAttribute(key, attributes[key]);
+    });
+    element.textContent = text;
+    place.appendChild(element);
+    return element;
+  };
+
+  // functions for changing projects
+
+  const rerenderProjects = () => {
+    let selected = document.querySelector(".selected").getAttribute("data");
+    renderProjects();
+    projectList.childNodes[selected].classList.toggle("selected");
+  };
+
+  const changeProject = (event) => {
+    if (event.target != event.currentTarget.lastChild.lastChild) {
+      document.querySelector(".selected").classList.toggle("selected");
+      event.currentTarget.classList.toggle("selected");
+      currentProject = _projects__WEBPACK_IMPORTED_MODULE_0__["projects"].index[event.currentTarget.getAttribute("data")];
+      rerenderProjects();
+      _taskViews__WEBPACK_IMPORTED_MODULE_1__["taskViews"].renderTasks(currentProject, true);
+      if (window.innerWidth < 900) {
+        handleClick();
+      }
+    }
+  };
+
+  const newProjectChanger = (project) => {
+    currentProject = project;
+    renderProjects();
+    _taskViews__WEBPACK_IMPORTED_MODULE_1__["taskViews"].renderTasks(currentProject, true);
+    projectList.lastChild.classList.toggle("selected");
+  };
+
+  // project form functions
+
+  const showProjectForm = () => {
+    let open = document.querySelector("#project-form");
+    open == null ? openProjectForm() : closeProjectForm();
+  };
+
+  const spinulator = () => {
+    newProject.classList.toggle("open-form");
+    // newProject.children[0].classList.toggle("hidden");
+    // newProject.children[1].classList.toggle("hidden");
+    setTimeout((f) => newProject.classList.toggle("open-form"), 300);
+  };
+
+  const closeProjectForm = () => {
+    projectList.removeChild(projectList.lastChild);
+    spinulator();
+  };
+
+  const openProjectForm = () => {
+    let form = maker(
+      "input",
+      { placeholder: "Project Name", id: "project-form", class: "slide-in" },
+      "",
+      projectList
+    );
+    form.addEventListener("keydown", getProjectData);
+    spinulator();
+    form.focus();
+    document.activeElement.scrollIntoView();
+  };
+
+  const projectError = () => {
+    let form = document.querySelector("#project-form");
+    form.classList.toggle("error");
+    setTimeout((f) => form.classList.toggle("error"), 500);
+  };
+
+  const getProjectData = (event) => {
+    let name = event.currentTarget.value;
+    if (event.key == "Enter") {
+      if (name == "") {
+        projectError();
+      } else if (_projects__WEBPACK_IMPORTED_MODULE_0__["projects"].index.find((p) => p.name == name) != undefined) {
+        projectError();
+      } else {
+        closeProjectForm();
+        _projects__WEBPACK_IMPORTED_MODULE_0__["projects"].create(event.target.value);
+      }
+    }
+  };
+
+  const showCan = () => {
+    event.currentTarget.lastChild.lastChild.classList.toggle("hidden");
+  };
+
+  const deleteProject = () => {
+    let i = event.currentTarget.parentNode.parentNode.getAttribute("data");
+    let name = _projects__WEBPACK_IMPORTED_MODULE_0__["projects"].index[i].name;
+    _projects__WEBPACK_IMPORTED_MODULE_0__["projects"].deleteProject(name);
+    _projects__WEBPACK_IMPORTED_MODULE_0__["projects"].index.splice(i, 1);
+    if (_projects__WEBPACK_IMPORTED_MODULE_0__["projects"].index.length == 0) {
+      _views__WEBPACK_IMPORTED_MODULE_2__["views"].renderHome();
+    } else {
+      _views__WEBPACK_IMPORTED_MODULE_2__["views"].init(_projects__WEBPACK_IMPORTED_MODULE_0__["projects"].index[0]);
+    }
+  };
+
+  // main project rendering
+
+  const renderProject = (project, i) => {
+    let p = maker("div", { class: "project", data: i }, "", projectList);
+    let b = maker("div", { class: "p-box" }, "", p);
+    maker("i", { class: "far fa-calendar-check project-icon" }, "", b);
+    maker("h3", { class: "project-name" }, project.name, b);
+    let d = maker("div", { class: "d-box" }, "", p);
+    maker("h3", { class: "project-count" }, `${project.tasks.length}`, d);
+    let del = maker("i", { class: "fas fa-trash-alt delete hidden" }, "", d);
+
+    p.addEventListener("mouseenter", showCan);
+    p.addEventListener("mouseleave", showCan);
+
+    p.addEventListener("click", changeProject);
+    del.addEventListener("click", deleteProject);
+  };
+
+  const renderProjects = () => {
+    projectList.innerHTML = "";
+    _projects__WEBPACK_IMPORTED_MODULE_0__["projects"].index.forEach((project, i) => renderProject(project, i));
+  };
+
+  const handleWindowResize = () => {
+    if (window.innerWidth < 900) {
+      sideNav.classList.add("collapse");
+      expandNav.classList.remove("hidden");
+    } else if (window.innerWidth > 900) {
+      sideNav.classList.remove("collapse");
+      expandNav.classList.add("hidden");
+    }
+  };
+
+  const handleClick = () => {
+    sideNav.classList.toggle("collapse");
+    sideNav.classList.toggle("slide-in");
+  };
+
+  /* event listeners */
+
+  newProject.addEventListener("click", showProjectForm);
+  window.addEventListener("resize", handleWindowResize);
+  expandNav.addEventListener("click", handleClick);
+  // index.addEventListener("click", showIndex);
+
+  return {
+    renderProjects,
+    newProjectChanger,
+    rerenderProjects,
+  };
+})();
+
+
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "taskViews", function() { return taskViews; });
+/* harmony import */ var _tasks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5);
+/* harmony import */ var _projects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6);
+/* harmony import */ var _views__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9);
+
+
+
+
+const taskViews = (() => {
+  // document selectors
+  const main = document.querySelector("#main");
+  const formOverlay = document.querySelector("#form-overlay");
+  const form = document.querySelector("#task-form");
+  const createTaskButton = document.querySelector("#form-submit");
+
+  // element creator
+  const maker = (type, attributes, text, place) => {
+    let element = document.createElement(type);
+    Object.keys(attributes).forEach((key) => {
+      element.setAttribute(key, attributes[key]);
+    });
+    element.textContent = text;
+    place.appendChild(element);
+    return element;
+  };
+
+  // task form functions
+
+  const showform = () => {
+    formOverlay.classList.toggle("hidden");
+    formOverlay.classList.toggle("curtain");
+    form.classList.toggle("hidden");
+    form.classList.toggle("curtain");
+  };
+
+  const formClose = (e) => {
+    if (e.target == formOverlay) {
+      showform();
+    }
+  };
+
+  const formError = (element) => {
+    element.classList.toggle("error");
+    setTimeout((f) => element.classList.toggle("error"), 500);
+  };
+
+  const validateForm = () => {
+    if (form[0].value == "") {
+      formError(form[0]);
+    } else if (form[1].value == "") {
+      formError(form[1]);
+    } else {
+      let radio = document.querySelector("input[name=r1]:checked").value;
+      return [form[0].value, form[1].value, radio, form[5].value];
+    }
+  };
+
+  const getTaskData = () => {
+    let taskData = validateForm();
+    if (taskData) {
+      _tasks__WEBPACK_IMPORTED_MODULE_0__["tasks"].create(taskData, currentProject());
+      form.reset();
+      showform();
+    }
+  };
+
+  //task functions
+
+  const expandTask = (event) => {
+    if (
+      event.target != event.currentTarget.firstChild &&
+      event.target != event.currentTarget.firstChild.firstChild
+    ) {
+      event.currentTarget.classList.toggle("hidden");
+      event.currentTarget.nextSibling.classList.toggle("hidden");
+    }
+  };
+
+  const currentProject = () => {
+    let p = document.querySelector(".selected");
+    if (p == null) {
+      alert("select a project");
+    } else {
+      return _projects__WEBPACK_IMPORTED_MODULE_1__["projects"].index[p.getAttribute("data")];
+    }
+  };
+
+  const markTaskComplete = (task, b) => {
+    b.firstChild.classList.toggle("hidden");
+    b.classList.toggle(task.priority);
+    b.classList.toggle("task-complete");
+    b.parentNode.children[1].classList.toggle("text-done");
+    b.parentNode.children[2].classList.toggle("text-done");
+  };
+
+  const completeTask = (e) => {
+    console.log(e.currentTarget.parentNode.attributes[1].value);
+    let task = getTaskFromIndex(e.currentTarget.parentNode.attributes[1].value);
+    let circle = e.currentTarget;
+    markTaskComplete(task, circle);
+    task.done == false ? (task.done = true) : (task.done = false);
+    _projects__WEBPACK_IMPORTED_MODULE_1__["projects"].save(currentProject());
+  };
+
+  const getTaskFromIndex = (index) => {
+    let c = currentProject();
+    return c.tasks[index];
+  };
+
+  const taskChanger = (event) => {
+    let i = event.currentTarget.parentNode.parentNode.attributes[1].value;
+    let task = getTaskFromIndex(i);
+    task.newDate = document.querySelector('[name="e-date"]').value;
+    task.priority = document.querySelector(
+      `[name="e-radio-${i}"]:checked`
+    ).value;
+    task.newDescription = document.querySelector(
+      '[name="e-description"]'
+    ).value;
+  };
+
+  const closeTask = (event) => {
+    let taskBox = event.currentTarget.parentNode.parentNode;
+    taskBox.firstChild.classList.toggle("hidden");
+    taskBox.lastChild.classList.toggle("hidden");
+    taskBox.lastChild.classList.toggle("unroll");
+  };
+
+  const updateTask = (event) => {
+    taskChanger(event);
+    closeTask(event);
+    renderTasks(currentProject(), true);
+    _projects__WEBPACK_IMPORTED_MODULE_1__["projects"].save(currentProject());
+  };
+
+  const deleteTask = (event) => {
+    let taskIndex = event.currentTarget.parentNode.getAttribute("data");
+    let c = currentProject();
+    c.tasks.splice(taskIndex, 1);
+    _views__WEBPACK_IMPORTED_MODULE_2__["views"].render(c);
+    _projects__WEBPACK_IMPORTED_MODULE_1__["projects"].save(currentProject());
+  };
+
+  // task maker
+
+  const makeRegularTaskElements = (task, r) => {
+    let b = maker("a", { class: `complete-button ${task.priority}` }, "", r);
+    maker("i", { class: "fas fa-check checkmark hidden" }, "", b);
+    maker("h2", { class: "title-regular" }, task.title, r);
+    maker("p", { class: "date-regular" }, task.dueDate, r);
+    b.addEventListener("click", completeTask);
+    if (task.done == true) {
+      markTaskComplete(task, b);
+    }
+  };
+
+  // expanded task elements
+
+  const selectPriority = (task, l, m, h) => {
+    if (task.priority == "high") {
+      h.setAttribute("checked", "");
+    } else if (task.priority == "medium") {
+      m.setAttribute("checked", "");
+    } else {
+      l.setAttribute("checked", "");
+    }
+  };
+
+  const renderDate = (task, e) => {
+    let d = maker("div", { class: "form-section" }, "", e);
+    let data = {
+      class: "form-input date-expanded",
+      type: "date",
+      name: "e-date",
+      value: task.dueDate,
+    };
+    maker(
+      "label",
+      { for: "date-expanded", class: "form-label" },
+      "Due Date:",
+      d
+    );
+    maker("input", data, "", d);
+  };
+
+  const renderRadios = (task, e, index) => {
+    let q = `e-radio-${index}`;
+
+    let p = maker("div", { class: "form-section" }, "", e);
+    maker("label", { for: q, class: "form-label" }, "Task Priority", p);
+
+    let b = maker("div", { class: "radio-buttons" }, "", p);
+
+    let h = maker("input", { type: "radio", name: q, value: "high" }, "", b);
+    maker("label", { for: "high", class: "e-form-label" }, "High", b);
+
+    let m = maker(
+      "input",
+      { type: "radio", name: q, value: "medium" },
+      "Medium",
+      b
+    );
+    maker("label", { for: "medium", class: "e-form-label" }, "Medium", b);
+
+    let l = maker("input", { type: "radio", name: q, value: "low" }, "", b);
+    maker("label", { for: "low", class: "e-form-label" }, "Low", b);
+
+    selectPriority(task, l, m, h);
+  };
+
+  const renderOptions = (task, e, index) => {
+    let b = maker("div", { class: "e-options" }, "", e);
+    renderDate(task, b);
+    renderRadios(task, b, index);
+  };
+
+  const renderDescription = (task, e) => {
+    let t = maker("div", { class: "form-section" }, "", e);
+    maker(
+      "label",
+      { for: "e-description", class: "form-label" },
+      "Task Description",
+      t
+    );
+    maker(
+      "textarea",
+      { class: "form-input form-textarea", name: "e-description" },
+      task.description,
+      t
+    );
+  };
+
+  const renderTaskButtons = (e) => {
+    let b = maker("div", { class: "button-box" }, "", e);
+    let update = maker("button", { class: "save-changes" }, "Save & Close", b);
+    maker("i", { class: "fas fa-check check" }, "", update);
+    let remove = maker("button", { class: "delete-task" }, "Delete ", b);
+    maker("i", { class: "fas fa-trash-alt trash" }, "", remove);
+    update.addEventListener("click", updateTask);
+    remove.addEventListener("click", deleteTask);
+  };
+
+  const makeExpandedTaskElements = (task, e, index) => {
+    let h = maker("h2", { class: "title-expanded" }, task.title, e);
+    renderOptions(task, e, index);
+    renderDescription(task, e);
+    renderTaskButtons(e);
+    h.addEventListener("click", closeTask);
+  };
+
+  const renderTask = (task, index) => {
+    let t = maker("div", { class: "task-box", data: index }, "", main);
+    let r = maker("div", { class: "task-regular", data: index }, "", t);
+    let e = maker("div", { class: "hidden task-expanded", data: index }, "", t);
+
+    r.addEventListener("click", expandTask);
+
+    makeRegularTaskElements(task, r);
+    makeExpandedTaskElements(task, e, index);
+  };
+
+  const renderWelcome = () => {
+    let mat = maker("div", { class: "welcome-mat" }, "", main);
+    maker("h2", { class: "welcome-header" }, "Wow Such Empty!", mat);
+    maker("i", { class: "far fa-surprise surprise" }, "", mat);
+    maker(
+      "h2",
+      { class: "welcome-header" },
+      "Could You Be Done... Everything?!",
+      mat
+    );
+  };
+
+  const renderProjectHeader = (project) => {
+    let container = maker("div", { class: "project-container" }, "", main);
+    maker("h2", { class: "project-heading" }, project.name, container);
+    let but = maker("button", { class: "new-task" }, "Add Task", container);
+    but.addEventListener("click", showform);
+  };
+
+  const renderTasks = (p, clear) => {
+    if (clear == true) {
+      main.innerHTML = "";
+    }
+    if (p.tasks.length == 0) {
+      renderProjectHeader(p);
+      renderWelcome();
+    } else {
+      renderProjectHeader(p);
+      p.tasks.forEach((task, i) => renderTask(task, i));
+    }
+  };
+
+  // event listeners
+  formOverlay.addEventListener("click", formClose);
+  createTaskButton.addEventListener("click", getTaskData);
+
+  return {
+    renderTasks,
+  };
+})();
+
+
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "views", function() { return views; });
+/* harmony import */ var _taskViews__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8);
+/* harmony import */ var _projectViews__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
+
+
+
+const views = (() => {
+  const main = document.querySelector("#main");
+
+  window.innerWidth > 900
+    ? main.classList.add("large")
+    : main.classList.add("small");
+
+  // element creator
+  const maker = (type, attributes, text, place) => {
+    let element = document.createElement(type);
+    Object.keys(attributes).forEach((key) => {
+      element.setAttribute(key, attributes[key]);
+    });
+    element.textContent = text;
+    place.appendChild(element);
+    return element;
+  };
+
+  const init = (project) => {
+    _projectViews__WEBPACK_IMPORTED_MODULE_1__["projectViews"].renderProjects();
+    _taskViews__WEBPACK_IMPORTED_MODULE_0__["taskViews"].renderTasks(project, true);
+    document.querySelector("#projects").firstChild.classList.toggle("selected");
+  };
+
+  const render = (project) => {
+    _projectViews__WEBPACK_IMPORTED_MODULE_1__["projectViews"].rerenderProjects();
+    _taskViews__WEBPACK_IMPORTED_MODULE_0__["taskViews"].renderTasks(project, true);
+  };
+
+  const renderHome = () => {
+    main.innerHTML = "";
+    _projectViews__WEBPACK_IMPORTED_MODULE_1__["projectViews"].renderProjects();
+    let mat = maker("div", { class: "welcome-mat" }, "", main);
+    maker("h2", { class: "welcome-header" }, "Its Time To Get-Er-Done!", mat);
+    maker("i", { class: "far fa-sticky-note surprise" }, "", mat);
+    maker(
+      "h2",
+      { class: "welcome-header" },
+      "Create A Project To Get Started!",
+      mat
+    );
+  };
+
+  const handleResize = () => {
+    if (window.innerWidth < 900) {
+      main.classList.remove("large");
+      main.classList.add("small");
+    } else if (window.innerWidth > 900) {
+      main.classList.add("large");
+      main.classList.remove("small");
+    }
+  };
+
+  window.addEventListener("resize", handleResize);
+
+  return { render, renderHome, init };
+})();
+
+
+
+
+/***/ })
+/******/ ]);
