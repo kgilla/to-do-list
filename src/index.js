@@ -1,5 +1,4 @@
-import "./assets/stylesheets/reset.css";
-import "./assets/stylesheets/style.css";
+import "./assets/stylesheets/main.scss";
 import { tasks } from "./modules/tasks";
 import { projects } from "./modules/projects";
 import { views } from "./modules/views";

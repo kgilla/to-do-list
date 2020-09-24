@@ -5,7 +5,11 @@ import { views } from "./views";
 const projectViews = (() => {
   const newProject = document.querySelector("#new-project");
   const projectList = document.querySelector("#projects");
-  const index = document.querySelector("#allTasks");
+  const sideNav = document.querySelector("#side-nav");
+  const expandNav = document.querySelector("#expand-nav");
+
+  window.innerWidth < 900 ? sideNav.classList.add("collapse") : null;
+  window.innerWidth > 900 ? expandNav.classList.add("hidden") : null;
 
   // element states
   let currentProject = "";
@@ -36,6 +40,9 @@ const projectViews = (() => {
       currentProject = projects.index[event.currentTarget.getAttribute("data")];
       rerenderProjects();
       taskViews.renderTasks(currentProject, true);
+      if (window.innerWidth < 900) {
+        handleClick();
+      }
     }
   };
 
@@ -55,8 +62,8 @@ const projectViews = (() => {
 
   const spinulator = () => {
     newProject.classList.toggle("open-form");
-    newProject.children[0].classList.toggle("hidden");
-    newProject.children[1].classList.toggle("hidden");
+    // newProject.children[0].classList.toggle("hidden");
+    // newProject.children[1].classList.toggle("hidden");
     setTimeout((f) => newProject.classList.toggle("open-form"), 300);
   };
 
@@ -75,6 +82,7 @@ const projectViews = (() => {
     form.addEventListener("keydown", getProjectData);
     spinulator();
     form.focus();
+    document.activeElement.scrollIntoView();
   };
 
   const projectError = () => {
@@ -136,9 +144,26 @@ const projectViews = (() => {
     projects.index.forEach((project, i) => renderProject(project, i));
   };
 
+  const handleWindowResize = () => {
+    if (window.innerWidth < 900) {
+      sideNav.classList.add("collapse");
+      expandNav.classList.remove("hidden");
+    } else if (window.innerWidth > 900) {
+      sideNav.classList.remove("collapse");
+      expandNav.classList.add("hidden");
+    }
+  };
+
+  const handleClick = () => {
+    sideNav.classList.toggle("collapse");
+    sideNav.classList.toggle("slide-in");
+  };
+
   /* event listeners */
 
   newProject.addEventListener("click", showProjectForm);
+  window.addEventListener("resize", handleWindowResize);
+  expandNav.addEventListener("click", handleClick);
   // index.addEventListener("click", showIndex);
 
   return {

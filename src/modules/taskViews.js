@@ -4,7 +4,6 @@ import { views } from "./views";
 
 const taskViews = (() => {
   // document selectors
-
   const main = document.querySelector("#main");
   const formOverlay = document.querySelector("#form-overlay");
   const form = document.querySelector("#task-form");
@@ -30,8 +29,8 @@ const taskViews = (() => {
     form.classList.toggle("curtain");
   };
 
-  const formClose = () => {
-    if (event.target == formOverlay) {
+  const formClose = (e) => {
+    if (e.target == formOverlay) {
       showform();
     }
   };
@@ -70,7 +69,6 @@ const taskViews = (() => {
     ) {
       event.currentTarget.classList.toggle("hidden");
       event.currentTarget.nextSibling.classList.toggle("hidden");
-      event.currentTarget.nextSibling.classList.toggle("unroll");
     }
   };
 
@@ -91,25 +89,30 @@ const taskViews = (() => {
     b.parentNode.children[2].classList.toggle("text-done");
   };
 
-  const completeTask = (event) => {
-    let task = getTaskFromIndex(event.currentTarget.parentNode);
-    let circle = event.currentTarget;
+  const completeTask = (e) => {
+    console.log(e.currentTarget.parentNode.attributes[1].value);
+    let task = getTaskFromIndex(e.currentTarget.parentNode.attributes[1].value);
+    let circle = e.currentTarget;
     markTaskComplete(task, circle);
     task.done == false ? (task.done = true) : (task.done = false);
     projects.save(currentProject());
   };
 
-  const getTaskFromIndex = (taskBox) => {
+  const getTaskFromIndex = (index) => {
     let c = currentProject();
-    return c.tasks[taskBox.getAttribute("data")];
+    return c.tasks[index];
   };
 
   const taskChanger = (event) => {
-    let task = getTaskFromIndex(event.currentTarget.parentNode);
-    let name = "re" + event.currentTarget.parentNode.getAttribute("data");
-    task.description = event.currentTarget.previousSibling.lastChild.value;
-    task.dueDate = event.currentTarget.parentNode.childNodes[1].lastChild.value;
-    task.priority = document.querySelector(`input[name=${name}]:checked`).value;
+    let i = event.currentTarget.parentNode.parentNode.attributes[1].value;
+    let task = getTaskFromIndex(i);
+    task.newDate = document.querySelector('[name="e-date"]').value;
+    task.priority = document.querySelector(
+      `[name="e-radio-${i}"]:checked`
+    ).value;
+    task.newDescription = document.querySelector(
+      '[name="e-description"]'
+    ).value;
   };
 
   const closeTask = (event) => {
@@ -149,18 +152,6 @@ const taskViews = (() => {
 
   // expanded task elements
 
-  const renderDate = (task, e) => {
-    let d = maker("div", { class: "e-date-box" }, "", e);
-    let data = { class: "date-expanded", type: "date", value: task.dueDate };
-    maker(
-      "label",
-      { for: "date-expanded", class: "e-form-label" },
-      "Due Date:",
-      d
-    );
-    maker("input", data, "", d);
-  };
-
   const selectPriority = (task, l, m, h) => {
     if (task.priority == "high") {
       h.setAttribute("checked", "");
@@ -171,44 +162,75 @@ const taskViews = (() => {
     }
   };
 
+  const renderDate = (task, e) => {
+    let d = maker("div", { class: "form-section" }, "", e);
+    let data = {
+      class: "form-input date-expanded",
+      type: "date",
+      name: "e-date",
+      value: task.dueDate,
+    };
+    maker(
+      "label",
+      { for: "date-expanded", class: "form-label" },
+      "Due Date:",
+      d
+    );
+    maker("input", data, "", d);
+  };
+
   const renderRadios = (task, e, index) => {
-    let q = `re${index}`;
+    let q = `e-radio-${index}`;
 
-    let p = maker("div", { class: "e-radio-box" }, "", e);
-    maker("label", { for: q, class: "e-form-label" }, "Task Priority:", p);
+    let p = maker("div", { class: "form-section" }, "", e);
+    maker("label", { for: q, class: "form-label" }, "Task Priority", p);
 
-    let h = maker("input", { type: "radio", name: q, value: "high" }, "", p);
-    maker("label", { for: "high", class: "e-form-label" }, "High", p);
+    let b = maker("div", { class: "radio-buttons" }, "", p);
+
+    let h = maker("input", { type: "radio", name: q, value: "high" }, "", b);
+    maker("label", { for: "high", class: "e-form-label" }, "High", b);
 
     let m = maker(
       "input",
       { type: "radio", name: q, value: "medium" },
       "Medium",
-      p
+      b
     );
-    maker("label", { for: "medium", class: "e-form-label" }, "Medium", p);
+    maker("label", { for: "medium", class: "e-form-label" }, "Medium", b);
 
-    let l = maker("input", { type: "radio", name: q, value: "low" }, "", p);
-    maker("label", { for: "low", class: "e-form-label" }, "Low", p);
+    let l = maker("input", { type: "radio", name: q, value: "low" }, "", b);
+    maker("label", { for: "low", class: "e-form-label" }, "Low", b);
 
     selectPriority(task, l, m, h);
   };
 
+  const renderOptions = (task, e, index) => {
+    let b = maker("div", { class: "e-options" }, "", e);
+    renderDate(task, b);
+    renderRadios(task, b, index);
+  };
+
   const renderDescription = (task, e) => {
-    let t = maker("div", { class: "e-text-box" }, "", e);
+    let t = maker("div", { class: "form-section" }, "", e);
     maker(
       "label",
-      { for: "description-expanded", class: "e-form-label" },
+      { for: "e-description", class: "form-label" },
       "Task Description",
       t
     );
-    maker("textarea", { class: "description-expanded" }, task.description, t);
+    maker(
+      "textarea",
+      { class: "form-input form-textarea", name: "e-description" },
+      task.description,
+      t
+    );
   };
 
   const renderTaskButtons = (e) => {
-    let update = maker("button", { class: "save-changes" }, "Save & Close", e);
+    let b = maker("div", { class: "button-box" }, "", e);
+    let update = maker("button", { class: "save-changes" }, "Save & Close", b);
     maker("i", { class: "fas fa-check check" }, "", update);
-    let remove = maker("button", { class: "delete-task" }, "Delete ", e);
+    let remove = maker("button", { class: "delete-task" }, "Delete ", b);
     maker("i", { class: "fas fa-trash-alt trash" }, "", remove);
     update.addEventListener("click", updateTask);
     remove.addEventListener("click", deleteTask);
@@ -216,8 +238,7 @@ const taskViews = (() => {
 
   const makeExpandedTaskElements = (task, e, index) => {
     let h = maker("h2", { class: "title-expanded" }, task.title, e);
-    renderDate(task, e);
-    renderRadios(task, e, index);
+    renderOptions(task, e, index);
     renderDescription(task, e);
     renderTaskButtons(e);
     h.addEventListener("click", closeTask);

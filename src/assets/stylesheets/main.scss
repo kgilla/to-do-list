@@ -1,0 +1,195 @@
+@import "./reset";
+@import "./forms";
+@import "./navbar";
+@import "./tasks";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
+
+html {
+  font-size: 16px;
+}
+
+* {
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  min-height: 100vh;
+  max-width: 100vw;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 4rem 1fr;
+  background: #fff;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+/* main stuff */
+
+#main {
+  margin: 0 5vw;
+}
+
+.large {
+  grid-area: 2/2/3/6;
+}
+
+.small {
+  grid-area: 2/1/3/6;
+}
+
+.project-container {
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.new-task {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #1976d2;
+  border-radius: 0.5rem;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.new-task:hover {
+  cursor: pointer;
+  background: #1e88e5;
+}
+
+/* text spots in center */
+
+.welcome-mat {
+  position: relative;
+  top: 25%;
+  text-align: center;
+}
+
+.welcome-header {
+  color: #ccc;
+  font-size: 1.5rem;
+}
+
+.surprise {
+  padding: 3rem;
+  color: #ccc;
+  font-size: 4rem;
+}
+
+/* class toggles */
+
+.hidden {
+  display: none;
+}
+
+.selected {
+  background: #fff;
+}
+
+.error {
+  position: relative;
+  animation: shake 0.1s linear;
+  animation-iteration-count: 3;
+}
+
+.open-form {
+  animation: spin 0.3s linear;
+}
+
+.curtain {
+  animation: curtain 0.2s linear;
+}
+
+.slide-in {
+  animation: slide-in 0.2s linear;
+}
+
+@keyframes slide-in {
+  0% {
+    left: -20vw;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes curtain {
+  0% {
+    top: -100vh;
+  }
+  100% {
+    top: 0vh;
+  }
+}
+
+@keyframes spin {
+  0% {
+    rotate: 0;
+  }
+  100% {
+    rotate: 180deg;
+  }
+}
+
+@keyframes shake {
+  0% {
+    left: -5px;
+  }
+  100% {
+    right: -5px;
+  }
+}
+
+@keyframes grow {
+  0% {
+    height: 60%;
+    width: 50%;
+  }
+  25% {
+    height: 65%;
+    width: 55%;
+  }
+  50% {
+    height: 70%;
+    width: 60%;
+  }
+  75% {
+    height: 65%;
+    width: 55%;
+  }
+  100% {
+    height: 60%;
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .e-options {
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .e-options {
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .e-options {
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+}
+
+@media screen and (min-width: 1400px) {
+}

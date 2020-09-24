@@ -1,0 +1,153 @@
+/* regular task size */
+.task-regular {
+  display: grid;
+  grid-template-columns: 5rem repeat(1, 1fr);
+  grid-template-rows: 4rem;
+  align-items: center;
+  margin: 1rem 0;
+  border-bottom: 0.1rem solid #eee;
+}
+.task-regular:hover {
+  cursor: pointer;
+}
+
+.complete-button {
+  grid-column: 1/2;
+  place-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60%;
+  width: 50%;
+  border-radius: 50%;
+  outline: none;
+}
+
+.complete-button:hover {
+  animation: grow 0.3s linear;
+  animation-iteration-count: 1;
+}
+
+.checkmark {
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.title-regular {
+  grid-column: 2/4;
+  padding: 0 2rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.date-regular {
+  grid-column: 4/6;
+  padding: 0 2rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* expanded task */
+
+.task-expanded {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 0.1rem solid #ddd;
+  border-radius: 0.5rem;
+  background: #fff;
+  box-shadow: 0 10px 6px -6px #666;
+}
+
+.title-expanded {
+  text-align: center;
+  background: #fff;
+  color: #000;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.e-options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.date-expanded {
+  font-family: "Roboto", sans-serif;
+}
+
+.radio-buttons {
+}
+
+.button-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.save-changes {
+  width: 60%;
+  padding: 0.5rem;
+  background: #1976d2;
+  border: none;
+  border-radius: 0.5rem;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.check {
+  padding-left: 0.5rem;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.save-changes:hover {
+  background: #1e88e5;
+  cursor: pointer;
+}
+
+.delete-task {
+  padding: 0.5rem;
+  background: #666;
+  border: none;
+  border-radius: 0.5rem;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.trash {
+  padding-left: 0.5rem;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.delete-task:hover {
+  background: #555;
+  cursor: pointer;
+}
+
+.text-done {
+  text-decoration: line-through;
+  color: #ccc;
+}
+
+.task-complete {
+  background: #1976d2;
+}
+
+.high {
+  border: 0.2rem solid #a93226;
+  background: #f9ebea;
+}
+
+.medium {
+  border: 0.2rem solid #d4ac0d;
+  background: #fef9e7;
+}
+
+.low {
+  border: 0.2rem solid #229954;
+  background: #e9f7ef;
+}

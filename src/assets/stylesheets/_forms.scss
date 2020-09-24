@@ -1,0 +1,82 @@
+/* form stuff */
+
+form {
+  width: 100%;
+  max-width: 30rem;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  top: 10%;
+  padding: 1rem;
+  background: #f4f4f4;
+  border-radius: 0.5rem;
+  font-family: "Roboto", sans-serif;
+  z-index: 6;
+}
+
+#form-heading {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.form-input {
+  width: 100%;
+  border: 0.1rem solid #aaa;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.form-label {
+  padding: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.form-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 1.5pt #1976d2;
+}
+
+.form-textarea {
+  width: 100%;
+  min-height: 10rem;
+  resize: none;
+  font-family: inherit;
+}
+
+#form-submit {
+  width: 100%;
+  padding: 0.5rem 0;
+  background: #1976d2;
+  border: none;
+  border-radius: 0.5rem;
+  color: #fff;
+  font-size: 1rem;
+}
+#form-submit:hover {
+  cursor: pointer;
+  filter: brightness(90%);
+}
+
+#form-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}

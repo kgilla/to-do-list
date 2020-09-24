@@ -4,21 +4,22 @@
   <head>
     <meta charset="UTF-8" />
     <title>Get-Er-Done</title>
+    <script src="https://kit.fontawesome.com/643e5a8a38.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
     <header id="header">
-      <a href="#" class="brand"
+      <button id="expand-nav"><i class="fas fa-bars"></i></button>
+      <h1 class="brand"
         >Get-Er-Done <i class="fas fa-check brand"></i
-      ></a>
+      ></h1>
     </header>
 
     <nav id="side-nav">
       <div id="project-header-box">
         <h2 id="new-project-header">Projects</h2>
         <div id="new-project">
-          <i class="fas fa-minus hidden" id="plus"></i>
-          <i class="fas fa-plus" id="minus"></i>
+          <i class="fas fa-plus" id="plus"></i>
         </div>
       </div>
         <h3 class="project-count" id="totalTaskCount"></h3>
@@ -56,7 +57,7 @@
         <input
           type="date"
           id="form-date"
-          class="form-input"
+          class="form-input date-input"
           name="i2"
           required
         />
@@ -75,17 +76,16 @@
         </div>
       </div>
 
-      <div class="form-section" id="form-textarea-box">
+      <div class="form-section">
         <label for="i3" class="form-label">Task Description</label>
         <textarea
-          id="form-textarea"
-          class="form-input"
+          class="form-input form-textarea"
           name="i3"
           placeholder="This is a good place to explain what needs to be done"
         ></textarea>
       </div>
 
-      <input type="button" id="form-submit" value="Create Task" />
+      <button type="button" id="form-submit">Create Task</button>
     </form>
 
     <script src="main.js"></script>
