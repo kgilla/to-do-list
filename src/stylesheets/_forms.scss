@@ -1,15 +1,15 @@
 /* form stuff */
 
 form {
-  width: 96%;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 100%;
   max-width: 30rem;
-  justify-self: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: fixed;
-  left: 2%;
-  top: 10%;
   padding: 1rem;
   background: #fff;
   color: #333;
@@ -18,7 +18,7 @@ form {
   z-index: 6;
 }
 
-#form-heading {
+.form-heading {
   margin-bottom: 1rem;
   font-size: 1.4rem;
   font-weight: 700;
@@ -52,14 +52,14 @@ form {
   box-shadow: 0 0 0 1.5pt #1976d2;
 }
 
-.form-textarea {
+.text-area {
   width: 100%;
   min-height: 10rem;
   resize: none;
   font-family: inherit;
 }
 
-#form-submit {
+.form-button {
   width: 100%;
   padding: 0.5rem 0;
   background: #1976d2;
@@ -68,7 +68,8 @@ form {
   color: #fff;
   font-size: 1rem;
 }
-#form-submit:hover {
+
+.form-button:hover {
   cursor: pointer;
   filter: brightness(90%);
 }

@@ -3,37 +3,38 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Get-Er-Done</title>
-    <script src="https://kit.fontawesome.com/643e5a8a38.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/643e5a8a38.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
 
   <body>
-
     <header id="header">
       <button id="expand-nav"><i class="fas fa-bars"></i></button>
-      <h1 class="brand"
-        >Get-Er-Done <i class="fas fa-check brand"></i
-      ></h1>
+      <h1 class="brand">Get-Er-Done <i class="fas fa-check brand"></i></h1>
     </header>
 
     <nav id="side-nav">
-      <div id="project-header-box">
-        <h2 id="new-project-header">Projects</h2>
-        <div id="new-project">
-          <i class="fas fa-plus" id="plus"></i>
-        </div>
-      </div>
-        <h3 class="project-count" id="totalTaskCount"></h3>
+      <div id="main-side-categories">
+        <div id="all-tasks">All Tasks</div>
+        <div id="tasks-today">Today</div>
+        <div id="tasks-week">This Week</div>
       </div>
       <div id="projects"></div>
     </nav>
 
-    <main id="main"></main>
+    <main id="main">
+      <header id="project-header"></header>
+      <div id="tasks"></div>
+      <button id="new-task">New Task <i class="fa fa-plus"></i></button>
+    </main>
 
     <div id="form-overlay" class="hidden"></div>
     <div id="form-box"></div>
-    
+
     <script src="main.js"></script>
   </body>
 </html>

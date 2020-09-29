@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
+
+#new-task {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #1976d2;
+  border-radius: 0.5rem;
+  color: #fff;
+  font-size: 1rem;
+}
+
+#new-task:hover {
+  cursor: pointer;
+  background: #1e88e5;
+}
+
+#tasks {
+  margin: 0 5vw;
+}
+
+.task-box {
+  display: grid;
+  grid-template-columns: 5rem repeat(3, 1fr) 5rem;
+  grid-template-rows: 4rem;
+  align-items: center;
+  margin: 1rem 0;
+  border-bottom: 0.1rem solid #eee;
+}
+
+.complete-button {
+  grid-column: 1/2;
+  place-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60%;
+  width: 50%;
+  border-radius: 50%;
+  outline: none;
+}
+
+.complete-button:hover {
+  animation: grow 0.3s linear;
+  animation-iteration-count: 1;
+}
+
+.checkmark {
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.task-info {
+  grid-column: 2/5;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-name {
+  padding: 0 2rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.task-date {
+  padding: 0 2rem;
+  font-size: 1rem;
+  font-style: italic;
+  color: #777;
+}
+
+.task-option {
+  grid-column: 5/6;
+  place-self: end;
+  padding: 1rem;
+  // text-align: right;
+}
+
+.task-option:hover {
+  cursor: pointer;
+}
+
+.text-done {
+  text-decoration: line-through;
+  color: #ccc;
+}
+
+.task-complete {
+  background: #1976d2;
+}
+
+.high {
+  border: 0.2rem solid #a93226;
+  background: #f9ebea;
+}
+
+.medium {
+  border: 0.2rem solid #d4ac0d;
+  background: #fef9e7;
+}
+
+.low {
+  border: 0.2rem solid #229954;
+  background: #e9f7ef;
+}

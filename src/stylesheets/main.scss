@@ -1,6 +1,6 @@
 @import "./reset";
 @import "./forms";
-@import "./navbar";
+@import "./projects";
 @import "./tasks";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
 
@@ -24,10 +24,46 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+/* header */
+
+#header {
+  position: fixed;
+  width: 100%;
+  grid-area: 1/1/2/6;
+  display: grid;
+  grid-template-columns: 3rem 1fr 3rem;
+  align-content: center;
+  height: 4rem;
+  padding: 0 2rem;
+  justify-content: center;
+  align-items: center;
+  background: #203148;
+}
+
+.brand {
+  grid-column: 2/3;
+  justify-self: center;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+#expand-nav {
+  grid-column: 1/2;
+  border: none;
+  background: none;
+  color: #fff;
+  font-size: 2rem;
+  :hover {
+    cursor: pointer;
+  }
+}
+
 /* main stuff */
 
 #main {
-  margin: 0 5vw;
+  width: 100%;
 }
 
 .large {
@@ -36,32 +72,6 @@ body {
 
 .small {
   grid-area: 2/1/3/6;
-}
-
-.project-container {
-  height: 4rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.project-heading {
-  font-size: 1.4rem;
-  font-weight: 700;
-}
-
-.new-task {
-  padding: 0.5rem 1rem;
-  border: none;
-  background: #1976d2;
-  border-radius: 0.5rem;
-  color: #fff;
-  font-size: 1rem;
-}
-
-.new-task:hover {
-  cursor: pointer;
-  background: #1e88e5;
 }
 
 /* text spots in center */
