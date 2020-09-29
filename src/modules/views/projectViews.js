@@ -1,29 +1,19 @@
-import { projects } from "./projects";
-import { taskViews } from "./taskViews";
-import { views } from "./views";
+import projects from "../controllers/projects";
+import taskViews from "./taskViews";
+import { maker } from "../helpers/index";
 
 const projectViews = (() => {
   const newProject = document.querySelector("#new-project");
   const projectList = document.querySelector("#projects");
   const sideNav = document.querySelector("#side-nav");
   const expandNav = document.querySelector("#expand-nav");
+  const formOverlay = document.querySelector("#form-overlay");
 
   window.innerWidth < 900 ? sideNav.classList.add("collapse") : null;
   window.innerWidth > 900 ? expandNav.classList.add("hidden") : null;
 
   // element states
   let currentProject = "";
-
-  // element creator
-  const maker = (type, attributes, text, place) => {
-    let element = document.createElement(type);
-    Object.keys(attributes).forEach((key) => {
-      element.setAttribute(key, attributes[key]);
-    });
-    element.textContent = text;
-    place.appendChild(element);
-    return element;
-  };
 
   // functions for changing projects
 
@@ -40,9 +30,9 @@ const projectViews = (() => {
       currentProject = projects.index[event.currentTarget.getAttribute("data")];
       rerenderProjects();
       taskViews.renderTasks(currentProject, true);
-      if (window.innerWidth < 900) {
-        handleClick();
-      }
+      // if (window.innerWidth < 900) {
+      //   handleClick();
+      // }
     }
   };
 
@@ -62,8 +52,6 @@ const projectViews = (() => {
 
   const spinulator = () => {
     newProject.classList.toggle("open-form");
-    // newProject.children[0].classList.toggle("hidden");
-    // newProject.children[1].classList.toggle("hidden");
     setTimeout((f) => newProject.classList.toggle("open-form"), 300);
   };
 
@@ -82,7 +70,7 @@ const projectViews = (() => {
     form.addEventListener("keydown", getProjectData);
     spinulator();
     form.focus();
-    document.activeElement.scrollIntoView();
+    // document.activeElement.scrollIntoView();
   };
 
   const projectError = () => {
@@ -105,12 +93,12 @@ const projectViews = (() => {
     }
   };
 
-  const showCan = () => {
-    event.currentTarget.lastChild.lastChild.classList.toggle("hidden");
-  };
+  // const showCan = (e) => {
+  //   e.currentTarget.lastChild.lastChild.classList.toggle("hidden");
+  // };
 
-  const deleteProject = () => {
-    let i = event.currentTarget.parentNode.parentNode.getAttribute("data");
+  const deleteProject = (e) => {
+    let i = e.currentTarget.parentNode.parentNode.getAttribute("data");
     let name = projects.index[i].name;
     projects.deleteProject(name);
     projects.index.splice(i, 1);
@@ -130,13 +118,13 @@ const projectViews = (() => {
     maker("h3", { class: "project-name" }, project.name, b);
     let d = maker("div", { class: "d-box" }, "", p);
     maker("h3", { class: "project-count" }, `${project.tasks.length}`, d);
-    let del = maker("i", { class: "fas fa-trash-alt delete hidden" }, "", d);
+    // let del = maker("i", { class: "fas fa-trash-alt delete hidden" }, "", d);
 
-    p.addEventListener("mouseenter", showCan);
-    p.addEventListener("mouseleave", showCan);
+    // p.addEventListener("mouseenter", showCan);
+    // p.addEventListener("mouseleave", showCan);
 
     p.addEventListener("click", changeProject);
-    del.addEventListener("click", deleteProject);
+    // del.addEventListener("click", deleteProject);
   };
 
   const renderProjects = () => {
@@ -164,7 +152,6 @@ const projectViews = (() => {
   newProject.addEventListener("click", showProjectForm);
   window.addEventListener("resize", handleWindowResize);
   expandNav.addEventListener("click", handleClick);
-  // index.addEventListener("click", showIndex);
 
   return {
     renderProjects,
@@ -173,4 +160,4 @@ const projectViews = (() => {
   };
 })();
 
-export { projectViews };
+export default projectViews;

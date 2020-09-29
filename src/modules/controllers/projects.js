@@ -1,19 +1,10 @@
-import { projectViews } from "./projectViews";
+import projectViews from "../views/projectViews";
 
 const projects = (() => {
   let index = [];
 
-  const projectMaker = (name) => {
-    let tasks = [];
-
-    return {
-      name,
-      tasks,
-    };
-  };
-
   const create = (projectData) => {
-    let project = projectMaker(projectData);
+    let project = { name: projectData, tasks: [] };
     index.push(project);
     save(project);
     projectViews.newProjectChanger(project);
@@ -32,8 +23,7 @@ const projects = (() => {
     create,
     save,
     deleteProject,
-    projectMaker,
   };
 })();
 
-export { projects };
+export default projects;

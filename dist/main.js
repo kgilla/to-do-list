@@ -92,51 +92,98 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_stylesheets_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _assets_stylesheets_main_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_stylesheets_main_scss__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _modules_tasks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
-/* harmony import */ var _modules_projects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6);
-/* harmony import */ var _modules_views__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9);
+/* harmony import */ var _modules_controllers_tasks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
+/* harmony import */ var _modules_controllers_projects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6);
+/* harmony import */ var _modules_views_taskViews__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8);
+/* harmony import */ var _modules_views_projectViews__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7);
+/* harmony import */ var _modules_helpers_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(11);
+/* harmony import */ var _modules_helpers_index__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_modules_helpers_index__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
 
 
-const freshStart = () => {
-  let p = _modules_projects__WEBPACK_IMPORTED_MODULE_2__["projects"].projectMaker("Welcome!");
-  let t = _modules_tasks__WEBPACK_IMPORTED_MODULE_1__["tasks"].taskMaker(
-    "Click On Me!",
-    "",
-    "low",
-    "Welcome to Get ER Done! Feel free to make projects, make tasks, and check them off! Have fun and be productive!"
-  );
-  p.tasks.push(t);
-  _modules_projects__WEBPACK_IMPORTED_MODULE_2__["projects"].index.push(p);
-  _modules_projects__WEBPACK_IMPORTED_MODULE_2__["projects"].save(p);
-  _modules_views__WEBPACK_IMPORTED_MODULE_3__["views"].init(p);
-};
 
-const getIndex = () => {
-  for (let i = 0; i < localStorage.length; i++) {
-    let p = window.localStorage.key(i);
-    _modules_projects__WEBPACK_IMPORTED_MODULE_2__["projects"].index.push(JSON.parse(window.localStorage.getItem(p)));
-  }
-  _modules_views__WEBPACK_IMPORTED_MODULE_3__["views"].init(_modules_projects__WEBPACK_IMPORTED_MODULE_2__["projects"].index[0]);
-};
 
-const init = () => {
-  localStorage.length > 0 ? getIndex() : freshStart();
-};
+const app = (() => {
+  const main = document.querySelector("#main");
 
-// uncomment to remove saves!
-// window.localStorage.clear();
+  window.innerWidth > 900
+    ? main.classList.add("large")
+    : main.classList.add("small");
 
-init();
+  const init = (project) => {
+    _modules_views_projectViews__WEBPACK_IMPORTED_MODULE_4__["default"].renderProjects();
+    _modules_views_taskViews__WEBPACK_IMPORTED_MODULE_3__["default"].renderTasks(project, true);
+    document.querySelector("#projects").firstChild.classList.toggle("selected");
+  };
 
-/* things we need to do:
+  const render = (project) => {
+    _modules_views_projectViews__WEBPACK_IMPORTED_MODULE_4__["default"].rerenderProjects();
+    _modules_views_taskViews__WEBPACK_IMPORTED_MODULE_3__["default"].renderTasks(project, true);
+  };
 
-add sorting functions and a few default project buckets which show tasks
-add ability to delete and rename Projects
+  const renderHome = () => {
+    main.innerHTML = "";
+    _modules_views_projectViews__WEBPACK_IMPORTED_MODULE_4__["default"].renderProjects();
+    let mat = Object(_modules_helpers_index__WEBPACK_IMPORTED_MODULE_5__["maker"])("div", { class: "welcome-mat" }, "", main);
+    Object(_modules_helpers_index__WEBPACK_IMPORTED_MODULE_5__["maker"])("h2", { class: "welcome-header" }, "Its Time To Get-Er-Done!", mat);
+    Object(_modules_helpers_index__WEBPACK_IMPORTED_MODULE_5__["maker"])("i", { class: "far fa-sticky-note surprise" }, "", mat);
+    Object(_modules_helpers_index__WEBPACK_IMPORTED_MODULE_5__["maker"])(
+      "h2",
+      { class: "welcome-header" },
+      "Create A Project To Get Started!",
+      mat
+    );
+  };
 
-*/
+  const handleResize = () => {
+    if (window.innerWidth < 900) {
+      main.classList.remove("large");
+      main.classList.add("small");
+    } else if (window.innerWidth > 900) {
+      main.classList.add("large");
+      main.classList.remove("small");
+    }
+  };
+
+  const freshStart = () => {
+    let p = _modules_controllers_projects__WEBPACK_IMPORTED_MODULE_2__["default"].projectMaker("Welcome!");
+    let t = _modules_controllers_tasks__WEBPACK_IMPORTED_MODULE_1__["default"].taskMaker(
+      "Click On Me!",
+      "",
+      "low",
+      "Welcome to Get ER Done! Feel free to make projects, make tasks, and check them off! Have fun and be productive!"
+    );
+    p.tasks.push(t);
+    _modules_controllers_projects__WEBPACK_IMPORTED_MODULE_2__["default"].index.push(p);
+    _modules_controllers_projects__WEBPACK_IMPORTED_MODULE_2__["default"].save(p);
+    init(p);
+  };
+
+  const getIndex = () => {
+    for (let i = 0; i < localStorage.length; i++) {
+      let p = window.localStorage.key(i);
+      _modules_controllers_projects__WEBPACK_IMPORTED_MODULE_2__["default"].index.push(JSON.parse(window.localStorage.getItem(p)));
+    }
+    init(_modules_controllers_projects__WEBPACK_IMPORTED_MODULE_2__["default"].index[0]);
+  };
+
+  const start = () => {
+    localStorage.length > 0 ? getIndex() : freshStart();
+  };
+
+  // uncomment to remove saves!
+  // window.localStorage.clear();
+
+  window.addEventListener("resize", handleResize);
+
+  start();
+
+  return { render, renderHome };
+})();
+
+/* harmony default export */ __webpack_exports__["default"] = (app);
 
 
 /***/ }),
@@ -448,7 +495,7 @@ exports = ___CSS_LOADER_API_IMPORT___(false);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap);"]);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap);"]);
 // Module
-exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block;\n}\n\nbody {\n  line-height: 1;\n}\n\nol, ul {\n  list-style: none;\n}\n\nblockquote, q {\n  quotes: none;\n}\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: \"\";\n  content: none;\n}\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\n/* form stuff */\nform {\n  width: 96%;\n  max-width: 30rem;\n  justify-self: center;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  position: fixed;\n  top: 10%;\n  padding: 1rem;\n  background: #fff;\n  color: #333;\n  border-radius: 0.5rem;\n  font-family: \"Roboto\", sans-serif;\n  z-index: 6;\n}\n\n#form-heading {\n  margin-bottom: 1rem;\n  font-size: 1.4rem;\n  font-weight: 700;\n  text-align: center;\n}\n\n.form-section {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  margin-bottom: 1rem;\n  width: 100%;\n}\n\n.form-input {\n  width: 100%;\n  border: 0.1rem solid #ddd;\n  border-radius: 0.25rem;\n  padding: 0.5rem;\n  font-family: inherit;\n  font-size: 1rem;\n}\n\n.form-label {\n  padding: 0.5rem 0;\n  font-size: 1rem;\n}\n\n.form-input:focus {\n  outline: none;\n  box-shadow: 0 0 0 1.5pt #1976d2;\n}\n\n.form-textarea {\n  width: 100%;\n  min-height: 10rem;\n  resize: none;\n  font-family: inherit;\n}\n\n#form-submit {\n  width: 100%;\n  padding: 0.5rem 0;\n  background: #1976d2;\n  border: none;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n#form-submit:hover {\n  cursor: pointer;\n  filter: brightness(90%);\n}\n\n#form-overlay {\n  position: fixed;\n  left: 0;\n  top: 0;\n  min-height: 100vh;\n  width: 100vw;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 5;\n}\n\n/* header */\n#header {\n  position: fixed;\n  width: 100%;\n  grid-area: 1/1/2/6;\n  display: grid;\n  grid-template-columns: 2rem 1fr 2rem;\n  align-content: center;\n  height: 4rem;\n  padding: 0 2rem;\n  justify-content: center;\n  align-items: center;\n  background: #203148;\n}\n\n.brand {\n  grid-column: 2/3;\n  justify-self: center;\n  color: #fff;\n  font-size: 1.8rem;\n  font-weight: 900;\n  text-align: center;\n}\n\n#expand-nav {\n  grid-column: 1/2;\n  border: none;\n  background: none;\n  color: #fff;\n  font-size: 2rem;\n}\n#expand-nav :hover {\n  cursor: pointer;\n}\n\n/* side nav */\n#side-nav {\n  position: fixed;\n  top: 4rem;\n  bottom: auto;\n  width: 15rem;\n  background: #f3f5f9;\n  z-index: 3;\n  transition: all 0.7s ease-in-out;\n}\n\n.collapse {\n  left: -20rem;\n}\n\n.expand {\n  left: 0;\n}\n\n#project-header-box {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  grid-template-rows: 4rem;\n  margin-bottom: 0.5rem;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n#new-project-header {\n  grid-column: 1/3;\n  place-self: center;\n  color: #000;\n  font-size: 1.4rem;\n  font-weight: 700;\n}\n\n#new-project {\n  grid-column: 4/5;\n  place-self: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 2.5rem;\n  width: 2.5rem;\n  background: #1976d2;\n  border-radius: 50%;\n}\n\n#plus {\n  color: #fff;\n  font-size: 1.4rem;\n}\n\n#new-project:hover {\n  background: #1e88e5;\n  cursor: pointer;\n}\n\n#project-form {\n  position: relative;\n  padding: 0.5rem;\n  margin: 0.5rem;\n  border: none;\n  border-radius: 0.5rem;\n  font-size: 1rem;\n}\n#project-form :focus {\n  outline: none;\n  border: none;\n}\n\n#projects {\n  height: calc(100vh - 9rem);\n  padding-bottom: 1rem;\n  overflow-y: auto;\n}\n\n#projects:last-child {\n  margin-bottom: 1rem;\n}\n\n.project {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1rem;\n  margin: 0.2rem;\n  border-radius: 0.5rem;\n  font-size: 1rem;\n  font-weight: 500;\n  text-decoration: none;\n}\n\n.project:hover {\n  background: #fff;\n  cursor: pointer;\n}\n\n.p-box {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.project-name {\n  padding: 0 0.5rem;\n}\n\n.d-box {\n  display: flex;\n  justify-content: flex-end;\n  align-content: center;\n}\n\n.d-box:hover {\n  cursor: pointer;\n}\n\n.delete {\n  padding-left: 0.5rem;\n}\n\n/* regular task size */\n.task-regular {\n  display: grid;\n  grid-template-columns: 5rem repeat(1, 1fr);\n  grid-template-rows: 4rem;\n  align-items: center;\n  margin: 1rem 0;\n  border-bottom: 0.1rem solid #eee;\n}\n\n.task-regular:hover {\n  cursor: pointer;\n}\n\n.complete-button {\n  grid-column: 1/2;\n  place-self: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 60%;\n  width: 50%;\n  border-radius: 50%;\n  outline: none;\n}\n\n.complete-button:hover {\n  animation: grow 0.3s linear;\n  animation-iteration-count: 1;\n}\n\n.checkmark {\n  color: #fff;\n  font-size: 1.5rem;\n}\n\n.title-regular {\n  grid-column: 2/4;\n  padding: 0 2rem;\n  font-size: 1.2rem;\n  font-weight: 500;\n}\n\n.date-regular {\n  grid-column: 4/6;\n  padding: 0 2rem;\n  font-size: 1rem;\n  color: #555;\n}\n\n/* expanded task */\n.task-expanded {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  margin: 1rem 0;\n  padding: 1rem;\n  border: 0.1rem solid #ddd;\n  border-radius: 0.5rem;\n  background: #eee;\n  box-shadow: 0 10px 6px -6px #666;\n  font-family: \"Roboto\", sans-serif;\n}\n\n.title-expanded {\n  text-align: center;\n  color: #000;\n  font-size: 1.2rem;\n  font-weight: 700;\n}\n\n.e-options {\n  display: flex;\n  justify-content: space-between;\n}\n\n.date-expanded {\n  width: 100%;\n  max-width: 10rem;\n  font-family: \"Roboto\", sans-serif;\n}\n\n.radio-buttons {\n  width: 100%;\n  max-width: 20rem;\n}\n.radio-buttons input {\n  border: 0;\n  height: 1rem;\n  width: 1rem;\n  margin: 0 0.5rem;\n}\n\n.button-box {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.save-changes {\n  width: 60%;\n  padding: 0.5rem;\n  background: #1976d2;\n  border: none;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.check {\n  padding-left: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.save-changes:hover {\n  background: #1e88e5;\n  cursor: pointer;\n}\n\n.delete-task {\n  padding: 0.5rem;\n  background: #666;\n  border: none;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.trash {\n  padding-left: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.delete-task:hover {\n  background: #555;\n  cursor: pointer;\n}\n\n.text-done {\n  text-decoration: line-through;\n  color: #ccc;\n}\n\n.task-complete {\n  background: #1976d2;\n}\n\n.high {\n  border: 0.2rem solid #a93226;\n  background: #f9ebea;\n}\n\n.medium {\n  border: 0.2rem solid #d4ac0d;\n  background: #fef9e7;\n}\n\n.low {\n  border: 0.2rem solid #229954;\n  background: #e9f7ef;\n}\n\nhtml {\n  font-size: 16px;\n}\n\n* {\n  line-height: 1.5;\n  box-sizing: border-box;\n}\n\nbody {\n  display: grid;\n  min-height: 100vh;\n  max-width: 100vw;\n  grid-template-columns: repeat(5, 1fr);\n  grid-template-rows: 4rem 1fr;\n  background: #fff;\n  box-sizing: border-box;\n  font-family: \"Roboto\", sans-serif;\n}\n\n/* main stuff */\n#main {\n  margin: 0 5vw;\n}\n\n.large {\n  grid-area: 2/2/3/6;\n}\n\n.small {\n  grid-area: 2/1/3/6;\n}\n\n.project-container {\n  height: 4rem;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.project-heading {\n  font-size: 1.4rem;\n  font-weight: 700;\n}\n\n.new-task {\n  padding: 0.5rem 1rem;\n  border: none;\n  background: #1976d2;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.new-task:hover {\n  cursor: pointer;\n  background: #1e88e5;\n}\n\n/* text spots in center */\n.welcome-mat {\n  position: relative;\n  top: 25%;\n  text-align: center;\n}\n\n.welcome-header {\n  color: #ccc;\n  font-size: 1.5rem;\n}\n\n.surprise {\n  padding: 3rem;\n  color: #ccc;\n  font-size: 4rem;\n}\n\n/* class toggles */\n.hidden {\n  display: none;\n}\n\n.selected {\n  background: #fff;\n}\n\n.error {\n  position: relative;\n  animation: shake 0.1s linear;\n  animation-iteration-count: 3;\n}\n\n.open-form {\n  animation: spin 0.3s linear;\n}\n\n.curtain {\n  animation: curtain 0.2s linear;\n}\n\n.slide-in {\n  animation: slide-in 0.2s linear;\n}\n\n@keyframes slide-in {\n  0% {\n    left: -20vw;\n  }\n  100% {\n    left: 0;\n  }\n}\n@keyframes curtain {\n  0% {\n    top: -100vh;\n  }\n  100% {\n    top: 0vh;\n  }\n}\n@keyframes spin {\n  0% {\n    rotate: 0;\n  }\n  100% {\n    rotate: 180deg;\n  }\n}\n@keyframes shake {\n  0% {\n    left: -5px;\n  }\n  100% {\n    right: -5px;\n  }\n}\n@keyframes grow {\n  0% {\n    height: 60%;\n    width: 50%;\n  }\n  25% {\n    height: 65%;\n    width: 55%;\n  }\n  50% {\n    height: 70%;\n    width: 60%;\n  }\n  75% {\n    height: 65%;\n    width: 55%;\n  }\n  100% {\n    height: 60%;\n    width: 50%;\n  }\n}\n@media screen and (max-width: 599px) {\n  .e-options {\n    flex-direction: column;\n  }\n}\n@media screen and (min-width: 600px) {\n  .e-options {\n    flex-direction: column;\n  }\n}\n@media screen and (min-width: 900px) {\n  .e-options {\n    flex-direction: row;\n  }\n}", ""]);
+exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block;\n}\n\nbody {\n  line-height: 1;\n}\n\nol, ul {\n  list-style: none;\n}\n\nblockquote, q {\n  quotes: none;\n}\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: \"\";\n  content: none;\n}\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\n/* form stuff */\nform {\n  width: 96%;\n  max-width: 30rem;\n  justify-self: center;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  position: fixed;\n  left: 2%;\n  top: 10%;\n  padding: 1rem;\n  background: #fff;\n  color: #333;\n  border-radius: 0.5rem;\n  font-family: \"Roboto\", sans-serif;\n  z-index: 6;\n}\n\n#form-heading {\n  margin-bottom: 1rem;\n  font-size: 1.4rem;\n  font-weight: 700;\n  text-align: center;\n}\n\n.form-section {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  margin-bottom: 1rem;\n  width: 100%;\n}\n\n.form-input {\n  width: 100%;\n  border: 0.1rem solid #ddd;\n  border-radius: 0.25rem;\n  padding: 0.5rem;\n  font-family: inherit;\n  font-size: 1rem;\n}\n\n.form-label {\n  padding: 0.5rem 0;\n  font-size: 1rem;\n}\n\n.form-input:focus {\n  outline: none;\n  box-shadow: 0 0 0 1.5pt #1976d2;\n}\n\n.form-textarea {\n  width: 100%;\n  min-height: 10rem;\n  resize: none;\n  font-family: inherit;\n}\n\n#form-submit {\n  width: 100%;\n  padding: 0.5rem 0;\n  background: #1976d2;\n  border: none;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n#form-submit:hover {\n  cursor: pointer;\n  filter: brightness(90%);\n}\n\n#form-overlay {\n  position: fixed;\n  left: 0;\n  top: 0;\n  min-height: 100vh;\n  width: 100vw;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 5;\n}\n\n/* header */\n#header {\n  position: fixed;\n  width: 100%;\n  grid-area: 1/1/2/6;\n  display: grid;\n  grid-template-columns: 3rem 1fr 3rem;\n  align-content: center;\n  height: 4rem;\n  padding: 0 2rem;\n  justify-content: center;\n  align-items: center;\n  background: #203148;\n}\n\n.brand {\n  grid-column: 2/3;\n  justify-self: center;\n  color: #fff;\n  font-size: 1.8rem;\n  font-weight: 900;\n  text-align: center;\n}\n\n#expand-nav {\n  grid-column: 1/2;\n  border: none;\n  background: none;\n  color: #fff;\n  font-size: 2rem;\n}\n#expand-nav :hover {\n  cursor: pointer;\n}\n\n/* side nav */\n#side-nav {\n  position: fixed;\n  top: 4rem;\n  bottom: auto;\n  width: 15rem;\n  background: #f3f5f9;\n  z-index: 3;\n  transition: all 0.7s ease-in-out;\n}\n\n.collapse {\n  left: -20rem;\n}\n\n.expand {\n  left: 0;\n}\n\n#project-header-box {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  grid-template-rows: 4rem;\n  margin-bottom: 0.5rem;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n#new-project-header {\n  grid-column: 1/3;\n  place-self: center;\n  color: #000;\n  font-size: 1.4rem;\n  font-weight: 700;\n}\n\n#new-project {\n  grid-column: 4/5;\n  place-self: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 2.5rem;\n  width: 2.5rem;\n  background: #1976d2;\n  border-radius: 50%;\n}\n\n#plus {\n  color: #fff;\n  font-size: 1.4rem;\n}\n\n#new-project:hover {\n  background: #1e88e5;\n  cursor: pointer;\n}\n\n#project-form {\n  position: fixed;\n  top: 30%;\n  left: 50%;\n  transform: translate(-50%, 0);\n  padding: 0.5rem 1rem;\n  margin: 0.2rem;\n  border: 0.1rem solid #aaa;\n  outline: none;\n  border-radius: 0.5rem;\n  font-size: 1rem;\n  font-weight: 500;\n}\n#project-form :focus {\n  outline: none;\n  border: none;\n}\n\n#projects {\n  height: calc(100vh - 9rem);\n  padding-bottom: 1rem;\n  overflow-y: auto;\n}\n\n#projects:last-child {\n  margin-bottom: 1rem;\n}\n\n.project {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1rem;\n  margin: 0.2rem;\n  border-radius: 0.5rem;\n  font-size: 1rem;\n  font-weight: 500;\n  text-decoration: none;\n}\n\n.project:hover {\n  background: #fff;\n  cursor: pointer;\n}\n\n.p-box {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.project-name {\n  padding: 0 0.5rem;\n}\n\n.d-box {\n  display: flex;\n  justify-content: flex-end;\n  align-content: center;\n}\n\n.d-box:hover {\n  cursor: pointer;\n}\n\n.delete {\n  padding-left: 0.5rem;\n}\n\n/* regular task size */\n.task-regular {\n  display: grid;\n  grid-template-columns: 5rem repeat(1, 1fr);\n  grid-template-rows: 4rem;\n  align-items: center;\n  margin: 1rem 0;\n  border-bottom: 0.1rem solid #eee;\n}\n\n.task-regular:hover {\n  cursor: pointer;\n}\n\n.complete-button {\n  grid-column: 1/2;\n  place-self: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 60%;\n  width: 50%;\n  border-radius: 50%;\n  outline: none;\n}\n\n.complete-button:hover {\n  animation: grow 0.3s linear;\n  animation-iteration-count: 1;\n}\n\n.checkmark {\n  color: #fff;\n  font-size: 1.5rem;\n}\n\n.title-regular {\n  grid-column: 2/4;\n  padding: 0 2rem;\n  font-size: 1.2rem;\n  font-weight: 500;\n}\n\n.date-regular {\n  grid-column: 4/6;\n  padding: 0 2rem;\n  font-size: 1rem;\n  color: #555;\n}\n\n/* expanded task */\n.task-expanded {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  margin: 1rem 0;\n  padding: 1rem;\n  border: 0.1rem solid #ddd;\n  border-radius: 0.5rem;\n  background: #eee;\n  box-shadow: 0 10px 6px -6px #666;\n  font-family: \"Roboto\", sans-serif;\n}\n\n.title-expanded {\n  text-align: center;\n  color: #000;\n  font-size: 1.2rem;\n  font-weight: 700;\n}\n\n.e-options {\n  display: flex;\n  justify-content: space-between;\n}\n\n.date-expanded {\n  width: 100%;\n  max-width: 10rem;\n  font-family: \"Roboto\", sans-serif;\n}\n\n.radio-buttons {\n  width: 100%;\n  max-width: 20rem;\n}\n.radio-buttons input {\n  border: 0;\n  height: 1rem;\n  width: 1rem;\n  margin: 0 0.5rem;\n}\n\n.button-box {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.save-changes {\n  width: 60%;\n  padding: 0.5rem;\n  background: #1976d2;\n  border: none;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.check {\n  padding-left: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.save-changes:hover {\n  background: #1e88e5;\n  cursor: pointer;\n}\n\n.delete-task {\n  padding: 0.5rem;\n  background: #666;\n  border: none;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.trash {\n  padding-left: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.delete-task:hover {\n  background: #555;\n  cursor: pointer;\n}\n\n.text-done {\n  text-decoration: line-through;\n  color: #ccc;\n}\n\n.task-complete {\n  background: #1976d2;\n}\n\n.high {\n  border: 0.2rem solid #a93226;\n  background: #f9ebea;\n}\n\n.medium {\n  border: 0.2rem solid #d4ac0d;\n  background: #fef9e7;\n}\n\n.low {\n  border: 0.2rem solid #229954;\n  background: #e9f7ef;\n}\n\nhtml {\n  font-size: 16px;\n}\n\n* {\n  line-height: 1.5;\n  box-sizing: border-box;\n}\n\nbody {\n  display: grid;\n  min-height: 100vh;\n  max-width: 100vw;\n  grid-template-columns: repeat(5, 1fr);\n  grid-template-rows: 4rem 1fr;\n  background: #fff;\n  box-sizing: border-box;\n  font-family: \"Roboto\", sans-serif;\n}\n\n/* main stuff */\n#main {\n  margin: 0 5vw;\n}\n\n.large {\n  grid-area: 2/2/3/6;\n}\n\n.small {\n  grid-area: 2/1/3/6;\n}\n\n.project-container {\n  height: 4rem;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.project-heading {\n  font-size: 1.4rem;\n  font-weight: 700;\n}\n\n.new-task {\n  padding: 0.5rem 1rem;\n  border: none;\n  background: #1976d2;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.new-task:hover {\n  cursor: pointer;\n  background: #1e88e5;\n}\n\n/* text spots in center */\n.welcome-mat {\n  position: relative;\n  top: 25%;\n  text-align: center;\n}\n\n.welcome-header {\n  color: #ccc;\n  font-size: 1.5rem;\n}\n\n.surprise {\n  padding: 3rem;\n  color: #ccc;\n  font-size: 4rem;\n}\n\n/* class toggles */\n.hidden {\n  display: none;\n}\n\n.selected {\n  background: #fff;\n}\n\n.error {\n  position: relative;\n  animation: shake 0.1s linear;\n  animation-iteration-count: 3;\n}\n\n.open-form {\n  animation: spin 0.3s linear;\n}\n\n.curtain {\n  animation: curtain 0.2s linear;\n}\n\n.slide-in {\n  animation: slide-in 0.2s linear;\n}\n\n@keyframes slide-in {\n  0% {\n    left: -20vw;\n  }\n  100% {\n    left: 0;\n  }\n}\n@keyframes curtain {\n  0% {\n    top: -100vh;\n  }\n  100% {\n    top: 0vh;\n  }\n}\n@keyframes spin {\n  0% {\n    rotate: 0;\n  }\n  100% {\n    rotate: 180deg;\n  }\n}\n@keyframes shake {\n  0% {\n    left: -5px;\n  }\n  100% {\n    right: -5px;\n  }\n}\n@keyframes grow {\n  0% {\n    height: 60%;\n    width: 50%;\n  }\n  25% {\n    height: 65%;\n    width: 55%;\n  }\n  50% {\n    height: 70%;\n    width: 60%;\n  }\n  75% {\n    height: 65%;\n    width: 55%;\n  }\n  100% {\n    height: 60%;\n    width: 50%;\n  }\n}\n@media screen and (max-width: 599px) {\n  .e-options {\n    flex-direction: column;\n  }\n}\n@media screen and (min-width: 600px) {\n  .e-options {\n    flex-direction: column;\n  }\n}\n@media screen and (min-width: 900px) {\n  .e-options {\n    flex-direction: row;\n  }\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -559,10 +606,7 @@ function toComment(sourceMap) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tasks", function() { return tasks; });
 /* harmony import */ var _projects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6);
-/* harmony import */ var _views__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9);
-
 
 
 const tasks = (() => {
@@ -579,8 +623,23 @@ const tasks = (() => {
 
   const create = (taskData, project) => {
     project.tasks.push(taskMaker(...taskData));
-    _projects__WEBPACK_IMPORTED_MODULE_0__["projects"].save(project);
-    _views__WEBPACK_IMPORTED_MODULE_1__["views"].render(project);
+    _projects__WEBPACK_IMPORTED_MODULE_0__["default"].save(project);
+    views.render(project);
+  };
+
+  const update = (event) => {
+    taskChanger(event);
+    closeTask(event);
+    renderTasks(currentProject(), true);
+    _projects__WEBPACK_IMPORTED_MODULE_0__["default"].save(currentProject());
+  };
+
+  const destroy = (event) => {
+    let taskIndex = event.currentTarget.parentNode.getAttribute("data");
+    let c = currentProject();
+    c.tasks.splice(taskIndex, 1);
+    views.render(c);
+    _projects__WEBPACK_IMPORTED_MODULE_0__["default"].save(currentProject());
   };
 
   return {
@@ -589,7 +648,7 @@ const tasks = (() => {
   };
 })();
 
-
+/* harmony default export */ __webpack_exports__["default"] = (tasks);
 
 
 /***/ }),
@@ -598,27 +657,17 @@ const tasks = (() => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projects", function() { return projects; });
-/* harmony import */ var _projectViews__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
+/* harmony import */ var _views_projectViews__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
 
 
 const projects = (() => {
   let index = [];
 
-  const projectMaker = (name) => {
-    let tasks = [];
-
-    return {
-      name,
-      tasks,
-    };
-  };
-
   const create = (projectData) => {
-    let project = projectMaker(projectData);
+    let project = { name: projectData, tasks: [] };
     index.push(project);
     save(project);
-    _projectViews__WEBPACK_IMPORTED_MODULE_0__["projectViews"].newProjectChanger(project);
+    _views_projectViews__WEBPACK_IMPORTED_MODULE_0__["default"].newProjectChanger(project);
   };
 
   const save = (project) => {
@@ -634,11 +683,10 @@ const projects = (() => {
     create,
     save,
     deleteProject,
-    projectMaker,
   };
 })();
 
-
+/* harmony default export */ __webpack_exports__["default"] = (projects);
 
 
 /***/ }),
@@ -647,10 +695,10 @@ const projects = (() => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "projectViews", function() { return projectViews; });
-/* harmony import */ var _projects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6);
+/* harmony import */ var _controllers_projects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6);
 /* harmony import */ var _taskViews__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
-/* harmony import */ var _views__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9);
+/* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(11);
+/* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_helpers_index__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
@@ -660,23 +708,13 @@ const projectViews = (() => {
   const projectList = document.querySelector("#projects");
   const sideNav = document.querySelector("#side-nav");
   const expandNav = document.querySelector("#expand-nav");
+  const formOverlay = document.querySelector("#form-overlay");
 
   window.innerWidth < 900 ? sideNav.classList.add("collapse") : null;
   window.innerWidth > 900 ? expandNav.classList.add("hidden") : null;
 
   // element states
   let currentProject = "";
-
-  // element creator
-  const maker = (type, attributes, text, place) => {
-    let element = document.createElement(type);
-    Object.keys(attributes).forEach((key) => {
-      element.setAttribute(key, attributes[key]);
-    });
-    element.textContent = text;
-    place.appendChild(element);
-    return element;
-  };
 
   // functions for changing projects
 
@@ -690,19 +728,19 @@ const projectViews = (() => {
     if (event.target != event.currentTarget.lastChild.lastChild) {
       document.querySelector(".selected").classList.toggle("selected");
       event.currentTarget.classList.toggle("selected");
-      currentProject = _projects__WEBPACK_IMPORTED_MODULE_0__["projects"].index[event.currentTarget.getAttribute("data")];
+      currentProject = _controllers_projects__WEBPACK_IMPORTED_MODULE_0__["default"].index[event.currentTarget.getAttribute("data")];
       rerenderProjects();
-      _taskViews__WEBPACK_IMPORTED_MODULE_1__["taskViews"].renderTasks(currentProject, true);
-      if (window.innerWidth < 900) {
-        handleClick();
-      }
+      _taskViews__WEBPACK_IMPORTED_MODULE_1__["default"].renderTasks(currentProject, true);
+      // if (window.innerWidth < 900) {
+      //   handleClick();
+      // }
     }
   };
 
   const newProjectChanger = (project) => {
     currentProject = project;
     renderProjects();
-    _taskViews__WEBPACK_IMPORTED_MODULE_1__["taskViews"].renderTasks(currentProject, true);
+    _taskViews__WEBPACK_IMPORTED_MODULE_1__["default"].renderTasks(currentProject, true);
     projectList.lastChild.classList.toggle("selected");
   };
 
@@ -715,8 +753,6 @@ const projectViews = (() => {
 
   const spinulator = () => {
     newProject.classList.toggle("open-form");
-    // newProject.children[0].classList.toggle("hidden");
-    // newProject.children[1].classList.toggle("hidden");
     setTimeout((f) => newProject.classList.toggle("open-form"), 300);
   };
 
@@ -726,7 +762,7 @@ const projectViews = (() => {
   };
 
   const openProjectForm = () => {
-    let form = maker(
+    let form = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])(
       "input",
       { placeholder: "Project Name", id: "project-form", class: "slide-in" },
       "",
@@ -735,7 +771,7 @@ const projectViews = (() => {
     form.addEventListener("keydown", getProjectData);
     spinulator();
     form.focus();
-    document.activeElement.scrollIntoView();
+    // document.activeElement.scrollIntoView();
   };
 
   const projectError = () => {
@@ -749,52 +785,52 @@ const projectViews = (() => {
     if (event.key == "Enter") {
       if (name == "") {
         projectError();
-      } else if (_projects__WEBPACK_IMPORTED_MODULE_0__["projects"].index.find((p) => p.name == name) != undefined) {
+      } else if (_controllers_projects__WEBPACK_IMPORTED_MODULE_0__["default"].index.find((p) => p.name == name) != undefined) {
         projectError();
       } else {
         closeProjectForm();
-        _projects__WEBPACK_IMPORTED_MODULE_0__["projects"].create(event.target.value);
+        _controllers_projects__WEBPACK_IMPORTED_MODULE_0__["default"].create(event.target.value);
       }
     }
   };
 
-  const showCan = () => {
-    event.currentTarget.lastChild.lastChild.classList.toggle("hidden");
-  };
+  // const showCan = (e) => {
+  //   e.currentTarget.lastChild.lastChild.classList.toggle("hidden");
+  // };
 
-  const deleteProject = () => {
-    let i = event.currentTarget.parentNode.parentNode.getAttribute("data");
-    let name = _projects__WEBPACK_IMPORTED_MODULE_0__["projects"].index[i].name;
-    _projects__WEBPACK_IMPORTED_MODULE_0__["projects"].deleteProject(name);
-    _projects__WEBPACK_IMPORTED_MODULE_0__["projects"].index.splice(i, 1);
-    if (_projects__WEBPACK_IMPORTED_MODULE_0__["projects"].index.length == 0) {
-      _views__WEBPACK_IMPORTED_MODULE_2__["views"].renderHome();
+  const deleteProject = (e) => {
+    let i = e.currentTarget.parentNode.parentNode.getAttribute("data");
+    let name = _controllers_projects__WEBPACK_IMPORTED_MODULE_0__["default"].index[i].name;
+    _controllers_projects__WEBPACK_IMPORTED_MODULE_0__["default"].deleteProject(name);
+    _controllers_projects__WEBPACK_IMPORTED_MODULE_0__["default"].index.splice(i, 1);
+    if (_controllers_projects__WEBPACK_IMPORTED_MODULE_0__["default"].index.length == 0) {
+      views.renderHome();
     } else {
-      _views__WEBPACK_IMPORTED_MODULE_2__["views"].init(_projects__WEBPACK_IMPORTED_MODULE_0__["projects"].index[0]);
+      views.init(_controllers_projects__WEBPACK_IMPORTED_MODULE_0__["default"].index[0]);
     }
   };
 
   // main project rendering
 
   const renderProject = (project, i) => {
-    let p = maker("div", { class: "project", data: i }, "", projectList);
-    let b = maker("div", { class: "p-box" }, "", p);
-    maker("i", { class: "far fa-calendar-check project-icon" }, "", b);
-    maker("h3", { class: "project-name" }, project.name, b);
-    let d = maker("div", { class: "d-box" }, "", p);
-    maker("h3", { class: "project-count" }, `${project.tasks.length}`, d);
-    let del = maker("i", { class: "fas fa-trash-alt delete hidden" }, "", d);
+    let p = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("div", { class: "project", data: i }, "", projectList);
+    let b = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("div", { class: "p-box" }, "", p);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("i", { class: "far fa-calendar-check project-icon" }, "", b);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("h3", { class: "project-name" }, project.name, b);
+    let d = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("div", { class: "d-box" }, "", p);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("h3", { class: "project-count" }, `${project.tasks.length}`, d);
+    // let del = maker("i", { class: "fas fa-trash-alt delete hidden" }, "", d);
 
-    p.addEventListener("mouseenter", showCan);
-    p.addEventListener("mouseleave", showCan);
+    // p.addEventListener("mouseenter", showCan);
+    // p.addEventListener("mouseleave", showCan);
 
     p.addEventListener("click", changeProject);
-    del.addEventListener("click", deleteProject);
+    // del.addEventListener("click", deleteProject);
   };
 
   const renderProjects = () => {
     projectList.innerHTML = "";
-    _projects__WEBPACK_IMPORTED_MODULE_0__["projects"].index.forEach((project, i) => renderProject(project, i));
+    _controllers_projects__WEBPACK_IMPORTED_MODULE_0__["default"].index.forEach((project, i) => renderProject(project, i));
   };
 
   const handleWindowResize = () => {
@@ -817,7 +853,6 @@ const projectViews = (() => {
   newProject.addEventListener("click", showProjectForm);
   window.addEventListener("resize", handleWindowResize);
   expandNav.addEventListener("click", handleClick);
-  // index.addEventListener("click", showIndex);
 
   return {
     renderProjects,
@@ -826,7 +861,7 @@ const projectViews = (() => {
   };
 })();
 
-
+/* harmony default export */ __webpack_exports__["default"] = (projectViews);
 
 
 /***/ }),
@@ -835,10 +870,12 @@ const projectViews = (() => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "taskViews", function() { return taskViews; });
-/* harmony import */ var _tasks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5);
-/* harmony import */ var _projects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6);
-/* harmony import */ var _views__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9);
+/* harmony import */ var _controllers_tasks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5);
+/* harmony import */ var _controllers_projects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6);
+/* harmony import */ var _controllers_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(10);
+/* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(11);
+/* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_helpers_index__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
@@ -846,39 +883,10 @@ __webpack_require__.r(__webpack_exports__);
 const taskViews = (() => {
   // document selectors
   const main = document.querySelector("#main");
-  const formOverlay = document.querySelector("#form-overlay");
-  const form = document.querySelector("#task-form");
-  const createTaskButton = document.querySelector("#form-submit");
-
-  // element creator
-  const maker = (type, attributes, text, place) => {
-    let element = document.createElement(type);
-    Object.keys(attributes).forEach((key) => {
-      element.setAttribute(key, attributes[key]);
-    });
-    element.textContent = text;
-    place.appendChild(element);
-    return element;
-  };
 
   // task form functions
-
   const showform = () => {
-    formOverlay.classList.toggle("hidden");
-    formOverlay.classList.toggle("curtain");
-    form.classList.toggle("hidden");
-    form.classList.toggle("curtain");
-  };
-
-  const formClose = (e) => {
-    if (e.target == formOverlay) {
-      showform();
-    }
-  };
-
-  const formError = (element) => {
-    element.classList.toggle("error");
-    setTimeout((f) => element.classList.toggle("error"), 500);
+    _controllers_forms__WEBPACK_IMPORTED_MODULE_2__["default"].showForm();
   };
 
   const validateForm = () => {
@@ -895,7 +903,7 @@ const taskViews = (() => {
   const getTaskData = () => {
     let taskData = validateForm();
     if (taskData) {
-      _tasks__WEBPACK_IMPORTED_MODULE_0__["tasks"].create(taskData, currentProject());
+      _controllers_tasks__WEBPACK_IMPORTED_MODULE_0__["default"].create(taskData, currentProject());
       form.reset();
       showform();
     }
@@ -903,22 +911,12 @@ const taskViews = (() => {
 
   //task functions
 
-  const expandTask = (event) => {
-    if (
-      event.target != event.currentTarget.firstChild &&
-      event.target != event.currentTarget.firstChild.firstChild
-    ) {
-      event.currentTarget.classList.toggle("hidden");
-      event.currentTarget.nextSibling.classList.toggle("hidden");
-    }
-  };
-
   const currentProject = () => {
     let p = document.querySelector(".selected");
     if (p == null) {
       alert("select a project");
     } else {
-      return _projects__WEBPACK_IMPORTED_MODULE_1__["projects"].index[p.getAttribute("data")];
+      return _controllers_projects__WEBPACK_IMPORTED_MODULE_1__["default"].index[p.getAttribute("data")];
     }
   };
 
@@ -931,12 +929,11 @@ const taskViews = (() => {
   };
 
   const completeTask = (e) => {
-    console.log(e.currentTarget.parentNode.attributes[1].value);
     let task = getTaskFromIndex(e.currentTarget.parentNode.attributes[1].value);
     let circle = e.currentTarget;
     markTaskComplete(task, circle);
     task.done == false ? (task.done = true) : (task.done = false);
-    _projects__WEBPACK_IMPORTED_MODULE_1__["projects"].save(currentProject());
+    _controllers_projects__WEBPACK_IMPORTED_MODULE_1__["default"].save(currentProject());
   };
 
   const getTaskFromIndex = (index) => {
@@ -944,47 +941,40 @@ const taskViews = (() => {
     return c.tasks[index];
   };
 
-  const taskChanger = (event) => {
-    let i = event.currentTarget.parentNode.parentNode.attributes[1].value;
-    let task = getTaskFromIndex(i);
-    task.newDate = document.querySelector('[name="e-date"]').value;
-    task.priority = document.querySelector(
-      `[name="e-radio-${i}"]:checked`
-    ).value;
-    task.newDescription = document.querySelector(
-      '[name="e-description"]'
-    ).value;
-  };
+  // const taskChanger = (event) => {
+  //   let i = event.currentTarget.parentNode.parentNode.attributes[1].value;
+  //   let task = getTaskFromIndex(i);
+  //   task.newDate = document.querySelector('[name="e-date"]').value;
+  //   task.priority = document.querySelector(
+  //     `[name="e-radio-${i}"]:checked`
+  //   ).value;
+  //   task.newDescription = document.querySelector(
+  //     '[name="e-description"]'
+  //   ).value;
+  // };
 
-  const closeTask = (event) => {
-    let taskBox = event.currentTarget.parentNode.parentNode;
-    taskBox.firstChild.classList.toggle("hidden");
-    taskBox.lastChild.classList.toggle("hidden");
-    taskBox.lastChild.classList.toggle("unroll");
-  };
+  // const updateTask = (event) => {
+  //   taskChanger(event);
+  //   closeTask(event);
+  //   renderTasks(currentProject(), true);
+  //   projects.save(currentProject());
+  // };
 
-  const updateTask = (event) => {
-    taskChanger(event);
-    closeTask(event);
-    renderTasks(currentProject(), true);
-    _projects__WEBPACK_IMPORTED_MODULE_1__["projects"].save(currentProject());
-  };
-
-  const deleteTask = (event) => {
-    let taskIndex = event.currentTarget.parentNode.getAttribute("data");
-    let c = currentProject();
-    c.tasks.splice(taskIndex, 1);
-    _views__WEBPACK_IMPORTED_MODULE_2__["views"].render(c);
-    _projects__WEBPACK_IMPORTED_MODULE_1__["projects"].save(currentProject());
-  };
+  // const deleteTask = (event) => {
+  //   let taskIndex = event.currentTarget.parentNode.getAttribute("data");
+  //   let c = currentProject();
+  //   c.tasks.splice(taskIndex, 1);
+  //   views.render(c);
+  //   projects.save(currentProject());
+  // };
 
   // task maker
 
   const makeRegularTaskElements = (task, r) => {
-    let b = maker("a", { class: `complete-button ${task.priority}` }, "", r);
-    maker("i", { class: "fas fa-check checkmark hidden" }, "", b);
-    maker("h2", { class: "title-regular" }, task.title, r);
-    maker("p", { class: "date-regular" }, task.dueDate, r);
+    let b = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_3__["maker"])("a", { class: `complete-button ${task.priority}` }, "", r);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_3__["maker"])("i", { class: "fas fa-check checkmark hidden" }, "", b);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_3__["maker"])("h2", { class: "title-regular" }, task.title, r);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_3__["maker"])("p", { class: "date-regular" }, task.dueDate, r);
     b.addEventListener("click", completeTask);
     if (task.done == true) {
       markTaskComplete(task, b);
@@ -993,114 +983,27 @@ const taskViews = (() => {
 
   // expanded task elements
 
-  const selectPriority = (task, l, m, h) => {
-    if (task.priority == "high") {
-      h.setAttribute("checked", "");
-    } else if (task.priority == "medium") {
-      m.setAttribute("checked", "");
-    } else {
-      l.setAttribute("checked", "");
+  const expandTask = (e) => {
+    if (
+      e.target != e.currentTarget.firstChild &&
+      e.target != e.currentTarget.firstChild.firstChild
+    ) {
+      const task = getTaskFromIndex(e.currentTarget.attributes[1].value);
+      _controllers_forms__WEBPACK_IMPORTED_MODULE_2__["default"].showForm(task);
     }
   };
 
-  const renderDate = (task, e) => {
-    let d = maker("div", { class: "form-section" }, "", e);
-    let data = {
-      class: "form-input date-expanded",
-      type: "date",
-      name: "e-date",
-      value: task.dueDate,
-    };
-    maker(
-      "label",
-      { for: "date-expanded", class: "form-label" },
-      "Due Date:",
-      d
-    );
-    maker("input", data, "", d);
-  };
-
-  const renderRadios = (task, e, index) => {
-    let q = `e-radio-${index}`;
-
-    let p = maker("div", { class: "form-section" }, "", e);
-    maker("label", { for: q, class: "form-label" }, "Task Priority", p);
-
-    let b = maker("div", { class: "radio-buttons" }, "", p);
-
-    let h = maker("input", { type: "radio", name: q, value: "high" }, "", b);
-    maker("label", { for: "high", class: "e-form-label" }, "High", b);
-
-    let m = maker(
-      "input",
-      { type: "radio", name: q, value: "medium" },
-      "Medium",
-      b
-    );
-    maker("label", { for: "medium", class: "e-form-label" }, "Medium", b);
-
-    let l = maker("input", { type: "radio", name: q, value: "low" }, "", b);
-    maker("label", { for: "low", class: "e-form-label" }, "Low", b);
-
-    selectPriority(task, l, m, h);
-  };
-
-  const renderOptions = (task, e, index) => {
-    let b = maker("div", { class: "e-options" }, "", e);
-    renderDate(task, b);
-    renderRadios(task, b, index);
-  };
-
-  const renderDescription = (task, e) => {
-    let t = maker("div", { class: "form-section" }, "", e);
-    maker(
-      "label",
-      { for: "e-description", class: "form-label" },
-      "Task Description",
-      t
-    );
-    maker(
-      "textarea",
-      { class: "form-input form-textarea", name: "e-description" },
-      task.description,
-      t
-    );
-  };
-
-  const renderTaskButtons = (e) => {
-    let b = maker("div", { class: "button-box" }, "", e);
-    let update = maker("button", { class: "save-changes" }, "Save & Close", b);
-    maker("i", { class: "fas fa-check check" }, "", update);
-    let remove = maker("button", { class: "delete-task" }, "Delete ", b);
-    maker("i", { class: "fas fa-trash-alt trash" }, "", remove);
-    update.addEventListener("click", updateTask);
-    remove.addEventListener("click", deleteTask);
-  };
-
-  const makeExpandedTaskElements = (task, e, index) => {
-    let h = maker("h2", { class: "title-expanded" }, task.title, e);
-    renderOptions(task, e, index);
-    renderDescription(task, e);
-    renderTaskButtons(e);
-    h.addEventListener("click", closeTask);
-  };
-
   const renderTask = (task, index) => {
-    let t = maker("div", { class: "task-box", data: index }, "", main);
-    let r = maker("div", { class: "task-regular", data: index }, "", t);
-    let e = maker("div", { class: "hidden task-expanded", data: index }, "", t);
-
-    r.addEventListener("click", expandTask);
-
-    makeRegularTaskElements(task, r);
-    makeExpandedTaskElements(task, e, index);
+    let t = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_3__["maker"])("div", { class: "task-regular", data: index }, "", main);
+    makeRegularTaskElements(task, t);
+    t.addEventListener("click", expandTask);
   };
 
   const renderWelcome = () => {
-    let mat = maker("div", { class: "welcome-mat" }, "", main);
-    maker("h2", { class: "welcome-header" }, "Wow Such Empty!", mat);
-    maker("i", { class: "far fa-surprise surprise" }, "", mat);
-    maker(
+    let mat = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_3__["maker"])("div", { class: "welcome-mat" }, "", main);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_3__["maker"])("h2", { class: "welcome-header" }, "Wow Such Empty!", mat);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_3__["maker"])("i", { class: "far fa-surprise surprise" }, "", mat);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_3__["maker"])(
       "h2",
       { class: "welcome-header" },
       "Could You Be Done... Everything?!",
@@ -1109,9 +1012,9 @@ const taskViews = (() => {
   };
 
   const renderProjectHeader = (project) => {
-    let container = maker("div", { class: "project-container" }, "", main);
-    maker("h2", { class: "project-heading" }, project.name, container);
-    let but = maker("button", { class: "new-task" }, "Add Task", container);
+    let container = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_3__["maker"])("div", { class: "project-container" }, "", main);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_3__["maker"])("h2", { class: "project-heading" }, project.name, container);
+    let but = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_3__["maker"])("button", { class: "new-task" }, "Add Task", container);
     but.addEventListener("click", showform);
   };
 
@@ -1129,88 +1032,206 @@ const taskViews = (() => {
   };
 
   // event listeners
-  formOverlay.addEventListener("click", formClose);
-  createTaskButton.addEventListener("click", getTaskData);
+  // createTaskButton.addEventListener("click", getTaskData);
 
   return {
     renderTasks,
   };
 })();
 
-
+/* harmony default export */ __webpack_exports__["default"] = (taskViews);
 
 
 /***/ }),
-/* 9 */
+/* 9 */,
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "views", function() { return views; });
-/* harmony import */ var _taskViews__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8);
-/* harmony import */ var _projectViews__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
+/* harmony import */ var _views_formViews__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(12);
 
 
+const forms = (() => {
+  const formBox = document.querySelector("#form-box");
+  const formOverlay = document.querySelector("#form-overlay");
 
-const views = (() => {
-  const main = document.querySelector("#main");
-
-  window.innerWidth > 900
-    ? main.classList.add("large")
-    : main.classList.add("small");
-
-  // element creator
-  const maker = (type, attributes, text, place) => {
-    let element = document.createElement(type);
-    Object.keys(attributes).forEach((key) => {
-      element.setAttribute(key, attributes[key]);
-    });
-    element.textContent = text;
-    place.appendChild(element);
-    return element;
+  const showForm = (task = "") => {
+    formOverlay.classList.toggle("hidden");
+    formOverlay.classList.toggle("curtain");
+    task !== "" ? _views_formViews__WEBPACK_IMPORTED_MODULE_0__["default"].editTaskForm(task) : _views_formViews__WEBPACK_IMPORTED_MODULE_0__["default"].newTaskForm();
   };
 
-  const init = (project) => {
-    _projectViews__WEBPACK_IMPORTED_MODULE_1__["projectViews"].renderProjects();
-    _taskViews__WEBPACK_IMPORTED_MODULE_0__["taskViews"].renderTasks(project, true);
-    document.querySelector("#projects").firstChild.classList.toggle("selected");
-  };
-
-  const render = (project) => {
-    _projectViews__WEBPACK_IMPORTED_MODULE_1__["projectViews"].rerenderProjects();
-    _taskViews__WEBPACK_IMPORTED_MODULE_0__["taskViews"].renderTasks(project, true);
-  };
-
-  const renderHome = () => {
-    main.innerHTML = "";
-    _projectViews__WEBPACK_IMPORTED_MODULE_1__["projectViews"].renderProjects();
-    let mat = maker("div", { class: "welcome-mat" }, "", main);
-    maker("h2", { class: "welcome-header" }, "Its Time To Get-Er-Done!", mat);
-    maker("i", { class: "far fa-sticky-note surprise" }, "", mat);
-    maker(
-      "h2",
-      { class: "welcome-header" },
-      "Create A Project To Get Started!",
-      mat
-    );
-  };
-
-  const handleResize = () => {
-    if (window.innerWidth < 900) {
-      main.classList.remove("large");
-      main.classList.add("small");
-    } else if (window.innerWidth > 900) {
-      main.classList.add("large");
-      main.classList.remove("small");
+  const closeForm = (e) => {
+    if (e.target == formOverlay) {
+      formOverlay.classList.toggle("hidden");
+      formBox.innerHTML = "";
     }
   };
 
-  window.addEventListener("resize", handleResize);
+  const formError = (element) => {
+    element.classList.toggle("error");
+    setTimeout((f) => element.classList.toggle("error"), 500);
+  };
 
-  return { render, renderHome, init };
+  formOverlay.addEventListener("click", closeForm);
+
+  return { showForm };
 })();
 
+/* harmony default export */ __webpack_exports__["default"] = (forms);
 
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+exports.maker = (type, attributes, text, place) => {
+  let element = document.createElement(type);
+  Object.keys(attributes).forEach((key) => {
+    element.setAttribute(key, attributes[key]);
+  });
+  element.textContent = text;
+  place.appendChild(element);
+  return element;
+};
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(11);
+/* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_helpers_index__WEBPACK_IMPORTED_MODULE_0__);
+
+
+const formViews = (() => {
+  const formBox = document.querySelector("#form-box");
+
+  const title = (parent) => {
+    const div = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("div", { class: "form-section" }, "", parent);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("label", { class: "form-label", for: "title" }, "Task Name", div);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
+      "input",
+      { type: "text", name: "title", class: "form-input" },
+      "",
+      div
+    );
+  };
+
+  const date = (parent, task = {}) => {
+    const div = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("div", { class: "form-section" }, "", parent);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("label", { class: "form-label", for: "date" }, "Due Date", div);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
+      "input",
+      {
+        type: "date",
+        name: "date",
+        class: "form-input date",
+        value: task ? task.date : "",
+      },
+      "",
+      div
+    );
+  };
+
+  const radioButtons = (parent) => {
+    const div = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("div", { class: "form-section" }, "", parent);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("label", { class: "form-label" }, "Task Priority", div);
+    const radios = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("div", { class: "radio-buttons" }, "", div);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
+      "input",
+      {
+        type: "radio",
+        name: "priority",
+        value: "low",
+      },
+      "",
+      radios
+    );
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("label", { class: "radio-label", for: "low" }, "Low", radios);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
+      "input",
+      {
+        type: "radio",
+        name: "priority",
+        value: "medium",
+      },
+      "",
+      radios
+    );
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("label", { class: "radio-label", for: "medium" }, "Medium", radios);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
+      "input",
+      {
+        type: "radio",
+        name: "priority",
+        value: "high",
+      },
+      "",
+      radios
+    );
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("label", { class: "radio-label", for: "high" }, "High", radios);
+  };
+
+  const description = (parent, task = {}) => {
+    const div = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("div", { class: "form-section" }, "", parent);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
+      "label",
+      { class: "form-label", for: "description" },
+      "Task Description",
+      div
+    );
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
+      "textarea",
+      { type: "text", name: "description", class: "form-input text-area" },
+      task ? task.description : "",
+      div
+    );
+  };
+
+  const submitButton = (parent) => {
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
+      "button",
+      { type: "button", class: "form-button" },
+      "Create Task",
+      parent
+    );
+  };
+
+  const editTaskForm = (task) => {
+    const form = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("form", { id: "task-form" }, "", formBox);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("h1", { class: "form-heading" }, task.title, form);
+    date(form, task);
+    radioButtons(form);
+    description(form, task);
+    submitButton(form, task);
+    document.querySelector(`[value=${task.priority}]`).checked = true;
+  };
+
+  const newTaskForm = () => {
+    const form = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("form", { id: "task-form" }, "", formBox);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("h1", { class: "form-heading" }, "Create Task", form);
+    title(form);
+    date(form);
+    radioButtons(form);
+    description(form);
+    submitButton(form);
+  };
+
+  const makeProjectForm = () => {
+    const form = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("form", { id: "task-form" }, "", formBox);
+  };
+
+  return {
+    newTaskForm,
+    editTaskForm,
+  };
+})();
+
+/* harmony default export */ __webpack_exports__["default"] = (formViews);
 
 
 /***/ })
