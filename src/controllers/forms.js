@@ -1,4 +1,6 @@
 import view from "../views/formViews";
+import projects from "../controllers/projects";
+import tasks from "../controllers/tasks";
 
 const forms = (() => {
   const formBox = document.querySelector("#form-box");
@@ -6,51 +8,40 @@ const forms = (() => {
 
   const openTaskForm = (task = "") => {
     formOverlay.classList.toggle("hidden");
-    task !== "" ? view.editTaskForm(task) : view.newTaskForm();
+    view.taskForm(task);
   };
 
   const openProjectForm = (project = "") => {
     formOverlay.classList.toggle("hidden");
-    project !== "" ? view.editProjectForm(project) : view.newProjectForm();
+    view.projectForm(project);
   };
 
-  const closeForm = (e) => {
+  const handleOverlayClick = (e) => {
     if (e.target == formOverlay) {
-      formOverlay.classList.toggle("hidden");
-      formBox.innerHTML = "";
+      closeForm();
+    }
+  };
+  const closeForm = () => {
+    formOverlay.classList.toggle("hidden");
+    formBox.innerHTML = "";
+  };
+
+  const validateFormData = (data) => {
+    if (data.title == "") {
+      const error = { message: "Your task needs a name" };
+      view.addError(error);
+    } else if (data.name == "") {
+      const error = { message: "Your project needs a name" };
+      view.addError(error);
+    } else {
+      data.title ? tasks.create(data) : null;
+      closeForm();
     }
   };
 
-  // handleFormSubmit = (e) => {};
+  formOverlay.addEventListener("click", handleOverlayClick);
 
-  // const projectError = () => {
-  //   let form = document.querySelector("#project-form");
-  //   form.classList.toggle("error");
-  //   setTimeout((f) => form.classList.toggle("error"), 500);
-  // };
-
-  // const getProjectData = (event) => {
-  //   let name = event.currentTarget.value;
-  //   if (event.key == "Enter") {
-  //     if (name == "") {
-  //       projectError();
-  //     } else if (projects.index.find((p) => p.name == name) != undefined) {
-  //       projectError();
-  //     } else {
-  //       closeProjectForm();
-  //       projects.create(event.target.value);
-  //     }
-  //   }
-  // };
-
-  // const formError = (element) => {
-  //   element.classList.toggle("error");
-  //   setTimeout((f) => element.classList.toggle("error"), 500);
-  // };
-
-  formOverlay.addEventListener("click", closeForm);
-
-  return { openProjectForm, openTaskForm };
+  return { openProjectForm, openTaskForm, validateFormData };
 })();
 
 export default forms;

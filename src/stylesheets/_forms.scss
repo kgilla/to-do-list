@@ -2,9 +2,9 @@
 
 form {
   position: fixed;
-  top: 10%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, -50%);
   width: 100%;
   max-width: 30rem;
   display: flex;
@@ -34,6 +34,7 @@ form {
 }
 
 .form-input {
+  position: relative;
   width: 100%;
   border: 0.1rem solid #ddd;
   border-radius: 0.25rem;
@@ -82,4 +83,21 @@ form {
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 5;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+
+.input-error {
+  border: 0.1rem solid red;
 }

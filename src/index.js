@@ -2,10 +2,15 @@ import "./stylesheets/main.scss";
 import tasks from "./controllers/tasks";
 import projects from "./controllers/projects";
 import projectViews from "./views/projectViews";
-import { saveProjects, getProjects, setCurrentProject } from "./helpers/index";
+import {
+  saveProjects,
+  getProjects,
+  setCurrentProject,
+  makeId,
+} from "./helpers/index";
 
 const app = (() => {
-  window.localStorage.clear();
+  // window.localStorage.clear();
 
   const main = document.querySelector("#main");
 
@@ -25,13 +30,14 @@ const app = (() => {
 
   const freshStart = () => {
     saveProjects([]);
-    let project = { name: "Welcome!", tasks: [] };
+    let project = { id: makeId(), name: "Welcome!", tasks: [] };
     let task = {
       title: "Click On Me!",
       date: "",
       priority: "low",
       description:
         "Welcome to Get ER Done! Feel free to make projects, make tasks, and check them off! Have fun and be productive!",
+      done: false,
     };
     project.tasks.push(task);
     let projects = [project];

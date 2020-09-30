@@ -10,22 +10,22 @@ import {
 
 const tasks = (() => {
   let currentProject = getCurrentProject();
+  let projects = getProjects();
 
   const newTask = document.querySelector("#new-task");
 
-  const openForm = () => {
-    forms.openTaskForm();
+  const openForm = (i = "") => {
+    i ? forms.openTaskForm(currentProject.tasks[i]) : forms.openTaskForm;
   };
 
-  const showEditTaskForm = (i) => {
-    forms.openTaskForm(currentProject.tasks[i]);
-  };
+  const getTaskFormData = (data) => {};
 
-  const create = (task, project) => {
+  const create = (task) => {
+    let project = projects.find((p) => p.id == currentProject.id);
     project.tasks.push(task);
-    let projects = getProjects();
-    saveProjects(projects.push(project));
-    view.render(project);
+    setCurrentProject(project);
+    saveProjects(projects);
+    renderTasks(project);
   };
 
   // const update = (event) => {
@@ -59,12 +59,13 @@ const tasks = (() => {
   // };
 
   const handleTaskComplete = (index) => {
-    let task = currentProject.tasks[index];
+    let project = projects.find((p) => p.id == currentProject.id);
+    project.tasks[index].done
+      ? (project.tasks[index].done = false)
+      : (project.tasks[index].done = true);
+    saveProjects(projects);
     let taskbox = document.querySelector(`div[data="${index}"]`);
-    console.log(task, taskbox);
-    // view.markTaskComplete(task, taskbox);
-    // task.done ? (task.done = false) : (task.done = true);
-    // projects.save(currentProject);
+    view.markTaskComplete(project.tasks[index], taskbox);
   };
 
   const renderTasks = (project) => {
@@ -76,9 +77,10 @@ const tasks = (() => {
 
   return {
     create,
-    showEditTaskForm,
+    openForm,
     handleTaskComplete,
     renderTasks,
+    getTaskFormData,
   };
 })();
 

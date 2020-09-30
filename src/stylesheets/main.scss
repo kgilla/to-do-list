@@ -104,9 +104,14 @@ body {
 }
 
 .error {
-  position: relative;
-  animation: shake 0.1s linear;
-  animation-iteration-count: 3;
+  // position: relative;
+  // animation: shake 0.1s linear;
+  // animation-iteration-count: 3;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  background-color: #f1948a;
+  color: #943126;
+  border-radius: 0.5rem;
 }
 
 .open-form {

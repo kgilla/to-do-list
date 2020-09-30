@@ -40,11 +40,11 @@ const taskViews = (() => {
   // };
   const handleClick = (e) => {
     let i = e.currentTarget.parentNode.attributes[1].value;
-    tasks.showEditTaskForm(i);
+    tasks.openForm(i);
   };
 
-  const markTaskComplete = (task, box) => {
-    let c = box.firstChild;
+  const markTaskComplete = (task, taskbox) => {
+    let c = taskbox.firstChild;
     c.firstChild.classList.toggle("hidden");
     c.classList.toggle(task.priority);
     c.classList.toggle("task-complete");
@@ -83,9 +83,9 @@ const taskViews = (() => {
 
     b.addEventListener("click", completeTask);
     if (task.done == true) {
-      markTaskComplete(task, b);
+      markTaskComplete(task, div);
     }
-    e.addEventListener("click", tasks.showEditTaskForm);
+    e.addEventListener("click", handleClick);
   };
 
   const renderTasks = (project) => {

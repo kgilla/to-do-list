@@ -48,9 +48,11 @@ const projectViews = (() => {
   // main project rendering
 
   const handleProjectChange = (e) => {
-    projects.changeProject(e.currentTarget.attributes[1].value);
-    document.querySelector(".selected").classList.toggle("selected");
-    e.currentTarget.classList.toggle("selected");
+    if (e.currentTarget.classList[1] == undefined) {
+      projects.changeProject(e.currentTarget.attributes[1].value);
+      document.querySelector(".selected").classList.toggle("selected");
+      e.currentTarget.classList.toggle("selected");
+    }
   };
 
   const showNewProjectForm = () => {
@@ -61,8 +63,8 @@ const projectViews = (() => {
     forms.openProjectForm(currentProject);
   };
 
-  const renderProject = (project, i) => {
-    let p = maker("div", { class: "project", data: i }, "", projectList);
+  const renderProject = (project) => {
+    let p = maker("div", { class: "project" }, "", projectList);
     let b = maker("div", { class: "p-box" }, "", p);
     maker("i", { class: "far fa-calendar-check project-icon" }, "", b);
     maker("h3", { class: "project-name" }, project.name, b);
@@ -73,8 +75,7 @@ const projectViews = (() => {
 
   const renderProjects = (projects) => {
     projectList.innerHTML = "";
-    console.log(projects);
-    projects.forEach((project, i) => renderProject(project, i));
+    projects.forEach((project) => renderProject(project));
     const newButton = maker(
       "button",
       { type: "button", id: "new-project-button" },

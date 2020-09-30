@@ -5,14 +5,17 @@ import {
   getProjects,
   setCurrentProject,
   getCurrentProject,
+  makeId,
 } from "../helpers/index";
 
 const projects = (() => {
   // State variables
   let index = getProjects();
 
+  const getProjectFormData = () => {};
+
   const create = (projectData) => {
-    let project = { name: projectData, tasks: [] };
+    let project = { id: makeId(), name: projectData, tasks: [] };
     index.push(project);
     saveProjects(index);
     newProjectChanger(project);
@@ -36,11 +39,11 @@ const projects = (() => {
   //   projectList.childNodes[selected].classList.toggle("selected");
   // };
 
-  // const changeProject = (i) => {
-  //   currentProject = index[i];
-  //   view.renderProjectHeader(currentProject);
-  //   tasks.renderTasks(currentProject, true);
-  // };
+  const changeProject = (i) => {
+    setCurrentProject(index[i]);
+    view.renderProjectHeader(currentProject);
+    tasks.renderTasks(currentProject, true);
+  };
 
   // const newProjectChanger = (project) => {
   //   renderProjects();
@@ -52,7 +55,8 @@ const projects = (() => {
     create,
     // save,
     // deleteProject,
-    // changeProject,
+    changeProject,
+    getProjectFormData,
   };
 })();
 
