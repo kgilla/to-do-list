@@ -15,7 +15,7 @@ const formViews = (() => {
 
   const getProjectFormData = () => {
     const name = document.querySelector('[name="name"]').value;
-    const data = { id: makeId(), name };
+    const data = { id: makeId(), name, tasks: [] };
     forms.validateFormData(data);
   };
 

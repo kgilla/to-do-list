@@ -34,7 +34,7 @@ const forms = (() => {
       const error = { message: "Your project needs a name" };
       view.addError(error);
     } else {
-      data.title ? tasks.create(data) : null;
+      data.title ? tasks.create(data) : projects.create(data);
       closeForm();
     }
   };

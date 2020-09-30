@@ -1,31 +1,26 @@
-import projects from "./projects";
-import forms from "./forms";
+import app from "../app";
 import view from "../views/taskViews";
-import {
-  saveProjects,
-  getProjects,
-  setCurrentProject,
-  getCurrentProject,
-} from "../helpers/index";
+import forms from "./forms";
+import store from "../helpers/store";
 
 const tasks = (() => {
-  let currentProject = getCurrentProject();
-  let projects = getProjects();
+  let currentProject = store.getCurrentProject();
+  let projects = store.getProjects();
 
   const newTask = document.querySelector("#new-task");
 
   const openForm = (i = "") => {
-    i ? forms.openTaskForm(currentProject.tasks[i]) : forms.openTaskForm;
+    let currentProject = store.getCurrentProject();
+    i !== "" ? forms.openTaskForm(currentProject.tasks[i]) : forms.openTaskForm;
   };
 
-  const getTaskFormData = (data) => {};
-
   const create = (task) => {
-    let project = projects.find((p) => p.id == currentProject.id);
-    project.tasks.push(task);
-    setCurrentProject(project);
-    saveProjects(projects);
-    renderTasks(project);
+    let i = projects.findIndex((p) => p.id === currentProject.id);
+    currentProject.tasks.push(task);
+    projects[i] = currentProject;
+    store.setProjects(projects);
+    store.setCurrentProject(currentProject);
+    app.render();
   };
 
   // const update = (event) => {
@@ -68,9 +63,9 @@ const tasks = (() => {
     view.markTaskComplete(project.tasks[index], taskbox);
   };
 
-  const renderTasks = (project) => {
-    // currentProject = project;
-    view.renderTasks(project);
+  const render = (currentProject) => {
+    console.log(currentProject);
+    view.renderTasks(currentProject);
   };
 
   newTask.addEventListener("click", openForm);
@@ -79,8 +74,7 @@ const tasks = (() => {
     create,
     openForm,
     handleTaskComplete,
-    renderTasks,
-    getTaskFormData,
+    render,
   };
 })();
 

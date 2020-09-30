@@ -1,12 +1,6 @@
 import projects from "../controllers/projects";
 import forms from "../controllers/forms";
-import {
-  maker,
-  saveProjects,
-  getProjects,
-  setCurrentProject,
-  getCurrentProject,
-} from "../helpers/index";
+import { maker } from "../helpers/index";
 
 const projectViews = (() => {
   const projectList = document.querySelector("#projects");
@@ -18,7 +12,7 @@ const projectViews = (() => {
   window.innerWidth > 900 ? expandNav.classList.add("hidden") : null;
 
   // states
-  let currentProject = getCurrentProject();
+  // let currentProject = getCurrentProject();
 
   // functions for changing projects
 
@@ -63,8 +57,16 @@ const projectViews = (() => {
     forms.openProjectForm(currentProject);
   };
 
-  const renderProject = (project) => {
-    let p = maker("div", { class: "project" }, "", projectList);
+  const renderProject = (project, currentProject) => {
+    let p = maker(
+      "div",
+      {
+        class:
+          project.id === currentProject.id ? "project selected" : "project",
+      },
+      "",
+      projectList
+    );
     let b = maker("div", { class: "p-box" }, "", p);
     maker("i", { class: "far fa-calendar-check project-icon" }, "", b);
     maker("h3", { class: "project-name" }, project.name, b);
@@ -73,9 +75,9 @@ const projectViews = (() => {
     p.addEventListener("click", handleProjectChange);
   };
 
-  const renderProjects = (projects) => {
+  const renderProjects = (projects, currentProject) => {
     projectList.innerHTML = "";
-    projects.forEach((project) => renderProject(project));
+    projects.forEach((project) => renderProject(project, currentProject));
     const newButton = maker(
       "button",
       { type: "button", id: "new-project-button" },

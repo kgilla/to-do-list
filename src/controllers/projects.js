@@ -1,24 +1,19 @@
 import view from "../views/projectViews";
-import tasks from "../views/taskViews";
-import {
-  saveProjects,
-  getProjects,
-  setCurrentProject,
-  getCurrentProject,
-  makeId,
-} from "../helpers/index";
+import store from "../helpers/store";
+import app from "../app";
 
 const projects = (() => {
-  // State variables
-  let index = getProjects();
+  let projects = store.getProjects();
+  let currentProject = store.getCurrentProject();
 
   const getProjectFormData = () => {};
 
-  const create = (projectData) => {
-    let project = { id: makeId(), name: projectData, tasks: [] };
-    index.push(project);
-    saveProjects(index);
-    newProjectChanger(project);
+  const create = (data) => {
+    projects.push(data);
+    console.log(projects.slice(-1)[0]);
+    store.setCurrentProject(projects.slice(-1)[0]);
+    store.setProjects(projects);
+    app.render();
   };
 
   // const deleteProject = (e) => {
@@ -33,16 +28,15 @@ const projects = (() => {
   //   }
   // };
 
-  // const rerenderProjects = () => {
-  //   let selected = document.querySelector(".selected").getAttribute("data");
-  //   renderProjects();
-  //   projectList.childNodes[selected].classList.toggle("selected");
-  // };
-
   const changeProject = (i) => {
-    setCurrentProject(index[i]);
+    // // setCurrentProject(index[i]);
+    // view.renderProjectHeader(currentProject);
+    // tasks.renderTasks(currentProject, true);
+  };
+
+  const render = (projects, currentProject) => {
     view.renderProjectHeader(currentProject);
-    tasks.renderTasks(currentProject, true);
+    view.renderProjects(projects, currentProject);
   };
 
   // const newProjectChanger = (project) => {
@@ -57,6 +51,7 @@ const projects = (() => {
     // deleteProject,
     changeProject,
     getProjectFormData,
+    render,
   };
 })();
 
