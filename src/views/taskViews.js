@@ -1,44 +1,10 @@
-import projects from "../controllers/projects";
 import tasks from "../controllers/tasks";
 import { maker } from "../helpers/index";
 
 const taskViews = (() => {
-  // document selectors
   const main = document.querySelector("#tasks");
 
-  //state
-  // let currentProject = "";
-
-  // // task form functions
-  // const showform = () => {
-  //   forms.openTaskForm();
-  // };
-
-  // const showEditTaskForm = (e) => {
-  //   const i = e.currentTarget.parentNode.attributes[1].value;
-  //   forms.openTaskForm(currentProject.tasks[i]);
-  // };
-
-  // const validateForm = () => {
-  //   if (form[0].value == "") {
-  //     formError(form[0]);
-  //   } else if (form[1].value == "") {
-  //     formError(form[1]);
-  //   } else {
-  //     let radio = document.querySelector("input[name=r1]:checked").value;
-  //     return [form[0].value, form[1].value, radio, form[5].value];
-  //   }
-  // };
-
-  // const getTaskData = () => {
-  //   let taskData = validateForm();
-  //   if (taskData) {
-  //     tasks.create(taskData, currentProject());
-  //     form.reset();
-  //     showform();
-  //   }
-  // };
-  const handleClick = (e) => {
+  const openEditForm = (e) => {
     let i = e.currentTarget.parentNode.attributes[1].value;
     tasks.openForm(i);
   };
@@ -85,10 +51,10 @@ const taskViews = (() => {
     if (task.done == true) {
       markTaskComplete(task, div);
     }
-    e.addEventListener("click", handleClick);
+    e.addEventListener("click", openEditForm);
   };
 
-  const renderTasks = (project) => {
+  const render = (project) => {
     main.innerHTML = "";
     if (project.tasks.length == 0) {
       renderWelcome();
@@ -98,7 +64,7 @@ const taskViews = (() => {
   };
 
   return {
-    renderTasks,
+    render,
     markTaskComplete,
   };
 })();

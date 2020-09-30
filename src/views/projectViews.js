@@ -11,41 +11,9 @@ const projectViews = (() => {
   window.innerWidth < 900 ? sideNav.classList.add("collapse") : null;
   window.innerWidth > 900 ? expandNav.classList.add("hidden") : null;
 
-  // states
-  // let currentProject = getCurrentProject();
-
-  // functions for changing projects
-
-  // const rerenderProjects = () => {
-  //   let selected = document.querySelector(".selected").getAttribute("data");
-  //   renderProjects();
-  //   projectList.childNodes[selected].classList.toggle("selected");
-  // };
-
-  // const changeProject = (event) => {
-  //   if (event.target != event.currentTarget.lastChild.lastChild) {
-  //     document.querySelector(".selected").classList.toggle("selected");
-  //     event.currentTarget.classList.toggle("selected");
-  //     currentProject = projects.index[event.currentTarget.getAttribute("data")];
-  //     rerenderProjects();
-  //     taskViews.renderTasks(currentProject, true);
-  //   }
-  // };
-
-  // const newProjectChanger = (project) => {
-  //   currentProject = project;
-  //   renderProjects();
-  //   taskViews.renderTasks(currentProject, true);
-  //   projectList.lastChild.classList.toggle("selected");
-  // };
-
-  // main project rendering
-
   const handleProjectChange = (e) => {
     if (e.currentTarget.classList[1] == undefined) {
       projects.changeProject(e.currentTarget.attributes[1].value);
-      document.querySelector(".selected").classList.toggle("selected");
-      e.currentTarget.classList.toggle("selected");
     }
   };
 
@@ -63,6 +31,7 @@ const projectViews = (() => {
       {
         class:
           project.id === currentProject.id ? "project selected" : "project",
+        data: project.id,
       },
       "",
       projectList

@@ -1,12 +1,11 @@
 import "./stylesheets/main.scss";
 import taskController from "./controllers/tasks";
 import projectController from "./controllers/projects";
-// import projectViews from "./views/projectViews";
 import store from "./helpers/store";
 import { makeId } from "./helpers/index";
 
 const app = (() => {
-  localStorage.clear();
+  // localStorage.clear();
 
   const main = document.querySelector("#main");
 
@@ -46,6 +45,8 @@ const app = (() => {
     let projects = store.getProjects();
     projectController.render(projects, currentProject);
     taskController.render(currentProject);
+    console.log(currentProject);
+    console.log(projects);
   };
 
   const start = () => {
