@@ -1,29 +1,55 @@
 import view from "../views/formViews";
-import projects from "../controllers/projects";
-import tasks from "../controllers/tasks";
+import projectController from "../controllers/projects";
+import taskController from "../controllers/tasks";
 
 const forms = (() => {
-  const formBox = document.querySelector("#form-box");
-  const formOverlay = document.querySelector("#form-overlay");
+  const formBox = document.querySelector("#box");
+  const overlay = document.querySelector("#overlay");
 
   const openTaskForm = (task = "") => {
-    formOverlay.classList.toggle("hidden");
+    overlay.classList.toggle("hidden");
     view.taskForm(task);
   };
 
   const openProjectForm = (project = "") => {
-    formOverlay.classList.toggle("hidden");
+    overlay.classList.toggle("hidden");
     view.projectForm(project);
   };
 
+  const closeForm = () => {
+    overlay.classList.toggle("hidden");
+    formBox.innerHTML = "";
+  };
+
   const handleOverlayClick = (e) => {
-    if (e.target == formOverlay) {
+    if (e.target == overlay) {
       closeForm();
     }
   };
-  const closeForm = () => {
-    formOverlay.classList.toggle("hidden");
-    formBox.innerHTML = "";
+
+  const getTaskFormData = (taskId = "") => {
+    const title = document.querySelector('[name="title"]').value;
+    const date = document.querySelector('[name="date"]').value;
+    const priority = document.querySelector('[name="priority"]:checked').value;
+    const description = document.querySelector('[name="description"]').value;
+    const project = taskId
+      ? null
+      : document.querySelector('[name="project"]').value;
+    const data = {
+      id: taskId,
+      title,
+      date,
+      priority,
+      description,
+      project,
+    };
+    forms.validateFormData(data);
+  };
+
+  const getProjectFormData = (projectId = "") => {
+    const name = document.querySelector('[name="name"]').value;
+    const data = { id: projectId, name };
+    forms.validateFormData(data);
   };
 
   const validateFormData = (data) => {
@@ -34,14 +60,28 @@ const forms = (() => {
       const error = { message: "Your project needs a name" };
       view.addError(error);
     } else {
-      data.title ? tasks.create(data) : projects.create(data);
+      if (data.id) {
+        data.title
+          ? taskController.update(data)
+          : projectController.update(data);
+      } else {
+        data.title
+          ? taskController.create(data)
+          : projectController.create(data);
+      }
       closeForm();
     }
   };
 
-  formOverlay.addEventListener("click", handleOverlayClick);
+  overlay.addEventListener("click", handleOverlayClick);
 
-  return { openProjectForm, openTaskForm, validateFormData };
+  return {
+    openProjectForm,
+    openTaskForm,
+    validateFormData,
+    getTaskFormData,
+    getProjectFormData,
+  };
 })();
 
 export default forms;

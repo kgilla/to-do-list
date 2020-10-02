@@ -5,7 +5,7 @@ import store from "./helpers/store";
 import { makeId } from "./helpers/index";
 
 const app = (() => {
-  // localStorage.clear();
+  localStorage.clear();
 
   const main = document.querySelector("#main");
 
@@ -26,27 +26,25 @@ const app = (() => {
   const freshStart = () => {
     let project = { id: makeId(), name: "Welcome!", tasks: [] };
     let task = {
+      id: makeId(),
       title: "Click On Me!",
       date: "",
       priority: "low",
       description:
         "Welcome to Get ER Done! Feel free to make projects, make tasks, and check them off! Have fun and be productive!",
       done: false,
+      project: project.id,
     };
-    project.tasks.push(task);
-    let projects = [project];
-    store.setProjects(projects);
-    store.setCurrentProject(projects[0]);
-    render();
+    project.tasks.push(task.id);
+    store.setTasks([task]);
+    store.setProjects([project]);
+    render(project);
   };
 
-  const render = () => {
-    let currentProject = store.getCurrentProject();
+  const render = (project) => {
     let projects = store.getProjects();
-    projectController.render(projects, currentProject);
-    taskController.render(currentProject);
-    console.log(currentProject);
-    console.log(projects);
+    projectController.render(projects, project);
+    taskController.render(project);
   };
 
   const start = () => {

@@ -19,9 +19,21 @@
 
     <nav id="side-nav">
       <div id="main-side-categories">
-        <div id="all-tasks">All Tasks</div>
-        <div id="tasks-today">Today</div>
-        <div id="tasks-week">This Week</div>
+        <div class="sidenav-item" id="all-tasks">
+          <i class="fas fa-calendar-check sidenav-item-icon"></i>
+          <h3 class="sidenav-item-name">All Tasks</h3>
+          <h3 class="sidenav-item-count" id="all-tasks-count">22</h3>
+        </div>
+        <div class="sidenav-item" id="tasks-today">
+          <i class="fas fa-calendar-day sidenav-item-icon"></i>
+          <h3 class="sidenav-item-name">Today</h3>
+          <h3 class="sidenav-item-count" id="tasks-today-count">1</h3>
+        </div>
+        <div class="sidenav-item" id="tasks-week">
+          <i class="fas fa-calendar-week sidenav-item-icon"></i>
+          <h3 class="sidenav-item-name">This Week</h3>
+          <h3 class="sidenav-item-count" id="tasks-week-count">6</h3>
+        </div>
       </div>
       <div id="projects"></div>
     </nav>
@@ -32,8 +44,8 @@
       <button id="new-task">New Task <i class="fa fa-plus"></i></button>
     </main>
 
-    <div id="form-overlay" class="hidden"></div>
-    <div id="form-box"></div>
+    <div id="overlay" class="hidden"></div>
+    <div id="box"></div>
 
     <script src="main.js"></script>
   </body>

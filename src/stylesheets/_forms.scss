@@ -5,7 +5,7 @@ form {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;
+  width: calc(100% - 2rem);
   max-width: 30rem;
   display: flex;
   flex-direction: column;
@@ -16,6 +16,16 @@ form {
   border-radius: 0.5rem;
   font-family: "Roboto", sans-serif;
   z-index: 6;
+}
+
+#project-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  border: 0.1rem solid #aaa;
+  border-radius: 0.5rem;
 }
 
 .form-heading {
@@ -29,7 +39,7 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   width: 100%;
 }
 
@@ -75,7 +85,7 @@ form {
   filter: brightness(90%);
 }
 
-#form-overlay {
+#overlay {
   position: fixed;
   left: 0;
   top: 0;

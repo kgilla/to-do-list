@@ -1,32 +1,40 @@
 import view from "../views/projectViews";
 import store from "../helpers/store";
 import app from "../app";
+import forms from "./forms";
+import { makeId } from "../helpers/index";
 
 const projects = (() => {
-  let currentProject = store.getCurrentProject();
-
   const create = (data) => {
+    const project = { id: makeId(), name: data.name, tasks: [] };
     let projects = store.getProjects();
-    projects.push(data);
+    projects.push(project);
     store.setProjects(projects);
-    store.setCurrentProject(projects.slice(-1)[0]);
-    app.render();
+    app.render(project);
   };
 
   const changeProject = (id) => {
-    let projects = store.getProjects();
-    let project = projects.find((p) => p.id === id);
-    store.setCurrentProject(project);
-    app.render();
+    app.render(store.findProject(id));
   };
 
-  const update = () => {};
+  const update = (data) => {
+    const { id, name } = data;
+    let projects = store.getProjects();
+    let i = projects.findIndex((p) => p.id === id);
+    projects[i].name = name;
+    store.setProjects(projects);
+    app.render(projects[i]);
+  };
 
   const destroy = () => {};
 
-  const render = (projects, currentProject) => {
-    view.renderProjectHeader(currentProject);
-    view.renderProjects(projects, currentProject);
+  const openForm = (id = "") => {
+    id ? forms.openProjectForm(store.findProject(id)) : forms.openProjectForm();
+  };
+
+  const render = (projects, project) => {
+    view.renderProjectHeader(project);
+    view.renderProjects(projects, project);
   };
 
   return {
@@ -34,6 +42,7 @@ const projects = (() => {
     changeProject,
     update,
     destroy,
+    openForm,
     render,
   };
 })();

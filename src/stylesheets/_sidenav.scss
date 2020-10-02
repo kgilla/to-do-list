@@ -1,0 +1,112 @@
+#side-nav {
+  position: fixed;
+  top: 4rem;
+  bottom: auto;
+  width: 20rem;
+  padding: 1rem;
+  background: #f3f5f9;
+  z-index: 3;
+  transition: all 0.7s ease-in-out;
+}
+
+#main-side-categories {
+}
+
+#all-tasks i {
+  color: #2980b9;
+}
+
+#tasks-today i {
+  color: #27ae60;
+}
+
+#tasks-week i {
+  color: #e67e22;
+}
+
+#projects {
+  height: calc(100vh - 6rem);
+  padding-bottom: 1rem;
+  overflow-y: auto;
+}
+
+#projects:last-child {
+  margin-bottom: 1rem;
+}
+
+#sidenav-title-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 0.1rem solid #ddd;
+}
+
+#sidenav-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #000;
+}
+
+.sidenav-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  line-height: 2;
+}
+
+.sidenav-item:hover {
+  background: #fff;
+  cursor: pointer;
+}
+
+.sidenav-item-icon {
+  color: #333;
+  margin-right: 1rem;
+}
+
+.sidenav-item-name {
+  color: #222;
+  margin-right: 0.5rem;
+}
+
+.sidenav-item-count {
+  color: #aaa;
+}
+
+#plus {
+  margin-right: 0.5rem;
+  color: #333;
+  font-size: 0.8rem;
+}
+
+#new-project-button {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+#new-project-button:hover {
+  cursor: pointer;
+}
+
+.collapse {
+  left: -20rem;
+}
+
+.expand {
+  left: 0;
+}

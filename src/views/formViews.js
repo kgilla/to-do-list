@@ -1,27 +1,25 @@
-import { maker, makeId } from "../helpers/index";
+import { maker } from "../helpers/index";
+import store from "../helpers/store";
 import forms from "../controllers/forms";
 
 const formViews = (() => {
-  const formBox = document.querySelector("#form-box");
-
-  const getTaskFormData = () => {
-    const title = document.querySelector('[name="title"]').value;
-    const date = document.querySelector('[name="date"]').value;
-    const priority = document.querySelector('[name="priority"]:checked').value;
-    const description = document.querySelector('[name="description"]').value;
-    const data = { title, date, priority, description, done: false };
-    forms.validateFormData(data);
-  };
-
-  const getProjectFormData = () => {
-    const name = document.querySelector('[name="name"]').value;
-    const data = { id: makeId(), name, tasks: [] };
-    forms.validateFormData(data);
-  };
+  const formBox = document.querySelector("#box");
 
   const addError = (error) => {
     const errorBox = document.querySelector("#error-box");
     maker("div", { class: "error" }, error.message, errorBox);
+  };
+
+  const handleTaskSubmit = (e) => {
+    e.currentTarget.taskId
+      ? forms.getTaskFormData(e.currentTarget.taskId)
+      : forms.getTaskFormData();
+  };
+
+  const handleProjectSubmit = (e) => {
+    e.currentTarget.projectId
+      ? forms.getProjectFormData(e.currentTarget.projectId)
+      : forms.getProjectFormData();
   };
 
   // Task Form Views
@@ -29,7 +27,7 @@ const formViews = (() => {
   const title = (parent, task = {}) => {
     const div = maker("div", { class: "form-section" }, "", parent);
     maker("label", { class: "form-label", for: "title" }, "Task Name", div);
-    maker(
+    let input = maker(
       "input",
       {
         type: "text",
@@ -40,6 +38,7 @@ const formViews = (() => {
       "",
       div
     );
+    input.focus();
   };
 
   const date = (parent, task = {}) => {
@@ -97,6 +96,21 @@ const formViews = (() => {
     maker("label", { class: "radio-label", for: "high" }, "High", radios);
   };
 
+  const selectProject = (parent) => {
+    const projects = store.getProjects();
+    const div = maker("div", { class: "form-section" }, "", parent);
+    maker("label", { class: "form-label", for: "project" }, "Project", div);
+    const select = maker(
+      "select",
+      { class: "form-input", name: "project" },
+      "",
+      div
+    );
+    projects.forEach((project) => {
+      maker("option", { value: project.id }, project.name, select);
+    });
+  };
+
   const description = (parent, task = {}) => {
     const div = maker("div", { class: "form-section" }, "", parent);
     maker(
@@ -113,17 +127,18 @@ const formViews = (() => {
     );
   };
 
-  const button = (parent, text) => {
+  const button = (parent, task) => {
     const button = maker(
       "button",
       { type: "button", class: "form-button" },
-      text,
+      task ? "Update Task" : "Create Task",
       parent
     );
-    button.addEventListener("click", getTaskFormData);
+    button.taskId = task ? task.id : null;
+    button.addEventListener("click", handleTaskSubmit);
   };
 
-  const taskForm = (task = "", error = "") => {
+  const taskForm = (task = "") => {
     const form = maker("form", { id: "task-form" }, "", formBox);
     maker(
       "h1",
@@ -136,7 +151,8 @@ const formViews = (() => {
     date(form, task ? task : null);
     radioButtons(form);
     description(form, task ? task : null);
-    button(form, task ? "Edit Task" : "Create Task");
+    task ? null : selectProject(form);
+    button(form, task);
     task
       ? (document.querySelector(`[value=${task.priority}]`).checked = true)
       : (document.querySelector('[value="low"]').checked = true);
@@ -155,9 +171,13 @@ const formViews = (() => {
     maker("div", { id: "error-box" }, "", form);
     const div = maker("div", { class: "form-section" }, "", form);
     maker("label", { class: "form-label", for: "name" }, "Project Name", div);
-    maker(
+    let input = maker(
       "input",
-      { class: "form-input", name: "name", value: project ? project.name : "" },
+      {
+        class: "form-input",
+        name: "name",
+        value: project ? project.name : "",
+      },
       "",
       div
     );
@@ -167,7 +187,12 @@ const formViews = (() => {
       project ? "Edit Project" : "Create Project",
       form
     );
-    button.addEventListener("click", getProjectFormData);
+
+    button.projectId = project ? project.id : null;
+
+    button.addEventListener("click", handleProjectSubmit);
+
+    input.focus();
   };
 
   return {

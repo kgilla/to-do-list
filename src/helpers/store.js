@@ -1,15 +1,15 @@
+import tasks from "../controllers/tasks";
+
 const store = (() => {
-  const setCurrentProject = (project) => {
-    localStorage.removeItem("currentProject");
-    localStorage.setItem("currentProject", JSON.stringify(project));
+  const getTasks = () => {
+    return JSON.parse(window.localStorage.getItem("tasks"));
   };
 
-  const getCurrentProject = () => {
-    return JSON.parse(window.localStorage.getItem("currentProject"));
+  const setTasks = (tasks) => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   };
 
   const setProjects = (projects) => {
-    localStorage.removeItem("projects");
     localStorage.setItem("projects", JSON.stringify(projects));
   };
 
@@ -17,15 +17,37 @@ const store = (() => {
     return JSON.parse(window.localStorage.getItem("projects"));
   };
 
-  // const deleteProject = (name) => {
-  //   localStorage.removeItem(name);
-  // };
+  const findTask = (id) => {
+    const tasks = getTasks();
+    const task = tasks.find((task) => task.id === id);
+    return task;
+  };
+
+  const findProject = (id) => {
+    const projects = getProjects();
+    const project = projects.find((project) => project.id === id);
+    return project;
+  };
+
+  const populateTasks = (project) => {
+    let taskIndex = [];
+    const tasks = getTasks();
+    project.tasks.forEach((task) => {
+      let t = tasks.find((a) => task === a.id);
+      taskIndex.push(t);
+    });
+    project.tasks = taskIndex;
+    return project;
+  };
 
   return {
-    getCurrentProject,
-    setCurrentProject,
+    getTasks,
+    setTasks,
+    populateTasks,
+    findTask,
     getProjects,
     setProjects,
+    findProject,
   };
 })();
 

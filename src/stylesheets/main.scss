@@ -2,6 +2,7 @@
 @import "./forms";
 @import "./projects";
 @import "./tasks";
+@import "./sidenav";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
 
 html {
@@ -17,7 +18,7 @@ body {
   display: grid;
   min-height: 100vh;
   max-width: 100vw;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: 20rem repeat(4, 1fr);
   grid-template-rows: 4rem 1fr;
   background: #fff;
   box-sizing: border-box;
@@ -64,6 +65,8 @@ body {
 
 #main {
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .large {
@@ -104,9 +107,6 @@ body {
 }
 
 .error {
-  // position: relative;
-  // animation: shake 0.1s linear;
-  // animation-iteration-count: 3;
   padding: 1rem;
   margin-bottom: 0.5rem;
   background-color: #f1948a;
@@ -124,6 +124,10 @@ body {
 
 .slide-in {
   animation: slide-in 0.2s linear;
+}
+
+.expand {
+  animation: expand 0.2s linear;
 }
 
 @keyframes slide-in {
@@ -164,24 +168,42 @@ body {
 
 @keyframes grow {
   0% {
-    height: 60%;
-    width: 50%;
+    height: 2.5rem;
+    width: 2.5rem;
   }
   25% {
-    height: 65%;
-    width: 55%;
+    height: 2.75rem;
+    width: 2.75rem;
   }
   50% {
-    height: 70%;
-    width: 60%;
+    height: 3rem;
+    width: 3rem;
   }
   75% {
-    height: 65%;
-    width: 55%;
+    height: 2.75rem;
+    width: 2.75rem;
   }
   100% {
-    height: 60%;
-    width: 50%;
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+}
+
+@keyframes expand {
+  0% {
+    height: 4rem;
+  }
+  25% {
+    height: 6rem;
+  }
+  50% {
+    height: 8rem;
+  }
+  75% {
+    height: 10rem;
+  }
+  100% {
+    height: 100%;
   }
 }
 

@@ -93,9 +93,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _stylesheets_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _stylesheets_main_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_stylesheets_main_scss__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _controllers_tasks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
-/* harmony import */ var _controllers_projects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7);
-/* harmony import */ var _helpers_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(12);
-/* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(11);
+/* harmony import */ var _controllers_projects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(11);
+/* harmony import */ var _helpers_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(10);
+/* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7);
 /* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_helpers_index__WEBPACK_IMPORTED_MODULE_4__);
 
 
@@ -104,7 +104,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const app = (() => {
-  // localStorage.clear();
+  localStorage.clear();
 
   const main = document.querySelector("#main");
 
@@ -125,27 +125,25 @@ const app = (() => {
   const freshStart = () => {
     let project = { id: Object(_helpers_index__WEBPACK_IMPORTED_MODULE_4__["makeId"])(), name: "Welcome!", tasks: [] };
     let task = {
+      id: Object(_helpers_index__WEBPACK_IMPORTED_MODULE_4__["makeId"])(),
       title: "Click On Me!",
       date: "",
       priority: "low",
       description:
         "Welcome to Get ER Done! Feel free to make projects, make tasks, and check them off! Have fun and be productive!",
       done: false,
+      project: project.id,
     };
-    project.tasks.push(task);
-    let projects = [project];
-    _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].setProjects(projects);
-    _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].setCurrentProject(projects[0]);
-    render();
+    project.tasks.push(task.id);
+    _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].setTasks([task]);
+    _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].setProjects([project]);
+    render(project);
   };
 
-  const render = () => {
-    let currentProject = _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].getCurrentProject();
+  const render = (project) => {
     let projects = _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].getProjects();
-    _controllers_projects__WEBPACK_IMPORTED_MODULE_2__["default"].render(projects, currentProject);
-    _controllers_tasks__WEBPACK_IMPORTED_MODULE_1__["default"].render(currentProject);
-    console.log(currentProject);
-    console.log(projects);
+    _controllers_projects__WEBPACK_IMPORTED_MODULE_2__["default"].render(projects, project);
+    _controllers_tasks__WEBPACK_IMPORTED_MODULE_1__["default"].render(project);
   };
 
   const start = () => {
@@ -471,7 +469,7 @@ exports = ___CSS_LOADER_API_IMPORT___(false);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap);"]);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap);"]);
 // Module
-exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block;\n}\n\nbody {\n  line-height: 1;\n}\n\nol, ul {\n  list-style: none;\n}\n\nblockquote, q {\n  quotes: none;\n}\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: \"\";\n  content: none;\n}\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\n/* form stuff */\nform {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: 100%;\n  max-width: 30rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: 1rem;\n  background: #fff;\n  color: #333;\n  border-radius: 0.5rem;\n  font-family: \"Roboto\", sans-serif;\n  z-index: 6;\n}\n\n.form-heading {\n  margin-bottom: 1rem;\n  font-size: 1.4rem;\n  font-weight: 700;\n  text-align: center;\n}\n\n.form-section {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  margin-bottom: 1rem;\n  width: 100%;\n}\n\n.form-input {\n  position: relative;\n  width: 100%;\n  border: 0.1rem solid #ddd;\n  border-radius: 0.25rem;\n  padding: 0.5rem;\n  font-family: inherit;\n  font-size: 1rem;\n}\n\n.form-label {\n  padding: 0.5rem 0;\n  font-size: 1rem;\n}\n\n.form-input:focus {\n  outline: none;\n  box-shadow: 0 0 0 1.5pt #1976d2;\n}\n\n.text-area {\n  width: 100%;\n  min-height: 10rem;\n  resize: none;\n  font-family: inherit;\n}\n\n.form-button {\n  width: 100%;\n  padding: 0.5rem 0;\n  background: #1976d2;\n  border: none;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.form-button:hover {\n  cursor: pointer;\n  filter: brightness(90%);\n}\n\n#form-overlay {\n  position: fixed;\n  left: 0;\n  top: 0;\n  min-height: 100vh;\n  width: 100vw;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 5;\n}\n\ninput[type=date]::-webkit-calendar-picker-indicator {\n  background: transparent;\n  bottom: 0;\n  color: transparent;\n  cursor: pointer;\n  height: auto;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: auto;\n}\n\n.input-error {\n  border: 0.1rem solid red;\n}\n\n#project-header {\n  height: 4rem;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  border-bottom: 0.1rem solid #eee;\n}\n\n.project-heading {\n  font-size: 1.4rem;\n  font-weight: 700;\n}\n\n/* side nav */\n#side-nav {\n  grid-area: 2/1/3/2;\n  top: 4rem;\n  bottom: auto;\n  width: 100%;\n  background: #f3f5f9;\n  z-index: 3;\n  transition: all 0.7s ease-in-out;\n}\n\n.collapse {\n  left: -20rem;\n}\n\n.expand {\n  left: 0;\n}\n\n#project-header-box {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  grid-template-rows: 4rem;\n  margin-bottom: 0.5rem;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n#new-project-header {\n  grid-column: 1/3;\n  place-self: center;\n  color: #000;\n  font-size: 1.4rem;\n  font-weight: 700;\n}\n\n#new-project {\n  grid-column: 4/5;\n  place-self: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 2.5rem;\n  width: 2.5rem;\n  background: #1976d2;\n  border-radius: 50%;\n}\n\n#plus {\n  color: #fff;\n  font-size: 1.4rem;\n}\n\n#new-project:hover {\n  background: #1e88e5;\n  cursor: pointer;\n}\n\n#project-form {\n  position: fixed;\n  top: 30%;\n  left: 50%;\n  transform: translate(-50%, 0);\n  padding: 0.5rem 1rem;\n  margin: 0.2rem;\n  border: 0.1rem solid #aaa;\n  outline: none;\n  border-radius: 0.5rem;\n  font-size: 1rem;\n  font-weight: 500;\n}\n#project-form :focus {\n  outline: none;\n  border: none;\n}\n\n#projects {\n  height: calc(100vh - 9rem);\n  padding-bottom: 1rem;\n  overflow-y: auto;\n}\n\n#projects:last-child {\n  margin-bottom: 1rem;\n}\n\n.project {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 1rem;\n  margin: 0.2rem;\n  border-radius: 0.5rem;\n  font-size: 1rem;\n  font-weight: 500;\n  text-decoration: none;\n}\n\n.project:hover {\n  background: #fff;\n  cursor: pointer;\n}\n\n.p-box {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.project-name {\n  padding: 0 0.5rem;\n}\n\n.d-box {\n  display: flex;\n  justify-content: flex-end;\n  align-content: center;\n}\n\n.d-box:hover {\n  cursor: pointer;\n}\n\n.delete {\n  padding-left: 0.5rem;\n}\n\n#new-task {\n  position: fixed;\n  bottom: 1rem;\n  right: 1rem;\n  padding: 0.5rem 1rem;\n  border: none;\n  background: #1976d2;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n#new-task:hover {\n  cursor: pointer;\n  background: #1e88e5;\n}\n\n#tasks {\n  margin: 0 5vw;\n}\n\n.task-box {\n  display: grid;\n  grid-template-columns: 5rem repeat(3, 1fr) 5rem;\n  grid-template-rows: 4rem;\n  align-items: center;\n  margin: 1rem 0;\n  border-bottom: 0.1rem solid #eee;\n}\n\n.complete-button {\n  grid-column: 1/2;\n  place-self: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 60%;\n  width: 50%;\n  border-radius: 50%;\n  outline: none;\n}\n\n.complete-button:hover {\n  animation: grow 0.3s linear;\n  animation-iteration-count: 1;\n}\n\n.checkmark {\n  color: #fff;\n  font-size: 1.5rem;\n}\n\n.task-info {\n  grid-column: 2/5;\n  display: flex;\n  flex-direction: column;\n}\n\n.task-name {\n  padding: 0 2rem;\n  font-size: 1.2rem;\n  font-weight: 500;\n}\n\n.task-date {\n  padding: 0 2rem;\n  font-size: 1rem;\n  font-style: italic;\n  color: #777;\n}\n\n.task-option {\n  grid-column: 5/6;\n  place-self: end;\n  padding: 1rem;\n}\n\n.task-option:hover {\n  cursor: pointer;\n}\n\n.text-done {\n  text-decoration: line-through;\n  color: #ccc;\n}\n\n.task-complete {\n  background: #1976d2;\n}\n\n.high {\n  border: 0.2rem solid #a93226;\n  background: #f9ebea;\n}\n\n.medium {\n  border: 0.2rem solid #d4ac0d;\n  background: #fef9e7;\n}\n\n.low {\n  border: 0.2rem solid #229954;\n  background: #e9f7ef;\n}\n\nhtml {\n  font-size: 16px;\n}\n\n* {\n  line-height: 1.5;\n  box-sizing: border-box;\n}\n\nbody {\n  display: grid;\n  min-height: 100vh;\n  max-width: 100vw;\n  grid-template-columns: repeat(5, 1fr);\n  grid-template-rows: 4rem 1fr;\n  background: #fff;\n  box-sizing: border-box;\n  font-family: \"Roboto\", sans-serif;\n}\n\n/* header */\n#header {\n  position: fixed;\n  width: 100%;\n  grid-area: 1/1/2/6;\n  display: grid;\n  grid-template-columns: 3rem 1fr 3rem;\n  align-content: center;\n  height: 4rem;\n  padding: 0 2rem;\n  justify-content: center;\n  align-items: center;\n  background: #203148;\n}\n\n.brand {\n  grid-column: 2/3;\n  justify-self: center;\n  color: #fff;\n  font-size: 1.8rem;\n  font-weight: 900;\n  text-align: center;\n}\n\n#expand-nav {\n  grid-column: 1/2;\n  border: none;\n  background: none;\n  color: #fff;\n  font-size: 2rem;\n}\n#expand-nav :hover {\n  cursor: pointer;\n}\n\n/* main stuff */\n#main {\n  width: 100%;\n}\n\n.large {\n  grid-area: 2/2/3/6;\n}\n\n.small {\n  grid-area: 2/1/3/6;\n}\n\n/* text spots in center */\n.welcome-mat {\n  position: relative;\n  top: 25%;\n  text-align: center;\n}\n\n.welcome-header {\n  color: #ccc;\n  font-size: 1.5rem;\n}\n\n.surprise {\n  padding: 3rem;\n  color: #ccc;\n  font-size: 4rem;\n}\n\n/* class toggles */\n.hidden {\n  display: none;\n}\n\n.selected {\n  background: #fff;\n}\n\n.error {\n  padding: 1rem;\n  margin-bottom: 0.5rem;\n  background-color: #f1948a;\n  color: #943126;\n  border-radius: 0.5rem;\n}\n\n.open-form {\n  animation: spin 0.3s linear;\n}\n\n.curtain {\n  animation: curtain 0.2s linear;\n}\n\n.slide-in {\n  animation: slide-in 0.2s linear;\n}\n\n@keyframes slide-in {\n  0% {\n    left: -20vw;\n  }\n  100% {\n    left: 0;\n  }\n}\n@keyframes curtain {\n  0% {\n    top: -100vh;\n  }\n  100% {\n    top: 0vh;\n  }\n}\n@keyframes spin {\n  0% {\n    rotate: 0;\n  }\n  100% {\n    rotate: 180deg;\n  }\n}\n@keyframes shake {\n  0% {\n    left: -5px;\n  }\n  100% {\n    right: -5px;\n  }\n}\n@keyframes grow {\n  0% {\n    height: 60%;\n    width: 50%;\n  }\n  25% {\n    height: 65%;\n    width: 55%;\n  }\n  50% {\n    height: 70%;\n    width: 60%;\n  }\n  75% {\n    height: 65%;\n    width: 55%;\n  }\n  100% {\n    height: 60%;\n    width: 50%;\n  }\n}\n@media screen and (max-width: 599px) {\n  .e-options {\n    flex-direction: column;\n  }\n}\n@media screen and (min-width: 600px) {\n  .e-options {\n    flex-direction: column;\n  }\n}\n@media screen and (min-width: 900px) {\n  .e-options {\n    flex-direction: row;\n  }\n}", ""]);
+exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block;\n}\n\nbody {\n  line-height: 1;\n}\n\nol, ul {\n  list-style: none;\n}\n\nblockquote, q {\n  quotes: none;\n}\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: \"\";\n  content: none;\n}\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\n/* form stuff */\nform {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: calc(100% - 2rem);\n  max-width: 30rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: 1rem;\n  background: #fff;\n  color: #333;\n  border-radius: 0.5rem;\n  font-family: \"Roboto\", sans-serif;\n  z-index: 6;\n}\n\n#project-form {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  padding: 1rem;\n  border: 0.1rem solid #aaa;\n  border-radius: 0.5rem;\n}\n\n.form-heading {\n  margin-bottom: 1rem;\n  font-size: 1.4rem;\n  font-weight: 700;\n  text-align: center;\n}\n\n.form-section {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  margin-bottom: 0.5rem;\n  width: 100%;\n}\n\n.form-input {\n  position: relative;\n  width: 100%;\n  border: 0.1rem solid #ddd;\n  border-radius: 0.25rem;\n  padding: 0.5rem;\n  font-family: inherit;\n  font-size: 1rem;\n}\n\n.form-label {\n  padding: 0.5rem 0;\n  font-size: 1rem;\n}\n\n.form-input:focus {\n  outline: none;\n  box-shadow: 0 0 0 1.5pt #1976d2;\n}\n\n.text-area {\n  width: 100%;\n  min-height: 10rem;\n  resize: none;\n  font-family: inherit;\n}\n\n.form-button {\n  width: 100%;\n  padding: 0.5rem 0;\n  background: #1976d2;\n  border: none;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.form-button:hover {\n  cursor: pointer;\n  filter: brightness(90%);\n}\n\n#overlay {\n  position: fixed;\n  left: 0;\n  top: 0;\n  min-height: 100vh;\n  width: 100vw;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 5;\n}\n\ninput[type=date]::-webkit-calendar-picker-indicator {\n  background: transparent;\n  bottom: 0;\n  color: transparent;\n  cursor: pointer;\n  height: auto;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: auto;\n}\n\n.input-error {\n  border: 0.1rem solid red;\n}\n\n#project-header {\n  height: 6rem;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0 1rem;\n}\n\n.project-heading {\n  font-size: 1.4rem;\n  font-weight: 700;\n}\n\n#new-task {\n  position: fixed;\n  bottom: 1rem;\n  right: 1rem;\n  padding: 0.5rem 1rem;\n  border: none;\n  background: #1976d2;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n#new-task:hover {\n  cursor: pointer;\n  background: #1e88e5;\n}\n\n#tasks {\n  padding: 0 1rem;\n}\n\n.task-box {\n  display: grid;\n  grid-template-columns: 3rem repeat(3, 1fr) 3rem;\n  grid-template-rows: 4rem;\n  align-items: center;\n  margin: 1rem 0;\n  border-bottom: 0.1rem solid #eee;\n}\n\n.complete-button {\n  grid-column: 1/2;\n  place-self: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 2.5rem;\n  width: 2.5rem;\n  border-radius: 50%;\n  outline: none;\n  z-index: 2;\n}\n\n.complete-button:hover {\n  animation: grow 0.3s linear;\n  animation-iteration-count: 1;\n  cursor: pointer;\n}\n\n.checkmark {\n  color: #fff;\n  font-size: 1.5rem;\n}\n\n.task-info {\n  grid-column: 2/5;\n  display: flex;\n  flex-direction: column;\n}\n\n.task-name {\n  padding: 0 2rem;\n  font-size: 1.2rem;\n  font-weight: 500;\n}\n\n.task-date {\n  padding: 0 2rem;\n  font-size: 1rem;\n  font-style: italic;\n  color: #777;\n}\n\n.task-option {\n  grid-column: 5/6;\n  place-self: end;\n  padding: 1rem;\n}\n\n.task-option:hover {\n  cursor: pointer;\n}\n\n.text-done {\n  text-decoration: line-through;\n  color: #ccc;\n}\n\n.task-complete {\n  background: #1976d2;\n}\n\n.high {\n  border: 0.2rem solid #a93226;\n  background: #f9ebea;\n}\n\n.medium {\n  border: 0.2rem solid #d4ac0d;\n  background: #fef9e7;\n}\n\n.low {\n  border: 0.2rem solid #229954;\n  background: #e9f7ef;\n}\n\n#task-details-box {\n  margin-bottom: 1rem;\n  background: #fff;\n  border-bottom: 0.1rem solid #eee;\n  border-radius: 0.5rem;\n  font-family: \"Roboto\", sans-serif;\n  z-index: 6;\n  overflow: hidden;\n}\n\n#details-header {\n  position: relative;\n  padding: 1rem;\n}\n\n.details-title {\n  font-size: 1.4rem;\n  font-weight: 700;\n  color: #000;\n}\n\n.details-date {\n  font-size: 1rem;\n  font-weight: 500;\n  color: #666;\n}\n\n#edit-task-button {\n  position: absolute;\n  top: 1rem;\n  right: 1rem;\n  padding: 1rem;\n}\n\n#details-main {\n  padding: 0 1rem 1rem 1rem;\n}\n\n.details-description {\n  font-size: 1rem;\n  line-height: 2;\n}\n\n.details-footer {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.details-footer i {\n  padding-bottom: 1rem;\n  font-size: 1.2rem;\n  font-weight: 800;\n  border: 0.1rem solid #eee;\n}\n\n#side-nav {\n  position: fixed;\n  top: 4rem;\n  bottom: auto;\n  width: 20rem;\n  padding: 1rem;\n  background: #f3f5f9;\n  z-index: 3;\n  transition: all 0.7s ease-in-out;\n}\n\n#all-tasks i {\n  color: #2980b9;\n}\n\n#tasks-today i {\n  color: #27ae60;\n}\n\n#tasks-week i {\n  color: #e67e22;\n}\n\n#projects {\n  height: calc(100vh - 6rem);\n  padding-bottom: 1rem;\n  overflow-y: auto;\n}\n\n#projects:last-child {\n  margin-bottom: 1rem;\n}\n\n#sidenav-title-box {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.5rem 1rem;\n  margin-bottom: 1rem;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n#sidenav-title {\n  font-size: 1.2rem;\n  font-weight: 800;\n  color: #000;\n}\n\n.sidenav-item {\n  display: flex;\n  align-items: center;\n  padding: 0.5rem;\n  margin-bottom: 0.5rem;\n  font-size: 1rem;\n  line-height: 2;\n}\n\n.sidenav-item:hover {\n  background: #fff;\n  cursor: pointer;\n}\n\n.sidenav-item-icon {\n  color: #333;\n  margin-right: 1rem;\n}\n\n.sidenav-item-name {\n  color: #222;\n  margin-right: 0.5rem;\n}\n\n.sidenav-item-count {\n  color: #aaa;\n}\n\n#plus {\n  margin-right: 0.5rem;\n  color: #333;\n  font-size: 0.8rem;\n}\n\n#new-project-button {\n  width: 100%;\n  display: flex;\n  flex-direction: row-reverse;\n  justify-content: flex-end;\n  align-items: center;\n  padding: 1rem;\n  border: none;\n  border-radius: 0.5rem;\n  background: none;\n  font-size: 1rem;\n  font-weight: 600;\n  color: #333;\n}\n\n#new-project-button:hover {\n  cursor: pointer;\n}\n\n.collapse {\n  left: -20rem;\n}\n\n.expand {\n  left: 0;\n}\n\nhtml {\n  font-size: 16px;\n}\n\n* {\n  line-height: 1.5;\n  box-sizing: border-box;\n}\n\nbody {\n  display: grid;\n  min-height: 100vh;\n  max-width: 100vw;\n  grid-template-columns: 20rem repeat(4, 1fr);\n  grid-template-rows: 4rem 1fr;\n  background: #fff;\n  box-sizing: border-box;\n  font-family: \"Roboto\", sans-serif;\n}\n\n/* header */\n#header {\n  position: fixed;\n  width: 100%;\n  grid-area: 1/1/2/6;\n  display: grid;\n  grid-template-columns: 3rem 1fr 3rem;\n  align-content: center;\n  height: 4rem;\n  padding: 0 2rem;\n  justify-content: center;\n  align-items: center;\n  background: #203148;\n}\n\n.brand {\n  grid-column: 2/3;\n  justify-self: center;\n  color: #fff;\n  font-size: 1.8rem;\n  font-weight: 900;\n  text-align: center;\n}\n\n#expand-nav {\n  grid-column: 1/2;\n  border: none;\n  background: none;\n  color: #fff;\n  font-size: 2rem;\n}\n#expand-nav :hover {\n  cursor: pointer;\n}\n\n/* main stuff */\n#main {\n  width: 100%;\n  max-width: 1200px;\n  margin: 0 auto;\n}\n\n.large {\n  grid-area: 2/2/3/6;\n}\n\n.small {\n  grid-area: 2/1/3/6;\n}\n\n/* text spots in center */\n.welcome-mat {\n  position: relative;\n  top: 25%;\n  text-align: center;\n}\n\n.welcome-header {\n  color: #ccc;\n  font-size: 1.5rem;\n}\n\n.surprise {\n  padding: 3rem;\n  color: #ccc;\n  font-size: 4rem;\n}\n\n/* class toggles */\n.hidden {\n  display: none;\n}\n\n.selected {\n  background: #fff;\n}\n\n.error {\n  padding: 1rem;\n  margin-bottom: 0.5rem;\n  background-color: #f1948a;\n  color: #943126;\n  border-radius: 0.5rem;\n}\n\n.open-form {\n  animation: spin 0.3s linear;\n}\n\n.curtain {\n  animation: curtain 0.2s linear;\n}\n\n.slide-in {\n  animation: slide-in 0.2s linear;\n}\n\n.expand {\n  animation: expand 0.2s linear;\n}\n\n@keyframes slide-in {\n  0% {\n    left: -20vw;\n  }\n  100% {\n    left: 0;\n  }\n}\n@keyframes curtain {\n  0% {\n    top: -100vh;\n  }\n  100% {\n    top: 0vh;\n  }\n}\n@keyframes spin {\n  0% {\n    rotate: 0;\n  }\n  100% {\n    rotate: 180deg;\n  }\n}\n@keyframes shake {\n  0% {\n    left: -5px;\n  }\n  100% {\n    right: -5px;\n  }\n}\n@keyframes grow {\n  0% {\n    height: 2.5rem;\n    width: 2.5rem;\n  }\n  25% {\n    height: 2.75rem;\n    width: 2.75rem;\n  }\n  50% {\n    height: 3rem;\n    width: 3rem;\n  }\n  75% {\n    height: 2.75rem;\n    width: 2.75rem;\n  }\n  100% {\n    height: 2.5rem;\n    width: 2.5rem;\n  }\n}\n@keyframes expand {\n  0% {\n    height: 4rem;\n  }\n  25% {\n    height: 6rem;\n  }\n  50% {\n    height: 8rem;\n  }\n  75% {\n    height: 10rem;\n  }\n  100% {\n    height: 100%;\n  }\n}\n@media screen and (max-width: 599px) {\n  .e-options {\n    flex-direction: column;\n  }\n}\n@media screen and (min-width: 600px) {\n  .e-options {\n    flex-direction: column;\n  }\n}\n@media screen and (min-width: 900px) {\n  .e-options {\n    flex-direction: row;\n  }\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -584,8 +582,11 @@ function toComment(sourceMap) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var _views_taskViews__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6);
-/* harmony import */ var _forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9);
-/* harmony import */ var _helpers_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(12);
+/* harmony import */ var _forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8);
+/* harmony import */ var _helpers_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(10);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_helpers__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -593,46 +594,95 @@ __webpack_require__.r(__webpack_exports__);
 
 const tasks = (() => {
   const newTask = document.querySelector("#new-task");
+  const overlay = document.querySelector("#overlay");
 
-  const create = (task) => {
-    let currentProject = _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].getCurrentProject();
+  const create = (data) => {
+    const { title, date, priority, description, project } = data;
+
+    let task = {
+      id: Object(_helpers__WEBPACK_IMPORTED_MODULE_4__["makeId"])(),
+      title,
+      date,
+      priority,
+      description,
+      project,
+      done: false,
+    };
+
     let projects = _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].getProjects();
-    let i = projects.findIndex((p) => p.id === currentProject.id);
-    currentProject.tasks.push(task);
-    projects[i] = currentProject;
+    let tasks = _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].getTasks();
+
+    tasks.push(task);
+
+    let savedProject = _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].findProject(task.project);
+    savedProject.tasks.push(task.id);
+    let i = projects.findIndex((p) => p.id === task.project);
+    projects[i] = savedProject;
+
+    _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].setTasks(tasks);
     _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].setProjects(projects);
-    _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].setCurrentProject(currentProject);
-    _app__WEBPACK_IMPORTED_MODULE_0__["default"].render();
+
+    _app__WEBPACK_IMPORTED_MODULE_0__["default"].render(savedProject);
   };
 
-  const update = () => {};
+  const update = (data) => {
+    const { id, title, date, priority, description, done } = data;
+
+    const task = _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].findTask(id);
+
+    const newTask = {
+      id,
+      title,
+      date,
+      priority,
+      description,
+      project: task.project,
+      done,
+    };
+
+    let tasks = _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].getTasks();
+    let i = tasks.findIndex((task) => task.id === newTask.id);
+    tasks[i] = newTask;
+    _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].setTasks(tasks);
+    _app__WEBPACK_IMPORTED_MODULE_0__["default"].render(_helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].findProject(newTask.project));
+  };
 
   const destroy = () => {};
 
   const handleTaskComplete = (index) => {
-    let currentProject = _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].getCurrentProject();
-    let projects = _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].getProjects();
-    let i = projects.findIndex((p) => p.id == currentProject.id);
-    currentProject.tasks[index].done
-      ? (currentProject.tasks[index].done = false)
-      : (currentProject.tasks[index].done = true);
-    projects[i] = currentProject;
-    _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].setProjects(projects);
-    _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].setCurrentProject(currentProject);
-    let taskbox = document.querySelector(`div[data="${index}"]`);
-    _views_taskViews__WEBPACK_IMPORTED_MODULE_1__["default"].markTaskComplete(currentProject.tasks[index], taskbox);
+    // let projects = store.getProjects();
+    // let i = projects.findIndex((p) => p.id == currentProject.id);
+    // currentProject.tasks[index].done
+    //   ? (currentProject.tasks[index].done = false)
+    //   : (currentProject.tasks[index].done = true);
+    // projects[i] = currentProject;
+    // store.setProjects(projects);
+    // let taskbox = document.querySelector(`div[data="${index}"]`);
+    // view.markTaskComplete(currentProject.tasks[index], taskbox);
   };
 
-  const openForm = (i = "") => {
-    let currentProject = _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].getCurrentProject();
-    i !== "" ? _forms__WEBPACK_IMPORTED_MODULE_2__["default"].openTaskForm(currentProject.tasks[i]) : _forms__WEBPACK_IMPORTED_MODULE_2__["default"].openTaskForm;
+  const openForm = (id = "") => {
+    if (id) {
+      _forms__WEBPACK_IMPORTED_MODULE_2__["default"].openTaskForm(_helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].findTask(id));
+    } else {
+      _forms__WEBPACK_IMPORTED_MODULE_2__["default"].openTaskForm();
+    }
   };
 
-  const render = (currentProject) => {
-    _views_taskViews__WEBPACK_IMPORTED_MODULE_1__["default"].render(currentProject);
+  const handleClick = () => {
+    openForm();
   };
 
-  newTask.addEventListener("click", openForm);
+  const openDetails = (i) => {
+    overlay.classList.toggle("hidden");
+    _views_taskViews__WEBPACK_IMPORTED_MODULE_1__["default"].renderTaskDetails(project.tasks[i], i);
+  };
+
+  const render = (project) => {
+    _views_taskViews__WEBPACK_IMPORTED_MODULE_1__["default"].render(_helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].populateTasks(project));
+  };
+
+  newTask.addEventListener("click", handleClick);
 
   return {
     create,
@@ -640,6 +690,7 @@ const tasks = (() => {
     destroy,
     handleTaskComplete,
     openForm,
+    openDetails,
     render,
   };
 })();
@@ -654,7 +705,7 @@ const tasks = (() => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _controllers_tasks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5);
-/* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(11);
+/* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
 /* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_helpers_index__WEBPACK_IMPORTED_MODULE_1__);
 
 
@@ -663,8 +714,31 @@ const taskViews = (() => {
   const main = document.querySelector("#tasks");
 
   const openEditForm = (e) => {
-    let i = e.currentTarget.parentNode.attributes[1].value;
-    _controllers_tasks__WEBPACK_IMPORTED_MODULE_0__["default"].openForm(i);
+    let id = e.currentTarget.parentNode.parentNode.attributes[1].value;
+    _controllers_tasks__WEBPACK_IMPORTED_MODULE_0__["default"].openForm(id);
+  };
+
+  const openNewForm = () => {
+    _controllers_tasks__WEBPACK_IMPORTED_MODULE_0__["default"].openForm();
+  };
+
+  const showDetails = (e) => {
+    if (
+      e.target !== e.currentTarget.firstChild &&
+      e.target !== e.currentTarget.firstChild.firstChild
+    ) {
+      e.currentTarget.classList.toggle("hidden");
+      e.currentTarget.nextSibling.classList.toggle("expand");
+      e.currentTarget.nextSibling.classList.toggle("hidden");
+    }
+  };
+
+  const hideDetails = (e) => {
+    e.currentTarget.parentNode.parentNode.classList.toggle("expand");
+    e.currentTarget.parentNode.parentNode.classList.toggle("hidden");
+    e.currentTarget.parentNode.parentNode.previousSibling.classList.toggle(
+      "hidden"
+    );
   };
 
   const markTaskComplete = (task, taskbox) => {
@@ -693,23 +767,62 @@ const taskViews = (() => {
     );
   };
 
-  const taskMaker = (task, index) => {
-    let div = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("div", { class: "task-box", data: index }, "", main);
+  const renderTaskDetails = (parent, task) => {
+    let div = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])(
+      "div",
+      { class: "task-details-box hidden", data: task.id },
+      "",
+      parent
+    );
+    let header = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("header", { id: "details-header" }, "", div);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("h2", { class: "details-title" }, task.title, header);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("h3", { class: "details-date" }, task.date, header);
+    let b = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])(
+      "i",
+      { class: "fas fa-ellipsis-h", id: "edit-task-button" },
+      "",
+      header
+    );
+    b.addEventListener("click", openEditForm);
 
-    let b = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("a", { class: `complete-button ${task.priority}` }, "", div);
+    let main = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("main", { id: "details-main" }, "", div);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("p", { class: "details-description" }, task.description, main);
+    let footer = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("footer", { class: "details-footer" }, "", div);
+    let close = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("i", { class: "fas fa-chevron-up" }, "", footer);
+    close.addEventListener("click", hideDetails);
+  };
+
+  const renderTask = (parent, task) => {
+    let div = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("div", { class: "task-box", data: task.id }, "", parent);
+
+    let b = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])(
+      "div",
+      { class: `complete-button ${task.priority}` },
+      "",
+      div
+    );
     Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("i", { class: "fas fa-check checkmark hidden" }, "", b);
 
-    let i = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("div", { class: "task-info" }, "", div);
-    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("h2", { class: "task-name" }, task.title, i);
-    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("p", { class: "task-date" }, task.dueDate, i);
-
-    let e = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("i", { class: "fas fa-ellipsis-h task-option" }, "", div);
+    let c = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("div", { class: "task-info" }, "", div);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("h2", { class: "task-name" }, task.title, c);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("p", { class: "task-date" }, task.date, c);
 
     b.addEventListener("click", completeTask);
     if (task.done == true) {
       markTaskComplete(task, div);
     }
-    e.addEventListener("click", openEditForm);
+    div.addEventListener("click", showDetails);
+  };
+
+  const taskMaker = (task) => {
+    let div = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])(
+      "div",
+      { class: "task-container", data: task.id },
+      "",
+      main
+    );
+    renderTask(div, task);
+    renderTaskDetails(div, task);
   };
 
   const render = (project) => {
@@ -718,11 +831,20 @@ const taskViews = (() => {
       renderWelcome();
     } else {
       project.tasks.forEach((task, i) => taskMaker(task, i));
+      let b = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])(
+        "button",
+        { type: "button", id: "new-task-button" },
+        "Add Task",
+        main
+      );
+      Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("i", { class: "fas fa-plus", id: "plus" }, "", b);
+      b.addEventListener("click", openNewForm);
     }
   };
 
   return {
     render,
+    renderTaskDetails,
     markTaskComplete,
   };
 })();
@@ -732,54 +854,21 @@ const taskViews = (() => {
 
 /***/ }),
 /* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _views_projectViews__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8);
-/* harmony import */ var _helpers_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(12);
-/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(0);
+exports.maker = (type, attributes, text, place) => {
+  let element = document.createElement(type);
+  Object.keys(attributes).forEach((key) => {
+    element.setAttribute(key, attributes[key]);
+  });
+  element.textContent = text;
+  place.appendChild(element);
+  return element;
+};
 
-
-
-
-const projects = (() => {
-  let currentProject = _helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].getCurrentProject();
-
-  const create = (data) => {
-    let projects = _helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].getProjects();
-    projects.push(data);
-    _helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].setProjects(projects);
-    _helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].setCurrentProject(projects.slice(-1)[0]);
-    _app__WEBPACK_IMPORTED_MODULE_2__["default"].render();
-  };
-
-  const changeProject = (id) => {
-    let projects = _helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].getProjects();
-    let project = projects.find((p) => p.id === id);
-    _helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].setCurrentProject(project);
-    _app__WEBPACK_IMPORTED_MODULE_2__["default"].render();
-  };
-
-  const update = () => {};
-
-  const destroy = () => {};
-
-  const render = (projects, currentProject) => {
-    _views_projectViews__WEBPACK_IMPORTED_MODULE_0__["default"].renderProjectHeader(currentProject);
-    _views_projectViews__WEBPACK_IMPORTED_MODULE_0__["default"].renderProjects(projects, currentProject);
-  };
-
-  return {
-    create,
-    changeProject,
-    update,
-    destroy,
-    render,
-  };
-})();
-
-/* harmony default export */ __webpack_exports__["default"] = (projects);
+exports.makeId = () => {
+  return "_" + Math.random().toString(36).substr(2, 9);
+};
 
 
 /***/ }),
@@ -788,141 +877,61 @@ const projects = (() => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _controllers_projects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
-/* harmony import */ var _controllers_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9);
-/* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(11);
-/* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_helpers_index__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-
-const projectViews = (() => {
-  const projectList = document.querySelector("#projects");
-  const projectHeader = document.querySelector("#project-header");
-  const sideNav = document.querySelector("#side-nav");
-  const expandNav = document.querySelector("#expand-nav");
-
-  window.innerWidth < 900 ? sideNav.classList.add("collapse") : null;
-  window.innerWidth > 900 ? expandNav.classList.add("hidden") : null;
-
-  const handleProjectChange = (e) => {
-    if (e.currentTarget.classList[1] == undefined) {
-      _controllers_projects__WEBPACK_IMPORTED_MODULE_0__["default"].changeProject(e.currentTarget.attributes[1].value);
-    }
-  };
-
-  const showNewProjectForm = () => {
-    _controllers_forms__WEBPACK_IMPORTED_MODULE_1__["default"].openProjectForm();
-  };
-
-  const showEditProjectForm = () => {
-    _controllers_forms__WEBPACK_IMPORTED_MODULE_1__["default"].openProjectForm(currentProject);
-  };
-
-  const renderProject = (project, currentProject) => {
-    let p = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])(
-      "div",
-      {
-        class:
-          project.id === currentProject.id ? "project selected" : "project",
-        data: project.id,
-      },
-      "",
-      projectList
-    );
-    let b = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("div", { class: "p-box" }, "", p);
-    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("i", { class: "far fa-calendar-check project-icon" }, "", b);
-    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("h3", { class: "project-name" }, project.name, b);
-    let d = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("div", { class: "d-box" }, "", p);
-    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("h3", { class: "project-count" }, `${project.tasks.length}`, d);
-    p.addEventListener("click", handleProjectChange);
-  };
-
-  const renderProjects = (projects, currentProject) => {
-    projectList.innerHTML = "";
-    projects.forEach((project) => renderProject(project, currentProject));
-    const newButton = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])(
-      "button",
-      { type: "button", id: "new-project-button" },
-      "New Project",
-      projectList
-    );
-    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("i", { class: "fas fa-plus", id: "plus" }, "", newButton);
-    newButton.addEventListener("click", showNewProjectForm);
-  };
-
-  const renderProjectHeader = (project) => {
-    projectHeader.innerHTML = "";
-    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("h2", { class: "project-heading" }, project.name, projectHeader);
-    let button = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("button", { id: "edit-task" }, "", projectHeader);
-    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("i", { class: "fas fa-ellipsis-h", id: "ellipsis" }, "", button);
-    button.addEventListener("click", showEditProjectForm);
-  };
-
-  const handleWindowResize = () => {
-    if (window.innerWidth < 900) {
-      sideNav.classList.add("collapse");
-      expandNav.classList.remove("hidden");
-    } else if (window.innerWidth > 900) {
-      sideNav.classList.remove("collapse");
-      expandNav.classList.add("hidden");
-    }
-  };
-
-  const handleClick = () => {
-    sideNav.classList.toggle("collapse");
-    sideNav.classList.toggle("slide-in");
-  };
-
-  /* event listeners */
-
-  window.addEventListener("resize", handleWindowResize);
-  expandNav.addEventListener("click", handleClick);
-
-  return {
-    renderProjects,
-    renderProjectHeader,
-  };
-})();
-
-/* harmony default export */ __webpack_exports__["default"] = (projectViews);
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _views_formViews__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(10);
-/* harmony import */ var _controllers_projects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
+/* harmony import */ var _views_formViews__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9);
+/* harmony import */ var _controllers_projects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(11);
 /* harmony import */ var _controllers_tasks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
 
 
 
 
 const forms = (() => {
-  const formBox = document.querySelector("#form-box");
-  const formOverlay = document.querySelector("#form-overlay");
+  const formBox = document.querySelector("#box");
+  const overlay = document.querySelector("#overlay");
 
   const openTaskForm = (task = "") => {
-    formOverlay.classList.toggle("hidden");
+    overlay.classList.toggle("hidden");
     _views_formViews__WEBPACK_IMPORTED_MODULE_0__["default"].taskForm(task);
   };
 
   const openProjectForm = (project = "") => {
-    formOverlay.classList.toggle("hidden");
+    overlay.classList.toggle("hidden");
     _views_formViews__WEBPACK_IMPORTED_MODULE_0__["default"].projectForm(project);
   };
 
+  const closeForm = () => {
+    overlay.classList.toggle("hidden");
+    formBox.innerHTML = "";
+  };
+
   const handleOverlayClick = (e) => {
-    if (e.target == formOverlay) {
+    if (e.target == overlay) {
       closeForm();
     }
   };
-  const closeForm = () => {
-    formOverlay.classList.toggle("hidden");
-    formBox.innerHTML = "";
+
+  const getTaskFormData = (taskId = "") => {
+    const title = document.querySelector('[name="title"]').value;
+    const date = document.querySelector('[name="date"]').value;
+    const priority = document.querySelector('[name="priority"]:checked').value;
+    const description = document.querySelector('[name="description"]').value;
+    const project = taskId
+      ? null
+      : document.querySelector('[name="project"]').value;
+    const data = {
+      id: taskId,
+      title,
+      date,
+      priority,
+      description,
+      project,
+    };
+    forms.validateFormData(data);
+  };
+
+  const getProjectFormData = (projectId = "") => {
+    const name = document.querySelector('[name="name"]').value;
+    const data = { id: projectId, name };
+    forms.validateFormData(data);
   };
 
   const validateFormData = (data) => {
@@ -933,52 +942,65 @@ const forms = (() => {
       const error = { message: "Your project needs a name" };
       _views_formViews__WEBPACK_IMPORTED_MODULE_0__["default"].addError(error);
     } else {
-      data.title ? _controllers_tasks__WEBPACK_IMPORTED_MODULE_2__["default"].create(data) : _controllers_projects__WEBPACK_IMPORTED_MODULE_1__["default"].create(data);
+      if (data.id) {
+        data.title
+          ? _controllers_tasks__WEBPACK_IMPORTED_MODULE_2__["default"].update(data)
+          : _controllers_projects__WEBPACK_IMPORTED_MODULE_1__["default"].update(data);
+      } else {
+        data.title
+          ? _controllers_tasks__WEBPACK_IMPORTED_MODULE_2__["default"].create(data)
+          : _controllers_projects__WEBPACK_IMPORTED_MODULE_1__["default"].create(data);
+      }
       closeForm();
     }
   };
 
-  formOverlay.addEventListener("click", handleOverlayClick);
+  overlay.addEventListener("click", handleOverlayClick);
 
-  return { openProjectForm, openTaskForm, validateFormData };
+  return {
+    openProjectForm,
+    openTaskForm,
+    validateFormData,
+    getTaskFormData,
+    getProjectFormData,
+  };
 })();
 
 /* harmony default export */ __webpack_exports__["default"] = (forms);
 
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(11);
+/* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
 /* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_helpers_index__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _controllers_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9);
+/* harmony import */ var _helpers_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(10);
+/* harmony import */ var _controllers_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8);
+
 
 
 
 const formViews = (() => {
-  const formBox = document.querySelector("#form-box");
-
-  const getTaskFormData = () => {
-    const title = document.querySelector('[name="title"]').value;
-    const date = document.querySelector('[name="date"]').value;
-    const priority = document.querySelector('[name="priority"]:checked').value;
-    const description = document.querySelector('[name="description"]').value;
-    const data = { title, date, priority, description, done: false };
-    _controllers_forms__WEBPACK_IMPORTED_MODULE_1__["default"].validateFormData(data);
-  };
-
-  const getProjectFormData = () => {
-    const name = document.querySelector('[name="name"]').value;
-    const data = { id: Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["makeId"])(), name, tasks: [] };
-    _controllers_forms__WEBPACK_IMPORTED_MODULE_1__["default"].validateFormData(data);
-  };
+  const formBox = document.querySelector("#box");
 
   const addError = (error) => {
     const errorBox = document.querySelector("#error-box");
     Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("div", { class: "error" }, error.message, errorBox);
+  };
+
+  const handleTaskSubmit = (e) => {
+    e.currentTarget.taskId
+      ? _controllers_forms__WEBPACK_IMPORTED_MODULE_2__["default"].getTaskFormData(e.currentTarget.taskId)
+      : _controllers_forms__WEBPACK_IMPORTED_MODULE_2__["default"].getTaskFormData();
+  };
+
+  const handleProjectSubmit = (e) => {
+    e.currentTarget.projectId
+      ? _controllers_forms__WEBPACK_IMPORTED_MODULE_2__["default"].getProjectFormData(e.currentTarget.projectId)
+      : _controllers_forms__WEBPACK_IMPORTED_MODULE_2__["default"].getProjectFormData();
   };
 
   // Task Form Views
@@ -986,7 +1008,7 @@ const formViews = (() => {
   const title = (parent, task = {}) => {
     const div = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("div", { class: "form-section" }, "", parent);
     Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("label", { class: "form-label", for: "title" }, "Task Name", div);
-    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
+    let input = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
       "input",
       {
         type: "text",
@@ -997,6 +1019,7 @@ const formViews = (() => {
       "",
       div
     );
+    input.focus();
   };
 
   const date = (parent, task = {}) => {
@@ -1054,6 +1077,21 @@ const formViews = (() => {
     Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("label", { class: "radio-label", for: "high" }, "High", radios);
   };
 
+  const selectProject = (parent) => {
+    const projects = _helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].getProjects();
+    const div = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("div", { class: "form-section" }, "", parent);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("label", { class: "form-label", for: "project" }, "Project", div);
+    const select = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
+      "select",
+      { class: "form-input", name: "project" },
+      "",
+      div
+    );
+    projects.forEach((project) => {
+      Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("option", { value: project.id }, project.name, select);
+    });
+  };
+
   const description = (parent, task = {}) => {
     const div = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("div", { class: "form-section" }, "", parent);
     Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
@@ -1070,17 +1108,18 @@ const formViews = (() => {
     );
   };
 
-  const button = (parent, text) => {
+  const button = (parent, task) => {
     const button = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
       "button",
       { type: "button", class: "form-button" },
-      text,
+      task ? "Update Task" : "Create Task",
       parent
     );
-    button.addEventListener("click", getTaskFormData);
+    button.taskId = task ? task.id : null;
+    button.addEventListener("click", handleTaskSubmit);
   };
 
-  const taskForm = (task = "", error = "") => {
+  const taskForm = (task = "") => {
     const form = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("form", { id: "task-form" }, "", formBox);
     Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
       "h1",
@@ -1093,7 +1132,8 @@ const formViews = (() => {
     date(form, task ? task : null);
     radioButtons(form);
     description(form, task ? task : null);
-    button(form, task ? "Edit Task" : "Create Task");
+    task ? null : selectProject(form);
+    button(form, task);
     task
       ? (document.querySelector(`[value=${task.priority}]`).checked = true)
       : (document.querySelector('[value="low"]').checked = true);
@@ -1112,9 +1152,13 @@ const formViews = (() => {
     Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("div", { id: "error-box" }, "", form);
     const div = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("div", { class: "form-section" }, "", form);
     Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("label", { class: "form-label", for: "name" }, "Project Name", div);
-    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
+    let input = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
       "input",
-      { class: "form-input", name: "name", value: project ? project.name : "" },
+      {
+        class: "form-input",
+        name: "name",
+        value: project ? project.name : "",
+      },
       "",
       div
     );
@@ -1124,7 +1168,12 @@ const formViews = (() => {
       project ? "Edit Project" : "Create Project",
       form
     );
-    button.addEventListener("click", getProjectFormData);
+
+    button.projectId = project ? project.id : null;
+
+    button.addEventListener("click", handleProjectSubmit);
+
+    input.focus();
   };
 
   return {
@@ -1138,22 +1187,130 @@ const formViews = (() => {
 
 
 /***/ }),
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _controllers_tasks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5);
+
+
+const store = (() => {
+  const getTasks = () => {
+    return JSON.parse(window.localStorage.getItem("tasks"));
+  };
+
+  const setTasks = (tasks) => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  };
+
+  const setProjects = (projects) => {
+    localStorage.setItem("projects", JSON.stringify(projects));
+  };
+
+  const getProjects = () => {
+    return JSON.parse(window.localStorage.getItem("projects"));
+  };
+
+  const findTask = (id) => {
+    const tasks = getTasks();
+    const task = tasks.find((task) => task.id === id);
+    return task;
+  };
+
+  const findProject = (id) => {
+    const projects = getProjects();
+    const project = projects.find((project) => project.id === id);
+    return project;
+  };
+
+  const populateTasks = (project) => {
+    let taskIndex = [];
+    const tasks = getTasks();
+    project.tasks.forEach((task) => {
+      let t = tasks.find((a) => task === a.id);
+      taskIndex.push(t);
+    });
+    project.tasks = taskIndex;
+    return project;
+  };
+
+  return {
+    getTasks,
+    setTasks,
+    populateTasks,
+    findTask,
+    getProjects,
+    setProjects,
+    findProject,
+  };
+})();
+
+/* harmony default export */ __webpack_exports__["default"] = (store);
+
+
+/***/ }),
 /* 11 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-exports.maker = (type, attributes, text, place) => {
-  let element = document.createElement(type);
-  Object.keys(attributes).forEach((key) => {
-    element.setAttribute(key, attributes[key]);
-  });
-  element.textContent = text;
-  place.appendChild(element);
-  return element;
-};
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _views_projectViews__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(12);
+/* harmony import */ var _helpers_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(10);
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(0);
+/* harmony import */ var _forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8);
+/* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7);
+/* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_helpers_index__WEBPACK_IMPORTED_MODULE_4__);
 
-exports.makeId = () => {
-  return "_" + Math.random().toString(36).substr(2, 9);
-};
+
+
+
+
+
+const projects = (() => {
+  const create = (data) => {
+    const project = { id: Object(_helpers_index__WEBPACK_IMPORTED_MODULE_4__["makeId"])(), name: data.name, tasks: [] };
+    let projects = _helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].getProjects();
+    projects.push(project);
+    _helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].setProjects(projects);
+    _app__WEBPACK_IMPORTED_MODULE_2__["default"].render(project);
+  };
+
+  const changeProject = (id) => {
+    _app__WEBPACK_IMPORTED_MODULE_2__["default"].render(_helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].findProject(id));
+  };
+
+  const update = (data) => {
+    const { id, name } = data;
+    let projects = _helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].getProjects();
+    let i = projects.findIndex((p) => p.id === id);
+    projects[i].name = name;
+    _helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].setProjects(projects);
+    _app__WEBPACK_IMPORTED_MODULE_2__["default"].render(projects[i]);
+  };
+
+  const destroy = () => {};
+
+  const openForm = (id = "") => {
+    id ? _forms__WEBPACK_IMPORTED_MODULE_3__["default"].openProjectForm(_helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].findProject(id)) : _forms__WEBPACK_IMPORTED_MODULE_3__["default"].openProjectForm();
+  };
+
+  const render = (projects, project) => {
+    _views_projectViews__WEBPACK_IMPORTED_MODULE_0__["default"].renderProjectHeader(project);
+    _views_projectViews__WEBPACK_IMPORTED_MODULE_0__["default"].renderProjects(projects, project);
+  };
+
+  return {
+    create,
+    changeProject,
+    update,
+    destroy,
+    openForm,
+    render,
+  };
+})();
+
+/* harmony default export */ __webpack_exports__["default"] = (projects);
 
 
 /***/ }),
@@ -1162,38 +1319,112 @@ exports.makeId = () => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const store = (() => {
-  const setCurrentProject = (project) => {
-    localStorage.removeItem("currentProject");
-    localStorage.setItem("currentProject", JSON.stringify(project));
+/* harmony import */ var _controllers_projects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(11);
+/* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
+/* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_helpers_index__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+const projectViews = (() => {
+  const projectList = document.querySelector("#projects");
+  const projectHeader = document.querySelector("#project-header");
+  const sideNav = document.querySelector("#side-nav");
+  const expandNav = document.querySelector("#expand-nav");
+
+  window.innerWidth < 900 ? sideNav.classList.add("collapse") : null;
+  window.innerWidth > 900 ? expandNav.classList.add("hidden") : null;
+
+  const handleProjectChange = (e) => {
+    if (e.currentTarget.classList[1] == undefined) {
+      _controllers_projects__WEBPACK_IMPORTED_MODULE_0__["default"].changeProject(e.currentTarget.attributes[1].value);
+    }
   };
 
-  const getCurrentProject = () => {
-    return JSON.parse(window.localStorage.getItem("currentProject"));
+  const showNewProjectForm = () => {
+    _controllers_projects__WEBPACK_IMPORTED_MODULE_0__["default"].openForm();
   };
 
-  const setProjects = (projects) => {
-    localStorage.removeItem("projects");
-    localStorage.setItem("projects", JSON.stringify(projects));
+  const showEditProjectForm = (e) => {
+    const id = e.currentTarget.parentNode.attributes[1].value;
+    _controllers_projects__WEBPACK_IMPORTED_MODULE_0__["default"].openForm(id);
   };
 
-  const getProjects = () => {
-    return JSON.parse(window.localStorage.getItem("projects"));
+  const renderProject = (project, selected) => {
+    let div = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])(
+      "div",
+      {
+        class:
+          project.id === selected.id ? "sidenav-item selected" : "sidenav-item",
+        data: project.id,
+      },
+      "",
+      projectList
+    );
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("i", { class: "far fa-calendar-check sidenav-item-icon" }, "", div);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("h3", { class: "sidenav-item-name" }, project.name, div);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])(
+      "h3",
+      { class: "sidenav-item-count" },
+      `${project.tasks.length}`,
+      div
+    );
+    div.addEventListener("click", handleProjectChange);
   };
 
-  // const deleteProject = (name) => {
-  //   localStorage.removeItem(name);
-  // };
+  const renderProjects = (projects, selected) => {
+    projectList.innerHTML = "";
+    let div = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("div", { id: "sidenav-title-box" }, "", projectList);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("h2", { id: "sidenav-title" }, "Projects", div);
+    let b = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("button", { id: "sidenav-title-button" }, "", div);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("i", { class: "fas fa-plus" }, "", b);
+    projects.forEach((project) => renderProject(project, selected));
+    const sideItemButton = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])(
+      "button",
+      { type: "button", id: "new-project-button" },
+      "New Project",
+      projectList
+    );
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("i", { class: "fas fa-plus", id: "plus" }, "", sideItemButton);
+    b.addEventListener("click", showNewProjectForm);
+    sideItemButton.addEventListener("click", showNewProjectForm);
+  };
+
+  const renderProjectHeader = (project) => {
+    projectHeader.innerHTML = "";
+    projectHeader.setAttribute("data", project.id);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("h2", { class: "project-heading" }, project.name, projectHeader);
+    let button = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("button", { id: "edit-task" }, "", projectHeader);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("i", { class: "fas fa-ellipsis-h", id: "ellipsis" }, "", button);
+    button.addEventListener("click", showEditProjectForm);
+  };
+
+  const handleWindowResize = () => {
+    if (window.innerWidth < 900) {
+      sideNav.classList.add("collapse");
+      expandNav.classList.remove("hidden");
+    } else if (window.innerWidth > 900) {
+      sideNav.classList.remove("collapse");
+      expandNav.classList.add("hidden");
+    }
+  };
+
+  const handleClick = () => {
+    sideNav.classList.toggle("collapse");
+    sideNav.classList.toggle("slide-in");
+  };
+
+  /* event listeners */
+
+  window.addEventListener("resize", handleWindowResize);
+  expandNav.addEventListener("click", handleClick);
 
   return {
-    getCurrentProject,
-    setCurrentProject,
-    getProjects,
-    setProjects,
+    renderProjects,
+    renderProjectHeader,
   };
 })();
 
-/* harmony default export */ __webpack_exports__["default"] = (store);
+/* harmony default export */ __webpack_exports__["default"] = (projectViews);
 
 
 /***/ })

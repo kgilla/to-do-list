@@ -1,5 +1,4 @@
-import projects from "../controllers/projects";
-import forms from "../controllers/forms";
+import projectController from "../controllers/projects";
 import { maker } from "../helpers/index";
 
 const projectViews = (() => {
@@ -13,52 +12,62 @@ const projectViews = (() => {
 
   const handleProjectChange = (e) => {
     if (e.currentTarget.classList[1] == undefined) {
-      projects.changeProject(e.currentTarget.attributes[1].value);
+      projectController.changeProject(e.currentTarget.attributes[1].value);
     }
   };
 
   const showNewProjectForm = () => {
-    forms.openProjectForm();
+    projectController.openForm();
   };
 
-  const showEditProjectForm = () => {
-    forms.openProjectForm(currentProject);
+  const showEditProjectForm = (e) => {
+    const id = e.currentTarget.parentNode.attributes[1].value;
+    projectController.openForm(id);
   };
 
-  const renderProject = (project, currentProject) => {
-    let p = maker(
+  const renderProject = (project, selected) => {
+    let div = maker(
       "div",
       {
         class:
-          project.id === currentProject.id ? "project selected" : "project",
+          project.id === selected.id ? "sidenav-item selected" : "sidenav-item",
         data: project.id,
       },
       "",
       projectList
     );
-    let b = maker("div", { class: "p-box" }, "", p);
-    maker("i", { class: "far fa-calendar-check project-icon" }, "", b);
-    maker("h3", { class: "project-name" }, project.name, b);
-    let d = maker("div", { class: "d-box" }, "", p);
-    maker("h3", { class: "project-count" }, `${project.tasks.length}`, d);
-    p.addEventListener("click", handleProjectChange);
+    maker("i", { class: "far fa-calendar-check sidenav-item-icon" }, "", div);
+    maker("h3", { class: "sidenav-item-name" }, project.name, div);
+    maker(
+      "h3",
+      { class: "sidenav-item-count" },
+      `${project.tasks.length}`,
+      div
+    );
+    div.addEventListener("click", handleProjectChange);
   };
 
-  const renderProjects = (projects, currentProject) => {
+  const renderProjects = (projects, selected) => {
     projectList.innerHTML = "";
-    projects.forEach((project) => renderProject(project, currentProject));
-    const newButton = maker(
+    let div = maker("div", { id: "sidenav-title-box" }, "", projectList);
+    maker("h2", { id: "sidenav-title" }, "Projects", div);
+    let b = maker("button", { id: "sidenav-title-button" }, "", div);
+    maker("i", { class: "fas fa-plus" }, "", b);
+    projects.forEach((project) => renderProject(project, selected));
+    const sideItemButton = maker(
       "button",
       { type: "button", id: "new-project-button" },
       "New Project",
       projectList
     );
-    maker("i", { class: "fas fa-plus", id: "plus" }, "", newButton);
-    newButton.addEventListener("click", showNewProjectForm);
+    maker("i", { class: "fas fa-plus", id: "plus" }, "", sideItemButton);
+    b.addEventListener("click", showNewProjectForm);
+    sideItemButton.addEventListener("click", showNewProjectForm);
   };
 
   const renderProjectHeader = (project) => {
     projectHeader.innerHTML = "";
+    projectHeader.setAttribute("data", project.id);
     maker("h2", { class: "project-heading" }, project.name, projectHeader);
     let button = maker("button", { id: "edit-task" }, "", projectHeader);
     maker("i", { class: "fas fa-ellipsis-h", id: "ellipsis" }, "", button);
