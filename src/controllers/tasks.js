@@ -61,16 +61,12 @@ const tasks = (() => {
 
   const destroy = () => {};
 
-  const handleTaskComplete = (index) => {
-    // let projects = store.getProjects();
-    // let i = projects.findIndex((p) => p.id == currentProject.id);
-    // currentProject.tasks[index].done
-    //   ? (currentProject.tasks[index].done = false)
-    //   : (currentProject.tasks[index].done = true);
-    // projects[i] = currentProject;
-    // store.setProjects(projects);
-    // let taskbox = document.querySelector(`div[data="${index}"]`);
-    // view.markTaskComplete(currentProject.tasks[index], taskbox);
+  const handleTaskComplete = (node, id) => {
+    let tasks = store.getTasks();
+    let i = tasks.findIndex((task) => task.id === id);
+    tasks[i].done = tasks[i].done ? false : true;
+    store.setTasks(tasks);
+    view.markTaskComplete(node, tasks[i]);
   };
 
   const openForm = (id = "") => {

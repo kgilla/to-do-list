@@ -32,18 +32,18 @@ const taskViews = (() => {
     );
   };
 
-  const markTaskComplete = (task, taskbox) => {
-    let c = taskbox.firstChild;
-    c.firstChild.classList.toggle("hidden");
-    c.classList.toggle(task.priority);
-    c.classList.toggle("task-complete");
-    c.nextSibling.children[0].classList.toggle("text-done");
-    c.nextSibling.children[1].classList.toggle("text-done");
+  const markTaskComplete = (node, task) => {
+    node.firstChild.classList.toggle("hidden");
+    node.classList.toggle(task.priority);
+    node.classList.toggle("task-complete");
+    node.nextSibling.children[0].classList.toggle("text-done");
+    node.nextSibling.children[1].classList.toggle("text-done");
   };
 
   const completeTask = (e) => {
-    let i = e.currentTarget.parentNode.attributes[1].value;
-    tasks.handleTaskComplete(i);
+    let id = e.currentTarget.parentNode.attributes[1].value;
+    let node = e.currentTarget;
+    tasks.handleTaskComplete(node, id);
   };
 
   const renderWelcome = () => {
