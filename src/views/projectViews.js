@@ -1,9 +1,10 @@
+import projects from "../controllers/projects";
 import projectController from "../controllers/projects";
 import { maker } from "../helpers/index";
 
 const projectViews = (() => {
   const projectList = document.querySelector("#projects");
-  const projectHeader = document.querySelector("#project-header");
+  const main = document.querySelector("#main");
   const sideNav = document.querySelector("#side-nav");
   const expandNav = document.querySelector("#expand-nav");
 
@@ -66,10 +67,14 @@ const projectViews = (() => {
   };
 
   const renderProjectHeader = (project) => {
-    projectHeader.innerHTML = "";
-    projectHeader.setAttribute("data", project.id);
-    maker("h2", { class: "project-heading" }, project.name, projectHeader);
-    let button = maker("button", { id: "edit-task" }, "", projectHeader);
+    let div = maker(
+      "div",
+      { class: "project-header", data: project.id },
+      "",
+      main
+    );
+    maker("h2", { class: "project-heading" }, project.name, div);
+    let button = maker("button", { id: "edit-task" }, "", div);
     maker("i", { class: "fas fa-ellipsis-h", id: "ellipsis" }, "", button);
     button.addEventListener("click", showEditProjectForm);
   };

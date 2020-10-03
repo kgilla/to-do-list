@@ -14,6 +14,7 @@ const projects = (() => {
   };
 
   const changeProject = (id) => {
+    document.querySelector(".selected").classList.remove("selected");
     app.render(store.findProject(id));
   };
 

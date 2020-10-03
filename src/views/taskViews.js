@@ -2,7 +2,7 @@ import tasks from "../controllers/tasks";
 import { maker } from "../helpers/index";
 
 const taskViews = (() => {
-  const main = document.querySelector("#tasks");
+  const main = document.querySelector("#main");
 
   const openEditForm = (e) => {
     let id = e.currentTarget.parentNode.parentNode.attributes[1].value;
@@ -117,7 +117,6 @@ const taskViews = (() => {
   };
 
   const render = (project) => {
-    main.innerHTML = "";
     if (project.tasks.length == 0) {
       renderWelcome();
     } else {

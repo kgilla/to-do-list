@@ -143,7 +143,9 @@ const app = (() => {
   };
 
   const render = (project) => {
+    main.innerHTML = "";
     let projects = _helpers_store__WEBPACK_IMPORTED_MODULE_4__["default"].getProjects();
+    _controllers_sidebar__WEBPACK_IMPORTED_MODULE_3__["default"].renderCounts();
     _controllers_projects__WEBPACK_IMPORTED_MODULE_2__["default"].render(projects, project);
     _controllers_tasks__WEBPACK_IMPORTED_MODULE_1__["default"].render(project);
   };
@@ -471,7 +473,7 @@ exports = ___CSS_LOADER_API_IMPORT___(false);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap);"]);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap);"]);
 // Module
-exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block;\n}\n\nbody {\n  line-height: 1;\n}\n\nol, ul {\n  list-style: none;\n}\n\nblockquote, q {\n  quotes: none;\n}\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: \"\";\n  content: none;\n}\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\n/* form stuff */\nform {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: calc(100% - 2rem);\n  max-width: 30rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: 1rem;\n  background: #fff;\n  color: #333;\n  border-radius: 0.5rem;\n  font-family: \"Roboto\", sans-serif;\n  z-index: 6;\n}\n\n#project-form {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  padding: 1rem;\n  border: 0.1rem solid #aaa;\n  border-radius: 0.5rem;\n}\n\n.form-heading {\n  margin-bottom: 1rem;\n  font-size: 1.4rem;\n  font-weight: 700;\n  text-align: center;\n}\n\n.form-section {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  margin-bottom: 0.5rem;\n  width: 100%;\n}\n\n.form-input {\n  position: relative;\n  width: 100%;\n  border: 0.1rem solid #ddd;\n  border-radius: 0.25rem;\n  padding: 0.5rem;\n  font-family: inherit;\n  font-size: 1rem;\n}\n\n.form-label {\n  padding: 0.5rem 0;\n  font-size: 1rem;\n}\n\n.form-input:focus {\n  outline: none;\n  box-shadow: 0 0 0 1.5pt #1976d2;\n}\n\n.text-area {\n  width: 100%;\n  min-height: 10rem;\n  resize: none;\n  font-family: inherit;\n}\n\n.form-button {\n  width: 100%;\n  padding: 0.5rem 0;\n  background: #1976d2;\n  border: none;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.form-button:hover {\n  cursor: pointer;\n  filter: brightness(90%);\n}\n\n#overlay {\n  position: fixed;\n  left: 0;\n  top: 0;\n  min-height: 100vh;\n  width: 100vw;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 5;\n}\n\ninput[type=date]::-webkit-calendar-picker-indicator {\n  background: transparent;\n  bottom: 0;\n  color: transparent;\n  cursor: pointer;\n  height: auto;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: auto;\n}\n\n.input-error {\n  border: 0.1rem solid red;\n}\n\n#project-header {\n  height: 6rem;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0 1rem;\n}\n\n.project-heading {\n  font-size: 1.4rem;\n  font-weight: 700;\n}\n\n#new-task {\n  position: fixed;\n  bottom: 1rem;\n  right: 1rem;\n  padding: 0.5rem 1rem;\n  border: none;\n  background: #1976d2;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n#new-task:hover {\n  cursor: pointer;\n  background: #1e88e5;\n}\n\n#tasks {\n  padding: 0 1rem;\n}\n\n.task-box {\n  display: grid;\n  grid-template-columns: 3rem repeat(3, 1fr) 3rem;\n  grid-template-rows: 4rem;\n  align-items: center;\n  margin: 1rem 0;\n  border-bottom: 0.1rem solid #eee;\n}\n\n.complete-button {\n  grid-column: 1/2;\n  place-self: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 2.5rem;\n  width: 2.5rem;\n  border-radius: 50%;\n  outline: none;\n  z-index: 2;\n}\n\n.complete-button:hover {\n  animation: grow 0.3s linear;\n  animation-iteration-count: 1;\n  cursor: pointer;\n}\n\n.checkmark {\n  color: #fff;\n  font-size: 1.5rem;\n}\n\n.task-info {\n  grid-column: 2/5;\n  display: flex;\n  flex-direction: column;\n}\n\n.task-name {\n  padding: 0 2rem;\n  font-size: 1.2rem;\n  font-weight: 500;\n}\n\n.task-date {\n  padding: 0 2rem;\n  font-size: 1rem;\n  font-style: italic;\n  color: #777;\n}\n\n.task-option {\n  grid-column: 5/6;\n  place-self: end;\n  padding: 1rem;\n}\n\n.task-option:hover {\n  cursor: pointer;\n}\n\n.text-done {\n  text-decoration: line-through;\n  color: #ccc;\n}\n\n.task-complete {\n  background: #1976d2;\n}\n\n.high {\n  border: 0.2rem solid #a93226;\n  background: #f9ebea;\n}\n\n.medium {\n  border: 0.2rem solid #d4ac0d;\n  background: #fef9e7;\n}\n\n.low {\n  border: 0.2rem solid #229954;\n  background: #e9f7ef;\n}\n\n#task-details-box {\n  margin-bottom: 1rem;\n  background: #fff;\n  border-bottom: 0.1rem solid #eee;\n  border-radius: 0.5rem;\n  font-family: \"Roboto\", sans-serif;\n  z-index: 6;\n  overflow: hidden;\n}\n\n#details-header {\n  position: relative;\n  padding: 1rem;\n}\n\n.details-title {\n  font-size: 1.4rem;\n  font-weight: 700;\n  color: #000;\n}\n\n.details-date {\n  font-size: 1rem;\n  font-weight: 500;\n  color: #666;\n}\n\n#edit-task-button {\n  position: absolute;\n  top: 1rem;\n  right: 1rem;\n  padding: 1rem;\n}\n\n#details-main {\n  padding: 0 1rem 1rem 1rem;\n}\n\n.details-description {\n  font-size: 1rem;\n  line-height: 2;\n}\n\n.details-footer {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.details-footer i {\n  padding-bottom: 1rem;\n  font-size: 1.2rem;\n  font-weight: 800;\n  border: 0.1rem solid #eee;\n}\n\n#side-nav {\n  position: fixed;\n  top: 4rem;\n  bottom: auto;\n  width: 20rem;\n  padding: 1rem;\n  background: #f3f5f9;\n  z-index: 3;\n  transition: all 0.7s ease-in-out;\n}\n\n#all-tasks i {\n  color: #2980b9;\n}\n\n#tasks-today i {\n  color: #27ae60;\n}\n\n#tasks-week i {\n  color: #e67e22;\n}\n\n#projects {\n  height: calc(100vh - 6rem);\n  padding-bottom: 1rem;\n  overflow-y: auto;\n}\n\n#projects:last-child {\n  margin-bottom: 1rem;\n}\n\n#sidenav-title-box {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.5rem 1rem;\n  margin-bottom: 1rem;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n#sidenav-title {\n  font-size: 1.2rem;\n  font-weight: 800;\n  color: #000;\n}\n\n.sidenav-item {\n  display: flex;\n  align-items: center;\n  padding: 0.5rem;\n  margin-bottom: 0.5rem;\n  font-size: 1rem;\n  line-height: 2;\n}\n\n.sidenav-item:hover {\n  background: #fff;\n  cursor: pointer;\n}\n\n.sidenav-item-icon {\n  color: #333;\n  margin-right: 1rem;\n}\n\n.sidenav-item-name {\n  color: #222;\n  margin-right: 0.5rem;\n}\n\n.sidenav-item-count {\n  color: #aaa;\n}\n\n#plus {\n  margin-right: 0.5rem;\n  color: #333;\n  font-size: 0.8rem;\n}\n\n#new-project-button {\n  width: 100%;\n  display: flex;\n  flex-direction: row-reverse;\n  justify-content: flex-end;\n  align-items: center;\n  padding: 1rem;\n  border: none;\n  border-radius: 0.5rem;\n  background: none;\n  font-size: 1rem;\n  font-weight: 600;\n  color: #333;\n}\n\n#new-project-button:hover {\n  cursor: pointer;\n}\n\n.collapse {\n  left: -20rem;\n}\n\n.expand {\n  left: 0;\n}\n\nhtml {\n  font-size: 16px;\n}\n\n* {\n  line-height: 1.5;\n  box-sizing: border-box;\n}\n\nbody {\n  display: grid;\n  min-height: 100vh;\n  max-width: 100vw;\n  grid-template-columns: 20rem repeat(4, 1fr);\n  grid-template-rows: 4rem 1fr;\n  background: #fff;\n  box-sizing: border-box;\n  font-family: \"Roboto\", sans-serif;\n}\n\n/* header */\n#header {\n  position: fixed;\n  width: 100%;\n  grid-area: 1/1/2/6;\n  display: grid;\n  grid-template-columns: 3rem 1fr 3rem;\n  align-content: center;\n  height: 4rem;\n  padding: 0 2rem;\n  justify-content: center;\n  align-items: center;\n  background: #203148;\n}\n\n.brand {\n  grid-column: 2/3;\n  justify-self: center;\n  color: #fff;\n  font-size: 1.8rem;\n  font-weight: 900;\n  text-align: center;\n}\n\n#expand-nav {\n  grid-column: 1/2;\n  border: none;\n  background: none;\n  color: #fff;\n  font-size: 2rem;\n}\n#expand-nav :hover {\n  cursor: pointer;\n}\n\n/* main stuff */\n#main {\n  width: 100%;\n  max-width: 1200px;\n  margin: 0 auto;\n}\n\n.large {\n  grid-area: 2/2/3/6;\n}\n\n.small {\n  grid-area: 2/1/3/6;\n}\n\n/* text spots in center */\n.welcome-mat {\n  position: relative;\n  top: 25%;\n  text-align: center;\n}\n\n.welcome-header {\n  color: #ccc;\n  font-size: 1.5rem;\n}\n\n.surprise {\n  padding: 3rem;\n  color: #ccc;\n  font-size: 4rem;\n}\n\n/* class toggles */\n.hidden {\n  display: none;\n}\n\n.selected {\n  background: #fff;\n}\n\n.error {\n  padding: 1rem;\n  margin-bottom: 0.5rem;\n  background-color: #f1948a;\n  color: #943126;\n  border-radius: 0.5rem;\n}\n\n.open-form {\n  animation: spin 0.3s linear;\n}\n\n.curtain {\n  animation: curtain 0.2s linear;\n}\n\n.slide-in {\n  animation: slide-in 0.2s linear;\n}\n\n.expand {\n  animation: expand 0.2s linear;\n}\n\n@keyframes slide-in {\n  0% {\n    left: -20vw;\n  }\n  100% {\n    left: 0;\n  }\n}\n@keyframes curtain {\n  0% {\n    top: -100vh;\n  }\n  100% {\n    top: 0vh;\n  }\n}\n@keyframes spin {\n  0% {\n    rotate: 0;\n  }\n  100% {\n    rotate: 180deg;\n  }\n}\n@keyframes shake {\n  0% {\n    left: -5px;\n  }\n  100% {\n    right: -5px;\n  }\n}\n@keyframes grow {\n  0% {\n    height: 2.5rem;\n    width: 2.5rem;\n  }\n  25% {\n    height: 2.75rem;\n    width: 2.75rem;\n  }\n  50% {\n    height: 3rem;\n    width: 3rem;\n  }\n  75% {\n    height: 2.75rem;\n    width: 2.75rem;\n  }\n  100% {\n    height: 2.5rem;\n    width: 2.5rem;\n  }\n}\n@keyframes expand {\n  0% {\n    height: 4rem;\n  }\n  25% {\n    height: 6rem;\n  }\n  50% {\n    height: 8rem;\n  }\n  75% {\n    height: 10rem;\n  }\n  100% {\n    height: 100%;\n  }\n}\n@media screen and (max-width: 599px) {\n  .e-options {\n    flex-direction: column;\n  }\n}\n@media screen and (min-width: 600px) {\n  .e-options {\n    flex-direction: column;\n  }\n}\n@media screen and (min-width: 900px) {\n  .e-options {\n    flex-direction: row;\n  }\n}", ""]);
+exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block;\n}\n\nbody {\n  line-height: 1;\n}\n\nol, ul {\n  list-style: none;\n}\n\nblockquote, q {\n  quotes: none;\n}\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: \"\";\n  content: none;\n}\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\n/* form stuff */\nform {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: calc(100% - 2rem);\n  max-width: 30rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: 1rem;\n  background: #fff;\n  color: #333;\n  border-radius: 0.5rem;\n  font-family: \"Roboto\", sans-serif;\n  z-index: 6;\n}\n\n#project-form {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  padding: 1rem;\n  border: 0.1rem solid #aaa;\n  border-radius: 0.5rem;\n}\n\n.form-heading {\n  margin-bottom: 1rem;\n  font-size: 1.4rem;\n  font-weight: 700;\n  text-align: center;\n}\n\n.form-section {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  margin-bottom: 0.5rem;\n  width: 100%;\n}\n\n.form-input {\n  position: relative;\n  width: 100%;\n  border: 0.1rem solid #ddd;\n  border-radius: 0.25rem;\n  padding: 0.5rem;\n  font-family: inherit;\n  font-size: 1rem;\n}\n\n.form-label {\n  padding: 0.5rem 0;\n  font-size: 1rem;\n}\n\n.form-input:focus {\n  outline: none;\n  box-shadow: 0 0 0 1.5pt #1976d2;\n}\n\n.text-area {\n  width: 100%;\n  min-height: 10rem;\n  resize: none;\n  font-family: inherit;\n}\n\n.form-button {\n  width: 100%;\n  padding: 0.5rem 0;\n  background: #1976d2;\n  border: none;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.form-button:hover {\n  cursor: pointer;\n  filter: brightness(90%);\n}\n\n#overlay {\n  position: fixed;\n  left: 0;\n  top: 0;\n  min-height: 100vh;\n  width: 100vw;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 5;\n}\n\ninput[type=date]::-webkit-calendar-picker-indicator {\n  background: transparent;\n  bottom: 0;\n  color: transparent;\n  cursor: pointer;\n  height: auto;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: auto;\n}\n\n.input-error {\n  border: 0.1rem solid red;\n}\n\n.project-header {\n  height: 6rem;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  border-bottom: 0.1rem solid #aaa;\n}\n\n.project-heading {\n  font-size: 1.4rem;\n  font-weight: 700;\n}\n\n#new-task {\n  position: fixed;\n  bottom: 1rem;\n  right: 1rem;\n  padding: 0.5rem 1rem;\n  border: none;\n  background: #1976d2;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n#new-task:hover {\n  cursor: pointer;\n  background: #1e88e5;\n}\n\n#tasks {\n  padding: 0 1rem;\n}\n\n.task-box {\n  display: grid;\n  grid-template-columns: 3rem repeat(3, 1fr) 3rem;\n  grid-template-rows: 4rem;\n  align-items: center;\n  margin: 1rem 0;\n  border-bottom: 0.1rem solid #eee;\n}\n\n.complete-button {\n  grid-column: 1/2;\n  place-self: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 2.5rem;\n  width: 2.5rem;\n  border-radius: 50%;\n  outline: none;\n  z-index: 2;\n}\n\n.complete-button:hover {\n  animation: grow 0.3s linear;\n  animation-iteration-count: 1;\n  cursor: pointer;\n}\n\n.checkmark {\n  color: #fff;\n  font-size: 1.5rem;\n}\n\n.task-info {\n  grid-column: 2/5;\n  display: flex;\n  flex-direction: column;\n}\n\n.task-name {\n  padding: 0 2rem;\n  font-size: 1.2rem;\n  font-weight: 500;\n}\n\n.task-date {\n  padding: 0 2rem;\n  font-size: 1rem;\n  font-style: italic;\n  color: #777;\n}\n\n.task-option {\n  grid-column: 5/6;\n  place-self: end;\n  padding: 1rem;\n}\n\n.task-option:hover {\n  cursor: pointer;\n}\n\n.text-done {\n  text-decoration: line-through;\n  color: #ccc;\n}\n\n.task-complete {\n  background: #1976d2;\n}\n\n.high {\n  border: 0.2rem solid #a93226;\n  background: #f9ebea;\n}\n\n.medium {\n  border: 0.2rem solid #d4ac0d;\n  background: #fef9e7;\n}\n\n.low {\n  border: 0.2rem solid #229954;\n  background: #e9f7ef;\n}\n\n#task-details-box {\n  margin-bottom: 1rem;\n  background: #fff;\n  border-bottom: 0.1rem solid #eee;\n  border-radius: 0.5rem;\n  font-family: \"Roboto\", sans-serif;\n  z-index: 6;\n  overflow: hidden;\n}\n\n#details-header {\n  position: relative;\n  padding: 1rem;\n}\n\n.details-title {\n  font-size: 1.4rem;\n  font-weight: 700;\n  color: #000;\n}\n\n.details-date {\n  font-size: 1rem;\n  font-weight: 500;\n  color: #666;\n}\n\n#edit-task-button {\n  position: absolute;\n  top: 1rem;\n  right: 1rem;\n  padding: 1rem;\n}\n\n#details-main {\n  padding: 0 1rem 1rem 1rem;\n}\n\n.details-description {\n  font-size: 1rem;\n  line-height: 2;\n}\n\n.details-footer {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.details-footer i {\n  padding-bottom: 1rem;\n  font-size: 1.2rem;\n  font-weight: 800;\n  border: 0.1rem solid #eee;\n}\n\n#side-nav {\n  position: fixed;\n  top: 4rem;\n  bottom: auto;\n  width: 20rem;\n  padding: 1rem;\n  background: #f3f5f9;\n  z-index: 3;\n  transition: all 0.7s ease-in-out;\n}\n\n#all-tasks i {\n  color: #2980b9;\n}\n\n#tasks-today i {\n  color: #27ae60;\n}\n\n#tasks-week i {\n  color: #e67e22;\n}\n\n#projects {\n  height: calc(100vh - 6rem);\n  padding-bottom: 1rem;\n  overflow-y: auto;\n}\n\n#projects:last-child {\n  margin-bottom: 1rem;\n}\n\n#sidenav-title-box {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.5rem 1rem;\n  margin-bottom: 1rem;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n#sidenav-title {\n  font-size: 1.2rem;\n  font-weight: 800;\n  color: #000;\n}\n\n.sidenav-item {\n  display: flex;\n  align-items: center;\n  padding: 0.5rem;\n  margin-bottom: 0.5rem;\n  font-size: 1rem;\n  line-height: 2;\n}\n\n.sidenav-item:hover {\n  background: #fff;\n  cursor: pointer;\n}\n\n.sidenav-item-icon {\n  color: #333;\n  margin-right: 1rem;\n}\n\n.sidenav-item-name {\n  color: #222;\n  margin-right: 0.5rem;\n}\n\n.sidenav-item-count {\n  color: #aaa;\n}\n\n#plus {\n  margin-right: 0.5rem;\n  color: #333;\n  font-size: 0.8rem;\n}\n\n#new-project-button {\n  width: 100%;\n  display: flex;\n  flex-direction: row-reverse;\n  justify-content: flex-end;\n  align-items: center;\n  padding: 1rem;\n  border: none;\n  border-radius: 0.5rem;\n  background: none;\n  font-size: 1rem;\n  font-weight: 600;\n  color: #333;\n}\n\n#new-project-button:hover {\n  cursor: pointer;\n}\n\n.collapse {\n  left: -20rem;\n}\n\n.expand {\n  left: 0;\n}\n\nhtml {\n  font-size: 16px;\n}\n\n* {\n  line-height: 1.5;\n  box-sizing: border-box;\n}\n\nbody {\n  display: grid;\n  min-height: 100vh;\n  max-width: 100vw;\n  grid-template-columns: 20rem repeat(4, 1fr);\n  grid-template-rows: 4rem 1fr;\n  background: #fff;\n  box-sizing: border-box;\n  font-family: \"Roboto\", sans-serif;\n}\n\n/* header */\n#header {\n  position: fixed;\n  width: 100%;\n  grid-area: 1/1/2/6;\n  display: grid;\n  grid-template-columns: 3rem 1fr 3rem;\n  align-content: center;\n  height: 4rem;\n  padding: 0 2rem;\n  justify-content: center;\n  align-items: center;\n  background: #203148;\n}\n\n.brand {\n  grid-column: 2/3;\n  justify-self: center;\n  color: #fff;\n  font-size: 1.8rem;\n  font-weight: 900;\n  text-align: center;\n}\n\n#expand-nav {\n  grid-column: 1/2;\n  border: none;\n  background: none;\n  color: #fff;\n  font-size: 2rem;\n}\n#expand-nav :hover {\n  cursor: pointer;\n}\n\n/* main stuff */\n#main {\n  width: 100%;\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 0 1rem;\n}\n\n.large {\n  grid-area: 2/2/3/6;\n}\n\n.small {\n  grid-area: 2/1/3/6;\n}\n\n/* text spots in center */\n.welcome-mat {\n  position: relative;\n  top: 25%;\n  text-align: center;\n}\n\n.welcome-header {\n  color: #ccc;\n  font-size: 1.5rem;\n}\n\n.surprise {\n  padding: 3rem;\n  color: #ccc;\n  font-size: 4rem;\n}\n\n/* class toggles */\n.hidden {\n  display: none;\n}\n\n.selected {\n  background: #fff;\n}\n\n.error {\n  padding: 1rem;\n  margin-bottom: 0.5rem;\n  background-color: #f1948a;\n  color: #943126;\n  border-radius: 0.5rem;\n}\n\n.open-form {\n  animation: spin 0.3s linear;\n}\n\n.curtain {\n  animation: curtain 0.2s linear;\n}\n\n.slide-in {\n  animation: slide-in 0.2s linear;\n}\n\n.expand {\n  animation: expand 0.2s linear;\n}\n\n@keyframes slide-in {\n  0% {\n    left: -20vw;\n  }\n  100% {\n    left: 0;\n  }\n}\n@keyframes curtain {\n  0% {\n    top: -100vh;\n  }\n  100% {\n    top: 0vh;\n  }\n}\n@keyframes spin {\n  0% {\n    rotate: 0;\n  }\n  100% {\n    rotate: 180deg;\n  }\n}\n@keyframes shake {\n  0% {\n    left: -5px;\n  }\n  100% {\n    right: -5px;\n  }\n}\n@keyframes grow {\n  0% {\n    height: 2.5rem;\n    width: 2.5rem;\n  }\n  25% {\n    height: 2.75rem;\n    width: 2.75rem;\n  }\n  50% {\n    height: 3rem;\n    width: 3rem;\n  }\n  75% {\n    height: 2.75rem;\n    width: 2.75rem;\n  }\n  100% {\n    height: 2.5rem;\n    width: 2.5rem;\n  }\n}\n@keyframes expand {\n  0% {\n    height: 4rem;\n  }\n  25% {\n    height: 6rem;\n  }\n  50% {\n    height: 8rem;\n  }\n  75% {\n    height: 10rem;\n  }\n  100% {\n    height: 100%;\n  }\n}\n@media screen and (max-width: 599px) {\n  .e-options {\n    flex-direction: column;\n  }\n}\n@media screen and (min-width: 600px) {\n  .e-options {\n    flex-direction: column;\n  }\n}\n@media screen and (min-width: 900px) {\n  .e-options {\n    flex-direction: row;\n  }\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -709,7 +711,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const taskViews = (() => {
-  const main = document.querySelector("#tasks");
+  const main = document.querySelector("#main");
 
   const openEditForm = (e) => {
     let id = e.currentTarget.parentNode.parentNode.attributes[1].value;
@@ -824,7 +826,6 @@ const taskViews = (() => {
   };
 
   const render = (project) => {
-    main.innerHTML = "";
     if (project.tasks.length == 0) {
       renderWelcome();
     } else {
@@ -1233,11 +1234,21 @@ const store = (() => {
     return project;
   };
 
+  const populateAllTasks = () => {
+    let newProjects = [];
+    const projects = getProjects();
+    projects.forEach((project) =>
+      newProjects.push(store.populateTasks(project))
+    );
+    return newProjects;
+  };
+
   return {
     getTasks,
     setTasks,
-    populateTasks,
     findTask,
+    populateTasks,
+    populateAllTasks,
     getProjects,
     setProjects,
     findProject,
@@ -1275,6 +1286,7 @@ const projects = (() => {
   };
 
   const changeProject = (id) => {
+    document.querySelector(".selected").classList.remove("selected");
     _app__WEBPACK_IMPORTED_MODULE_2__["default"].render(_helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].findProject(id));
   };
 
@@ -1323,9 +1335,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 const projectViews = (() => {
   const projectList = document.querySelector("#projects");
-  const projectHeader = document.querySelector("#project-header");
+  const main = document.querySelector("#main");
   const sideNav = document.querySelector("#side-nav");
   const expandNav = document.querySelector("#expand-nav");
 
@@ -1388,10 +1401,14 @@ const projectViews = (() => {
   };
 
   const renderProjectHeader = (project) => {
-    projectHeader.innerHTML = "";
-    projectHeader.setAttribute("data", project.id);
-    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("h2", { class: "project-heading" }, project.name, projectHeader);
-    let button = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("button", { id: "edit-task" }, "", projectHeader);
+    let div = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])(
+      "div",
+      { class: "project-header", data: project.id },
+      "",
+      main
+    );
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("h2", { class: "project-heading" }, project.name, div);
+    let button = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("button", { id: "edit-task" }, "", div);
     Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["maker"])("i", { class: "fas fa-ellipsis-h", id: "ellipsis" }, "", button);
     button.addEventListener("click", showEditProjectForm);
   };
@@ -1434,6 +1451,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(10);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(14);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _views_sidebarViews__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(152);
+/* harmony import */ var _views_taskViews__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6);
+/* harmony import */ var _views_projectViews__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(12);
+
+
+
 
 
 
@@ -1441,25 +1464,54 @@ const sidebar = (() => {
   const allTasks = document.querySelector("#all-tasks");
   const tasksWeek = document.querySelector("#tasks-week");
   const tasksToday = document.querySelector("#tasks-today");
+  const main = document.querySelector("#main");
 
-  const getAlltasks = () => {
-    let newProjects = [];
-    const projects = _helpers_store__WEBPACK_IMPORTED_MODULE_0__["default"].getProjects();
-    projects.forEach((project) =>
-      newProjects.push(_helpers_store__WEBPACK_IMPORTED_MODULE_0__["default"].populateTasks(project))
-    );
-    console.log(newProjects);
+  const filterProjects = (filter) => {
+    let filteredProjects = [];
+    const projects = _helpers_store__WEBPACK_IMPORTED_MODULE_0__["default"].populateAllTasks();
+    projects.forEach((project) => {
+      let filtered = project.tasks.filter((task) => filter(task));
+      project.tasks = filtered;
+      project.tasks.length > 0 ? filteredProjects.push(project) : null;
+    });
+    return filteredProjects;
   };
 
-  const getTasksWeek = () => {};
+  const render = (projects) => {
+    main.innerHTML = "";
+    document.querySelector(".selected").classList.remove("selected");
+    projects.forEach((project) => {
+      _views_projectViews__WEBPACK_IMPORTED_MODULE_4__["default"].renderProjectHeader(project);
+      _views_taskViews__WEBPACK_IMPORTED_MODULE_3__["default"].render(project);
+    });
+  };
 
-  const getTasksToday = () => {};
+  const getAlltasks = () => {
+    const projects = _helpers_store__WEBPACK_IMPORTED_MODULE_0__["default"].populateAllTasks();
+    render(projects);
+    allTasks.classList.add("selected");
+  };
 
-  const getCounts = () => {
+  const getTasksWeek = () => {
+    let filter = (task) => moment__WEBPACK_IMPORTED_MODULE_1___default()(task.date).isBefore(moment__WEBPACK_IMPORTED_MODULE_1___default()().add(7, "days"));
+    let projects = filterProjects(filter);
+    render(projects);
+    tasksWeek.classList.add("selected");
+  };
+
+  const getTasksToday = () => {
+    let filter = (task) =>
+      moment__WEBPACK_IMPORTED_MODULE_1___default()(moment__WEBPACK_IMPORTED_MODULE_1___default()().format("YYYY MM DD")).isSame(task.date);
+    let projects = filterProjects(filter);
+    render(projects);
+    tasksToday.classList.add("selected");
+  };
+
+  const renderCounts = () => {
     let count = { allCount: 0, weekCount: 0, todayCount: 0 };
     let tasks = _helpers_store__WEBPACK_IMPORTED_MODULE_0__["default"].getTasks();
     tasks.forEach((task) => {
-      if (moment__WEBPACK_IMPORTED_MODULE_1___default()(task.date).isBefore(moment__WEBPACK_IMPORTED_MODULE_1___default()(task.date).add(7, "days"))) {
+      if (moment__WEBPACK_IMPORTED_MODULE_1___default()(task.date).isBefore(moment__WEBPACK_IMPORTED_MODULE_1___default()().add(7, "days"))) {
         count.weekCount++;
       }
       if (moment__WEBPACK_IMPORTED_MODULE_1___default()(moment__WEBPACK_IMPORTED_MODULE_1___default()().format("YYYY MM DD")).isSame(task.date)) {
@@ -1467,12 +1519,14 @@ const sidebar = (() => {
       }
       count.allCount++;
     });
-    console.log(count);
+    _views_sidebarViews__WEBPACK_IMPORTED_MODULE_2__["default"].updateSidebar(count);
   };
 
   allTasks.addEventListener("click", getAlltasks);
   tasksWeek.addEventListener("click", getTasksWeek);
-  tasksToday.addEventListener("click", getCounts);
+  tasksToday.addEventListener("click", getTasksToday);
+
+  return { renderCounts };
 })();
 
 /* harmony default export */ __webpack_exports__["default"] = (sidebar);
@@ -22346,6 +22400,32 @@ webpackContext.id = 16;
     return zhTw;
 
 })));
+
+
+/***/ }),
+/* 152 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
+/* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_helpers_index__WEBPACK_IMPORTED_MODULE_0__);
+
+
+const sidebar = (() => {
+  const allTasksCount = document.querySelector("#all-tasks-count");
+  const tasksTodayCount = document.querySelector("#tasks-today-count");
+  const tasksWeekCount = document.querySelector("#tasks-week-count");
+
+  const updateSidebar = (count) => {
+    allTasksCount.textContent = count.allCount;
+    tasksTodayCount.textContent = count.todayCount;
+    tasksWeekCount.textContent = count.weekCount;
+  };
+  return { updateSidebar };
+})();
+
+/* harmony default export */ __webpack_exports__["default"] = (sidebar);
 
 
 /***/ })

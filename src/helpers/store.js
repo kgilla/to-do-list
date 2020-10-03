@@ -40,11 +40,21 @@ const store = (() => {
     return project;
   };
 
+  const populateAllTasks = () => {
+    let newProjects = [];
+    const projects = getProjects();
+    projects.forEach((project) =>
+      newProjects.push(store.populateTasks(project))
+    );
+    return newProjects;
+  };
+
   return {
     getTasks,
     setTasks,
-    populateTasks,
     findTask,
+    populateTasks,
+    populateAllTasks,
     getProjects,
     setProjects,
     findProject,

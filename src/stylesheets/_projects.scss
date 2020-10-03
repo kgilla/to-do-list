@@ -1,11 +1,11 @@
 // header
 
-#project-header {
+.project-header {
   height: 6rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
+  border-bottom: 0.1rem solid #aaa;
 }
 
 .project-heading {

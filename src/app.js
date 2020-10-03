@@ -43,7 +43,9 @@ const app = (() => {
   };
 
   const render = (project) => {
+    main.innerHTML = "";
     let projects = store.getProjects();
+    sidebarController.renderCounts();
     projectController.render(projects, project);
     taskController.render(project);
   };
