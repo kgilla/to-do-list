@@ -22,8 +22,6 @@ const formViews = (() => {
       : forms.getProjectFormData();
   };
 
-  // Task Form Views
-
   const title = (parent, task = {}) => {
     const div = maker("div", { class: "form-section" }, "", parent);
     maker("label", { class: "form-label", for: "title" }, "Task Name", div);
@@ -66,6 +64,17 @@ const formViews = (() => {
       {
         type: "radio",
         name: "priority",
+        value: "none",
+      },
+      "",
+      radios
+    );
+    maker("label", { class: "radio-label", for: "none" }, "None", radios);
+    maker(
+      "input",
+      {
+        type: "radio",
+        name: "priority",
         value: "low",
       },
       "",
@@ -97,17 +106,23 @@ const formViews = (() => {
   };
 
   const selectProject = (parent) => {
+    let selected = document.querySelector(".selected");
     const projects = store.getProjects();
+    console.log(store.findProject(selected.attributes[1].value));
     const div = maker("div", { class: "form-section" }, "", parent);
     maker("label", { class: "form-label", for: "project" }, "Project", div);
     const select = maker(
       "select",
-      { class: "form-input", name: "project" },
+      { class: "form-input", name: "project", value: selected },
       "",
       div
     );
     projects.forEach((project) => {
-      maker("option", { value: project.id }, project.name, select);
+      if (project.id === selected.attributes[1].value) {
+        maker("option", { value: project.id, selected }, project.name, select);
+      } else {
+        maker("option", { value: project.id }, project.name, select);
+      }
     });
   };
 
@@ -140,6 +155,7 @@ const formViews = (() => {
 
   const taskForm = (task = "") => {
     const form = maker("form", { id: "task-form" }, "", formBox);
+    let x = maker("i", { class: "fas fa-times form-close" }, "", form);
     maker(
       "h1",
       { class: "form-heading" },
@@ -156,12 +172,12 @@ const formViews = (() => {
     task
       ? (document.querySelector(`[value=${task.priority}]`).checked = true)
       : (document.querySelector('[value="low"]').checked = true);
+    x.addEventListener("click", forms.closeForm);
   };
-
-  // Project Form Views
 
   const projectForm = (project = "") => {
     const form = maker("form", { id: "project-form" }, "", formBox);
+    let x = maker("i", { class: "fas fa-times form-close" }, "", form);
     maker(
       "h1",
       { class: "form-heading" },
@@ -189,9 +205,8 @@ const formViews = (() => {
     );
 
     button.projectId = project ? project.id : null;
-
     button.addEventListener("click", handleProjectSubmit);
-
+    x.addEventListener("click", forms.closeForm);
     input.focus();
   };
 

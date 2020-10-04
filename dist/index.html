@@ -15,6 +15,7 @@
     <header id="header">
       <button id="expand-nav"><i class="fas fa-bars"></i></button>
       <h1 class="brand">Get-Er-Done <i class="fas fa-check brand"></i></h1>
+      <button id="new-task">Add Task <i class="fa fa-plus"></i></button>
     </header>
 
     <nav id="side-nav">
@@ -22,25 +23,29 @@
         <div class="sidenav-item" id="all-tasks">
           <i class="fas fa-calendar-check sidenav-item-icon"></i>
           <h3 class="sidenav-item-name">All Tasks</h3>
-          <h3 class="sidenav-item-count" id="all-tasks-count">22</h3>
+          <h3 class="sidenav-item-count" id="all-tasks-count"></h3>
         </div>
         <div class="sidenav-item" id="tasks-today">
           <i class="fas fa-calendar-day sidenav-item-icon"></i>
           <h3 class="sidenav-item-name">Today</h3>
-          <h3 class="sidenav-item-count" id="tasks-today-count">1</h3>
+          <h3 class="sidenav-item-count" id="tasks-today-count"></h3>
         </div>
         <div class="sidenav-item" id="tasks-week">
           <i class="fas fa-calendar-week sidenav-item-icon"></i>
           <h3 class="sidenav-item-name">This Week</h3>
-          <h3 class="sidenav-item-count" id="tasks-week-count">6</h3>
+          <h3 class="sidenav-item-count" id="tasks-week-count"></h3>
         </div>
+      </div>
+      <div id="sidenav-title-box">
+        <h2 id="sidenav-title">Projects</h2>
+        <button id="sidenav-title-button">
+          <i class="fas fa-plus"></i>
+        </button>
       </div>
       <div id="projects"></div>
     </nav>
 
     <main id="main"></main>
-    <button id="new-task">New Task <i class="fa fa-plus"></i></button>
-
     <div id="overlay" class="hidden"></div>
     <div id="box"></div>
 

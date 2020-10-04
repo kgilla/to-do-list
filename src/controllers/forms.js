@@ -78,6 +78,7 @@ const forms = (() => {
   return {
     openProjectForm,
     openTaskForm,
+    closeForm,
     validateFormData,
     getTaskFormData,
     getProjectFormData,

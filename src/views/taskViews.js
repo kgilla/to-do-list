@@ -5,12 +5,22 @@ const taskViews = (() => {
   const main = document.querySelector("#main");
 
   const openEditForm = (e) => {
-    let id = e.currentTarget.parentNode.parentNode.attributes[1].value;
+    const id = e.currentTarget.parentNode.parentNode.attributes[1].value;
+    closeDropdown();
     tasks.openForm(id);
   };
 
-  const openNewForm = () => {
-    tasks.openForm();
+  const openNewForm = (e) => {
+    tasks.openForm(e.currentTarget.attributes[1].value);
+  };
+
+  const openDropDown = (e) => {
+    renderDropdown(e.currentTarget.parentNode.parentNode);
+  };
+
+  const closeDropdown = () => {
+    document.querySelector("#trans-overlay").remove();
+    document.querySelector(".dropdown").remove();
   };
 
   const showDetails = (e) => {
@@ -18,18 +28,9 @@ const taskViews = (() => {
       e.target !== e.currentTarget.firstChild &&
       e.target !== e.currentTarget.firstChild.firstChild
     ) {
-      e.currentTarget.classList.toggle("hidden");
       e.currentTarget.nextSibling.classList.toggle("expand");
-      e.currentTarget.nextSibling.classList.toggle("hidden");
+      e.currentTarget.nextSibling.firstChild.classList.toggle("hidden");
     }
-  };
-
-  const hideDetails = (e) => {
-    e.currentTarget.parentNode.parentNode.classList.toggle("expand");
-    e.currentTarget.parentNode.parentNode.classList.toggle("hidden");
-    e.currentTarget.parentNode.parentNode.previousSibling.classList.toggle(
-      "hidden"
-    );
   };
 
   const markTaskComplete = (node, task) => {
@@ -46,6 +47,20 @@ const taskViews = (() => {
     tasks.handleTaskComplete(node, id);
   };
 
+  const renderDropdown = (parent) => {
+    let overlay = maker("div", { id: "trans-overlay" }, "", main);
+    let div = maker("div", { class: "dropdown" }, "", parent);
+    let edit = maker("button", { class: "dropdown-button" }, "Edit Task", div);
+    let remove = maker(
+      "button",
+      { class: "dropdown-button" },
+      "Delete Task",
+      div
+    );
+    edit.addEventListener("click", openEditForm);
+    overlay.addEventListener("click", closeDropdown);
+  };
+
   const renderWelcome = () => {
     let mat = maker("div", { class: "welcome-mat" }, "", main);
     maker("h2", { class: "welcome-header" }, "Wow Such Empty!", mat);
@@ -58,83 +73,69 @@ const taskViews = (() => {
     );
   };
 
-  const renderTaskDetails = (parent, task) => {
+  const renderTaskExpanded = (parent, task) => {
     let div = maker(
       "div",
-      { class: "task-details-box hidden", data: task.id },
+      { class: "task-expanded", data: task.id },
       "",
       parent
     );
-    let header = maker("header", { id: "details-header" }, "", div);
-    maker("h2", { class: "details-title" }, task.title, header);
-    maker("h3", { class: "details-date" }, task.date, header);
-    let b = maker(
-      "i",
-      { class: "fas fa-ellipsis-h", id: "edit-task-button" },
-      "",
-      header
-    );
-    b.addEventListener("click", openEditForm);
-
+    let button = maker("button", { class: "edit-task-button hidden" }, "", div);
+    let b = maker("i", { class: "fas fa-ellipsis-h" }, "", button);
+    button.addEventListener("click", openDropDown);
     let main = maker("main", { id: "details-main" }, "", div);
     maker("p", { class: "details-description" }, task.description, main);
-    let footer = maker("footer", { class: "details-footer" }, "", div);
-    let close = maker("i", { class: "fas fa-chevron-up" }, "", footer);
-    close.addEventListener("click", hideDetails);
   };
 
-  const renderTask = (parent, task) => {
-    let div = maker("div", { class: "task-box", data: task.id }, "", parent);
-
-    let b = maker(
+  const renderTaskCollapsed = (parent, task) => {
+    let div = maker(
       "div",
+      { class: "task-collapsed", data: task.id },
+      "",
+      parent
+    );
+
+    let button = maker(
+      "button",
       { class: `complete-button ${task.priority}` },
       "",
       div
     );
-    maker("i", { class: "fas fa-check checkmark hidden" }, "", b);
+    maker("i", { class: "fas fa-check checkmark hidden" }, "", button);
 
-    let c = maker("div", { class: "task-info" }, "", div);
-    maker("h2", { class: "task-name" }, task.title, c);
-    maker("p", { class: "task-date" }, task.date, c);
+    let info = maker("div", { class: "task-info" }, "", div);
+    maker("h2", { class: "task-name" }, task.title, info);
+    maker("p", { class: "task-date" }, task.date, info);
 
-    b.addEventListener("click", completeTask);
-    if (task.done == true) {
-      markTaskComplete(task, div);
-    }
     div.addEventListener("click", showDetails);
+    button.addEventListener("click", completeTask);
+    task.done ? markTaskComplete(task, div) : null;
   };
 
-  const taskMaker = (task) => {
-    let div = maker(
-      "div",
-      { class: "task-container", data: task.id },
-      "",
-      main
-    );
-    renderTask(div, task);
-    renderTaskDetails(div, task);
+  const renderTask = (task) => {
+    let div = maker("div", { class: "task-box", data: task.id }, "", main);
+    renderTaskCollapsed(div, task);
+    renderTaskExpanded(div, task);
   };
 
   const render = (project) => {
     if (project.tasks.length == 0) {
       renderWelcome();
     } else {
-      project.tasks.forEach((task, i) => taskMaker(task, i));
-      let b = maker(
+      project.tasks.forEach((task) => renderTask(task));
+      let button = maker(
         "button",
-        { type: "button", id: "new-task-button" },
+        { type: "button", class: "new-task-button", data: project.id },
         "Add Task",
         main
       );
-      maker("i", { class: "fas fa-plus", id: "plus" }, "", b);
-      b.addEventListener("click", openNewForm);
+      maker("i", { class: "fas fa-plus", id: "plus" }, "", button);
+      button.addEventListener("click", openNewForm);
     }
   };
 
   return {
     render,
-    renderTaskDetails,
     markTaskComplete,
   };
 })();

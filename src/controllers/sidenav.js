@@ -1,14 +1,26 @@
 import store from "../helpers/store";
 import moment from "moment";
-import views from "../views/sidebarViews";
+import views from "../views/sidenavViews";
 import taskViews from "../views/taskViews";
 import projectViews from "../views/projectViews";
 
-const sidebar = (() => {
+const sidenav = (() => {
   const allTasks = document.querySelector("#all-tasks");
   const tasksWeek = document.querySelector("#tasks-week");
   const tasksToday = document.querySelector("#tasks-today");
   const main = document.querySelector("#main");
+
+  const todayFilter = (task) =>
+    moment(task.date).isBetween(
+      moment(Date.now()).subtract(1, "days"),
+      moment(Date.now()).add(1, "days")
+    );
+
+  const weekFilter = (task) =>
+    moment(task.date).isBetween(
+      moment(Date.now()).subtract(1, "days"),
+      moment(Date.now()).add(7, "days")
+    );
 
   const filterProjects = (filter) => {
     let filteredProjects = [];
@@ -32,21 +44,19 @@ const sidebar = (() => {
 
   const getAlltasks = () => {
     const projects = store.populateAllTasks();
-    render(projects);
+    let newProjects = projects.filter((p) => p.tasks.length > 0);
+    render(newProjects);
     allTasks.classList.add("selected");
   };
 
   const getTasksWeek = () => {
-    let filter = (task) => moment(task.date).isBefore(moment().add(7, "days"));
-    let projects = filterProjects(filter);
+    let projects = filterProjects(weekFilter);
     render(projects);
     tasksWeek.classList.add("selected");
   };
 
   const getTasksToday = () => {
-    let filter = (task) =>
-      moment(moment().format("YYYY MM DD")).isSame(task.date);
-    let projects = filterProjects(filter);
+    let projects = filterProjects(todayFilter);
     render(projects);
     tasksToday.classList.add("selected");
   };
@@ -55,10 +65,20 @@ const sidebar = (() => {
     let count = { allCount: 0, weekCount: 0, todayCount: 0 };
     let tasks = store.getTasks();
     tasks.forEach((task) => {
-      if (moment(task.date).isBefore(moment().add(7, "days"))) {
+      if (
+        moment(task.date).isBetween(
+          moment(Date.now()).subtract(1, "days"),
+          moment(Date.now()).add(7, "days")
+        )
+      ) {
         count.weekCount++;
       }
-      if (moment(moment().format("YYYY MM DD")).isSame(task.date)) {
+      if (
+        moment(task.date).isBetween(
+          moment(Date.now()).subtract(1, "days"),
+          moment(Date.now()).add(1, "days")
+        )
+      ) {
         count.todayCount++;
       }
       count.allCount++;
@@ -73,4 +93,4 @@ const sidebar = (() => {
   return { renderCounts };
 })();
 
-export default sidebar;
+export default sidenav;

@@ -1,14 +1,37 @@
 // header
 
 .project-header {
-  height: 6rem;
+  height: 4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 0.1rem solid #aaa;
+  border-bottom: 0.1rem solid #ddd;
 }
 
 .project-heading {
   font-size: 1.4rem;
   font-weight: 700;
+}
+
+.edit-button {
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  font-size: 1.2rem;
+}
+
+.edit-button:hover {
+  cursor: pointer;
+  background: #eee;
+}
+
+#projects {
+  height: calc(100vh - 6rem);
+  padding-bottom: 1rem;
+  overflow-y: auto;
+}
+
+#projects:last-child {
+  margin-bottom: 1rem;
 }

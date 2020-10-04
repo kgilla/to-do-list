@@ -65,7 +65,7 @@ form {
 
 .text-area {
   width: 100%;
-  min-height: 10rem;
+  min-height: 6rem;
   resize: none;
   font-family: inherit;
 }
@@ -110,4 +110,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .input-error {
   border: 0.1rem solid red;
+}
+
+.form-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 50%;
+  font-size: 1.2rem;
+}
+
+.form-close:hover {
+  cursor: pointer;
+  background: #eee;
 }

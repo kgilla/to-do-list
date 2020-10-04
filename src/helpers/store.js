@@ -1,5 +1,3 @@
-import tasks from "../controllers/tasks";
-
 const store = (() => {
   const getTasks = () => {
     return JSON.parse(window.localStorage.getItem("tasks"));

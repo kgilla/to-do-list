@@ -1,7 +1,7 @@
 import "./stylesheets/main.scss";
 import taskController from "./controllers/tasks";
 import projectController from "./controllers/projects";
-import sidebarController from "./controllers/sidebar";
+import sidenavController from "./controllers/sidenav";
 import store from "./helpers/store";
 import { makeId } from "./helpers/index";
 
@@ -45,7 +45,7 @@ const app = (() => {
   const render = (project) => {
     main.innerHTML = "";
     let projects = store.getProjects();
-    sidebarController.renderCounts();
+    sidenavController.renderCounts();
     projectController.render(projects, project);
     taskController.render(project);
   };

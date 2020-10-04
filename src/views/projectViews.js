@@ -1,15 +1,10 @@
-import projects from "../controllers/projects";
 import projectController from "../controllers/projects";
 import { maker } from "../helpers/index";
 
 const projectViews = (() => {
   const projectList = document.querySelector("#projects");
   const main = document.querySelector("#main");
-  const sideNav = document.querySelector("#side-nav");
-  const expandNav = document.querySelector("#expand-nav");
-
-  window.innerWidth < 900 ? sideNav.classList.add("collapse") : null;
-  window.innerWidth > 900 ? expandNav.classList.add("hidden") : null;
+  const sidenavButton = document.querySelector("#sidenav-title-button");
 
   const handleProjectChange = (e) => {
     if (e.currentTarget.classList[1] == undefined) {
@@ -22,8 +17,36 @@ const projectViews = (() => {
   };
 
   const showEditProjectForm = (e) => {
-    const id = e.currentTarget.parentNode.attributes[1].value;
+    const id = e.currentTarget.parentNode.parentNode.attributes[1].value;
     projectController.openForm(id);
+  };
+
+  const openDropDown = (e) => {
+    renderDropdown(e.currentTarget.parentNode);
+  };
+
+  const closeDropdown = () => {
+    document.querySelector("#trans-overlay").remove();
+    document.querySelector(".dropdown").remove();
+  };
+
+  const renderDropdown = (parent) => {
+    let overlay = maker("div", { id: "trans-overlay" }, "", main);
+    let div = maker("div", { class: "dropdown project-dropdown" }, "", parent);
+    let edit = maker(
+      "button",
+      { class: "dropdown-button" },
+      "Edit Project",
+      div
+    );
+    let remove = maker(
+      "button",
+      { class: "dropdown-button" },
+      "Delete Project",
+      div
+    );
+    edit.addEventListener("click", showEditProjectForm);
+    overlay.addEventListener("click", closeDropdown);
   };
 
   const renderProject = (project, selected) => {
@@ -50,20 +73,7 @@ const projectViews = (() => {
 
   const renderProjects = (projects, selected) => {
     projectList.innerHTML = "";
-    let div = maker("div", { id: "sidenav-title-box" }, "", projectList);
-    maker("h2", { id: "sidenav-title" }, "Projects", div);
-    let b = maker("button", { id: "sidenav-title-button" }, "", div);
-    maker("i", { class: "fas fa-plus" }, "", b);
     projects.forEach((project) => renderProject(project, selected));
-    const sideItemButton = maker(
-      "button",
-      { type: "button", id: "new-project-button" },
-      "New Project",
-      projectList
-    );
-    maker("i", { class: "fas fa-plus", id: "plus" }, "", sideItemButton);
-    b.addEventListener("click", showNewProjectForm);
-    sideItemButton.addEventListener("click", showNewProjectForm);
   };
 
   const renderProjectHeader = (project) => {
@@ -74,30 +84,12 @@ const projectViews = (() => {
       main
     );
     maker("h2", { class: "project-heading" }, project.name, div);
-    let button = maker("button", { id: "edit-task" }, "", div);
+    let button = maker("button", { class: "edit-button" }, "", div);
     maker("i", { class: "fas fa-ellipsis-h", id: "ellipsis" }, "", button);
-    button.addEventListener("click", showEditProjectForm);
+    button.addEventListener("click", openDropDown);
   };
 
-  const handleWindowResize = () => {
-    if (window.innerWidth < 900) {
-      sideNav.classList.add("collapse");
-      expandNav.classList.remove("hidden");
-    } else if (window.innerWidth > 900) {
-      sideNav.classList.remove("collapse");
-      expandNav.classList.add("hidden");
-    }
-  };
-
-  const handleClick = () => {
-    sideNav.classList.toggle("collapse");
-    sideNav.classList.toggle("slide-in");
-  };
-
-  /* event listeners */
-
-  window.addEventListener("resize", handleWindowResize);
-  expandNav.addEventListener("click", handleClick);
+  sidenavButton.addEventListener("click", showNewProjectForm);
 
   return {
     renderProjects,
