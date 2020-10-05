@@ -156,10 +156,6 @@ body {
 }
 
 @media screen and (min-width: 900px) {
-  html {
-    font-size: 16px;
-  }
-
   #main {
     padding: 0 1rem;
   }
@@ -170,6 +166,10 @@ body {
 }
 
 @media screen and (min-width: 1200px) {
+  html {
+    font-size: 18px;
+  }
+
   #main {
     padding: 0 2rem;
   }
@@ -177,20 +177,16 @@ body {
   #header {
     padding: 0 2rem;
   }
-
-  html {
-    font-size: 18;
-  }
 }
 
 @media screen and (min-width: 1400px) {
   html {
-    font-size: 20;
+    font-size: 20px;
   }
 }
 
 @media screen and (min-width: 1600px) {
   html {
-    font-size: 22;
+    font-size: 22px;
   }
 }
