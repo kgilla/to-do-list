@@ -49,6 +49,10 @@
   z-index: inherit;
 }
 
+.task-click-area:hover {
+  cursor: pointer;
+}
+
 .task-info {
   grid-column: 2/5;
   display: flex;
@@ -99,6 +103,7 @@
 // end of project button
 .new-task-button {
   margin-top: 0.5rem;
+  padding: 0.5rem;
   border: none;
   border-radius: 1rem;
   background: none;
@@ -109,8 +114,7 @@
 }
 
 .new-task-button:hover {
-  border-bottom: 0.1rem solid #aaa;
-  // background: #eee;
+  background: #eee;
   cursor: pointer;
 }
 
