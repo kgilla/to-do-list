@@ -104,7 +104,7 @@ const taskViews = (() => {
     btn.addEventListener("click", openDropDown);
     clickArea.addEventListener("click", showDetails);
     button.addEventListener("click", completeTask);
-    task.done ? markTaskComplete(task, div) : null;
+    task.done ? markTaskComplete(button, task) : null;
   };
 
   const renderTask = (task) => {

@@ -57,8 +57,8 @@
 
 .task-name {
   padding: 0 2rem;
-  font-size: 1.2rem;
-  // font-weight: 500;
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 .task-date {
@@ -78,6 +78,7 @@
 .details-description {
   font-size: 1rem;
   line-height: 2;
+  color: #444;
 }
 
 .edit-task-button {
@@ -86,6 +87,7 @@
   padding: 0.5rem 0.75rem;
   border-radius: 50%;
   font-size: 1.2rem;
+  color: #666;
 }
 
 .edit-task-button:hover {
