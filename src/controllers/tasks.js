@@ -96,7 +96,7 @@ const tasks = (() => {
 
   const openForm = (id = "") => {
     if (id) {
-      forms.openTaskForm(id);
+      forms.openTaskForm(store.findTask(id));
     } else {
       forms.openTaskForm();
     }
