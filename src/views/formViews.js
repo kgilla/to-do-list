@@ -128,12 +128,22 @@ const formViews = (() => {
       div
     );
     projects.forEach((project) => {
-      if (project.id === selected.attributes[1].value) {
+      if (project.id === task.project) {
+        maker(
+          "option",
+          { value: project.id, selected },
+          project.id === "0" ? "No Project" : project.name,
+          select
+        );
+      } else if (project.id === selected.attributes[1].value) {
         maker("option", { value: project.id, selected }, project.name, select);
-      } else if (project.id === "0") {
-        maker("option", { value: project.id, selected }, "No Project", select);
       } else {
-        maker("option", { value: project.id }, project.name, select);
+        maker(
+          "option",
+          { value: project.id },
+          project.id === "0" ? "No Project" : project.name,
+          select
+        );
       }
     });
   };
@@ -175,15 +185,15 @@ const formViews = (() => {
       form
     );
     maker("div", { id: "error-box" }, "", form);
-    title(form, task ? task : null);
-    date(form, task ? task : null);
-    radioButtons(form);
-    description(form, task ? task : null);
+    title(form, task);
+    date(form, task);
+    radioButtons(form, task);
+    description(form, task);
     selectProject(form, task, projects);
     button(form, task);
     task
       ? (document.querySelector(`[value=${task.priority}]`).checked = true)
-      : (document.querySelector('[value="low"]').checked = true);
+      : (document.querySelector('[value="none"]').checked = true);
     x.addEventListener("click", formController.closeForm);
     form.taskId = task ? task.id : null;
     form.addEventListener("keydown", (e) => {

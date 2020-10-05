@@ -67,7 +67,9 @@ const tasks = (() => {
     let i = tasks.findIndex((task) => task.id === newTask.id);
     tasks[i] = newTask;
     store.setTasks(tasks);
-    app.renderIndex();
+    project === "0"
+      ? app.renderIndex()
+      : app.render(store.findProject(project));
   };
 
   const destroy = (id) => {
