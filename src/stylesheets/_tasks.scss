@@ -3,8 +3,8 @@
 .task-box {
   display: flex;
   flex-direction: column;
-  padding: 0.5rem 0;
-  border-bottom: 0.1rem solid #eee;
+  margin: 0.5rem 0;
+  border-bottom: 0.1rem solid #ddd;
 }
 
 .task-collapsed {
@@ -59,6 +59,7 @@
   padding: 0 2rem;
   font-size: 1.1rem;
   font-weight: 500;
+  color: #444;
 }
 
 .task-date {
@@ -97,23 +98,24 @@
 
 // end of project button
 .new-task-button {
-  padding: 0.5rem;
   margin-top: 0.5rem;
   border: none;
-  border-radius: 2rem;
+  border-radius: 1rem;
   background: none;
+  text-align: center;
   font-size: 1rem;
   font-weight: 500;
   color: #666;
 }
 
 .new-task-button:hover {
-  background: #eee;
+  border-bottom: 0.1rem solid #aaa;
+  // background: #eee;
   cursor: pointer;
 }
 
 .new-task-button i {
-  padding: 0.5rem;
+  padding-left: 0.5rem;
   color: #666;
   font-size: 1rem;
 }
