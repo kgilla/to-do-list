@@ -598,8 +598,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_taskViews__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6);
 /* harmony import */ var _forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7);
 /* harmony import */ var _helpers_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(12);
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9);
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_helpers__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _sidenav__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(13);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_helpers__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -614,7 +616,7 @@ const tasks = (() => {
     const { title, date, priority, description, project } = data;
 
     let task = {
-      id: Object(_helpers__WEBPACK_IMPORTED_MODULE_4__["makeId"])(),
+      id: Object(_helpers__WEBPACK_IMPORTED_MODULE_5__["makeId"])(),
       title,
       date,
       priority,
@@ -636,7 +638,7 @@ const tasks = (() => {
     _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].setTasks(tasks);
     _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].setProjects(projects);
 
-    _app__WEBPACK_IMPORTED_MODULE_0__["default"].renderIndex();
+    project === "0" ? _app__WEBPACK_IMPORTED_MODULE_0__["default"].renderIndex() : _app__WEBPACK_IMPORTED_MODULE_0__["default"].render(savedProject);
   };
 
   const update = (data) => {
@@ -1645,7 +1647,7 @@ const sidenav = (() => {
       _views_projectViews__WEBPACK_IMPORTED_MODULE_4__["default"].renderProjectHeader(project);
       _views_taskViews__WEBPACK_IMPORTED_MODULE_3__["default"].render(project);
     });
-    toggleSidenav();
+    sidenav.state === "open" ? toggleSidenav() : null;
   };
 
   const getTasksIndex = () => {
@@ -1694,9 +1696,7 @@ const sidenav = (() => {
 
   const toggleSidenav = () => {
     if (window.innerWidth < 900) {
-      sidenav.classList.value === "collapse"
-        ? _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].openSidenav()
-        : _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].closeSidenav();
+      sidenav.state === "closed" ? _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].openSidenav() : _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].closeSidenav();
     }
   };
 
@@ -22608,7 +22608,7 @@ const sidebar = (() => {
   };
 
   const toggleSidenav = () => {
-    sidenav.classList.value === "collapse" ? openSidenav() : closeSidenav();
+    sidenav.state === "open" ? closeSidenav() : openSidenav();
   };
 
   const openSidenav = () => {
@@ -22617,12 +22617,14 @@ const sidebar = (() => {
       closeSidenav
     );
     sidenav.classList.toggle("slide-in");
+    sidenav.state = "open";
   };
 
   const closeSidenav = () => {
     let overlay = document.querySelector("#trans-overlay");
     overlay ? overlay.remove() : null;
     sidenav.classList.toggle("slide-in");
+    sidenav.state = "closed";
   };
 
   const handleWindowResize = () => {
