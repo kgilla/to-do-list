@@ -23,7 +23,7 @@ const taskViews = (() => {
   };
 
   const openDropDown = (e) => {
-    renderDropdown(e.currentTarget.parentNode.parentNode);
+    renderDropdown(e.currentTarget.parentNode);
   };
 
   const closeDropdown = () => {
@@ -32,13 +32,10 @@ const taskViews = (() => {
   };
 
   const showDetails = (e) => {
-    if (
-      e.target !== e.currentTarget.firstChild &&
-      e.target !== e.currentTarget.firstChild.firstChild
-    ) {
-      e.currentTarget.nextSibling.classList.toggle("expand");
-      e.currentTarget.nextSibling.firstChild.classList.toggle("hidden");
-    }
+    // if (e.target === e.currentTarget) {
+    e.currentTarget.parentNode.nextSibling.classList.toggle("expand");
+    e.currentTarget.parentNode.lastChild.classList.toggle("hidden");
+    // }
   };
 
   const markTaskComplete = (node, task) => {
@@ -89,11 +86,7 @@ const taskViews = (() => {
       "",
       parent
     );
-    let button = maker("button", { class: "edit-task-button hidden" }, "", div);
-    let b = maker("i", { class: "fas fa-ellipsis-h" }, "", button);
-    button.addEventListener("click", openDropDown);
-    let main = maker("main", { id: "details-main" }, "", div);
-    maker("p", { class: "details-description" }, task.description, main);
+    maker("p", { class: "details-description" }, task.description, div);
   };
 
   const renderTaskCollapsed = (parent, task) => {
@@ -103,6 +96,8 @@ const taskViews = (() => {
       "",
       parent
     );
+
+    let clickArea = maker("div", { class: "task-click-area" }, "", div);
 
     let button = maker(
       "button",
@@ -116,7 +111,11 @@ const taskViews = (() => {
     maker("h2", { class: "task-name" }, task.title, info);
     maker("p", { class: "task-date" }, task.date, info);
 
-    div.addEventListener("click", showDetails);
+    let btn = maker("button", { class: "edit-task-button hidden" }, "", div);
+    maker("i", { class: "fas fa-ellipsis-h" }, "", btn);
+
+    btn.addEventListener("click", openDropDown);
+    clickArea.addEventListener("click", showDetails);
     button.addEventListener("click", completeTask);
     task.done ? markTaskComplete(task, div) : null;
   };
@@ -138,7 +137,7 @@ const taskViews = (() => {
         "Add Task",
         main
       );
-      maker("i", { class: "fas fa-plus", id: "plus" }, "", button);
+      maker("i", { class: "fas fa-plus" }, "", button);
       button.addEventListener("click", openNewForm);
     }
   };

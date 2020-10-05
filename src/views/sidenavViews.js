@@ -16,6 +16,11 @@ const sidebar = (() => {
     tasksWeekCount.textContent = count.weekCount;
   };
 
+  const toggleSidenav = () => {
+    sidenav.classList.toggle("collapse");
+    sidenav.classList.toggle("slide-in");
+  };
+
   const handleWindowResize = () => {
     if (window.innerWidth < 900) {
       sidenav.classList.add("collapse");
@@ -24,11 +29,6 @@ const sidebar = (() => {
       sidenav.classList.remove("collapse");
       expandNav.classList.add("hidden");
     }
-  };
-
-  const handleClick = () => {
-    sidenav.classList.toggle("collapse");
-    sidenav.classList.toggle("slide-in");
   };
 
   const renderWelcome = () => {
@@ -46,8 +46,8 @@ const sidebar = (() => {
   /* event listeners */
 
   window.addEventListener("resize", handleWindowResize);
-  expandNav.addEventListener("click", handleClick);
-  return { updateSidebar, renderWelcome };
+  expandNav.addEventListener("click", toggleSidenav);
+  return { updateSidebar, renderWelcome, toggleSidenav };
 })();
 
 export default sidebar;

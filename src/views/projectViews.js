@@ -19,11 +19,13 @@ const projectViews = (() => {
 
   const showEditProjectForm = (e) => {
     const id = e.currentTarget.parentNode.parentNode.attributes[1].value;
+    closeDropdown();
     projectController.openForm(id);
   };
 
   const showDeleteProjectForm = (e) => {
     const id = e.currentTarget.parentNode.parentNode.attributes[1].value;
+    closeDropdown();
     formController.openDeleteForm(id);
   };
 
@@ -98,7 +100,7 @@ const projectViews = (() => {
     maker("h2", { class: "project-heading" }, project.name, div);
     if (project.id !== "0") {
       let button = maker("button", { class: "edit-button" }, "", div);
-      maker("i", { class: "fas fa-ellipsis-h", id: "ellipsis" }, "", button);
+      maker("i", { class: "fas fa-ellipsis-h" }, "", button);
       button.addEventListener("click", openDropDown);
     }
   };

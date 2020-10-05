@@ -93,9 +93,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _stylesheets_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _stylesheets_main_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_stylesheets_main_scss__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _controllers_tasks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
-/* harmony import */ var _controllers_projects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(11);
+/* harmony import */ var _controllers_projects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(10);
 /* harmony import */ var _controllers_sidenav__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(13);
-/* harmony import */ var _helpers_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(10);
+/* harmony import */ var _helpers_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(12);
 /* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9);
 /* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_helpers_index__WEBPACK_IMPORTED_MODULE_5__);
 
@@ -483,7 +483,7 @@ exports = ___CSS_LOADER_API_IMPORT___(false);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap);"]);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap);"]);
 // Module
-exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block;\n}\n\nbody {\n  line-height: 1;\n}\n\nol, ul {\n  list-style: none;\n}\n\nblockquote, q {\n  quotes: none;\n}\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: \"\";\n  content: none;\n}\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\n/* form stuff */\nform {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: calc(100% - 2rem);\n  max-width: 30rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: 1rem;\n  background: #fff;\n  color: #333;\n  border-radius: 0.5rem;\n  font-family: \"Roboto\", sans-serif;\n  z-index: 6;\n}\n\n.form-heading {\n  margin-bottom: 1rem;\n  font-size: 1.4rem;\n  font-weight: 700;\n  text-align: center;\n}\n\n.form-section {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  margin-bottom: 0.5rem;\n  width: 100%;\n}\n\n.form-input {\n  position: relative;\n  width: 100%;\n  border: 0.1rem solid #ddd;\n  border-radius: 0.25rem;\n  padding: 0.5rem;\n  font-family: inherit;\n  font-size: 1rem;\n}\n\n.form-label {\n  padding: 0.5rem 0;\n  font-size: 1rem;\n}\n\n.form-input:focus {\n  outline: none;\n  box-shadow: 0 0 0 1.5pt #1976d2;\n}\n\n.text-area {\n  width: 100%;\n  min-height: 6rem;\n  resize: none;\n  font-family: inherit;\n}\n\n.form-button {\n  width: 100%;\n  padding: 0.5rem 0;\n  background: #1976d2;\n  border: none;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.form-button:hover {\n  cursor: pointer;\n  filter: brightness(90%);\n}\n\n#overlay {\n  position: fixed;\n  left: 0;\n  top: 0;\n  min-height: 100vh;\n  width: 100vw;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 5;\n}\n\ninput[type=date]::-webkit-calendar-picker-indicator {\n  background: transparent;\n  bottom: 0;\n  color: transparent;\n  cursor: pointer;\n  height: auto;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: auto;\n}\n\n.input-error {\n  border: 0.1rem solid red;\n}\n\n.form-close {\n  position: absolute;\n  top: 1rem;\n  right: 1rem;\n  padding: 0.5rem 0.75rem;\n  border-radius: 50%;\n  font-size: 1.2rem;\n}\n\n.form-close:hover {\n  cursor: pointer;\n  background: #eee;\n}\n\n#delete-label {\n  text-align: center;\n  margin: 1rem 0;\n}\n\n#delete-buttons {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 2rem;\n  margin-top: 1rem;\n}\n\n.delete-button {\n  padding: 0.5rem;\n  border-radius: 0.5rem;\n  font-size: 1rem;\n  background: none;\n  border: none;\n}\n\n.delete-button:hover {\n  filter: brightness(90%);\n  cursor: pointer;\n}\n\n#confirm-delete {\n  background-color: #c0392b;\n  color: #fff;\n}\n\n#reject-delete {\n  background-color: #eee;\n  border: #666;\n}\n\n.project-header {\n  height: 4rem;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n.project-heading {\n  font-size: 1.4rem;\n  font-weight: 700;\n}\n\n.edit-button {\n  padding: 0.5rem 0.75rem;\n  border: none;\n  border-radius: 50%;\n  background: none;\n  font-size: 1.2rem;\n}\n\n.edit-button:hover {\n  cursor: pointer;\n  background: #eee;\n}\n\n#projects {\n  height: calc(100vh - 20.5rem);\n  padding-bottom: 1rem;\n  overflow-y: auto;\n}\n\n#projects:last-child {\n  margin-bottom: 1rem;\n}\n\n#tasks {\n  padding: 0 1rem;\n}\n\n.task-box {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  padding: 0.5rem 0;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n.task-collapsed {\n  display: grid;\n  grid-template-columns: 3rem repeat(3, 1fr) 3rem;\n  grid-template-rows: 4rem;\n  align-items: center;\n}\n\n.task-expanded {\n  max-height: 0;\n  transition: all 0.15s ease-out;\n  overflow: hidden;\n}\n\n.complete-button {\n  grid-column: 1/2;\n  place-self: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 2.5rem;\n  width: 2.5rem;\n  border: 0.2rem solid #aaa;\n  border-radius: 50%;\n  background: none;\n  outline: none;\n  z-index: 2;\n}\n\n.complete-button:hover {\n  animation: grow 0.3s linear;\n  animation-iteration-count: 1;\n  cursor: pointer;\n}\n\n.checkmark {\n  color: #fff;\n  font-size: 1.5rem;\n}\n\n.task-info {\n  grid-column: 2/5;\n  display: flex;\n  flex-direction: column;\n}\n\n.task-name {\n  padding: 0 2rem;\n  font-size: 1.2rem;\n  font-weight: 500;\n}\n\n.task-date {\n  padding: 0 2rem;\n  font-size: 1rem;\n  font-style: italic;\n  color: #777;\n}\n\n.task-option {\n  grid-column: 5/6;\n  place-self: end;\n  padding: 1rem;\n}\n\n.task-option:hover {\n  cursor: pointer;\n}\n\n.text-done {\n  text-decoration: line-through;\n  color: #ccc;\n}\n\n.task-complete {\n  background: #27ae60;\n  border: none;\n}\n\n.high {\n  border: 0.2rem solid #c0392b;\n}\n\n.medium {\n  border: 0.2rem solid #f1c40f;\n}\n\n.low {\n  border: 0.2rem solid #1976d2;\n}\n\n.task-details-box {\n  margin-bottom: 1rem;\n  background: #fff;\n  border-bottom: 0.1rem solid #eee;\n  border-radius: 0.5rem;\n  font-family: \"Roboto\", sans-serif;\n  z-index: 6;\n  overflow: hidden;\n}\n\n#details-header {\n  position: relative;\n  padding: 1rem;\n}\n\n.details-title {\n  font-size: 1.2rem;\n  font-weight: 700;\n  color: #000;\n}\n\n.details-date {\n  font-size: 1rem;\n  font-weight: 500;\n  color: #666;\n}\n\n.edit-task-button {\n  position: absolute;\n  top: 0;\n  right: 0;\n  border: none;\n  background: none;\n  padding: 0.5rem 0.75rem;\n  border-radius: 50%;\n  font-size: 1.2rem;\n}\n\n.edit-task-button:hover {\n  cursor: pointer;\n  background-color: #eee;\n}\n\n.details-description {\n  font-size: 1rem;\n  line-height: 2;\n}\n\n.new-task-button {\n  padding: 0.5rem;\n  margin-top: 0.5rem;\n  border: none;\n  border-radius: 2rem;\n  background: none;\n  font-size: 1rem;\n  font-weight: 500;\n  color: #000;\n}\n\n.new-task-button:hover {\n  background: #eee;\n  cursor: pointer;\n}\n\n#plus {\n  padding: 0.5rem;\n  color: #333;\n  font-size: 1rem;\n}\n\n.dropdown {\n  position: absolute;\n  right: 0;\n  top: 3rem;\n  width: 10rem;\n  display: flex;\n  flex-direction: column;\n  background-color: #fff;\n  border: 0.1rem solid #eee;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);\n  z-index: 5;\n}\n\n.project-dropdown {\n  top: 8rem;\n  right: 2rem;\n}\n\n.dropdown-button {\n  padding: 0.5rem;\n  border: none;\n  background: none;\n  font-size: 1rem;\n}\n\n.dropdown-button:hover {\n  background: #eee;\n  cursor: pointer;\n}\n\n#trans-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100vh;\n  width: 100vw;\n  z-index: 4;\n}\n\n#side-nav {\n  position: fixed;\n  top: 4rem;\n  bottom: auto;\n  width: 20rem;\n  padding: 1rem;\n  background: #f3f5f9;\n  z-index: 3;\n  transition: all 0.7s ease-in-out;\n}\n\n#all-tasks i {\n  color: #2980b9;\n}\n\n#tasks-today i {\n  color: #27ae60;\n}\n\n#tasks-week i {\n  color: #e67e22;\n}\n\n#sidenav-title-box {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.5rem;\n  margin-bottom: 1rem;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n#sidenav-title {\n  font-size: 1.2rem;\n  font-weight: 800;\n  color: #000;\n}\n\n#sidenav-title-button {\n  padding: 0.5rem 0.75rem;\n  border: none;\n  border-radius: 50%;\n  background: none;\n  font-size: 1rem;\n}\n\n#sidenav-title-button:hover {\n  cursor: pointer;\n  background-color: #ddd;\n}\n\n.sidenav-item {\n  display: flex;\n  align-items: center;\n  padding: 0.5rem;\n  margin-bottom: 0.5rem;\n  font-size: 1rem;\n  line-height: 2;\n}\n\n.sidenav-item:hover {\n  background: #fff;\n  cursor: pointer;\n}\n\n.sidenav-item-icon {\n  color: #333;\n  margin-right: 1rem;\n}\n\n.sidenav-item-name {\n  color: #222;\n  margin-right: 0.5rem;\n}\n\n.sidenav-item-count {\n  color: #aaa;\n}\n\n.collapse {\n  left: -20rem;\n}\n\n.expand {\n  left: 0;\n}\n\nhtml {\n  font-size: 16px;\n}\n\n* {\n  line-height: 1.5;\n  box-sizing: border-box;\n}\n\nbody {\n  display: grid;\n  min-height: 100vh;\n  max-width: 100vw;\n  grid-template-columns: 20rem repeat(4, 1fr);\n  grid-template-rows: 4rem 1fr;\n  background: #fff;\n  box-sizing: border-box;\n  font-family: \"Roboto\", sans-serif;\n}\n\n/* header */\n#header {\n  position: fixed;\n  width: 100%;\n  grid-area: 1/1/2/6;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  height: 4rem;\n  padding: 0 1rem;\n  background: #203148;\n}\n\n.brand {\n  grid-column: 2/3;\n  justify-self: center;\n  color: #fff;\n  font-size: 1.6rem;\n  font-weight: 900;\n  text-align: center;\n}\n\n#expand-nav {\n  grid-column: 1/2;\n  border: none;\n  background: none;\n  color: #fff;\n  font-size: 2rem;\n}\n#expand-nav :hover {\n  cursor: pointer;\n}\n\n#new-task {\n  padding: 0.5rem 0.75rem;\n  border: none;\n  border-radius: 1.5rem;\n  background: #27ae60;\n  color: #fff;\n  font-size: 1rem;\n}\n\n#new-task:hover {\n  filter: brightness(90%);\n  cursor: pointer;\n}\n\n/* main stuff */\n#main {\n  width: 100%;\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 0 2rem;\n}\n\n.large {\n  grid-area: 2/2/3/6;\n}\n\n.small {\n  grid-area: 2/1/3/6;\n}\n\n/* text spots in center */\n.welcome-mat {\n  position: relative;\n  top: 25%;\n  text-align: center;\n}\n\n.welcome-header {\n  color: #ccc;\n  font-size: 1.5rem;\n}\n\n.surprise {\n  padding: 3rem;\n  color: #ccc;\n  font-size: 4rem;\n}\n\n/* class toggles */\n.hidden {\n  display: none;\n}\n\n.selected {\n  background: #fff;\n}\n\n.error {\n  padding: 1rem;\n  margin-bottom: 0.5rem;\n  background-color: #f1948a;\n  color: #943126;\n  border-radius: 0.5rem;\n}\n\n.open-form {\n  animation: spin 0.3s linear;\n}\n\n.curtain {\n  animation: curtain 0.2s linear;\n}\n\n.slide-in {\n  animation: slide-in 0.2s linear;\n}\n\n.expand {\n  max-height: 400px;\n  transition: all 0.25s ease-in-out;\n}\n\n@keyframes slide-in {\n  0% {\n    left: -20vw;\n  }\n  100% {\n    left: 0;\n  }\n}\n@keyframes curtain {\n  0% {\n    top: -100vh;\n  }\n  100% {\n    top: 0vh;\n  }\n}\n@keyframes spin {\n  0% {\n    rotate: 0;\n  }\n  100% {\n    rotate: 180deg;\n  }\n}\n@keyframes shake {\n  0% {\n    left: -5px;\n  }\n  100% {\n    right: -5px;\n  }\n}\n@keyframes grow {\n  0% {\n    height: 2.5rem;\n    width: 2.5rem;\n  }\n  25% {\n    height: 2.75rem;\n    width: 2.75rem;\n  }\n  50% {\n    height: 3rem;\n    width: 3rem;\n  }\n  75% {\n    height: 2.75rem;\n    width: 2.75rem;\n  }\n  100% {\n    height: 2.5rem;\n    width: 2.5rem;\n  }\n}\n@media screen and (max-width: 599px) {\n  .e-options {\n    flex-direction: column;\n  }\n}\n@media screen and (min-width: 600px) {\n  .e-options {\n    flex-direction: column;\n  }\n}\n@media screen and (min-width: 900px) {\n  .e-options {\n    flex-direction: row;\n  }\n}", ""]);
+exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block;\n}\n\nbody {\n  line-height: 1;\n}\n\nol, ul {\n  list-style: none;\n}\n\nblockquote, q {\n  quotes: none;\n}\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: \"\";\n  content: none;\n}\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\n/* form stuff */\nform {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: calc(100% - 2rem);\n  max-width: 30rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: 1rem;\n  background: #fff;\n  color: #333;\n  border-radius: 0.5rem;\n  font-family: \"Roboto\", sans-serif;\n  z-index: 6;\n}\n\n.form-heading {\n  margin-bottom: 1rem;\n  font-size: 1.4rem;\n  font-weight: 700;\n  text-align: center;\n}\n\n.form-section {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  margin-bottom: 0.5rem;\n  width: 100%;\n}\n\n.form-input {\n  position: relative;\n  width: 100%;\n  border: 0.1rem solid #ddd;\n  border-radius: 0.25rem;\n  padding: 0.5rem;\n  font-family: inherit;\n  font-size: 1rem;\n}\n\n.form-label {\n  padding: 0.5rem 0;\n  font-size: 1rem;\n}\n\n.form-input:focus {\n  outline: none;\n  box-shadow: 0 0 0 1.5pt #1976d2;\n}\n\n.text-area {\n  width: 100%;\n  min-height: 6rem;\n  resize: none;\n  font-family: inherit;\n}\n\n.form-button {\n  width: 100%;\n  padding: 0.5rem 0;\n  background: #1976d2;\n  border: none;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.form-button:hover {\n  cursor: pointer;\n  filter: brightness(90%);\n}\n\n#overlay {\n  position: fixed;\n  left: 0;\n  top: 0;\n  min-height: 100vh;\n  width: 100vw;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 5;\n}\n\ninput[type=date]::-webkit-calendar-picker-indicator {\n  background: transparent;\n  bottom: 0;\n  color: transparent;\n  cursor: pointer;\n  height: auto;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: auto;\n}\n\n.form-close {\n  position: absolute;\n  top: 1rem;\n  right: 1rem;\n  padding: 0.5rem 0.75rem;\n  border-radius: 50%;\n  font-size: 1.2rem;\n}\n\n.form-close:hover {\n  cursor: pointer;\n  background: #eee;\n}\n\n#delete-label {\n  text-align: center;\n  margin: 1rem 0;\n}\n\n#delete-buttons {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 2rem;\n  margin-top: 1rem;\n}\n\n.delete-button {\n  padding: 0.5rem;\n  border-radius: 0.5rem;\n  font-size: 1rem;\n  background: none;\n  border: none;\n}\n\n.delete-button:hover {\n  filter: brightness(90%);\n  cursor: pointer;\n}\n\n#confirm-delete {\n  background-color: #c0392b;\n  color: #fff;\n}\n\n#reject-delete {\n  background-color: #eee;\n  border: #666;\n}\n\n.error {\n  padding: 1rem;\n  margin-bottom: 0.5rem;\n  background-color: #f1948a;\n  color: #943126;\n  border-radius: 0.5rem;\n}\n\n.project-header {\n  position: relative;\n  height: 4rem;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n.project-heading {\n  font-size: 1.4rem;\n  font-weight: 700;\n}\n\n.edit-button {\n  padding: 0.5rem 0.75rem;\n  border: none;\n  border-radius: 50%;\n  background: none;\n  font-size: 1.2rem;\n}\n\n.edit-button:hover {\n  cursor: pointer;\n  background: #eee;\n}\n\n#tasks {\n  padding: 0 1rem;\n}\n\n.task-box {\n  display: flex;\n  flex-direction: column;\n  padding: 0.5rem 0;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n.task-collapsed {\n  position: relative;\n  display: grid;\n  grid-template-columns: 3rem repeat(3, 1fr) 3rem;\n  min-height: 4rem;\n  align-items: center;\n}\n\n.complete-button {\n  grid-column: 1/2;\n  place-self: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 2.5rem;\n  width: 2.5rem;\n  border: 0.2rem solid #aaa;\n  border-radius: 50%;\n  background: none;\n  outline: none;\n  z-index: 2;\n}\n\n.complete-button:hover {\n  animation: grow 0.3s linear;\n  animation-iteration-count: 1;\n  cursor: pointer;\n}\n\n.checkmark {\n  color: #fff;\n  font-size: 1.5rem;\n}\n\n.task-click-area {\n  position: absolute;\n  left: 3rem;\n  right: 3rem;\n  height: 4rem;\n  width: 80%;\n  z-index: inherit;\n}\n\n.task-info {\n  grid-column: 2/5;\n  display: flex;\n  flex-direction: column;\n}\n\n.task-name {\n  padding: 0 2rem;\n  font-size: 1.2rem;\n  font-weight: 500;\n}\n\n.task-date {\n  padding: 0 2rem;\n  font-size: 1rem;\n  font-style: italic;\n  color: #777;\n}\n\n.task-expanded {\n  max-height: 0;\n  transition: all 0.15s ease-out;\n  overflow: hidden;\n}\n\n.details-description {\n  font-size: 1rem;\n  line-height: 2;\n}\n\n.edit-task-button {\n  border: none;\n  background: none;\n  padding: 0.5rem 0.75rem;\n  border-radius: 50%;\n  font-size: 1.2rem;\n}\n\n.edit-task-button:hover {\n  cursor: pointer;\n  background-color: #eee;\n}\n\n.new-task-button {\n  padding: 0.5rem;\n  margin-top: 0.5rem;\n  border: none;\n  border-radius: 2rem;\n  background: none;\n  font-size: 1rem;\n  font-weight: 500;\n  color: #000;\n}\n\n.new-task-button:hover {\n  background: #eee;\n  cursor: pointer;\n}\n\n.new-task-button i {\n  padding: 0.5rem;\n  color: #333;\n  font-size: 1rem;\n}\n\n.text-done {\n  text-decoration: line-through;\n  color: #ccc;\n}\n\n.task-complete {\n  background: #27ae60;\n  border: none;\n}\n\n.high {\n  border: 0.2rem solid #c0392b;\n}\n\n.medium {\n  border: 0.2rem solid #f1c40f;\n}\n\n.low {\n  border: 0.2rem solid #1976d2;\n}\n\n.expand {\n  max-height: 400px;\n  transition: all 0.25s ease-in-out;\n}\n\n#side-nav {\n  position: fixed;\n  top: 4rem;\n  bottom: auto;\n  width: 20rem;\n  padding: 1rem;\n  background: #f3f5f9;\n  z-index: 3;\n  transition: all 0.7s ease-in-out;\n}\n\n#all-tasks i {\n  color: #2980b9;\n}\n\n#tasks-today i {\n  color: #27ae60;\n}\n\n#tasks-week i {\n  color: #e67e22;\n}\n\n#sidenav-title-box {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.5rem;\n  margin-bottom: 1rem;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n#sidenav-title {\n  font-size: 1.2rem;\n  font-weight: 800;\n  color: #000;\n}\n\n#sidenav-title-button {\n  padding: 0.5rem 0.75rem;\n  border: none;\n  border-radius: 50%;\n  background: none;\n  font-size: 1rem;\n}\n\n#sidenav-title-button:hover {\n  cursor: pointer;\n  background-color: #ddd;\n}\n\n#projects {\n  height: calc(100vh - 20.5rem);\n  padding-bottom: 1rem;\n  overflow-y: auto;\n}\n\n#projects:last-child {\n  margin-bottom: 1rem;\n}\n\n.sidenav-item {\n  display: flex;\n  align-items: center;\n  padding: 0.5rem;\n  margin-bottom: 0.5rem;\n  font-size: 1rem;\n  line-height: 2;\n}\n\n.sidenav-item:hover {\n  background: #fff;\n  cursor: pointer;\n}\n\n.sidenav-item-icon {\n  color: #333;\n  margin-right: 1rem;\n}\n\n.sidenav-item-name {\n  color: #222;\n  margin-right: 0.5rem;\n}\n\n.sidenav-item-count {\n  color: #aaa;\n}\n\n.collapse {\n  left: -20rem;\n}\n\n.expand {\n  left: 0;\n}\n\n.selected {\n  background: #fff;\n}\n\n.dropdown {\n  position: absolute;\n  right: 0;\n  top: 3rem;\n  width: 10rem;\n  display: flex;\n  flex-direction: column;\n  background-color: #fff;\n  border: 0.1rem solid #eee;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);\n  z-index: 5;\n}\n\n.dropdown-button {\n  padding: 0.5rem;\n  border: none;\n  background: none;\n  font-size: 1rem;\n}\n\n.dropdown-button:hover {\n  background: #eee;\n  cursor: pointer;\n}\n\n#trans-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100vh;\n  width: 100vw;\n  z-index: 4;\n}\n\n/* text spots in center */\n.welcome-mat {\n  position: relative;\n  top: 25%;\n  text-align: center;\n}\n\n.welcome-header {\n  color: #ccc;\n  font-size: 1.5rem;\n}\n\n.surprise {\n  padding: 3rem;\n  color: #ccc;\n  font-size: 4rem;\n}\n\nhtml {\n  font-size: 16px;\n}\n\n* {\n  line-height: 1.5;\n  box-sizing: border-box;\n}\n\nbody {\n  display: grid;\n  min-height: 100vh;\n  max-width: 100vw;\n  grid-template-columns: 20rem repeat(4, 1fr);\n  grid-template-rows: 4rem 1fr;\n  background: #fff;\n  box-sizing: border-box;\n  font-family: \"Roboto\", sans-serif;\n}\n\n/* header */\n#header {\n  position: fixed;\n  width: 100%;\n  grid-area: 1/1/2/6;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  height: 4rem;\n  padding: 0 1rem;\n  background: #203148;\n}\n\n.brand {\n  grid-column: 2/3;\n  justify-self: center;\n  color: #fff;\n  font-size: 1.6rem;\n  font-weight: 900;\n  text-align: center;\n}\n\n#expand-nav {\n  grid-column: 1/2;\n  border: none;\n  background: none;\n  color: #fff;\n  font-size: 2rem;\n}\n#expand-nav :hover {\n  cursor: pointer;\n}\n\n#new-task {\n  position: fixed;\n  bottom: 0.5rem;\n  right: 0.5rem;\n  padding: 0.5rem 0.75rem;\n  border: none;\n  border-radius: 1.5rem;\n  background: #27ae60;\n  color: #fff;\n  font-size: 1rem;\n}\n\n#new-task:hover {\n  filter: brightness(90%);\n  cursor: pointer;\n}\n\n/* main stuff */\n#main {\n  width: 100%;\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 0 2rem;\n}\n\n.large {\n  grid-area: 2/2/3/6;\n}\n\n.small {\n  grid-area: 2/1/3/6;\n}\n\n/* class toggles */\n.hidden {\n  display: none;\n}\n\n@keyframes shake {\n  0% {\n    left: -5px;\n  }\n  100% {\n    right: -5px;\n  }\n}\n@keyframes grow {\n  0% {\n    height: 2.5rem;\n    width: 2.5rem;\n  }\n  25% {\n    height: 2.75rem;\n    width: 2.75rem;\n  }\n  50% {\n    height: 3rem;\n    width: 3rem;\n  }\n  75% {\n    height: 2.75rem;\n    width: 2.75rem;\n  }\n  100% {\n    height: 2.5rem;\n    width: 2.5rem;\n  }\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -597,7 +597,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var _views_taskViews__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6);
 /* harmony import */ var _forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7);
-/* harmony import */ var _helpers_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(10);
+/* harmony import */ var _helpers_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(12);
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9);
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_helpers__WEBPACK_IMPORTED_MODULE_4__);
 
@@ -767,7 +767,7 @@ const taskViews = (() => {
   };
 
   const openDropDown = (e) => {
-    renderDropdown(e.currentTarget.parentNode.parentNode);
+    renderDropdown(e.currentTarget.parentNode);
   };
 
   const closeDropdown = () => {
@@ -776,13 +776,10 @@ const taskViews = (() => {
   };
 
   const showDetails = (e) => {
-    if (
-      e.target !== e.currentTarget.firstChild &&
-      e.target !== e.currentTarget.firstChild.firstChild
-    ) {
-      e.currentTarget.nextSibling.classList.toggle("expand");
-      e.currentTarget.nextSibling.firstChild.classList.toggle("hidden");
-    }
+    // if (e.target === e.currentTarget) {
+    e.currentTarget.parentNode.nextSibling.classList.toggle("expand");
+    e.currentTarget.parentNode.lastChild.classList.toggle("hidden");
+    // }
   };
 
   const markTaskComplete = (node, task) => {
@@ -833,11 +830,7 @@ const taskViews = (() => {
       "",
       parent
     );
-    let button = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("button", { class: "edit-task-button hidden" }, "", div);
-    let b = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("i", { class: "fas fa-ellipsis-h" }, "", button);
-    button.addEventListener("click", openDropDown);
-    let main = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("main", { id: "details-main" }, "", div);
-    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("p", { class: "details-description" }, task.description, main);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("p", { class: "details-description" }, task.description, div);
   };
 
   const renderTaskCollapsed = (parent, task) => {
@@ -847,6 +840,8 @@ const taskViews = (() => {
       "",
       parent
     );
+
+    let clickArea = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("div", { class: "task-click-area" }, "", div);
 
     let button = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])(
       "button",
@@ -860,7 +855,11 @@ const taskViews = (() => {
     Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("h2", { class: "task-name" }, task.title, info);
     Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("p", { class: "task-date" }, task.date, info);
 
-    div.addEventListener("click", showDetails);
+    let btn = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("button", { class: "edit-task-button hidden" }, "", div);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("i", { class: "fas fa-ellipsis-h" }, "", btn);
+
+    btn.addEventListener("click", openDropDown);
+    clickArea.addEventListener("click", showDetails);
     button.addEventListener("click", completeTask);
     task.done ? markTaskComplete(task, div) : null;
   };
@@ -882,7 +881,7 @@ const taskViews = (() => {
         "Add Task",
         main
       );
-      Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("i", { class: "fas fa-plus", id: "plus" }, "", button);
+      Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("i", { class: "fas fa-plus" }, "", button);
       button.addEventListener("click", openNewForm);
     }
   };
@@ -904,9 +903,9 @@ const taskViews = (() => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_formViews__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8);
-/* harmony import */ var _controllers_projects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(11);
+/* harmony import */ var _controllers_projects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(10);
 /* harmony import */ var _controllers_tasks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
-/* harmony import */ var _helpers_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(10);
+/* harmony import */ var _helpers_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(12);
 
 
 
@@ -1324,78 +1323,8 @@ exports.makeId = () => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const store = (() => {
-  const getTasks = () => {
-    return JSON.parse(window.localStorage.getItem("tasks"));
-  };
-
-  const setTasks = (tasks) => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  };
-
-  const setProjects = (projects) => {
-    localStorage.setItem("projects", JSON.stringify(projects));
-  };
-
-  const getProjects = () => {
-    return JSON.parse(window.localStorage.getItem("projects"));
-  };
-
-  const findTask = (id) => {
-    const tasks = getTasks();
-    const task = tasks.find((task) => task.id === id);
-    return task;
-  };
-
-  const findProject = (id) => {
-    const projects = getProjects();
-    const project = projects.find((project) => project.id === id);
-    return project;
-  };
-
-  const populateTasks = (project) => {
-    let taskIndex = [];
-    const tasks = getTasks();
-    project.tasks.forEach((task) => {
-      let t = tasks.find((a) => task === a.id);
-      taskIndex.push(t);
-    });
-    project.tasks = taskIndex;
-    return project;
-  };
-
-  const populateAllTasks = () => {
-    let newProjects = [];
-    const projects = getProjects();
-    projects.forEach((project) =>
-      newProjects.push(store.populateTasks(project))
-    );
-    return newProjects;
-  };
-
-  return {
-    getTasks,
-    setTasks,
-    findTask,
-    populateTasks,
-    populateAllTasks,
-    getProjects,
-    setProjects,
-    findProject,
-  };
-})();
-
-/* harmony default export */ __webpack_exports__["default"] = (store);
-
-
-/***/ }),
-/* 11 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _views_projectViews__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(12);
-/* harmony import */ var _helpers_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(10);
+/* harmony import */ var _views_projectViews__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(11);
+/* harmony import */ var _helpers_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(12);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(0);
 /* harmony import */ var _forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
 /* harmony import */ var _controllers_sidenav__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(13);
@@ -1415,11 +1344,13 @@ const projects = (() => {
     projects.push(project);
     _helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].setProjects(projects);
     _app__WEBPACK_IMPORTED_MODULE_2__["default"].render(project);
+    _controllers_sidenav__WEBPACK_IMPORTED_MODULE_4__["default"].toggleSidenav();
   };
 
   const changeProject = (id) => {
     document.querySelector(".selected").classList.remove("selected");
     _app__WEBPACK_IMPORTED_MODULE_2__["default"].render(_helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].findProject(id));
+    _controllers_sidenav__WEBPACK_IMPORTED_MODULE_4__["default"].toggleSidenav();
   };
 
   const update = (data) => {
@@ -1461,12 +1392,12 @@ const projects = (() => {
 
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _controllers_projects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(11);
+/* harmony import */ var _controllers_projects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(10);
 /* harmony import */ var _controllers_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
 /* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9);
 /* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_helpers_index__WEBPACK_IMPORTED_MODULE_2__);
@@ -1491,11 +1422,13 @@ const projectViews = (() => {
 
   const showEditProjectForm = (e) => {
     const id = e.currentTarget.parentNode.parentNode.attributes[1].value;
+    closeDropdown();
     _controllers_projects__WEBPACK_IMPORTED_MODULE_0__["default"].openForm(id);
   };
 
   const showDeleteProjectForm = (e) => {
     const id = e.currentTarget.parentNode.parentNode.attributes[1].value;
+    closeDropdown();
     _controllers_forms__WEBPACK_IMPORTED_MODULE_1__["default"].openDeleteForm(id);
   };
 
@@ -1570,7 +1503,7 @@ const projectViews = (() => {
     Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("h2", { class: "project-heading" }, project.name, div);
     if (project.id !== "0") {
       let button = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("button", { class: "edit-button" }, "", div);
-      Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("i", { class: "fas fa-ellipsis-h", id: "ellipsis" }, "", button);
+      Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])("i", { class: "fas fa-ellipsis-h" }, "", button);
       button.addEventListener("click", openDropDown);
     }
   };
@@ -1587,17 +1520,87 @@ const projectViews = (() => {
 
 
 /***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const store = (() => {
+  const getTasks = () => {
+    return JSON.parse(window.localStorage.getItem("tasks"));
+  };
+
+  const setTasks = (tasks) => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  };
+
+  const setProjects = (projects) => {
+    localStorage.setItem("projects", JSON.stringify(projects));
+  };
+
+  const getProjects = () => {
+    return JSON.parse(window.localStorage.getItem("projects"));
+  };
+
+  const findTask = (id) => {
+    const tasks = getTasks();
+    const task = tasks.find((task) => task.id === id);
+    return task;
+  };
+
+  const findProject = (id) => {
+    const projects = getProjects();
+    const project = projects.find((project) => project.id === id);
+    return project;
+  };
+
+  const populateTasks = (project) => {
+    let taskIndex = [];
+    const tasks = getTasks();
+    project.tasks.forEach((task) => {
+      let t = tasks.find((a) => task === a.id);
+      taskIndex.push(t);
+    });
+    project.tasks = taskIndex;
+    return project;
+  };
+
+  const populateAllTasks = () => {
+    let newProjects = [];
+    const projects = getProjects();
+    projects.forEach((project) =>
+      newProjects.push(store.populateTasks(project))
+    );
+    return newProjects;
+  };
+
+  return {
+    getTasks,
+    setTasks,
+    findTask,
+    populateTasks,
+    populateAllTasks,
+    getProjects,
+    setProjects,
+    findProject,
+  };
+})();
+
+/* harmony default export */ __webpack_exports__["default"] = (store);
+
+
+/***/ }),
 /* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _helpers_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(10);
+/* harmony import */ var _helpers_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(12);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(14);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(152);
 /* harmony import */ var _views_taskViews__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6);
-/* harmony import */ var _views_projectViews__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(12);
+/* harmony import */ var _views_projectViews__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(11);
 
 
 
@@ -1605,6 +1608,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const sidenav = (() => {
+  const sidenav = document.querySelector("#side-nav");
   const allTasks = document.querySelector("#all-tasks");
   const tasksWeek = document.querySelector("#tasks-week");
   const tasksToday = document.querySelector("#tasks-today");
@@ -1641,6 +1645,7 @@ const sidenav = (() => {
       _views_projectViews__WEBPACK_IMPORTED_MODULE_4__["default"].renderProjectHeader(project);
       _views_taskViews__WEBPACK_IMPORTED_MODULE_3__["default"].render(project);
     });
+    sidenav.classList.value === "slide-in" ? toggleSidenav() : null;
   };
 
   const getTasksIndex = () => {
@@ -1687,11 +1692,15 @@ const sidenav = (() => {
     _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].updateSidebar(count);
   };
 
+  const toggleSidenav = () => {
+    window.innerWidth < 900 ? _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].toggleSidenav() : null;
+  };
+
   allTasks.addEventListener("click", getTasksIndex);
   tasksWeek.addEventListener("click", getTasksWeek);
   tasksToday.addEventListener("click", getTasksToday);
 
-  return { renderCounts, getTasksIndex };
+  return { renderCounts, getTasksIndex, toggleSidenav };
 })();
 
 /* harmony default export */ __webpack_exports__["default"] = (sidenav);
@@ -22593,6 +22602,11 @@ const sidebar = (() => {
     tasksWeekCount.textContent = count.weekCount;
   };
 
+  const toggleSidenav = () => {
+    sidenav.classList.toggle("collapse");
+    sidenav.classList.toggle("slide-in");
+  };
+
   const handleWindowResize = () => {
     if (window.innerWidth < 900) {
       sidenav.classList.add("collapse");
@@ -22601,11 +22615,6 @@ const sidebar = (() => {
       sidenav.classList.remove("collapse");
       expandNav.classList.add("hidden");
     }
-  };
-
-  const handleClick = () => {
-    sidenav.classList.toggle("collapse");
-    sidenav.classList.toggle("slide-in");
   };
 
   const renderWelcome = () => {
@@ -22623,8 +22632,8 @@ const sidebar = (() => {
   /* event listeners */
 
   window.addEventListener("resize", handleWindowResize);
-  expandNav.addEventListener("click", handleClick);
-  return { updateSidebar, renderWelcome };
+  expandNav.addEventListener("click", toggleSidenav);
+  return { updateSidebar, renderWelcome, toggleSidenav };
 })();
 
 /* harmony default export */ __webpack_exports__["default"] = (sidebar);

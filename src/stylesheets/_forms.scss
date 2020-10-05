@@ -98,10 +98,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   width: auto;
 }
 
-.input-error {
-  border: 0.1rem solid red;
-}
-
 .form-close {
   position: absolute;
   top: 1rem;
@@ -116,6 +112,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background: #eee;
 }
 
+// delete form
 #delete-label {
   text-align: center;
   margin: 1rem 0;
@@ -149,4 +146,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #reject-delete {
   background-color: #eee;
   border: #666;
+}
+
+//error stuff
+
+.error {
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  background-color: #f1948a;
+  color: #943126;
+  border-radius: 0.5rem;
 }

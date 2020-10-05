@@ -1,6 +1,6 @@
-// header
-
+// project heading
 .project-header {
+  position: relative;
   height: 4rem;
   display: flex;
   justify-content: space-between;
@@ -24,14 +24,4 @@
 .edit-button:hover {
   cursor: pointer;
   background: #eee;
-}
-
-#projects {
-  height: calc(100vh - 20.5rem);
-  padding-bottom: 1rem;
-  overflow-y: auto;
-}
-
-#projects:last-child {
-  margin-bottom: 1rem;
 }

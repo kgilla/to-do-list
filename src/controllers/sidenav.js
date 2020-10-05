@@ -5,6 +5,7 @@ import taskViews from "../views/taskViews";
 import projectViews from "../views/projectViews";
 
 const sidenav = (() => {
+  const sidenav = document.querySelector("#side-nav");
   const allTasks = document.querySelector("#all-tasks");
   const tasksWeek = document.querySelector("#tasks-week");
   const tasksToday = document.querySelector("#tasks-today");
@@ -41,6 +42,7 @@ const sidenav = (() => {
       projectViews.renderProjectHeader(project);
       taskViews.render(project);
     });
+    sidenav.classList.value === "slide-in" ? toggleSidenav() : null;
   };
 
   const getTasksIndex = () => {
@@ -87,11 +89,15 @@ const sidenav = (() => {
     views.updateSidebar(count);
   };
 
+  const toggleSidenav = () => {
+    window.innerWidth < 900 ? views.toggleSidenav() : null;
+  };
+
   allTasks.addEventListener("click", getTasksIndex);
   tasksWeek.addEventListener("click", getTasksWeek);
   tasksToday.addEventListener("click", getTasksToday);
 
-  return { renderCounts, getTasksIndex };
+  return { renderCounts, getTasksIndex, toggleSidenav };
 })();
 
 export default sidenav;

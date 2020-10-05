@@ -12,11 +12,13 @@ const projects = (() => {
     projects.push(project);
     store.setProjects(projects);
     app.render(project);
+    sidenav.toggleSidenav();
   };
 
   const changeProject = (id) => {
     document.querySelector(".selected").classList.remove("selected");
     app.render(store.findProject(id));
+    sidenav.toggleSidenav();
   };
 
   const update = (data) => {
