@@ -1,6 +1,5 @@
 import { maker } from "../helpers/index";
-import store from "../helpers/store";
-import forms from "../controllers/forms";
+import formController from "../controllers/forms";
 
 const formViews = (() => {
   const formBox = document.querySelector("#box");
@@ -10,25 +9,29 @@ const formViews = (() => {
     maker("div", { class: "error" }, error.message, errorBox);
   };
 
+  const handleKeyDown = (e) => {
+    console.log(e);
+  };
+
   const handleTaskSubmit = (e) => {
     e.currentTarget.taskId
-      ? forms.getTaskFormData(e.currentTarget.taskId)
-      : forms.getTaskFormData();
+      ? formController.getTaskFormData(e.currentTarget.taskId)
+      : formController.getTaskFormData();
   };
 
   const handleProjectSubmit = (e) => {
     e.currentTarget.projectId
-      ? forms.getProjectFormData(e.currentTarget.projectId)
-      : forms.getProjectFormData();
+      ? formController.getProjectFormData(e.currentTarget.projectId)
+      : formController.getProjectFormData();
   };
 
   const handleDelete = (e) => {
     let id = e.currentTarget.attributes[3].value;
-    forms.handleDelete(id);
+    formController.handleDelete(id);
   };
 
   const closeForm = () => {
-    forms.closeForm();
+    formController.closeForm();
   };
 
   const title = (parent, task = {}) => {
@@ -114,7 +117,7 @@ const formViews = (() => {
     maker("label", { class: "radio-label", for: "high" }, "High", radios);
   };
 
-  const selectProject = (parent, projects) => {
+  const selectProject = (parent, task = "", projects) => {
     let selected = document.querySelector(".selected");
     const div = maker("div", { class: "form-section" }, "", parent);
     maker("label", { class: "form-label", for: "project" }, "Project", div);
@@ -176,12 +179,19 @@ const formViews = (() => {
     date(form, task ? task : null);
     radioButtons(form);
     description(form, task ? task : null);
-    selectProject(form, projects);
+    selectProject(form, task, projects);
     button(form, task);
     task
       ? (document.querySelector(`[value=${task.priority}]`).checked = true)
       : (document.querySelector('[value="low"]').checked = true);
-    x.addEventListener("click", forms.closeForm);
+    x.addEventListener("click", formController.closeForm);
+    form.taskId = task ? task.id : null;
+    form.addEventListener("keydown", (e) => {
+      if (e.keyCode === 13) {
+        e.preventDefault();
+        handleTaskSubmit(e);
+      }
+    });
   };
 
   const projectForm = (project = "") => {
@@ -215,7 +225,14 @@ const formViews = (() => {
 
     button.projectId = project ? project.id : null;
     button.addEventListener("click", handleProjectSubmit);
-    x.addEventListener("click", forms.closeForm);
+    x.addEventListener("click", formController.closeForm);
+    form.projectId = project ? project.id : null;
+    form.addEventListener("keydown", (e) => {
+      if (e.keyCode === 13) {
+        e.preventDefault();
+        handleProjectSubmit(e);
+      }
+    });
     input.focus();
   };
 

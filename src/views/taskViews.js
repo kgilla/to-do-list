@@ -1,5 +1,5 @@
 import forms from "../controllers/forms";
-import tasks from "../controllers/tasks";
+import taskController from "../controllers/tasks";
 import { maker } from "../helpers/index";
 
 const taskViews = (() => {
@@ -8,7 +8,7 @@ const taskViews = (() => {
   const openEditForm = (e) => {
     const id = e.currentTarget.parentNode.parentNode.attributes[1].value;
     closeDropdown();
-    tasks.openForm(id);
+    taskController.openForm(id);
   };
 
   const openDeleteForm = (e) => {
@@ -18,7 +18,8 @@ const taskViews = (() => {
   };
 
   const openNewForm = (e) => {
-    tasks.openForm(e.currentTarget.attributes[1].value);
+    // console.log(e.currentTarget.attributes[2].value);
+    taskController.openForm();
   };
 
   const openDropDown = (e) => {
@@ -51,7 +52,7 @@ const taskViews = (() => {
   const completeTask = (e) => {
     let id = e.currentTarget.parentNode.attributes[1].value;
     let node = e.currentTarget;
-    tasks.handleTaskComplete(node, id);
+    taskController.handleTaskComplete(node, id);
   };
 
   const renderDropdown = (parent) => {

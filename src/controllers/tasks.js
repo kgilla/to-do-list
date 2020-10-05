@@ -82,7 +82,7 @@ const tasks = (() => {
     store.setTasks(newTasks);
     store.setProjects(projects);
 
-    app.render(projects[0]);
+    app.renderIndex();
   };
 
   const handleTaskComplete = (node, id) => {
@@ -95,7 +95,7 @@ const tasks = (() => {
 
   const openForm = (id = "") => {
     if (id) {
-      forms.openTaskForm(store.findTask(id));
+      forms.openTaskForm(id);
     } else {
       forms.openTaskForm();
     }
