@@ -1,6 +1,7 @@
 import view from "../views/formViews";
 import projectController from "../controllers/projects";
 import taskController from "../controllers/tasks";
+import store from "../helpers/store";
 
 const forms = (() => {
   const formBox = document.querySelector("#box");
@@ -8,12 +9,18 @@ const forms = (() => {
 
   const openTaskForm = (task = "") => {
     overlay.classList.toggle("hidden");
-    view.taskForm(task);
+    const projects = store.getProjects();
+    view.taskForm(task, projects);
   };
 
   const openProjectForm = (project = "") => {
     overlay.classList.toggle("hidden");
     view.projectForm(project);
+  };
+
+  const openDeleteForm = (id) => {
+    overlay.classList.toggle("hidden");
+    view.deleteForm(id);
   };
 
   const closeForm = () => {
@@ -27,14 +34,18 @@ const forms = (() => {
     }
   };
 
+  const handleDelete = (id) => {
+    let project = store.findProject(id);
+    project ? projectController.destroy(id) : taskController.destroy(id);
+    closeForm();
+  };
+
   const getTaskFormData = (taskId = "") => {
     const title = document.querySelector('[name="title"]').value;
     const date = document.querySelector('[name="date"]').value;
     const priority = document.querySelector('[name="priority"]:checked').value;
     const description = document.querySelector('[name="description"]').value;
-    const project = taskId
-      ? null
-      : document.querySelector('[name="project"]').value;
+    const project = document.querySelector('[name="project"]').value;
     const data = {
       id: taskId,
       title,
@@ -78,7 +89,9 @@ const forms = (() => {
   return {
     openProjectForm,
     openTaskForm,
+    openDeleteForm,
     closeForm,
+    handleDelete,
     validateFormData,
     getTaskFormData,
     getProjectFormData,

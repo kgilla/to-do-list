@@ -18,16 +18,6 @@ form {
   z-index: 6;
 }
 
-#project-form {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 1rem;
-  border: 0.1rem solid #aaa;
-  border-radius: 0.5rem;
-}
-
 .form-heading {
   margin-bottom: 1rem;
   font-size: 1.4rem;
@@ -124,4 +114,39 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .form-close:hover {
   cursor: pointer;
   background: #eee;
+}
+
+#delete-label {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+#delete-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.delete-button {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background: none;
+  border: none;
+}
+
+.delete-button:hover {
+  filter: brightness(90%);
+  cursor: pointer;
+}
+
+#confirm-delete {
+  background-color: #c0392b;
+  color: #fff;
+}
+
+#reject-delete {
+  background-color: #eee;
+  border: #666;
 }

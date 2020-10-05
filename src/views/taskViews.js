@@ -1,3 +1,4 @@
+import forms from "../controllers/forms";
 import tasks from "../controllers/tasks";
 import { maker } from "../helpers/index";
 
@@ -8,6 +9,12 @@ const taskViews = (() => {
     const id = e.currentTarget.parentNode.parentNode.attributes[1].value;
     closeDropdown();
     tasks.openForm(id);
+  };
+
+  const openDeleteForm = (e) => {
+    const id = e.currentTarget.parentNode.parentNode.attributes[1].value;
+    closeDropdown();
+    forms.openDeleteForm(id);
   };
 
   const openNewForm = (e) => {
@@ -58,6 +65,7 @@ const taskViews = (() => {
       div
     );
     edit.addEventListener("click", openEditForm);
+    remove.addEventListener("click", openDeleteForm);
     overlay.addEventListener("click", closeDropdown);
   };
 
@@ -137,6 +145,7 @@ const taskViews = (() => {
   return {
     render,
     markTaskComplete,
+    renderWelcome,
   };
 })();
 

@@ -2,6 +2,7 @@ import view from "../views/projectViews";
 import store from "../helpers/store";
 import app from "../app";
 import forms from "./forms";
+import sidenav from "../controllers/sidenav";
 import { makeId } from "../helpers/index";
 
 const projects = (() => {
@@ -27,13 +28,18 @@ const projects = (() => {
     app.render(projects[i]);
   };
 
-  const destroy = () => {};
+  const destroy = (id) => {
+    let projects = store.getProjects(id);
+    let newProjects = projects.filter((project) => project.id !== id);
+    store.setProjects(newProjects);
+    app.renderIndex();
+  };
 
   const openForm = (id = "") => {
     id ? forms.openProjectForm(store.findProject(id)) : forms.openProjectForm();
   };
 
-  const render = (projects, project) => {
+  const render = (projects, project = "") => {
     view.renderProjectHeader(project);
     view.renderProjects(projects, project);
   };

@@ -35,17 +35,18 @@ const sidenav = (() => {
 
   const render = (projects) => {
     main.innerHTML = "";
-    document.querySelector(".selected").classList.remove("selected");
+    let selected = document.querySelector(".selected");
+    selected ? selected.classList.remove("selected") : null;
     projects.forEach((project) => {
       projectViews.renderProjectHeader(project);
       taskViews.render(project);
     });
   };
 
-  const getAlltasks = () => {
+  const getTasksIndex = () => {
     const projects = store.populateAllTasks();
     let newProjects = projects.filter((p) => p.tasks.length > 0);
-    render(newProjects);
+    newProjects.length > 0 ? render(newProjects) : views.renderWelcome();
     allTasks.classList.add("selected");
   };
 
@@ -86,11 +87,11 @@ const sidenav = (() => {
     views.updateSidebar(count);
   };
 
-  allTasks.addEventListener("click", getAlltasks);
+  allTasks.addEventListener("click", getTasksIndex);
   tasksWeek.addEventListener("click", getTasksWeek);
   tasksToday.addEventListener("click", getTasksToday);
 
-  return { renderCounts };
+  return { renderCounts, getTasksIndex };
 })();
 
 export default sidenav;

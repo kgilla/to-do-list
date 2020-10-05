@@ -34,13 +34,11 @@ const tasks = (() => {
     store.setTasks(tasks);
     store.setProjects(projects);
 
-    app.render(savedProject);
+    app.renderIndex();
   };
 
   const update = (data) => {
-    const { id, title, date, priority, description, done } = data;
-
-    const task = store.findTask(id);
+    const { id, title, date, priority, description, project, done } = data;
 
     const newTask = {
       id,
@@ -48,18 +46,44 @@ const tasks = (() => {
       date,
       priority,
       description,
-      project: task.project,
+      project,
       done,
     };
+
+    const oldTask = store.findTask(id);
+
+    if (project !== oldTask.project) {
+      let projects = store.getProjects();
+      let a = projects.findIndex((p) => p.id === oldTask.project);
+      let b = projects.findIndex((p) => p.id === project);
+      let filtered = projects[a].tasks.filter((task) => task !== id);
+      projects[a].tasks = filtered;
+      projects[b].tasks.push(id);
+      store.setProjects(projects);
+    }
 
     let tasks = store.getTasks();
     let i = tasks.findIndex((task) => task.id === newTask.id);
     tasks[i] = newTask;
     store.setTasks(tasks);
-    app.render(store.findProject(newTask.project));
+    app.renderIndex();
   };
 
-  const destroy = () => {};
+  const destroy = (id) => {
+    const task = store.findTask(id);
+    const tasks = store.getTasks();
+    const projects = store.getProjects();
+
+    let newTasks = tasks.filter((task) => task.id !== id);
+    let i = projects.findIndex((project) => project.id === task.project);
+    let newProjectTasks = projects[i].tasks.filter((task) => task !== id);
+    projects[i].tasks = newProjectTasks;
+
+    store.setTasks(newTasks);
+    store.setProjects(projects);
+
+    app.render(projects[0]);
+  };
 
   const handleTaskComplete = (node, id) => {
     let tasks = store.getTasks();

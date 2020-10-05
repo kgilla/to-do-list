@@ -4,6 +4,7 @@ import projectController from "./controllers/projects";
 import sidenavController from "./controllers/sidenav";
 import store from "./helpers/store";
 import { makeId } from "./helpers/index";
+import sidenav from "./controllers/sidenav";
 
 const app = (() => {
   localStorage.clear();
@@ -25,6 +26,7 @@ const app = (() => {
   };
 
   const freshStart = () => {
+    let defaultProject = { id: "0", name: "Unassigned Tasks", tasks: [] };
     let project = { id: makeId(), name: "Welcome!", tasks: [] };
     let task = {
       id: makeId(),
@@ -38,7 +40,7 @@ const app = (() => {
     };
     project.tasks.push(task.id);
     store.setTasks([task]);
-    store.setProjects([project]);
+    store.setProjects([defaultProject, project]);
     render(project);
   };
 
@@ -50,6 +52,14 @@ const app = (() => {
     taskController.render(project);
   };
 
+  const renderIndex = () => {
+    main.innerHTML = "";
+    let projects = store.getProjects();
+    sidenavController.renderCounts();
+    projectController.render(projects);
+    sidenav.getTasksIndex();
+  };
+
   const start = () => {
     localStorage.length > 0 ? render() : freshStart();
   };
@@ -58,7 +68,7 @@ const app = (() => {
 
   start();
 
-  return { render };
+  return { render, renderIndex };
 })();
 
 export default app;

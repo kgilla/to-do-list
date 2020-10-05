@@ -1,4 +1,5 @@
 import projectController from "../controllers/projects";
+import formController from "../controllers/forms";
 import { maker } from "../helpers/index";
 
 const projectViews = (() => {
@@ -19,6 +20,11 @@ const projectViews = (() => {
   const showEditProjectForm = (e) => {
     const id = e.currentTarget.parentNode.parentNode.attributes[1].value;
     projectController.openForm(id);
+  };
+
+  const showDeleteProjectForm = (e) => {
+    const id = e.currentTarget.parentNode.parentNode.attributes[1].value;
+    formController.openDeleteForm(id);
   };
 
   const openDropDown = (e) => {
@@ -46,6 +52,7 @@ const projectViews = (() => {
       div
     );
     edit.addEventListener("click", showEditProjectForm);
+    remove.addEventListener("click", showDeleteProjectForm);
     overlay.addEventListener("click", closeDropdown);
   };
 
@@ -53,8 +60,11 @@ const projectViews = (() => {
     let div = maker(
       "div",
       {
-        class:
-          project.id === selected.id ? "sidenav-item selected" : "sidenav-item",
+        class: selected
+          ? project.id === selected.id
+            ? "sidenav-item selected"
+            : "sidenav-item"
+          : "sidenav-item",
         data: project.id,
       },
       "",
@@ -71,9 +81,11 @@ const projectViews = (() => {
     div.addEventListener("click", handleProjectChange);
   };
 
-  const renderProjects = (projects, selected) => {
+  const renderProjects = (projects, selected = "") => {
     projectList.innerHTML = "";
-    projects.forEach((project) => renderProject(project, selected));
+    projects.forEach((project) =>
+      project.id !== "0" ? renderProject(project, selected) : null
+    );
   };
 
   const renderProjectHeader = (project) => {
@@ -84,9 +96,11 @@ const projectViews = (() => {
       main
     );
     maker("h2", { class: "project-heading" }, project.name, div);
-    let button = maker("button", { class: "edit-button" }, "", div);
-    maker("i", { class: "fas fa-ellipsis-h", id: "ellipsis" }, "", button);
-    button.addEventListener("click", openDropDown);
+    if (project.id !== "0") {
+      let button = maker("button", { class: "edit-button" }, "", div);
+      maker("i", { class: "fas fa-ellipsis-h", id: "ellipsis" }, "", button);
+      button.addEventListener("click", openDropDown);
+    }
   };
 
   sidenavButton.addEventListener("click", showNewProjectForm);
