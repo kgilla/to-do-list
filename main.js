@@ -1624,6 +1624,11 @@ const sidenav = (() => {
   const tasksToday = document.querySelector("#tasks-today");
   const main = document.querySelector("#main");
 
+  const switchCategory = () => {
+    let selected = document.querySelector(".selected");
+    selected ? selected.classList.remove("selected") : null;
+  };
+
   const todayFilter = (task) =>
     moment__WEBPACK_IMPORTED_MODULE_1___default()(task.date).isBetween(
       moment__WEBPACK_IMPORTED_MODULE_1___default()(Date.now()).subtract(1, "days"),
@@ -1649,14 +1654,11 @@ const sidenav = (() => {
 
   const render = (projects, heading) => {
     main.innerHTML = "";
-    let selected = document.querySelector(".selected");
-    selected ? selected.classList.remove("selected") : null;
-    _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].makeHeader(heading);
+    switchCategory();
     projects.forEach((project) => {
       _views_projectViews__WEBPACK_IMPORTED_MODULE_4__["default"].renderProjectHeader(project);
       _views_taskViews__WEBPACK_IMPORTED_MODULE_3__["default"].render(project);
     });
-    sidenav.state === "open" ? toggleSidenav() : null;
   };
 
   const getTasksIndex = () => {
@@ -1666,18 +1668,21 @@ const sidenav = (() => {
       ? render(newProjects, "All Tasks")
       : _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].renderWelcome();
     allTasks.classList.add("selected");
+    sidenav.state === "open" ? toggleSidenav() : null;
   };
 
   const getTasksWeek = () => {
     let projects = filterProjects(weekFilter);
-    render(projects, "Tasks This Week");
+    projects.length > 0 ? render(projects) : _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].renderWelcome();
     tasksWeek.classList.add("selected");
+    sidenav.state === "open" ? toggleSidenav() : null;
   };
 
   const getTasksToday = () => {
     let projects = filterProjects(todayFilter);
-    render(projects, "Today's Tasks");
+    projects.length > 0 ? render(projects) : _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].renderWelcome();
     tasksToday.classList.add("selected");
+    sidenav.state === "open" ? toggleSidenav() : null;
   };
 
   const renderCounts = () => {
@@ -22649,6 +22654,9 @@ const sidebar = (() => {
   };
 
   const renderWelcome = () => {
+    main.innerHTML = "";
+    let selected = document.querySelector(".selected");
+    selected ? selected.classList.remove("selected") : null;
     let mat = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("div", { class: "welcome-mat" }, "", main);
     Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("h2", { class: "welcome-header" }, "Wow Such Empty!", mat);
     Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("i", { class: "far fa-surprise surprise" }, "", mat);
