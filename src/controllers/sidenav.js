@@ -11,6 +11,11 @@ const sidenav = (() => {
   const tasksToday = document.querySelector("#tasks-today");
   const main = document.querySelector("#main");
 
+  const switchCategory = () => {
+    let selected = document.querySelector(".selected");
+    selected ? selected.classList.remove("selected") : null;
+  };
+
   const todayFilter = (task) =>
     moment(task.date).isBetween(
       moment(Date.now()).subtract(1, "days"),
@@ -36,14 +41,11 @@ const sidenav = (() => {
 
   const render = (projects, heading) => {
     main.innerHTML = "";
-    let selected = document.querySelector(".selected");
-    selected ? selected.classList.remove("selected") : null;
-    views.makeHeader(heading);
+    switchCategory();
     projects.forEach((project) => {
       projectViews.renderProjectHeader(project);
       taskViews.render(project);
     });
-    sidenav.state === "open" ? toggleSidenav() : null;
   };
 
   const getTasksIndex = () => {
@@ -53,18 +55,21 @@ const sidenav = (() => {
       ? render(newProjects, "All Tasks")
       : views.renderWelcome();
     allTasks.classList.add("selected");
+    sidenav.state === "open" ? toggleSidenav() : null;
   };
 
   const getTasksWeek = () => {
     let projects = filterProjects(weekFilter);
-    render(projects, "Tasks This Week");
+    projects.length > 0 ? render(projects) : views.renderWelcome();
     tasksWeek.classList.add("selected");
+    sidenav.state === "open" ? toggleSidenav() : null;
   };
 
   const getTasksToday = () => {
     let projects = filterProjects(todayFilter);
-    render(projects, "Today's Tasks");
+    projects.length > 0 ? render(projects) : views.renderWelcome();
     tasksToday.classList.add("selected");
+    sidenav.state === "open" ? toggleSidenav() : null;
   };
 
   const renderCounts = () => {

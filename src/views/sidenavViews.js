@@ -48,6 +48,9 @@ const sidebar = (() => {
   };
 
   const renderWelcome = () => {
+    main.innerHTML = "";
+    let selected = document.querySelector(".selected");
+    selected ? selected.classList.remove("selected") : null;
     let mat = maker("div", { class: "welcome-mat" }, "", main);
     maker("h2", { class: "welcome-header" }, "Wow Such Empty!", mat);
     maker("i", { class: "far fa-surprise surprise" }, "", mat);
