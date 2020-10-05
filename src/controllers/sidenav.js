@@ -34,10 +34,11 @@ const sidenav = (() => {
     return filteredProjects;
   };
 
-  const render = (projects) => {
+  const render = (projects, heading) => {
     main.innerHTML = "";
     let selected = document.querySelector(".selected");
     selected ? selected.classList.remove("selected") : null;
+    views.makeHeader(heading);
     projects.forEach((project) => {
       projectViews.renderProjectHeader(project);
       taskViews.render(project);
@@ -48,19 +49,21 @@ const sidenav = (() => {
   const getTasksIndex = () => {
     const projects = store.populateAllTasks();
     let newProjects = projects.filter((p) => p.tasks.length > 0);
-    newProjects.length > 0 ? render(newProjects) : views.renderWelcome();
+    newProjects.length > 0
+      ? render(newProjects, "All Tasks")
+      : views.renderWelcome();
     allTasks.classList.add("selected");
   };
 
   const getTasksWeek = () => {
     let projects = filterProjects(weekFilter);
-    render(projects);
+    render(projects, "Tasks This Week");
     tasksWeek.classList.add("selected");
   };
 
   const getTasksToday = () => {
     let projects = filterProjects(todayFilter);
-    render(projects);
+    render(projects, "Today's Tasks");
     tasksToday.classList.add("selected");
   };
 

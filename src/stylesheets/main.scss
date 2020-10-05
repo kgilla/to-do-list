@@ -37,7 +37,6 @@ body {
   justify-content: space-between;
   align-items: center;
   height: 4rem;
-  padding: 0 1rem;
   background: #203148;
   z-index: 2;
 }
@@ -53,10 +52,11 @@ body {
 
 #expand-nav {
   grid-column: 1/2;
-  border: none;
+  border: 0.2rem solid #fff;
+  border-radius: 0.5rem;
   background: none;
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.6rem;
   :hover {
     cursor: pointer;
   }
@@ -85,7 +85,6 @@ body {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
 }
 
 .large {
@@ -135,15 +134,43 @@ body {
 }
 
 @media screen and (max-width: 599px) {
+  #main {
+    padding: 0 0.5rem;
+  }
+
+  #header {
+    padding: 0 0.5rem;
+  }
 }
 
 @media screen and (min-width: 600px) {
+  #main {
+    padding: 0 0.5rem;
+  }
+
+  #header {
+    padding: 0 0.5rem;
+  }
 }
 
 @media screen and (min-width: 900px) {
+  #main {
+    padding: 0 1rem;
+  }
+
+  #header {
+    padding: 0 1rem;
+  }
 }
 
 @media screen and (min-width: 1200px) {
+  #main {
+    padding: 0 2rem;
+  }
+
+  #header {
+    padding: 0 2rem;
+  }
 }
 
 @media screen and (min-width: 1400px) {

@@ -2,7 +2,6 @@ import app from "../app";
 import view from "../views/taskViews";
 import forms from "./forms";
 import store from "../helpers/store";
-import sidenav from "./sidenav";
 import { makeId } from "../helpers";
 
 const tasks = (() => {

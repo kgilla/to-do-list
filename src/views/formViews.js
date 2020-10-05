@@ -48,7 +48,6 @@ const formViews = (() => {
       "",
       div
     );
-    input.focus();
   };
 
   const date = (parent, task = {}) => {
@@ -243,7 +242,6 @@ const formViews = (() => {
         handleProjectSubmit(e);
       }
     });
-    input.focus();
   };
 
   const deleteForm = (id) => {

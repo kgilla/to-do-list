@@ -59,11 +59,22 @@ const sidebar = (() => {
     );
   };
 
+  const makeHeader = (content) => {
+    let header = maker("header", { class: "sidenav-header" }, "", main);
+    maker("h2", { class: "sidenav-header-title" }, content, header);
+  };
+
   /* event listeners */
 
   window.addEventListener("resize", handleWindowResize);
   expandNav.addEventListener("click", toggleSidenav);
-  return { updateSidebar, renderWelcome, openSidenav, closeSidenav };
+  return {
+    updateSidebar,
+    renderWelcome,
+    openSidenav,
+    closeSidenav,
+    makeHeader,
+  };
 })();
 
 export default sidebar;
