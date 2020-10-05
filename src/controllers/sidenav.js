@@ -39,8 +39,7 @@ const sidenav = (() => {
     return filteredProjects;
   };
 
-  const render = (projects, heading) => {
-    main.innerHTML = "";
+  const render = (projects) => {
     switchCategory();
     projects.forEach((project) => {
       projectViews.renderProjectHeader(project);
@@ -51,23 +50,24 @@ const sidenav = (() => {
   const getTasksIndex = () => {
     const projects = store.populateAllTasks();
     let newProjects = projects.filter((p) => p.tasks.length > 0);
-    newProjects.length > 0
-      ? render(newProjects, "All Tasks")
-      : views.renderWelcome();
+    views.makeHeader("All Tasks");
+    newProjects.length > 0 ? render(newProjects, "All Tasks") : views.welcome();
     allTasks.classList.add("selected");
     sidenav.state === "open" ? toggleSidenav() : null;
   };
 
   const getTasksWeek = () => {
     let projects = filterProjects(weekFilter);
-    projects.length > 0 ? render(projects) : views.renderWelcome();
+    views.makeHeader("This Week's Tasks");
+    projects.length > 0 ? render(projects) : views.welcome();
     tasksWeek.classList.add("selected");
     sidenav.state === "open" ? toggleSidenav() : null;
   };
 
   const getTasksToday = () => {
     let projects = filterProjects(todayFilter);
-    projects.length > 0 ? render(projects) : views.renderWelcome();
+    views.makeHeader("Today's Tasks");
+    projects.length > 0 ? render(projects) : views.welcome();
     tasksToday.classList.add("selected");
     sidenav.state === "open" ? toggleSidenav() : null;
   };

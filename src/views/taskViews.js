@@ -1,5 +1,6 @@
 import forms from "../controllers/forms";
 import taskController from "../controllers/tasks";
+import defaultViews from "../views/defaultViews";
 import { maker } from "../helpers/index";
 
 const taskViews = (() => {
@@ -32,10 +33,8 @@ const taskViews = (() => {
   };
 
   const showDetails = (e) => {
-    // if (e.target === e.currentTarget) {
     e.currentTarget.parentNode.nextSibling.classList.toggle("expand");
     e.currentTarget.parentNode.lastChild.classList.toggle("hidden");
-    // }
   };
 
   const markTaskComplete = (node, task) => {
@@ -65,18 +64,6 @@ const taskViews = (() => {
     edit.addEventListener("click", openEditForm);
     remove.addEventListener("click", openDeleteForm);
     overlay.addEventListener("click", closeDropdown);
-  };
-
-  const renderWelcome = () => {
-    let mat = maker("div", { class: "welcome-mat" }, "", main);
-    maker("h2", { class: "welcome-header" }, "Wow Such Empty!", mat);
-    maker("i", { class: "far fa-surprise surprise" }, "", mat);
-    maker(
-      "h2",
-      { class: "welcome-header" },
-      "Could You Be Done... Everything?!",
-      mat
-    );
   };
 
   const renderTaskExpanded = (parent, task) => {
@@ -128,7 +115,7 @@ const taskViews = (() => {
 
   const render = (project) => {
     if (project.tasks.length == 0) {
-      renderWelcome();
+      defaultViews.renderWelcome();
     } else {
       project.tasks.forEach((task) => renderTask(task));
       let button = maker(
@@ -145,7 +132,6 @@ const taskViews = (() => {
   return {
     render,
     markTaskComplete,
-    renderWelcome,
   };
 })();
 

@@ -1,17 +1,28 @@
 // project heading
 .project-header {
   position: relative;
-  height: 4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 0.1rem solid #ddd;
+  padding: 0.5rem 0;
+  border-bottom: 0.1rem solid #ccc;
+}
+
+.project-heading-titlebox {
+  display: flex;
+  align-items: center;
 }
 
 .project-heading {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: #222;
   font-weight: 600;
+}
+
+.project-task-count {
+  color: #666;
+  font-size: 1.2rem;
+  margin-left: 2rem;
 }
 
 .edit-button {

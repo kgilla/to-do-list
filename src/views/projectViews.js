@@ -97,7 +97,14 @@ const projectViews = (() => {
       "",
       main
     );
-    maker("h2", { class: "project-heading" }, project.name, div);
+    let titleBox = maker("div", { class: "project-heading-titlebox" }, "", div);
+    maker("h2", { class: "project-heading" }, project.name, titleBox);
+    maker(
+      "h3",
+      { class: "project-task-count" },
+      project.tasks.length,
+      titleBox
+    );
     if (project.id !== "0") {
       let button = maker("button", { class: "edit-button" }, "", div);
       maker("i", { class: "fas fa-ellipsis-h" }, "", button);

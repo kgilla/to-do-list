@@ -1,4 +1,5 @@
 import { maker } from "../helpers/index";
+import defaultViews from "../views/defaultViews";
 
 const sidebar = (() => {
   const allTasksCount = document.querySelector("#all-tasks-count");
@@ -47,22 +48,14 @@ const sidebar = (() => {
     }
   };
 
-  const renderWelcome = () => {
-    main.innerHTML = "";
+  const welcome = () => {
     let selected = document.querySelector(".selected");
     selected ? selected.classList.remove("selected") : null;
-    let mat = maker("div", { class: "welcome-mat" }, "", main);
-    maker("h2", { class: "welcome-header" }, "Wow Such Empty!", mat);
-    maker("i", { class: "far fa-surprise surprise" }, "", mat);
-    maker(
-      "h2",
-      { class: "welcome-header" },
-      "Could You Be Done... Everything?!",
-      mat
-    );
+    defaultViews.renderWelcome();
   };
 
   const makeHeader = (content) => {
+    main.innerHTML = "";
     let header = maker("header", { class: "sidenav-header" }, "", main);
     maker("h2", { class: "sidenav-header-title" }, content, header);
   };
@@ -73,7 +66,7 @@ const sidebar = (() => {
   expandNav.addEventListener("click", toggleSidenav);
   return {
     updateSidebar,
-    renderWelcome,
+    welcome,
     openSidenav,
     closeSidenav,
     makeHeader,
