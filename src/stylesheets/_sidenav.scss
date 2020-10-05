@@ -5,8 +5,7 @@
   width: 20rem;
   padding: 1rem;
   background: #f3f5f9;
-  z-index: 3;
-  transition: all 0.7s ease-in-out;
+  z-index: 4;
 }
 
 // top 3 static categories
@@ -96,14 +95,28 @@
 
 // conditionals
 
-.collapse {
-  left: -20rem;
-}
-
 .expand {
   left: 0;
 }
 
 .selected {
   background: #fff;
+}
+
+.collapse {
+  left: -20rem;
+}
+
+.slide-in {
+  animation: slide-in 0.3s linear;
+  left: 0;
+}
+
+@keyframes slide-in {
+  from {
+    left: -20rem;
+  }
+  to {
+    left: 0;
+  }
 }

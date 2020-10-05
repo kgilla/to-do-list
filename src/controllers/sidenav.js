@@ -42,7 +42,7 @@ const sidenav = (() => {
       projectViews.renderProjectHeader(project);
       taskViews.render(project);
     });
-    sidenav.classList.value === "slide-in" ? toggleSidenav() : null;
+    sidenav.state === "open" ? toggleSidenav() : null;
   };
 
   const getTasksIndex = () => {
@@ -90,7 +90,9 @@ const sidenav = (() => {
   };
 
   const toggleSidenav = () => {
-    window.innerWidth < 900 ? views.toggleSidenav() : null;
+    if (window.innerWidth < 900) {
+      sidenav.state === "closed" ? views.openSidenav() : views.closeSidenav();
+    }
   };
 
   allTasks.addEventListener("click", getTasksIndex);

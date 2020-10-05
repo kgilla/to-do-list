@@ -2,6 +2,7 @@ import app from "../app";
 import view from "../views/taskViews";
 import forms from "./forms";
 import store from "../helpers/store";
+import sidenav from "./sidenav";
 import { makeId } from "../helpers";
 
 const tasks = (() => {
@@ -34,7 +35,7 @@ const tasks = (() => {
     store.setTasks(tasks);
     store.setProjects(projects);
 
-    app.renderIndex();
+    project === "0" ? app.renderIndex() : app.render(savedProject);
   };
 
   const update = (data) => {
