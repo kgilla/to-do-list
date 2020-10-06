@@ -2,10 +2,17 @@ import view from "../views/formViews";
 import projectController from "../controllers/projects";
 import taskController from "../controllers/tasks";
 import store from "../helpers/store";
+import app from "../app";
 
 const forms = (() => {
   const formBox = document.querySelector("#box");
   const overlay = document.querySelector("#overlay");
+  const settings = document.querySelector("#settings-button");
+
+  const openSettings = () => {
+    overlay.classList.toggle("hidden");
+    view.renderSettings();
+  };
 
   const openTaskForm = (task = "") => {
     overlay.classList.toggle("hidden");
@@ -26,6 +33,13 @@ const forms = (() => {
   const closeForm = () => {
     overlay.classList.toggle("hidden");
     formBox.innerHTML = "";
+  };
+
+  const handleFullDelete = () => {
+    localStorage.clear();
+    document.querySelector(".selected").classList.remove("selected");
+    closeForm();
+    app.start();
   };
 
   const handleOverlayClick = (e) => {
@@ -85,6 +99,7 @@ const forms = (() => {
   };
 
   overlay.addEventListener("click", handleOverlayClick);
+  settings.addEventListener("click", openSettings);
 
   return {
     openProjectForm,
@@ -95,6 +110,7 @@ const forms = (() => {
     validateFormData,
     getTaskFormData,
     getProjectFormData,
+    handleFullDelete,
   };
 })();
 

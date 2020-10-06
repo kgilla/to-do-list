@@ -9,8 +9,8 @@ const formViews = (() => {
     maker("div", { class: "error" }, error.message, errorBox);
   };
 
-  const handleKeyDown = (e) => {
-    console.log(e);
+  const confirmDeleteAll = () => {
+    formController.handleFullDelete();
   };
 
   const handleTaskSubmit = (e) => {
@@ -275,7 +275,38 @@ const formViews = (() => {
     no.addEventListener("click", closeForm);
   };
 
+  const renderSettings = () => {
+    const form = maker("form", { class: "default-form" }, "", formBox);
+    maker("h1", { class: "form-heading" }, "Delete All Data", form);
+    maker(
+      "label",
+      { id: "delete-label" },
+      "Do you want to delete all data and start fresh?",
+      form
+    );
+    const div = maker("div", { id: "delete-buttons" }, "", form);
+    const yes = maker(
+      "button",
+      {
+        type: "button",
+        class: "delete-button",
+        id: "confirm-delete",
+      },
+      "Yes",
+      div
+    );
+    const no = maker(
+      "button",
+      { type: "button", class: "delete-button", id: "reject-delete" },
+      "No",
+      div
+    );
+    yes.addEventListener("click", confirmDeleteAll);
+    no.addEventListener("click", closeForm);
+  };
+
   return {
+    renderSettings,
     taskForm,
     projectForm,
     addError,

@@ -107,7 +107,13 @@ const sidenav = (() => {
   tasksWeek.addEventListener("click", getTasksWeek);
   tasksToday.addEventListener("click", getTasksToday);
 
-  return { renderCounts, getTasksIndex, toggleSidenav };
+  return {
+    renderCounts,
+    getTasksIndex,
+    getTasksToday,
+    getTasksWeek,
+    toggleSidenav,
+  };
 })();
 
 export default sidenav;

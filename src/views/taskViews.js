@@ -19,7 +19,6 @@ const taskViews = (() => {
   };
 
   const openNewForm = (e) => {
-    // console.log(e.currentTarget.attributes[2].value);
     taskController.openForm();
   };
 

@@ -52,7 +52,7 @@
 
 // sidenav projects bin
 #projects {
-  height: calc(100vh - 20.5rem);
+  height: calc(100vh - 23.5rem);
   padding-bottom: 1rem;
   overflow-y: auto;
 }
@@ -124,4 +124,26 @@
   color: #000;
   font-size: 1.6rem;
   font-weight: 700;
+}
+
+#sidenav-footer {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-top: 0.1rem solid #ddd;
+}
+
+.sidenav-footer-button {
+  border: none;
+  background: none;
+  text-decoration: none;
+  padding: 0.33rem 0.66rem;
+  font-size: 1.5rem;
+  color: #666;
+}
+
+.sidenav-footer-button:hover {
+  color: #000;
+  cursor: pointer;
 }

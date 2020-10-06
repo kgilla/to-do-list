@@ -34,7 +34,7 @@ const tasks = (() => {
     store.setTasks(tasks);
     store.setProjects(projects);
 
-    project === "0" ? app.renderIndex() : app.render(savedProject);
+    app.returnToSelected(savedProject);
   };
 
   const update = (data) => {
@@ -66,9 +66,7 @@ const tasks = (() => {
     let i = tasks.findIndex((task) => task.id === newTask.id);
     tasks[i] = newTask;
     store.setTasks(tasks);
-    project === "0"
-      ? app.renderIndex()
-      : app.render(store.findProject(project));
+    app.returnToSelected(store.findProject(project));
   };
 
   const destroy = (id) => {
@@ -84,7 +82,7 @@ const tasks = (() => {
     store.setTasks(newTasks);
     store.setProjects(projects);
 
-    app.renderIndex();
+    app.returnToSelected(projects[i]);
   };
 
   const handleTaskComplete = (node, id) => {

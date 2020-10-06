@@ -7,8 +7,6 @@ import { makeId } from "./helpers/index";
 import sidenav from "./controllers/sidenav";
 
 const app = (() => {
-  localStorage.clear();
-
   const main = document.querySelector("#main");
 
   window.innerWidth > 900
@@ -41,34 +39,62 @@ const app = (() => {
     project.tasks.push(task.id);
     store.setTasks([task]);
     store.setProjects([defaultProject, project]);
-    render(project);
+    renderProject(project);
   };
 
-  const render = (project) => {
+  const render = (project = "") => {
     main.innerHTML = "";
     let projects = store.getProjects();
     sidenavController.renderCounts();
     projectController.render(projects, project);
+  };
+
+  const renderProject = (project) => {
+    render(project);
     taskController.render(project);
   };
 
   const renderIndex = () => {
-    main.innerHTML = "";
-    let projects = store.getProjects();
-    sidenavController.renderCounts();
-    projectController.render(projects);
+    render();
     sidenav.getTasksIndex();
   };
 
+  const renderTasksToday = () => {
+    render();
+    sidenav.getTasksToday();
+  };
+
+  const renderTasksWeek = () => {
+    render();
+    sidenav.getTasksWeek();
+  };
+
+  const returnToSelected = (project = "") => {
+    let selected = document.querySelector(".selected");
+    document.querySelector(".selected").classList.remove("selected");
+    if (project.id === "0" || selected.id) {
+      renderIndex();
+    } else {
+      renderProject(project);
+    }
+  };
+
   const start = () => {
-    localStorage.length > 0 ? render() : freshStart();
+    localStorage.length > 0 ? renderIndex() : freshStart();
   };
 
   window.addEventListener("resize", handleResize);
 
   start();
 
-  return { render, renderIndex };
+  return {
+    renderProject,
+    renderIndex,
+    renderTasksToday,
+    renderTasksWeek,
+    returnToSelected,
+    start,
+  };
 })();
 
 export default app;

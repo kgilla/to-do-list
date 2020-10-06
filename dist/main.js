@@ -107,8 +107,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const app = (() => {
-  localStorage.clear();
-
   const main = document.querySelector("#main");
 
   window.innerWidth > 900
@@ -141,34 +139,62 @@ const app = (() => {
     project.tasks.push(task.id);
     _helpers_store__WEBPACK_IMPORTED_MODULE_4__["default"].setTasks([task]);
     _helpers_store__WEBPACK_IMPORTED_MODULE_4__["default"].setProjects([defaultProject, project]);
-    render(project);
+    renderProject(project);
   };
 
-  const render = (project) => {
+  const render = (project = "") => {
     main.innerHTML = "";
     let projects = _helpers_store__WEBPACK_IMPORTED_MODULE_4__["default"].getProjects();
     _controllers_sidenav__WEBPACK_IMPORTED_MODULE_3__["default"].renderCounts();
     _controllers_projects__WEBPACK_IMPORTED_MODULE_2__["default"].render(projects, project);
+  };
+
+  const renderProject = (project) => {
+    render(project);
     _controllers_tasks__WEBPACK_IMPORTED_MODULE_1__["default"].render(project);
   };
 
   const renderIndex = () => {
-    main.innerHTML = "";
-    let projects = _helpers_store__WEBPACK_IMPORTED_MODULE_4__["default"].getProjects();
-    _controllers_sidenav__WEBPACK_IMPORTED_MODULE_3__["default"].renderCounts();
-    _controllers_projects__WEBPACK_IMPORTED_MODULE_2__["default"].render(projects);
+    render();
     _controllers_sidenav__WEBPACK_IMPORTED_MODULE_3__["default"].getTasksIndex();
   };
 
+  const renderTasksToday = () => {
+    render();
+    _controllers_sidenav__WEBPACK_IMPORTED_MODULE_3__["default"].getTasksToday();
+  };
+
+  const renderTasksWeek = () => {
+    render();
+    _controllers_sidenav__WEBPACK_IMPORTED_MODULE_3__["default"].getTasksWeek();
+  };
+
+  const returnToSelected = (project = "") => {
+    let selected = document.querySelector(".selected");
+    document.querySelector(".selected").classList.remove("selected");
+    if (project.id === "0" || selected.id) {
+      renderIndex();
+    } else {
+      renderProject(project);
+    }
+  };
+
   const start = () => {
-    localStorage.length > 0 ? render() : freshStart();
+    localStorage.length > 0 ? renderIndex() : freshStart();
   };
 
   window.addEventListener("resize", handleResize);
 
   start();
 
-  return { render, renderIndex };
+  return {
+    renderProject,
+    renderIndex,
+    renderTasksToday,
+    renderTasksWeek,
+    returnToSelected,
+    start,
+  };
 })();
 
 /* harmony default export */ __webpack_exports__["default"] = (app);
@@ -483,7 +509,7 @@ exports = ___CSS_LOADER_API_IMPORT___(false);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap);"]);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap);"]);
 // Module
-exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block;\n}\n\nbody {\n  line-height: 1;\n}\n\nol, ul {\n  list-style: none;\n}\n\nblockquote, q {\n  quotes: none;\n}\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: \"\";\n  content: none;\n}\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\n/* form stuff */\nform {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: calc(100% - 2rem);\n  max-width: 30rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: 1rem;\n  background: #fff;\n  color: #333;\n  border-radius: 0.5rem;\n  font-family: \"Roboto\", sans-serif;\n  z-index: 6;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 8px 16px rgba(0, 0, 0, 0.3);\n}\n\n.form-heading {\n  margin-bottom: 1rem;\n  font-size: 1.4rem;\n  font-weight: 700;\n  text-align: center;\n}\n\n.form-section {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  margin-bottom: 0.5rem;\n  width: 100%;\n}\n\n.form-input {\n  position: relative;\n  width: 100%;\n  border: 0.1rem solid #ddd;\n  border-radius: 0.25rem;\n  padding: 0.5rem;\n  font-family: inherit;\n  font-size: 1rem;\n}\n\n.form-label {\n  padding: 0.5rem 0;\n  font-size: 1rem;\n}\n\n.form-input:focus {\n  outline: none;\n  box-shadow: 0 0 0 1.5pt #1976d2;\n}\n\n.text-area {\n  width: 100%;\n  min-height: 6rem;\n  resize: none;\n  font-family: inherit;\n}\n\n.form-button {\n  width: 100%;\n  padding: 0.5rem 0;\n  background: #2980b9;\n  border: none;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.form-button:hover {\n  cursor: pointer;\n  filter: brightness(90%);\n}\n\n#overlay {\n  position: fixed;\n  left: 0;\n  top: 0;\n  min-height: 100vh;\n  width: 100vw;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 5;\n}\n\ninput[type=date]::-webkit-calendar-picker-indicator {\n  background: transparent;\n  bottom: 0;\n  color: transparent;\n  cursor: pointer;\n  height: auto;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: auto;\n}\n\n.form-close {\n  position: absolute;\n  top: 1rem;\n  right: 1rem;\n  padding: 0.5rem 0.75rem;\n  border-radius: 50%;\n  font-size: 1.2rem;\n}\n\n.form-close:hover {\n  cursor: pointer;\n  background: #eee;\n}\n\n#delete-label {\n  text-align: center;\n  margin: 1rem 0;\n}\n\n#delete-buttons {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 2rem;\n  margin-top: 1rem;\n}\n\n.delete-button {\n  padding: 0.5rem;\n  border-radius: 0.5rem;\n  font-size: 1rem;\n  background: none;\n  border: none;\n}\n\n.delete-button:hover {\n  filter: brightness(90%);\n  cursor: pointer;\n}\n\n#confirm-delete {\n  background-color: #c0392b;\n  color: #fff;\n}\n\n#reject-delete {\n  background-color: #eee;\n  border: #666;\n}\n\n.error {\n  padding: 1rem;\n  margin-bottom: 0.5rem;\n  background-color: #f1948a;\n  color: #943126;\n  border-radius: 0.5rem;\n}\n\n.project-header {\n  position: relative;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.5rem 0;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n.project-heading-titlebox {\n  display: flex;\n  align-items: center;\n}\n\n.project-heading {\n  font-size: 1.2rem;\n  color: #222;\n  font-weight: 500;\n}\n\n.project-task-count {\n  color: #888;\n  font-size: 1.2rem;\n  margin-left: 4rem;\n}\n\n.edit-button {\n  padding: 0.5rem 0.75rem;\n  border: none;\n  border-radius: 50%;\n  background: none;\n  font-size: 1.2rem;\n  color: #666;\n}\n\n.edit-button:hover {\n  cursor: pointer;\n  background: #eee;\n}\n\n.task-box {\n  display: flex;\n  flex-direction: column;\n  margin: 0.5rem 0;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n.task-collapsed {\n  position: relative;\n  display: grid;\n  grid-template-columns: 3rem repeat(3, 1fr) 3rem;\n  min-height: 4rem;\n  align-items: center;\n}\n\n.complete-button {\n  grid-column: 1/2;\n  place-self: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 2.5rem;\n  width: 2.5rem;\n  border: 0.2rem solid #aaa;\n  border-radius: 50%;\n  background: none;\n  outline: none;\n}\n\n.complete-button:hover {\n  animation: grow 0.3s linear;\n  animation-iteration-count: 1;\n  cursor: pointer;\n}\n\n.checkmark {\n  color: #fff;\n  font-size: 1.5rem;\n}\n\n.task-click-area {\n  position: absolute;\n  left: 3rem;\n  right: 3rem;\n  height: 4rem;\n  width: 70%;\n  z-index: inherit;\n}\n\n.task-click-area:hover {\n  cursor: pointer;\n}\n\n.task-info {\n  grid-column: 2/5;\n  display: flex;\n  flex-direction: column;\n}\n\n.task-name {\n  padding: 0 2rem;\n  font-size: 1.1rem;\n  font-weight: 500;\n  color: #444;\n}\n\n.task-date {\n  padding: 0 2rem;\n  font-size: 1rem;\n  font-style: italic;\n  color: #777;\n}\n\n.task-expanded {\n  max-height: 0;\n  transition: all 0.15s ease-out;\n  overflow: hidden;\n}\n\n.details-description {\n  font-size: 1rem;\n  line-height: 2;\n  color: #444;\n}\n\n.edit-task-button {\n  border: none;\n  background: none;\n  padding: 0.5rem 0.75rem;\n  border-radius: 50%;\n  font-size: 1.2rem;\n  color: #666;\n}\n\n.edit-task-button:hover {\n  cursor: pointer;\n  background-color: #eee;\n}\n\n.new-task-button {\n  margin-top: 0.5rem;\n  padding: 0.5rem;\n  border: none;\n  border-radius: 1rem;\n  background: none;\n  text-align: center;\n  font-size: 1rem;\n  font-weight: 500;\n  color: #666;\n}\n\n.new-task-button:hover {\n  background: #eee;\n  cursor: pointer;\n}\n\n.new-task-button i {\n  padding-left: 0.5rem;\n  color: #666;\n  font-size: 1rem;\n}\n\n.text-done {\n  text-decoration: line-through;\n  color: #ccc;\n}\n\n.task-complete {\n  background: #27ae60;\n  border: none;\n}\n\n.high {\n  border: 0.2rem solid #c0392b;\n}\n\n.medium {\n  border: 0.2rem solid #f1c40f;\n}\n\n.low {\n  border: 0.2rem solid #1976d2;\n}\n\n.expand {\n  max-height: 400px;\n  transition: all 0.25s ease-in-out;\n}\n\n#side-nav {\n  position: fixed;\n  top: 4rem;\n  bottom: auto;\n  width: 20rem;\n  padding: 1rem;\n  background: #f4f4f4;\n  z-index: 4;\n}\n\n#all-tasks i {\n  color: #2980b9;\n}\n\n#tasks-today i {\n  color: #27ae60;\n}\n\n#tasks-week i {\n  color: #e67e22;\n}\n\n#sidenav-title-box {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.5rem;\n  margin-bottom: 1rem;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n#sidenav-title {\n  font-size: 1.2rem;\n  font-weight: 700;\n  color: #000;\n}\n\n#sidenav-title-button {\n  padding: 0.5rem 0.75rem;\n  border: none;\n  border-radius: 50%;\n  background: none;\n  font-size: 1rem;\n}\n\n#sidenav-title-button:hover {\n  cursor: pointer;\n  background-color: #ddd;\n}\n\n#projects {\n  height: calc(100vh - 20.5rem);\n  padding-bottom: 1rem;\n  overflow-y: auto;\n}\n\n#projects:last-child {\n  margin-bottom: 1rem;\n}\n\n.sidenav-item {\n  display: flex;\n  align-items: center;\n  padding: 0.5rem;\n  margin-bottom: 0.5rem;\n  font-size: 1rem;\n  line-height: 2;\n}\n\n.sidenav-item:hover {\n  background: #fff;\n  cursor: pointer;\n}\n\n.sidenav-item-icon {\n  color: #444;\n  margin-right: 1rem;\n}\n\n.sidenav-item-name {\n  color: #444;\n  margin-right: 0.5rem;\n}\n\n.sidenav-item-count {\n  color: #888;\n}\n\n.expand {\n  left: 0;\n}\n\n.selected {\n  background: #fff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);\n}\n\n.collapse {\n  left: -20rem;\n}\n\n.slide-in {\n  animation: slide-in 0.3s linear;\n  left: 0;\n}\n\n@keyframes slide-in {\n  from {\n    left: -20rem;\n  }\n  to {\n    left: 0;\n  }\n}\n.sidenav-header {\n  padding: 1rem 0;\n  color: #000;\n  font-size: 1.6rem;\n  font-weight: 700;\n}\n\n.dropdown {\n  position: absolute;\n  right: 0;\n  top: 3rem;\n  width: 10rem;\n  display: flex;\n  flex-direction: column;\n  background-color: #fff;\n  border: 0.1rem solid #eee;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);\n  z-index: 5;\n}\n\n.dropdown-button {\n  padding: 0.5rem;\n  border: none;\n  background: none;\n  font-size: 1rem;\n}\n\n.dropdown-button:hover {\n  background: #eee;\n  cursor: pointer;\n}\n\n#trans-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100vh;\n  width: 100vw;\n  z-index: 3;\n}\n\n/* text spots in center */\n.welcome-mat {\n  position: relative;\n  top: 25%;\n  text-align: center;\n}\n\n.welcome-header {\n  color: #ccc;\n  font-size: 1.5rem;\n}\n\n.surprise {\n  padding: 3rem;\n  color: #ccc;\n  font-size: 4rem;\n}\n\n* {\n  line-height: 1.5;\n  box-sizing: border-box;\n}\n\nbody {\n  display: grid;\n  max-width: 100vw;\n  grid-template-columns: 20rem 1fr;\n  grid-template-rows: 4rem 1fr;\n  background: #fff;\n  box-sizing: border-box;\n  font-family: \"Roboto\", sans-serif;\n}\n\n/* header */\n#header {\n  position: fixed;\n  width: 100%;\n  grid-area: 1/1/2/3;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  height: 4rem;\n  background: #16a085;\n  z-index: 2;\n}\n\n.brand {\n  justify-self: center;\n  color: #fff;\n  font-size: 1.6rem;\n  font-weight: 700;\n  text-align: center;\n}\n\n#expand-nav {\n  border: none;\n  background: none;\n  color: #fff;\n  font-size: 1.6rem;\n}\n#expand-nav :hover {\n  filter: brightness(90%);\n  cursor: pointer;\n}\n\n#new-task {\n  position: fixed;\n  bottom: 0.5rem;\n  right: 0.5rem;\n  padding: 0.5rem 0.75rem;\n  border: 0.1rem solid #666;\n  border-radius: 1.5rem;\n  background: #2980b9;\n  color: #fff;\n  font-size: 1rem;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 8px 16px rgba(0, 0, 0, 0.5);\n}\n\n#new-task:hover {\n  filter: brightness(90%);\n  cursor: pointer;\n}\n\n/* main stuff */\n#main {\n  width: 100%;\n  max-width: 1400px;\n  margin: 0 auto;\n}\n\n.large {\n  grid-area: 2/2/3/3;\n}\n\n.small {\n  grid-area: 2/1/3/3;\n}\n\n/* class toggles */\n.hidden {\n  display: none;\n}\n\n@keyframes shake {\n  0% {\n    left: -5px;\n  }\n  100% {\n    right: -5px;\n  }\n}\n@keyframes grow {\n  0% {\n    height: 2.5rem;\n    width: 2.5rem;\n  }\n  25% {\n    height: 2.75rem;\n    width: 2.75rem;\n  }\n  50% {\n    height: 3rem;\n    width: 3rem;\n  }\n  75% {\n    height: 2.75rem;\n    width: 2.75rem;\n  }\n  100% {\n    height: 2.5rem;\n    width: 2.5rem;\n  }\n}\n@media screen and (max-width: 599px) {\n  html {\n    font-size: 16px;\n  }\n\n  #main {\n    padding: 0 0.5rem;\n  }\n\n  #header {\n    padding: 0 0.5rem;\n  }\n}\n@media screen and (min-width: 600px) {\n  html {\n    font-size: 16px;\n  }\n\n  #main {\n    padding: 0 0.5rem;\n  }\n\n  #header {\n    padding: 0 0.5rem;\n  }\n}\n@media screen and (min-width: 900px) {\n  #main {\n    padding: 0 1rem;\n  }\n\n  #header {\n    padding: 0 1rem;\n  }\n}\n@media screen and (min-width: 1200px) {\n  html {\n    font-size: 18px;\n  }\n\n  #main {\n    padding: 0 2rem;\n  }\n\n  #header {\n    padding: 0 2rem;\n  }\n}\n@media screen and (min-width: 1400px) {\n  html {\n    font-size: 20px;\n  }\n}\n@media screen and (min-width: 1600px) {\n  html {\n    font-size: 22px;\n  }\n}", ""]);
+exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block;\n}\n\nbody {\n  line-height: 1;\n}\n\nol, ul {\n  list-style: none;\n}\n\nblockquote, q {\n  quotes: none;\n}\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: \"\";\n  content: none;\n}\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\n/* form stuff */\nform {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: calc(100% - 2rem);\n  max-width: 30rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: 1rem;\n  background: #fff;\n  color: #333;\n  border-radius: 0.5rem;\n  font-family: \"Roboto\", sans-serif;\n  z-index: 6;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 8px 16px rgba(0, 0, 0, 0.3);\n}\n\n.form-heading {\n  margin-bottom: 1rem;\n  font-size: 1.4rem;\n  font-weight: 700;\n  text-align: center;\n}\n\n.form-section {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  margin-bottom: 0.5rem;\n  width: 100%;\n}\n\n.form-input {\n  position: relative;\n  width: 100%;\n  border: 0.1rem solid #ddd;\n  border-radius: 0.25rem;\n  padding: 0.5rem;\n  font-family: inherit;\n  font-size: 1rem;\n}\n\n.form-label {\n  padding: 0.5rem 0;\n  font-size: 1rem;\n}\n\n.form-input:focus {\n  outline: none;\n  box-shadow: 0 0 0 1.5pt #1976d2;\n}\n\n.radio-buttons label {\n  margin-right: 0.5rem;\n}\n\n.text-area {\n  width: 100%;\n  min-height: 6rem;\n  resize: none;\n  font-family: inherit;\n}\n\n.form-button {\n  width: 100%;\n  padding: 0.5rem 0;\n  background: #2980b9;\n  border: none;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.form-button:hover {\n  cursor: pointer;\n  filter: brightness(90%);\n}\n\n#overlay {\n  position: fixed;\n  left: 0;\n  top: 0;\n  min-height: 100vh;\n  width: 100vw;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 5;\n}\n\ninput[type=date]::-webkit-calendar-picker-indicator {\n  background: transparent;\n  bottom: 0;\n  color: transparent;\n  cursor: pointer;\n  height: auto;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: auto;\n}\n\n.form-close {\n  position: absolute;\n  top: 1rem;\n  right: 1rem;\n  padding: 0.5rem 0.75rem;\n  border-radius: 50%;\n  font-size: 1.2rem;\n}\n\n.form-close:hover {\n  cursor: pointer;\n  background: #eee;\n}\n\n#delete-label {\n  text-align: center;\n  margin: 1rem 0;\n}\n\n#delete-buttons {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 2rem;\n  margin-top: 1rem;\n}\n\n.delete-button {\n  padding: 0.5rem;\n  border-radius: 0.5rem;\n  font-size: 1rem;\n  background: none;\n  border: none;\n}\n\n.delete-button:hover {\n  filter: brightness(90%);\n  cursor: pointer;\n}\n\n#confirm-delete {\n  background-color: #c0392b;\n  color: #fff;\n}\n\n#reject-delete {\n  background-color: #eee;\n  border: #666;\n}\n\n.error {\n  padding: 1rem;\n  margin-bottom: 0.5rem;\n  background-color: #f1948a;\n  color: #943126;\n  border-radius: 0.5rem;\n}\n\n.project-header {\n  position: relative;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.5rem 0;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n.project-heading-titlebox {\n  display: flex;\n  align-items: center;\n}\n\n.project-heading {\n  font-size: 1.2rem;\n  color: #222;\n  font-weight: 500;\n}\n\n.project-task-count {\n  color: #888;\n  font-size: 1.2rem;\n  margin-left: 4rem;\n}\n\n.edit-button {\n  padding: 0.5rem 0.75rem;\n  border: none;\n  border-radius: 50%;\n  background: none;\n  font-size: 1.2rem;\n  color: #666;\n}\n\n.edit-button:hover {\n  cursor: pointer;\n  background: #eee;\n}\n\n.task-box {\n  display: flex;\n  flex-direction: column;\n  margin-bottom: 0.5rem;\n  padding: 0.5rem 0;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n.task-collapsed {\n  position: relative;\n  display: grid;\n  grid-template-columns: 3rem repeat(3, 1fr) 3rem;\n  min-height: 4rem;\n  align-items: center;\n}\n\n.complete-button {\n  grid-column: 1/2;\n  place-self: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 2.5rem;\n  width: 2.5rem;\n  border: 0.2rem solid #aaa;\n  border-radius: 50%;\n  background: none;\n  outline: none;\n}\n\n.complete-button:hover {\n  animation: grow 0.3s linear;\n  animation-iteration-count: 1;\n  cursor: pointer;\n}\n\n.checkmark {\n  color: #fff;\n  font-size: 1.5rem;\n}\n\n.task-click-area {\n  position: absolute;\n  left: 3rem;\n  right: 3rem;\n  height: 4rem;\n  width: 70%;\n  z-index: inherit;\n}\n\n.task-click-area:hover {\n  cursor: pointer;\n}\n\n.task-info {\n  grid-column: 2/5;\n  display: flex;\n  flex-direction: column;\n}\n\n.task-name {\n  padding: 0 2rem;\n  font-size: 1.1rem;\n  font-weight: 500;\n  color: #444;\n}\n\n.task-date {\n  padding: 0 2rem;\n  font-size: 1rem;\n  font-style: italic;\n  color: #777;\n}\n\n.task-expanded {\n  max-height: 0;\n  transition: all 0.15s ease-out;\n  overflow: hidden;\n}\n\n.details-description {\n  font-size: 1rem;\n  line-height: 2;\n  color: #444;\n}\n\n.edit-task-button {\n  border: none;\n  background: none;\n  padding: 0.5rem 0.75rem;\n  border-radius: 50%;\n  font-size: 1.2rem;\n  color: #666;\n}\n\n.edit-task-button:hover {\n  cursor: pointer;\n  background-color: #eee;\n}\n\n.new-task-button {\n  margin: 0.5rem 0 2rem 0;\n  padding: 0.5rem 0.1rem;\n  border: none;\n  border-radius: 1rem;\n  background: none;\n  text-align: center;\n  font-size: 1rem;\n  font-weight: 500;\n  color: #666;\n}\n\n.new-task-button:hover {\n  background: #eee;\n  cursor: pointer;\n}\n\n.new-task-button i {\n  padding-left: 0.5rem;\n  color: #666;\n  font-size: 1rem;\n}\n\n.text-done {\n  text-decoration: line-through;\n  color: #ccc;\n}\n\n.task-complete {\n  background: #27ae60;\n  border: none;\n}\n\n.high {\n  border: 0.2rem solid #c0392b;\n}\n\n.medium {\n  border: 0.2rem solid #f1c40f;\n}\n\n.low {\n  border: 0.2rem solid #1976d2;\n}\n\n.expand {\n  max-height: 400px;\n  transition: all 0.25s ease-in-out;\n}\n\n#side-nav {\n  position: fixed;\n  top: 4rem;\n  bottom: auto;\n  width: 20rem;\n  padding: 1rem;\n  background: #f4f4f4;\n  z-index: 4;\n}\n\n#all-tasks i {\n  color: #2980b9;\n}\n\n#tasks-today i {\n  color: #27ae60;\n}\n\n#tasks-week i {\n  color: #e67e22;\n}\n\n#sidenav-title-box {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.5rem;\n  margin-bottom: 1rem;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n#sidenav-title {\n  font-size: 1.2rem;\n  font-weight: 700;\n  color: #000;\n}\n\n#sidenav-title-button {\n  padding: 0.5rem 0.75rem;\n  border: none;\n  border-radius: 50%;\n  background: none;\n  font-size: 1rem;\n}\n\n#sidenav-title-button:hover {\n  cursor: pointer;\n  background-color: #ddd;\n}\n\n#projects {\n  height: calc(100vh - 23.5rem);\n  padding-bottom: 1rem;\n  overflow-y: auto;\n}\n\n#projects:last-child {\n  margin-bottom: 1rem;\n}\n\n.sidenav-item {\n  display: flex;\n  align-items: center;\n  padding: 0.5rem;\n  margin-bottom: 0.5rem;\n  font-size: 1rem;\n  line-height: 2;\n}\n\n.sidenav-item:hover {\n  background: #fff;\n  cursor: pointer;\n}\n\n.sidenav-item-icon {\n  color: #444;\n  margin-right: 1rem;\n}\n\n.sidenav-item-name {\n  color: #444;\n  margin-right: 0.5rem;\n}\n\n.sidenav-item-count {\n  color: #888;\n}\n\n.expand {\n  left: 0;\n}\n\n.selected {\n  background: #fff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);\n}\n\n.collapse {\n  left: -20rem;\n}\n\n.slide-in {\n  animation: slide-in 0.3s linear;\n  left: 0;\n}\n\n@keyframes slide-in {\n  from {\n    left: -20rem;\n  }\n  to {\n    left: 0;\n  }\n}\n.sidenav-header {\n  padding: 1rem 0;\n  color: #000;\n  font-size: 1.6rem;\n  font-weight: 700;\n}\n\n#sidenav-footer {\n  height: 3rem;\n  display: flex;\n  align-items: center;\n  justify-content: space-around;\n  border-top: 0.1rem solid #ddd;\n}\n\n.sidenav-footer-button {\n  border: none;\n  background: none;\n  text-decoration: none;\n  padding: 0.33rem 0.66rem;\n  font-size: 1.5rem;\n  color: #666;\n}\n\n.sidenav-footer-button:hover {\n  color: #000;\n  cursor: pointer;\n}\n\n.dropdown {\n  position: absolute;\n  right: 0;\n  top: 3rem;\n  width: 10rem;\n  display: flex;\n  flex-direction: column;\n  background-color: #fff;\n  border: 0.1rem solid #eee;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);\n  z-index: 5;\n}\n\n.dropdown-button {\n  padding: 0.5rem;\n  border: none;\n  background: none;\n  font-size: 1rem;\n}\n\n.dropdown-button:hover {\n  background: #eee;\n  cursor: pointer;\n}\n\n#trans-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100vh;\n  width: 100vw;\n  z-index: 3;\n}\n\n/* text spots in center */\n.welcome-mat {\n  position: relative;\n  top: 25%;\n  text-align: center;\n}\n\n.welcome-header {\n  color: #ccc;\n  font-size: 1.5rem;\n}\n\n.surprise {\n  padding: 3rem;\n  color: #ccc;\n  font-size: 4rem;\n}\n\n* {\n  line-height: 1.5;\n  box-sizing: border-box;\n}\n\nbody {\n  display: grid;\n  max-width: 100vw;\n  grid-template-columns: 20rem 1fr;\n  grid-template-rows: 4rem 1fr;\n  background: #fff;\n  box-sizing: border-box;\n  font-family: \"Roboto\", sans-serif;\n}\n\n/* header */\n#header {\n  position: fixed;\n  width: 100%;\n  grid-area: 1/1/2/3;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  height: 4rem;\n  background: #45b39d;\n  z-index: 2;\n}\n\n.brand {\n  justify-self: center;\n  color: #fff;\n  font-size: 1.6rem;\n  font-weight: 700;\n  text-align: center;\n}\n\n#expand-nav {\n  border: none;\n  background: none;\n  color: #fff;\n  font-size: 1.6rem;\n}\n#expand-nav :hover {\n  filter: brightness(90%);\n  cursor: pointer;\n}\n\n#new-task {\n  position: fixed;\n  bottom: 1rem;\n  right: 1rem;\n  padding: 0.5rem 0.75rem;\n  border: none;\n  border-radius: 1.5rem;\n  background: #2980b9;\n  color: #fff;\n  font-size: 1rem;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 8px 16px rgba(0, 0, 0, 0.5);\n}\n\n#new-task:hover {\n  filter: brightness(90%);\n  cursor: pointer;\n}\n\n/* main stuff */\n#main {\n  width: 100%;\n  margin: 0 auto;\n}\n\n.large {\n  grid-area: 2/2/3/3;\n}\n\n.small {\n  grid-area: 2/1/3/3;\n}\n\n/* class toggles */\n.hidden {\n  display: none;\n}\n\n@keyframes shake {\n  0% {\n    left: -5px;\n  }\n  100% {\n    right: -5px;\n  }\n}\n@keyframes grow {\n  0% {\n    height: 2.5rem;\n    width: 2.5rem;\n  }\n  25% {\n    height: 2.75rem;\n    width: 2.75rem;\n  }\n  50% {\n    height: 3rem;\n    width: 3rem;\n  }\n  75% {\n    height: 2.75rem;\n    width: 2.75rem;\n  }\n  100% {\n    height: 2.5rem;\n    width: 2.5rem;\n  }\n}\n@media screen and (max-width: 599px) {\n  html {\n    font-size: 16px;\n  }\n\n  #main {\n    padding: 0 0.5rem;\n  }\n\n  #header {\n    padding: 0 0.5rem;\n  }\n}\n@media screen and (min-width: 600px) {\n  html {\n    font-size: 16px;\n  }\n\n  #main {\n    padding: 0 1rem;\n  }\n\n  #header {\n    padding: 0 1rem;\n  }\n}\n@media screen and (min-width: 900px) {\n  #main {\n    padding: 0 1rem;\n  }\n\n  #header {\n    padding: 0 1rem;\n  }\n}\n@media screen and (min-width: 1200px) {\n  #main {\n    padding: 0 2rem;\n  }\n\n  #header {\n    padding: 0 2rem;\n  }\n}\n@media screen and (min-width: 1400px) {\n  html {\n    font-size: 18px;\n  }\n\n  #main {\n    padding: 0 3rem;\n  }\n}\n@media screen and (min-width: 1600px) {\n  html {\n    font-size: 20px;\n  }\n\n  #main {\n    padding: 0 4rem;\n  }\n}\n@media screen and (min-width: 1800px) {\n  html {\n    font-size: 22px;\n  }\n\n  #main {\n    padding: 0 5rem;\n  }\n}\n@media screen and (min-width: 2000px) {\n  html {\n    font-size: 24px;\n  }\n\n  #main {\n    padding: 0 6rem;\n  }\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -636,7 +662,7 @@ const tasks = (() => {
     _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].setTasks(tasks);
     _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].setProjects(projects);
 
-    project === "0" ? _app__WEBPACK_IMPORTED_MODULE_0__["default"].renderIndex() : _app__WEBPACK_IMPORTED_MODULE_0__["default"].render(savedProject);
+    _app__WEBPACK_IMPORTED_MODULE_0__["default"].returnToSelected(savedProject);
   };
 
   const update = (data) => {
@@ -668,9 +694,7 @@ const tasks = (() => {
     let i = tasks.findIndex((task) => task.id === newTask.id);
     tasks[i] = newTask;
     _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].setTasks(tasks);
-    project === "0"
-      ? _app__WEBPACK_IMPORTED_MODULE_0__["default"].renderIndex()
-      : _app__WEBPACK_IMPORTED_MODULE_0__["default"].render(_helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].findProject(project));
+    _app__WEBPACK_IMPORTED_MODULE_0__["default"].returnToSelected(_helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].findProject(project));
   };
 
   const destroy = (id) => {
@@ -686,7 +710,7 @@ const tasks = (() => {
     _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].setTasks(newTasks);
     _helpers_store__WEBPACK_IMPORTED_MODULE_3__["default"].setProjects(projects);
 
-    _app__WEBPACK_IMPORTED_MODULE_0__["default"].renderIndex();
+    _app__WEBPACK_IMPORTED_MODULE_0__["default"].returnToSelected(projects[i]);
   };
 
   const handleTaskComplete = (node, id) => {
@@ -766,7 +790,6 @@ const taskViews = (() => {
   };
 
   const openNewForm = (e) => {
-    // console.log(e.currentTarget.attributes[2].value);
     _controllers_tasks__WEBPACK_IMPORTED_MODULE_1__["default"].openForm();
   };
 
@@ -895,6 +918,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _controllers_projects__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(10);
 /* harmony import */ var _controllers_tasks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
 /* harmony import */ var _helpers_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(12);
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(0);
+
 
 
 
@@ -903,6 +928,12 @@ __webpack_require__.r(__webpack_exports__);
 const forms = (() => {
   const formBox = document.querySelector("#box");
   const overlay = document.querySelector("#overlay");
+  const settings = document.querySelector("#settings-button");
+
+  const openSettings = () => {
+    overlay.classList.toggle("hidden");
+    _views_formViews__WEBPACK_IMPORTED_MODULE_0__["default"].renderSettings();
+  };
 
   const openTaskForm = (task = "") => {
     overlay.classList.toggle("hidden");
@@ -923,6 +954,13 @@ const forms = (() => {
   const closeForm = () => {
     overlay.classList.toggle("hidden");
     formBox.innerHTML = "";
+  };
+
+  const handleFullDelete = () => {
+    localStorage.clear();
+    document.querySelector(".selected").classList.remove("selected");
+    closeForm();
+    _app__WEBPACK_IMPORTED_MODULE_4__["default"].start();
   };
 
   const handleOverlayClick = (e) => {
@@ -982,6 +1020,7 @@ const forms = (() => {
   };
 
   overlay.addEventListener("click", handleOverlayClick);
+  settings.addEventListener("click", openSettings);
 
   return {
     openProjectForm,
@@ -992,6 +1031,7 @@ const forms = (() => {
     validateFormData,
     getTaskFormData,
     getProjectFormData,
+    handleFullDelete,
   };
 })();
 
@@ -1018,8 +1058,8 @@ const formViews = (() => {
     Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("div", { class: "error" }, error.message, errorBox);
   };
 
-  const handleKeyDown = (e) => {
-    console.log(e);
+  const confirmDeleteAll = () => {
+    _controllers_forms__WEBPACK_IMPORTED_MODULE_1__["default"].handleFullDelete();
   };
 
   const handleTaskSubmit = (e) => {
@@ -1284,7 +1324,38 @@ const formViews = (() => {
     no.addEventListener("click", closeForm);
   };
 
+  const renderSettings = () => {
+    const form = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("form", { class: "default-form" }, "", formBox);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("h1", { class: "form-heading" }, "Delete All Data", form);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
+      "label",
+      { id: "delete-label" },
+      "Do you want to delete all data and start fresh?",
+      form
+    );
+    const div = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("div", { id: "delete-buttons" }, "", form);
+    const yes = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
+      "button",
+      {
+        type: "button",
+        class: "delete-button",
+        id: "confirm-delete",
+      },
+      "Yes",
+      div
+    );
+    const no = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
+      "button",
+      { type: "button", class: "delete-button", id: "reject-delete" },
+      "No",
+      div
+    );
+    yes.addEventListener("click", confirmDeleteAll);
+    no.addEventListener("click", closeForm);
+  };
+
   return {
+    renderSettings,
     taskForm,
     projectForm,
     addError,
@@ -1340,13 +1411,13 @@ const projects = (() => {
     let projects = _helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].getProjects();
     projects.push(project);
     _helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].setProjects(projects);
-    _app__WEBPACK_IMPORTED_MODULE_2__["default"].render(project);
     _controllers_sidenav__WEBPACK_IMPORTED_MODULE_4__["default"].toggleSidenav();
+    _app__WEBPACK_IMPORTED_MODULE_2__["default"].returnToSelected(project);
   };
 
   const changeProject = (id) => {
     document.querySelector(".selected").classList.remove("selected");
-    _app__WEBPACK_IMPORTED_MODULE_2__["default"].render(_helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].findProject(id));
+    _app__WEBPACK_IMPORTED_MODULE_2__["default"].renderProject(_helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].findProject(id));
     _controllers_sidenav__WEBPACK_IMPORTED_MODULE_4__["default"].toggleSidenav();
   };
 
@@ -1356,7 +1427,7 @@ const projects = (() => {
     let i = projects.findIndex((p) => p.id === id);
     projects[i].name = name;
     _helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].setProjects(projects);
-    _app__WEBPACK_IMPORTED_MODULE_2__["default"].render(projects[i]);
+    _app__WEBPACK_IMPORTED_MODULE_2__["default"].returnToSelected(projects[i]);
   };
 
   const destroy = (id) => {
@@ -1502,7 +1573,7 @@ const projectViews = (() => {
     Object(_helpers_index__WEBPACK_IMPORTED_MODULE_2__["maker"])(
       "h3",
       { class: "project-task-count" },
-      project.tasks.length,
+      project ? project.tasks.length : null,
       titleBox
     );
     if (project.id !== "0") {
@@ -1714,7 +1785,13 @@ const sidenav = (() => {
   tasksWeek.addEventListener("click", getTasksWeek);
   tasksToday.addEventListener("click", getTasksToday);
 
-  return { renderCounts, getTasksIndex, toggleSidenav };
+  return {
+    renderCounts,
+    getTasksIndex,
+    getTasksToday,
+    getTasksWeek,
+    toggleSidenav,
+  };
 })();
 
 /* harmony default export */ __webpack_exports__["default"] = (sidenav);

@@ -102,7 +102,7 @@ const projectViews = (() => {
     maker(
       "h3",
       { class: "project-task-count" },
-      project.tasks.length,
+      project ? project.tasks.length : null,
       titleBox
     );
     if (project.id !== "0") {

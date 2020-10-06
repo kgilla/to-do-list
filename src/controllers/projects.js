@@ -11,13 +11,13 @@ const projects = (() => {
     let projects = store.getProjects();
     projects.push(project);
     store.setProjects(projects);
-    app.render(project);
     sidenav.toggleSidenav();
+    app.returnToSelected(project);
   };
 
   const changeProject = (id) => {
     document.querySelector(".selected").classList.remove("selected");
-    app.render(store.findProject(id));
+    app.renderProject(store.findProject(id));
     sidenav.toggleSidenav();
   };
 
@@ -27,7 +27,7 @@ const projects = (() => {
     let i = projects.findIndex((p) => p.id === id);
     projects[i].name = name;
     store.setProjects(projects);
-    app.render(projects[i]);
+    app.returnToSelected(projects[i]);
   };
 
   const destroy = (id) => {
