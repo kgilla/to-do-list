@@ -27,6 +27,7 @@ const sidebar = (() => {
       "click",
       closeSidenav
     );
+    sidenav.classList.remove("slide-out");
     sidenav.classList.toggle("slide-in");
     sidenav.state = "open";
   };
@@ -35,6 +36,7 @@ const sidebar = (() => {
     let overlay = document.querySelector("#trans-overlay");
     overlay ? overlay.remove() : null;
     sidenav.classList.toggle("slide-in");
+    sidenav.classList.toggle("slide-out");
     sidenav.state = "closed";
   };
 

@@ -15,12 +15,6 @@ const projects = (() => {
     app.returnToSelected(project);
   };
 
-  const changeProject = (id) => {
-    document.querySelector(".selected").classList.remove("selected");
-    app.renderProject(store.findProject(id));
-    sidenav.toggleSidenav();
-  };
-
   const update = (data) => {
     const { id, name } = data;
     let projects = store.getProjects();
@@ -35,6 +29,13 @@ const projects = (() => {
     let newProjects = projects.filter((project) => project.id !== id);
     store.setProjects(newProjects);
     app.renderIndex();
+  };
+
+  const changeProject = (id) => {
+    window.scrollTo(0, 0);
+    document.querySelector(".selected").classList.remove("selected");
+    app.renderProject(store.findProject(id));
+    sidenav.toggleSidenav();
   };
 
   const openForm = (id = "") => {

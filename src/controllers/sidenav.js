@@ -16,16 +16,12 @@ const sidenav = (() => {
     selected ? selected.classList.remove("selected") : null;
   };
 
-  const todayFilter = (task) =>
-    moment(task.date).isBetween(
-      moment(Date.now()).subtract(1, "days"),
-      moment(Date.now()).add(1, "days")
-    );
+  const todayFilter = (task) => moment(task.date).isSame(moment(), "day");
 
   const weekFilter = (task) =>
     moment(task.date).isBetween(
-      moment(Date.now()).subtract(1, "days"),
-      moment(Date.now()).add(7, "days")
+      moment().subtract(1, "days"),
+      moment().add(7, "days")
     );
 
   const filterProjects = (filter) => {
@@ -45,6 +41,8 @@ const sidenav = (() => {
       projectViews.renderProjectHeader(project);
       taskViews.render(project);
     });
+    main.scrollTop = 0;
+    window.scrollTo(0, 0);
   };
 
   const getTasksIndex = () => {
@@ -78,18 +76,13 @@ const sidenav = (() => {
     tasks.forEach((task) => {
       if (
         moment(task.date).isBetween(
-          moment(Date.now()).subtract(1, "days"),
-          moment(Date.now()).add(7, "days")
+          moment().subtract(1, "days"),
+          moment().add(7, "days")
         )
       ) {
         count.weekCount++;
       }
-      if (
-        moment(task.date).isBetween(
-          moment(Date.now()).subtract(1, "days"),
-          moment(Date.now()).add(1, "days")
-        )
-      ) {
+      if (moment(task.date).isSame(moment(), "day")) {
         count.todayCount++;
       }
       count.allCount++;

@@ -10,15 +10,15 @@
 
 // top 3 static categories
 #all-tasks i {
-  color: #2980b9;
+  color: #2196f3;
 }
 
 #tasks-today i {
-  color: #27ae60;
+  color: #4caf50;
 }
 
 #tasks-week i {
-  color: #e67e22;
+  color: #ff9800;
 }
 
 // projects title and button
@@ -54,7 +54,7 @@
 #projects {
   height: calc(100vh - 23.5rem);
   padding-bottom: 1rem;
-  overflow-y: auto;
+  // overflow-y: auto;
 }
 
 #projects:last-child {
@@ -106,8 +106,12 @@
 }
 
 .slide-in {
-  animation: slide-in 0.3s linear;
+  animation: slide-in 0.2s ease-in-out;
   left: 0;
+}
+
+.slide-out {
+  animation: slide-out 0.2s ease-in-out;
 }
 
 @keyframes slide-in {
@@ -119,6 +123,14 @@
   }
 }
 
+@keyframes slide-out {
+  from {
+    left: 0;
+  }
+  to {
+    left: -20rem;
+  }
+}
 .sidenav-header {
   padding: 1rem 0;
   color: #000;

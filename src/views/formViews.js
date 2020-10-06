@@ -215,15 +215,30 @@ const formViews = (() => {
     maker("div", { id: "error-box" }, "", form);
     const div = maker("div", { class: "form-section" }, "", form);
     maker("label", { class: "form-label", for: "name" }, "Project Name", div);
-    let input = maker(
+    maker(
       "input",
       {
+        type: "text",
         class: "form-input",
         name: "name",
         value: project ? project.name : "",
       },
       "",
       div
+    );
+
+    const d = maker("div", { class: "form-section" }, "", form);
+    maker("label", { class: "form-label", for: "color" }, "Project Color", d);
+    maker(
+      "input",
+      {
+        type: "color",
+        class: "form-input",
+        name: "color",
+        value: project ? project.color : "",
+      },
+      "",
+      d
     );
     const button = maker(
       "button",
