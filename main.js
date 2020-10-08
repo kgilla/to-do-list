@@ -509,7 +509,7 @@ exports = ___CSS_LOADER_API_IMPORT___(false);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap);"]);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap);"]);
 // Module
-exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block;\n}\n\nbody {\n  line-height: 1;\n}\n\nol, ul {\n  list-style: none;\n}\n\nblockquote, q {\n  quotes: none;\n}\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: \"\";\n  content: none;\n}\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\n/* form stuff */\nform {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: calc(100% - 2rem);\n  max-width: 30rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: 1rem;\n  background: #fff;\n  color: #333;\n  border-radius: 0.5rem;\n  font-family: \"Roboto\", sans-serif;\n  z-index: 6;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 8px 16px rgba(0, 0, 0, 0.3);\n}\n\n.form-heading {\n  margin-bottom: 1rem;\n  font-size: 1.4rem;\n  font-weight: 700;\n  text-align: center;\n}\n\n.form-section {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  margin-bottom: 0.5rem;\n  width: 100%;\n}\n\n.form-input {\n  position: relative;\n  width: 100%;\n  border: 0.1rem solid #ddd;\n  border-radius: 0.25rem;\n  padding: 0.5rem;\n  font-family: inherit;\n  font-size: 1rem;\n}\n\n.form-label {\n  padding: 0.5rem 0;\n  font-size: 1rem;\n}\n\n.form-input:focus {\n  outline: none;\n  box-shadow: 0 0 0 1.5pt #1976d2;\n}\n\n.radio-buttons label {\n  margin-right: 0.5rem;\n}\n\n.text-area {\n  width: 100%;\n  min-height: 6rem;\n  resize: none;\n  font-family: inherit;\n}\n\n.form-button {\n  width: 100%;\n  padding: 0.5rem 0;\n  background: #2196f3;\n  border: none;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n}\n\n.form-button:hover {\n  cursor: pointer;\n  filter: brightness(90%);\n}\n\n#overlay {\n  position: fixed;\n  left: 0;\n  top: 0;\n  min-height: 100vh;\n  width: 100vw;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 5;\n}\n\ninput[type=date]::-webkit-calendar-picker-indicator {\n  background: transparent;\n  bottom: 0;\n  color: transparent;\n  cursor: pointer;\n  height: auto;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: auto;\n}\n\n.form-close {\n  position: absolute;\n  top: 1rem;\n  right: 1rem;\n  padding: 0.5rem 0.75rem;\n  border-radius: 50%;\n  font-size: 1.2rem;\n}\n\n.form-close:hover {\n  cursor: pointer;\n  background: #eee;\n}\n\n#delete-label {\n  text-align: center;\n  margin: 1rem 0;\n}\n\n#delete-buttons {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 2rem;\n  margin-top: 1rem;\n}\n\n.delete-button {\n  padding: 0.5rem;\n  border-radius: 0.5rem;\n  font-size: 1rem;\n  background: none;\n  border: none;\n}\n\n.delete-button:hover {\n  filter: brightness(90%);\n  cursor: pointer;\n}\n\n#confirm-delete {\n  background-color: #c0392b;\n  color: #fff;\n}\n\n#reject-delete {\n  background-color: #eee;\n  border: #666;\n}\n\n.error {\n  padding: 1rem;\n  margin-bottom: 0.5rem;\n  background-color: #f1948a;\n  color: #943126;\n  border-radius: 0.5rem;\n}\n\n.project-header {\n  position: relative;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.5rem 0;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n.project-heading-titlebox {\n  display: flex;\n  align-items: center;\n}\n\n.project-heading {\n  font-size: 1.2rem;\n  color: #222;\n  font-weight: 500;\n}\n\n.project-task-count {\n  color: #888;\n  font-size: 1.2rem;\n  margin-left: 4rem;\n}\n\n.edit-button {\n  padding: 0.5rem 0.75rem;\n  border: none;\n  border-radius: 50%;\n  background: none;\n  font-size: 1.2rem;\n  color: #666;\n}\n\n.edit-button:hover {\n  cursor: pointer;\n  background: #eee;\n}\n\n.task-box {\n  display: flex;\n  flex-direction: column;\n  margin-bottom: 0.5rem;\n  padding: 0.5rem 0;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n.task-collapsed {\n  position: relative;\n  display: grid;\n  grid-template-columns: 3rem repeat(3, 1fr) 3rem;\n  min-height: 4rem;\n  align-items: center;\n}\n\n.complete-button {\n  grid-column: 1/2;\n  place-self: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 2.5rem;\n  width: 2.5rem;\n  border: 0.2rem solid #aaa;\n  border-radius: 50%;\n  background: none;\n  outline: none;\n}\n\n.complete-button:hover {\n  animation: grow 0.3s linear;\n  animation-iteration-count: 1;\n  cursor: pointer;\n}\n\n.checkmark {\n  color: #fff;\n  font-size: 1.5rem;\n}\n\n.task-click-area {\n  position: absolute;\n  left: 3rem;\n  right: 3rem;\n  height: 4rem;\n  width: 70%;\n  z-index: inherit;\n}\n\n.task-click-area:hover {\n  cursor: pointer;\n}\n\n.task-info {\n  grid-column: 2/5;\n  display: flex;\n  flex-direction: column;\n}\n\n.task-name {\n  padding: 0 2rem;\n  font-size: 1.1rem;\n  font-weight: 500;\n  color: #444;\n}\n\n.task-date {\n  padding: 0 2rem;\n  font-size: 1rem;\n  font-style: italic;\n  color: #777;\n}\n\n.task-expanded {\n  max-height: 0;\n  transition: all 0.15s ease-out;\n  overflow: hidden;\n}\n\n.details-description {\n  font-size: 1rem;\n  line-height: 2;\n  color: #444;\n}\n\n.edit-task-button {\n  border: none;\n  background: none;\n  padding: 0.5rem 0.75rem;\n  border-radius: 50%;\n  font-size: 1.2rem;\n  color: #666;\n}\n\n.edit-task-button:hover {\n  cursor: pointer;\n  background-color: #eee;\n}\n\n.new-task-button {\n  margin: 0.5rem 0 2rem 0;\n  padding: 0.5rem 0.1rem;\n  border: none;\n  border-radius: 1rem;\n  background: none;\n  text-align: center;\n  font-size: 1rem;\n  font-weight: 500;\n  color: #666;\n}\n\n.new-task-button:hover {\n  background: #eee;\n  cursor: pointer;\n}\n\n.new-task-button i {\n  padding-left: 0.5rem;\n  color: #666;\n  font-size: 1rem;\n}\n\n.text-done {\n  text-decoration: line-through;\n  color: #ccc;\n}\n\n.task-complete {\n  background: #43a047;\n  border: none;\n}\n\n.high {\n  border: 0.2rem solid #d32f2f;\n}\n\n.medium {\n  border: 0.2rem solid #fdd835;\n}\n\n.low {\n  border: 0.2rem solid #1976d2;\n}\n\n.expand {\n  max-height: 400px;\n  transition: all 0.25s ease-in-out;\n}\n\n#side-nav {\n  position: fixed;\n  top: 4rem;\n  bottom: auto;\n  width: 20rem;\n  padding: 1rem;\n  background: #f4f4f4;\n  z-index: 4;\n}\n\n#all-tasks i {\n  color: #2196f3;\n}\n\n#tasks-today i {\n  color: #4caf50;\n}\n\n#tasks-week i {\n  color: #ff9800;\n}\n\n#sidenav-title-box {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.5rem;\n  margin-bottom: 1rem;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n#sidenav-title {\n  font-size: 1.2rem;\n  font-weight: 700;\n  color: #000;\n}\n\n#sidenav-title-button {\n  padding: 0.5rem 0.75rem;\n  border: none;\n  border-radius: 50%;\n  background: none;\n  font-size: 1rem;\n}\n\n#sidenav-title-button:hover {\n  cursor: pointer;\n  background-color: #ddd;\n}\n\n#projects {\n  height: calc(100vh - 23.5rem);\n  padding-bottom: 1rem;\n}\n\n#projects:last-child {\n  margin-bottom: 1rem;\n}\n\n.sidenav-item {\n  display: flex;\n  align-items: center;\n  padding: 0.5rem;\n  margin-bottom: 0.5rem;\n  font-size: 1rem;\n  line-height: 2;\n}\n\n.sidenav-item:hover {\n  background: #fff;\n  cursor: pointer;\n}\n\n.sidenav-item-icon {\n  color: #444;\n  margin-right: 1rem;\n}\n\n.sidenav-item-name {\n  color: #444;\n  margin-right: 0.5rem;\n}\n\n.sidenav-item-count {\n  color: #888;\n}\n\n.expand {\n  left: 0;\n}\n\n.selected {\n  background: #fff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);\n}\n\n.collapse {\n  left: -20rem;\n}\n\n.slide-in {\n  animation: slide-in 0.2s ease-in-out;\n  left: 0;\n}\n\n.slide-out {\n  animation: slide-out 0.2s ease-in-out;\n}\n\n@keyframes slide-in {\n  from {\n    left: -20rem;\n  }\n  to {\n    left: 0;\n  }\n}\n@keyframes slide-out {\n  from {\n    left: 0;\n  }\n  to {\n    left: -20rem;\n  }\n}\n.sidenav-header {\n  padding: 1rem 0;\n  color: #000;\n  font-size: 1.6rem;\n  font-weight: 700;\n}\n\n#sidenav-footer {\n  height: 3rem;\n  display: flex;\n  align-items: center;\n  justify-content: space-around;\n  border-top: 0.1rem solid #ddd;\n}\n\n.sidenav-footer-button {\n  border: none;\n  background: none;\n  text-decoration: none;\n  padding: 0.33rem 0.66rem;\n  font-size: 1.5rem;\n  color: #666;\n}\n\n.sidenav-footer-button:hover {\n  color: #000;\n  cursor: pointer;\n}\n\n.dropdown {\n  position: absolute;\n  right: 0;\n  top: 3rem;\n  width: 10rem;\n  display: flex;\n  flex-direction: column;\n  background-color: #fff;\n  border: 0.1rem solid #eee;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);\n  z-index: 5;\n}\n\n.dropdown-button {\n  padding: 0.5rem;\n  border: none;\n  background: none;\n  font-size: 1rem;\n}\n\n.dropdown-button:hover {\n  background: #eee;\n  cursor: pointer;\n}\n\n#trans-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100vh;\n  width: 100vw;\n  z-index: 3;\n}\n\n/* text spots in center */\n.welcome-mat {\n  position: relative;\n  top: 25%;\n  text-align: center;\n}\n\n.welcome-header {\n  color: #ccc;\n  font-size: 1.5rem;\n}\n\n.surprise {\n  padding: 3rem;\n  color: #ccc;\n  font-size: 4rem;\n}\n\n* {\n  line-height: 1.5;\n  box-sizing: border-box;\n}\n\nbody {\n  display: grid;\n  max-width: 100vw;\n  grid-template-columns: 20rem 1fr;\n  grid-template-rows: 4rem 1fr;\n  background: #fff;\n  box-sizing: border-box;\n  font-family: \"Roboto\", sans-serif;\n}\n\n/* header */\n#header {\n  position: fixed;\n  width: 100%;\n  grid-area: 1/1/2/3;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  height: 4rem;\n  background: #26a69a;\n  z-index: 2;\n}\n\n#brand {\n  justify-self: center;\n  color: #fff;\n  font-size: 1.6rem;\n  font-weight: 700;\n  text-align: center;\n}\n\n#expand-nav {\n  border: none;\n  background: none;\n  color: #fff;\n  font-size: 1.6rem;\n}\n#expand-nav :hover {\n  filter: brightness(90%);\n  cursor: pointer;\n}\n\n#new-task {\n  position: fixed;\n  bottom: 1rem;\n  right: 1rem;\n  padding: 0.5rem 0.75rem;\n  border: none;\n  border-radius: 1.5rem;\n  background: #2196f3;\n  color: #fff;\n  font-size: 1rem;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 8px 16px rgba(0, 0, 0, 0.5);\n}\n\n#new-task:hover {\n  filter: brightness(90%);\n  cursor: pointer;\n}\n\n/* main stuff */\n#main {\n  width: 100%;\n  height: auto;\n  overflow: auto;\n  margin: 0 auto;\n}\n\n.large {\n  grid-area: 2/2/3/3;\n}\n\n.small {\n  grid-area: 2/1/3/3;\n}\n\n/* class toggles */\n.hidden {\n  display: none;\n}\n\n@keyframes shake {\n  0% {\n    left: -5px;\n  }\n  100% {\n    right: -5px;\n  }\n}\n@keyframes grow {\n  0% {\n    height: 2.5rem;\n    width: 2.5rem;\n  }\n  25% {\n    height: 2.75rem;\n    width: 2.75rem;\n  }\n  50% {\n    height: 3rem;\n    width: 3rem;\n  }\n  75% {\n    height: 2.75rem;\n    width: 2.75rem;\n  }\n  100% {\n    height: 2.5rem;\n    width: 2.5rem;\n  }\n}\n@media screen and (max-width: 599px) {\n  html {\n    font-size: 16px;\n  }\n\n  #main {\n    padding: 0 0.5rem;\n  }\n\n  #header {\n    padding: 0 0.5rem;\n  }\n}\n@media screen and (min-width: 600px) {\n  html {\n    font-size: 16px;\n  }\n\n  #main {\n    padding: 0 1rem;\n  }\n\n  #header {\n    padding: 0 1rem;\n  }\n}\n@media screen and (min-width: 900px) {\n  #main {\n    padding: 0 1rem;\n  }\n\n  #header {\n    padding: 0 1rem;\n  }\n}\n@media screen and (min-width: 1200px) {\n  #main {\n    padding: 0 2rem;\n  }\n\n  #header {\n    padding: 0 2rem;\n  }\n}\n@media screen and (min-width: 1400px) {\n  html {\n    font-size: 18px;\n  }\n\n  #main {\n    padding: 0 3rem;\n  }\n}\n@media screen and (min-width: 1600px) {\n  html {\n    font-size: 20px;\n  }\n\n  #main {\n    padding: 0 4rem;\n  }\n}\n@media screen and (min-width: 1800px) {\n  html {\n    font-size: 22px;\n  }\n\n  #main {\n    padding: 0 5rem;\n  }\n}\n@media screen and (min-width: 2000px) {\n  html {\n    font-size: 24px;\n  }\n\n  #main {\n    padding: 0 6rem;\n  }\n}", ""]);
+exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline;\n}\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n  display: block;\n}\n\nbody {\n  line-height: 1;\n}\n\nol, ul {\n  list-style: none;\n}\n\nblockquote, q {\n  quotes: none;\n}\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: \"\";\n  content: none;\n}\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0;\n}\n\n/* form stuff */\nform {\n  position: fixed;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: calc(100% - 2rem);\n  max-width: 30rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  padding: 1rem;\n  background: #fff;\n  color: #333;\n  border-radius: 0.5rem;\n  font-family: \"Roboto\", sans-serif;\n  z-index: 6;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 8px 16px rgba(0, 0, 0, 0.3);\n}\n\n.form-heading {\n  margin-bottom: 1rem;\n  font-size: 1.4rem;\n  font-weight: 700;\n  text-align: center;\n}\n\n.form-section {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  margin-bottom: 0.5rem;\n  width: 100%;\n}\n\n.form-input {\n  position: relative;\n  width: 100%;\n  border: 0.1rem solid #ddd;\n  border-radius: 0.25rem;\n  padding: 0.5rem;\n  font-family: inherit;\n  font-size: 1rem;\n}\n\n.form-label {\n  padding: 0.5rem 0;\n  font-size: 1rem;\n}\n\n.form-input:focus {\n  outline: none;\n  box-shadow: 0 0 0 1.5pt #1976d2;\n}\n\n.radio-buttons label {\n  margin-right: 0.5rem;\n}\n\n.text-area {\n  width: 100%;\n  min-height: 6rem;\n  resize: none;\n  font-family: inherit;\n}\n\n.form-button {\n  width: 100%;\n  padding: 0.5rem 0;\n  background-color: #2196f3;\n  border: none;\n  border-radius: 0.5rem;\n  color: #fff;\n  font-size: 1rem;\n  transition: all 0.2s ease-in-out;\n}\n\n.form-button:hover {\n  cursor: pointer;\n  background-color: #1e88e5;\n}\n\n#overlay {\n  position: fixed;\n  left: 0;\n  top: 0;\n  min-height: 100vh;\n  width: 100vw;\n  background-color: rgba(0, 0, 0, 0.5);\n  z-index: 5;\n}\n\ninput[type=date]::-webkit-calendar-picker-indicator {\n  background: transparent;\n  bottom: 0;\n  color: transparent;\n  cursor: pointer;\n  height: auto;\n  left: 0;\n  position: absolute;\n  right: 0;\n  top: 0;\n  width: auto;\n}\n\n.form-close {\n  position: absolute;\n  top: 1rem;\n  right: 1rem;\n  padding: 0.5rem 0.75rem;\n  border-radius: 50%;\n  font-size: 1.2rem;\n  transition: all 0.2s ease-in-out;\n}\n\n.form-close:hover {\n  cursor: pointer;\n  background: #eee;\n}\n\n#delete-label {\n  text-align: center;\n  margin: 1rem 0;\n}\n\n#delete-buttons {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 2rem;\n  margin-top: 1rem;\n}\n\n.delete-button {\n  padding: 0.5rem;\n  border-radius: 0.5rem;\n  font-size: 1rem;\n  background: none;\n  border: none;\n}\n\n.delete-button:hover {\n  filter: brightness(90%);\n  cursor: pointer;\n}\n\n#confirm-delete {\n  background-color: #c0392b;\n  color: #fff;\n}\n\n#reject-delete {\n  background-color: #eee;\n  border: #666;\n}\n\n.error {\n  padding: 1rem;\n  margin-bottom: 0.5rem;\n  background-color: #f1948a;\n  color: #943126;\n  border-radius: 0.5rem;\n}\n\n.project-header {\n  position: relative;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.5rem 0;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n.project-heading-titlebox {\n  display: flex;\n  align-items: center;\n}\n\n.project-heading {\n  font-size: 1.2rem;\n  color: #222;\n  font-weight: 500;\n}\n\n.project-task-count {\n  color: #888;\n  font-size: 1.2rem;\n  margin-left: 4rem;\n}\n\n.edit-button {\n  padding: 0.5rem 0.75rem;\n  border: none;\n  border-radius: 50%;\n  background: none;\n  font-size: 1.2rem;\n  color: #666;\n  transition: all 0.2s ease-in-out;\n}\n\n.edit-button:hover {\n  cursor: pointer;\n  background: #eee;\n}\n\n.task-box {\n  display: flex;\n  flex-direction: column;\n  margin-bottom: 0.5rem;\n  padding: 0.5rem 0;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n.task-collapsed {\n  position: relative;\n  display: grid;\n  grid-template-columns: 3rem repeat(3, 1fr) 3rem;\n  min-height: 4rem;\n  align-items: center;\n}\n\n.complete-button {\n  grid-column: 1/2;\n  place-self: center;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 2.5rem;\n  width: 2.5rem;\n  border: 0.2rem solid #aaa;\n  border-radius: 50%;\n  background: none;\n  outline: none;\n}\n\n.complete-button:hover {\n  animation: grow 0.3s linear;\n  animation-iteration-count: 1;\n  cursor: pointer;\n}\n\n.checkmark {\n  color: #fff;\n  font-size: 1.5rem;\n}\n\n.task-click-area {\n  position: absolute;\n  left: 3rem;\n  right: 3rem;\n  height: 4rem;\n  width: 70%;\n  z-index: inherit;\n}\n\n.task-click-area:hover {\n  cursor: pointer;\n}\n\n.task-info {\n  grid-column: 2/5;\n  display: flex;\n  flex-direction: column;\n}\n\n.task-name {\n  padding: 0 2rem;\n  font-size: 1.1rem;\n  font-weight: 500;\n  color: #444;\n}\n\n.task-date {\n  padding: 0 2rem;\n  font-size: 1rem;\n  font-style: italic;\n  color: #777;\n}\n\n.task-expanded {\n  max-height: 0;\n  transition: all 0.15s ease-out;\n  overflow: hidden;\n}\n\n.details-description {\n  font-size: 1rem;\n  line-height: 2;\n  color: #444;\n}\n\n.edit-task-button {\n  border: none;\n  background: none;\n  padding: 0.5rem 0.75rem;\n  border-radius: 50%;\n  font-size: 1.2rem;\n  color: #666;\n  transition: all 0.2s ease-in-out;\n}\n\n.edit-task-button:hover {\n  cursor: pointer;\n  background-color: #eee;\n}\n\n.new-task-button {\n  margin: 0.5rem 0 2rem 0;\n  padding: 0.5rem 0.1rem;\n  border: none;\n  border-radius: 1rem;\n  background: none;\n  text-align: center;\n  font-size: 1rem;\n  font-weight: 500;\n  color: #666;\n  transition: all 0.2s ease-in-out;\n}\n\n.new-task-button:hover {\n  background: #eee;\n  cursor: pointer;\n}\n\n.new-task-button i {\n  padding-left: 0.5rem;\n  color: #666;\n  font-size: 1rem;\n}\n\n.text-done {\n  text-decoration: line-through;\n  color: #ccc;\n}\n\n.task-complete {\n  background: #43a047;\n  border: none;\n}\n\n.high {\n  border: 0.2rem solid #d32f2f;\n}\n\n.medium {\n  border: 0.2rem solid #fdd835;\n}\n\n.low {\n  border: 0.2rem solid #1976d2;\n}\n\n.expand {\n  max-height: 400px;\n  transition: all 0.25s ease-in-out;\n}\n\n#side-nav {\n  position: fixed;\n  top: 4rem;\n  bottom: auto;\n  width: 20rem;\n  padding: 1rem;\n  background: #f4f4f4;\n  z-index: 4;\n}\n\n#all-tasks i {\n  color: #2196f3;\n}\n\n#tasks-today i {\n  color: #4caf50;\n}\n\n#tasks-week i {\n  color: #ff9800;\n}\n\n#sidenav-title-box {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 0.5rem;\n  margin-bottom: 1rem;\n  border-bottom: 0.1rem solid #ddd;\n}\n\n#sidenav-title {\n  font-size: 1.2rem;\n  font-weight: 700;\n  color: #000;\n}\n\n#sidenav-title-button {\n  padding: 0.5rem 0.75rem;\n  border: none;\n  border-radius: 50%;\n  background: none;\n  font-size: 1rem;\n  transition: all 0.2s ease-in-out;\n}\n\n#sidenav-title-button:hover {\n  cursor: pointer;\n  background-color: #ddd;\n}\n\n#projects {\n  height: calc(100vh - 23.5rem);\n  padding-bottom: 1rem;\n  overflow-y: auto;\n}\n\n#projects:last-child {\n  margin-bottom: 1rem;\n}\n\n.sidenav-item {\n  display: flex;\n  align-items: center;\n  padding: 0.5rem;\n  margin-bottom: 0.5rem;\n  font-size: 1rem;\n  line-height: 2;\n  transition: all 0.2s ease-in-out;\n}\n\n.sidenav-item:hover {\n  background: #fff;\n  cursor: pointer;\n}\n\n.sidenav-item-icon {\n  color: #444;\n  margin-right: 1rem;\n}\n\n.sidenav-item-name {\n  color: #444;\n  margin-right: 0.5rem;\n}\n\n.sidenav-item-count {\n  color: #888;\n}\n\n.expand {\n  left: 0;\n}\n\n.selected {\n  background: #fff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);\n}\n\n.collapse {\n  left: -20rem;\n}\n\n.slide-in {\n  animation: slide-in 0.2s ease-in-out;\n  left: 0;\n}\n\n.slide-out {\n  animation: slide-out 0.2s ease-in-out;\n}\n\n@keyframes slide-in {\n  from {\n    left: -20rem;\n  }\n  to {\n    left: 0;\n  }\n}\n@keyframes slide-out {\n  from {\n    left: 0;\n  }\n  to {\n    left: -20rem;\n  }\n}\n.sidenav-header {\n  padding: 1rem 0;\n  color: #000;\n  font-size: 1.6rem;\n  font-weight: 700;\n}\n\n#sidenav-footer {\n  height: 3rem;\n  display: flex;\n  align-items: center;\n  justify-content: space-around;\n  border-top: 0.1rem solid #ddd;\n}\n\n.sidenav-footer-button {\n  border: none;\n  background: none;\n  text-decoration: none;\n  padding: 0.33rem 0.66rem;\n  font-size: 1.5rem;\n  color: #666;\n  transition: all 0.2s ease-in-out;\n}\n\n.sidenav-footer-button:hover {\n  color: #000;\n  cursor: pointer;\n}\n\n.dropdown {\n  position: absolute;\n  right: 0;\n  top: 3rem;\n  width: 10rem;\n  display: flex;\n  flex-direction: column;\n  background-color: #fff;\n  border: 0.1rem solid #eee;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);\n  z-index: 5;\n}\n\n.dropdown-button {\n  padding: 0.5rem;\n  border: none;\n  background: none;\n  font-size: 1rem;\n}\n\n.dropdown-button:hover {\n  background: #eee;\n  cursor: pointer;\n}\n\n#trans-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  height: 100vh;\n  width: 100vw;\n  z-index: 3;\n}\n\n/* text spots in center */\n.welcome-mat {\n  margin-top: 5rem;\n  text-align: center;\n}\n\n.welcome-header {\n  color: #ccc;\n  font-size: 1.5rem;\n}\n\n.welcome-icon {\n  padding: 3rem;\n  color: #ccc;\n  font-size: 4rem;\n}\n\n* {\n  line-height: 1.5;\n  box-sizing: border-box;\n}\n\nbody {\n  display: grid;\n  max-width: 100vw;\n  grid-template-columns: 20rem 1fr;\n  grid-template-rows: 4rem 1fr;\n  background: #fff;\n  box-sizing: border-box;\n  font-family: \"Roboto\", sans-serif;\n}\n\n/* header */\n#header {\n  position: fixed;\n  width: 100%;\n  grid-area: 1/1/2/3;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  height: 4rem;\n  background: #26a69a;\n  z-index: 2;\n}\n\n#brand {\n  justify-self: center;\n  color: #fff;\n  font-size: 1.6rem;\n  font-weight: 700;\n  text-align: center;\n}\n\n#expand-nav {\n  border: none;\n  background: none;\n  color: #fff;\n  font-size: 1.6rem;\n}\n#expand-nav :hover {\n  filter: brightness(90%);\n  cursor: pointer;\n}\n\n#new-task {\n  position: fixed;\n  bottom: 1rem;\n  right: 1rem;\n  padding: 0.5rem 0.75rem;\n  border: none;\n  border-radius: 1.5rem;\n  background: #2196f3;\n  color: #fff;\n  font-size: 1rem;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 8px 16px rgba(0, 0, 0, 0.5);\n  transition: all 0.2s ease-in-out;\n}\n\n#new-task:hover {\n  background-color: #1e88e5;\n  cursor: pointer;\n}\n\n/* main stuff */\n#main {\n  width: 100%;\n  height: auto;\n  overflow: auto;\n  margin: 0 auto;\n}\n\n.large {\n  grid-area: 2/2/3/3;\n}\n\n.small {\n  grid-area: 2/1/3/3;\n}\n\n/* class toggles */\n.hidden {\n  display: none;\n}\n\n@keyframes shake {\n  0% {\n    left: -5px;\n  }\n  100% {\n    right: -5px;\n  }\n}\n@keyframes grow {\n  0% {\n    height: 2.5rem;\n    width: 2.5rem;\n  }\n  25% {\n    height: 2.75rem;\n    width: 2.75rem;\n  }\n  50% {\n    height: 3rem;\n    width: 3rem;\n  }\n  75% {\n    height: 2.75rem;\n    width: 2.75rem;\n  }\n  100% {\n    height: 2.5rem;\n    width: 2.5rem;\n  }\n}\n@media screen and (max-width: 599px) {\n  html {\n    font-size: 16px;\n  }\n\n  #main {\n    padding: 0 0.5rem;\n  }\n\n  #header {\n    padding: 0 0.5rem;\n  }\n}\n@media screen and (min-width: 600px) {\n  html {\n    font-size: 16px;\n  }\n\n  #main {\n    padding: 0 1rem;\n  }\n\n  #header {\n    padding: 0 1rem;\n  }\n}\n@media screen and (min-width: 900px) {\n  #main {\n    padding: 0 1rem;\n  }\n\n  #header {\n    padding: 0 1rem;\n  }\n}\n@media screen and (min-width: 1200px) {\n  #main {\n    padding: 0 2rem;\n  }\n\n  #header {\n    padding: 0 2rem;\n  }\n}\n@media screen and (min-width: 1400px) {\n  html {\n    font-size: 18px;\n  }\n\n  #main {\n    padding: 0 3rem;\n  }\n}\n@media screen and (min-width: 1600px) {\n  html {\n    font-size: 20px;\n  }\n\n  #main {\n    padding: 0 4rem;\n  }\n}\n@media screen and (min-width: 1800px) {\n  html {\n    font-size: 22px;\n  }\n\n  #main {\n    padding: 0 5rem;\n  }\n}\n@media screen and (min-width: 2000px) {\n  html {\n    font-size: 24px;\n  }\n\n  #main {\n    padding: 0 6rem;\n  }\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -769,6 +769,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_defaultViews__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(153);
 /* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9);
 /* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_helpers_index__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(14);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -866,7 +869,12 @@ const taskViews = (() => {
 
     let info = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_3__["maker"])("div", { class: "task-info" }, "", div);
     Object(_helpers_index__WEBPACK_IMPORTED_MODULE_3__["maker"])("h2", { class: "task-name" }, task.title, info);
-    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_3__["maker"])("p", { class: "task-date" }, task.date, info);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_3__["maker"])(
+      "p",
+      { class: "task-date" },
+      task.date ? moment__WEBPACK_IMPORTED_MODULE_4___default()(task.date).format("MMMM Do YYYY") : null,
+      info
+    );
 
     let btn = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_3__["maker"])("button", { class: "edit-task-button hidden" }, "", div);
     Object(_helpers_index__WEBPACK_IMPORTED_MODULE_3__["maker"])("i", { class: "fas fa-ellipsis-h" }, "", btn);
@@ -885,7 +893,11 @@ const taskViews = (() => {
 
   const render = (project) => {
     if (project.tasks.length == 0) {
-      _views_defaultViews__WEBPACK_IMPORTED_MODULE_2__["default"].renderWelcome();
+      _views_defaultViews__WEBPACK_IMPORTED_MODULE_2__["default"].renderWelcome(
+        "fas fa-tasks",
+        "Wow such empty!",
+        "Let's create some tasks and Get Er' Done!"
+      );
     } else {
       project.tasks.forEach((task) => renderTask(task));
       let button = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_3__["maker"])(
@@ -1276,19 +1288,6 @@ const formViews = (() => {
       div
     );
 
-    const d = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("div", { class: "form-section" }, "", form);
-    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("label", { class: "form-label", for: "color" }, "Project Color", d);
-    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
-      "input",
-      {
-        type: "color",
-        class: "form-input",
-        name: "color",
-        value: project ? project.color : "",
-      },
-      "",
-      d
-    );
     const button = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
       "button",
       { type: "button", class: "form-button" },
@@ -1427,7 +1426,7 @@ const projects = (() => {
     projects.push(project);
     _helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].setProjects(projects);
     _controllers_sidenav__WEBPACK_IMPORTED_MODULE_4__["default"].toggleSidenav();
-    _app__WEBPACK_IMPORTED_MODULE_2__["default"].returnToSelected(project);
+    _app__WEBPACK_IMPORTED_MODULE_2__["default"].renderProject(project);
   };
 
   const update = (data) => {
@@ -1703,7 +1702,6 @@ const sidenav = (() => {
   const allTasks = document.querySelector("#all-tasks");
   const tasksWeek = document.querySelector("#tasks-week");
   const tasksToday = document.querySelector("#tasks-today");
-  const main = document.querySelector("#main");
 
   const switchCategory = () => {
     let selected = document.querySelector(".selected");
@@ -1735,7 +1733,6 @@ const sidenav = (() => {
       _views_projectViews__WEBPACK_IMPORTED_MODULE_4__["default"].renderProjectHeader(project);
       _views_taskViews__WEBPACK_IMPORTED_MODULE_3__["default"].render(project);
     });
-    main.scrollTop = 0;
     window.scrollTo(0, 0);
   };
 
@@ -1743,7 +1740,13 @@ const sidenav = (() => {
     const projects = _helpers_store__WEBPACK_IMPORTED_MODULE_0__["default"].populateAllTasks();
     let newProjects = projects.filter((p) => p.tasks.length > 0);
     _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].makeHeader("All Tasks");
-    newProjects.length > 0 ? render(newProjects, "All Tasks") : _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].welcome();
+    newProjects.length > 0
+      ? render(newProjects, "All Tasks")
+      : _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].welcome(
+          "fas fa-coffee",
+          "Looks like you have no tasks at all",
+          "Grab a coffee, sit back. You deserve it!"
+        );
     allTasks.classList.add("selected");
     sidenav.state === "open" ? toggleSidenav() : null;
   };
@@ -1751,7 +1754,13 @@ const sidenav = (() => {
   const getTasksWeek = () => {
     let projects = filterProjects(weekFilter);
     _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].makeHeader("This Week's Tasks");
-    projects.length > 0 ? render(projects) : _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].welcome();
+    projects.length > 0
+      ? render(projects)
+      : _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].welcome(
+          "fas fa-coffee",
+          "Looks like you have no tasks for this week",
+          "Grab a coffee, sit back. You deserve it!"
+        );
     tasksWeek.classList.add("selected");
     sidenav.state === "open" ? toggleSidenav() : null;
   };
@@ -1759,7 +1768,13 @@ const sidenav = (() => {
   const getTasksToday = () => {
     let projects = filterProjects(todayFilter);
     _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].makeHeader("Today's Tasks");
-    projects.length > 0 ? render(projects) : _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].welcome();
+    projects.length > 0
+      ? render(projects)
+      : _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].welcome(
+          "fas fa-coffee",
+          "Looks like you have no tasks for today",
+          "Grab a coffee, sit back. You deserve it!"
+        );
     tasksToday.classList.add("selected");
     sidenav.state === "open" ? toggleSidenav() : null;
   };
@@ -22737,10 +22752,10 @@ const sidebar = (() => {
     }
   };
 
-  const welcome = () => {
+  const welcome = (icon, firstHeading, secondHeading) => {
     let selected = document.querySelector(".selected");
     selected ? selected.classList.remove("selected") : null;
-    _views_defaultViews__WEBPACK_IMPORTED_MODULE_1__["default"].renderWelcome();
+    _views_defaultViews__WEBPACK_IMPORTED_MODULE_1__["default"].renderWelcome(icon, firstHeading, secondHeading);
   };
 
   const makeHeader = (content) => {
@@ -22778,16 +22793,12 @@ __webpack_require__.r(__webpack_exports__);
 const defaultViews = (() => {
   const main = document.querySelector("#main");
 
-  const renderWelcome = () => {
+  const renderWelcome = (icon, firstHeading, secondHeading) => {
+    console.log(icon);
     let mat = Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("div", { class: "welcome-mat" }, "", main);
-    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("h2", { class: "welcome-header" }, "Wow Such Empty!", mat);
-    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("i", { class: "far fa-surprise surprise" }, "", mat);
-    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])(
-      "h2",
-      { class: "welcome-header" },
-      "Could You Be Done... Everything?!",
-      mat
-    );
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("h2", { class: "welcome-header" }, firstHeading, mat);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("i", { class: `${icon} welcome-icon` }, "", mat);
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_0__["maker"])("h2", { class: "welcome-header" }, secondHeading, mat);
   };
 
   return { renderWelcome };
