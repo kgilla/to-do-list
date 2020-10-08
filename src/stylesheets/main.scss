@@ -49,6 +49,7 @@ body {
   background: none;
   color: #fff;
   font-size: 1.6rem;
+  transition: all 0.2 ease-in-out;
   :hover {
     filter: brightness(90%);
     cursor: pointer;
