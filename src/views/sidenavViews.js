@@ -50,10 +50,10 @@ const sidebar = (() => {
     }
   };
 
-  const welcome = () => {
+  const welcome = (icon, firstHeading, secondHeading) => {
     let selected = document.querySelector(".selected");
     selected ? selected.classList.remove("selected") : null;
-    defaultViews.renderWelcome();
+    defaultViews.renderWelcome(icon, firstHeading, secondHeading);
   };
 
   const makeHeader = (content) => {

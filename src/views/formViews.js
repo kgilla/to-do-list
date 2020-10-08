@@ -227,19 +227,6 @@ const formViews = (() => {
       div
     );
 
-    const d = maker("div", { class: "form-section" }, "", form);
-    maker("label", { class: "form-label", for: "color" }, "Project Color", d);
-    maker(
-      "input",
-      {
-        type: "color",
-        class: "form-input",
-        name: "color",
-        value: project ? project.color : "",
-      },
-      "",
-      d
-    );
     const button = maker(
       "button",
       { type: "button", class: "form-button" },

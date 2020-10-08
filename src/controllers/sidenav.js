@@ -9,7 +9,6 @@ const sidenav = (() => {
   const allTasks = document.querySelector("#all-tasks");
   const tasksWeek = document.querySelector("#tasks-week");
   const tasksToday = document.querySelector("#tasks-today");
-  const main = document.querySelector("#main");
 
   const switchCategory = () => {
     let selected = document.querySelector(".selected");
@@ -41,7 +40,6 @@ const sidenav = (() => {
       projectViews.renderProjectHeader(project);
       taskViews.render(project);
     });
-    main.scrollTop = 0;
     window.scrollTo(0, 0);
   };
 
@@ -49,7 +47,13 @@ const sidenav = (() => {
     const projects = store.populateAllTasks();
     let newProjects = projects.filter((p) => p.tasks.length > 0);
     views.makeHeader("All Tasks");
-    newProjects.length > 0 ? render(newProjects, "All Tasks") : views.welcome();
+    newProjects.length > 0
+      ? render(newProjects, "All Tasks")
+      : views.welcome(
+          "fas fa-coffee",
+          "Looks like you have no tasks for today",
+          "Grab a coffee, sit back. You deserve it!"
+        );
     allTasks.classList.add("selected");
     sidenav.state === "open" ? toggleSidenav() : null;
   };
@@ -57,7 +61,13 @@ const sidenav = (() => {
   const getTasksWeek = () => {
     let projects = filterProjects(weekFilter);
     views.makeHeader("This Week's Tasks");
-    projects.length > 0 ? render(projects) : views.welcome();
+    projects.length > 0
+      ? render(projects)
+      : views.welcome(
+          "fas fa-coffee",
+          "Looks like you have no tasks for today",
+          "Grab a coffee, sit back. You deserve it!"
+        );
     tasksWeek.classList.add("selected");
     sidenav.state === "open" ? toggleSidenav() : null;
   };
@@ -65,7 +75,13 @@ const sidenav = (() => {
   const getTasksToday = () => {
     let projects = filterProjects(todayFilter);
     views.makeHeader("Today's Tasks");
-    projects.length > 0 ? render(projects) : views.welcome();
+    projects.length > 0
+      ? render(projects)
+      : views.welcome(
+          "fas fa-coffee",
+          "Looks like you have no tasks for today",
+          "Grab a coffee, sit back. You deserve it!"
+        );
     tasksToday.classList.add("selected");
     sidenav.state === "open" ? toggleSidenav() : null;
   };

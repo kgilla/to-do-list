@@ -2,6 +2,7 @@ import forms from "../controllers/forms";
 import taskController from "../controllers/tasks";
 import defaultViews from "../views/defaultViews";
 import { maker } from "../helpers/index";
+import moment from "moment";
 
 const taskViews = (() => {
   const main = document.querySelector("#main");
@@ -95,7 +96,12 @@ const taskViews = (() => {
 
     let info = maker("div", { class: "task-info" }, "", div);
     maker("h2", { class: "task-name" }, task.title, info);
-    maker("p", { class: "task-date" }, task.date, info);
+    maker(
+      "p",
+      { class: "task-date" },
+      task.date ? moment(task.date).format("MMMM Do YYYY") : null,
+      info
+    );
 
     let btn = maker("button", { class: "edit-task-button hidden" }, "", div);
     maker("i", { class: "fas fa-ellipsis-h" }, "", btn);
@@ -114,7 +120,11 @@ const taskViews = (() => {
 
   const render = (project) => {
     if (project.tasks.length == 0) {
-      defaultViews.renderWelcome();
+      defaultViews.renderWelcome(
+        "fas fa-coffee",
+        "Looks like you have no tasks for today",
+        "Grab a coffee, sit back. You deserve it!"
+      );
     } else {
       project.tasks.forEach((task) => renderTask(task));
       let button = maker(

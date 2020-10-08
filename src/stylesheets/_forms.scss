@@ -68,16 +68,17 @@ form {
 .form-button {
   width: 100%;
   padding: 0.5rem 0;
-  background: #2196f3;
+  background-color: #2196f3;
   border: none;
   border-radius: 0.5rem;
   color: #fff;
   font-size: 1rem;
+  transition: all 0.2s ease-in-out;
 }
 
 .form-button:hover {
   cursor: pointer;
-  filter: brightness(90%);
+  background-color: #1e88e5;
 }
 
 #overlay {
@@ -110,6 +111,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   padding: 0.5rem 0.75rem;
   border-radius: 50%;
   font-size: 1.2rem;
+  transition: all 0.2s ease-in-out;
 }
 
 .form-close:hover {

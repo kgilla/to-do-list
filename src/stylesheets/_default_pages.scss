@@ -1,8 +1,7 @@
 /* text spots in center */
 
 .welcome-mat {
-  position: relative;
-  top: 25%;
+  margin-top: 5rem;
   text-align: center;
 }
 
@@ -11,7 +10,7 @@
   font-size: 1.5rem;
 }
 
-.surprise {
+.welcome-icon {
   padding: 3rem;
   color: #ccc;
   font-size: 4rem;

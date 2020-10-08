@@ -94,6 +94,7 @@
   border-radius: 50%;
   font-size: 1.2rem;
   color: #666;
+  transition: all 0.2s ease-in-out;
 }
 
 .edit-task-button:hover {
@@ -112,6 +113,7 @@
   font-size: 1rem;
   font-weight: 500;
   color: #666;
+  transition: all 0.2s ease-in-out;
 }
 
 .new-task-button:hover {
