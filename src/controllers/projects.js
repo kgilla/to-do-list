@@ -12,7 +12,7 @@ const projects = (() => {
     projects.push(project);
     store.setProjects(projects);
     sidenav.toggleSidenav();
-    app.returnToSelected(project);
+    app.renderProject(project);
   };
 
   const update = (data) => {

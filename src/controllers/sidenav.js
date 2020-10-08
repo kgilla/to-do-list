@@ -51,7 +51,7 @@ const sidenav = (() => {
       ? render(newProjects, "All Tasks")
       : views.welcome(
           "fas fa-coffee",
-          "Looks like you have no tasks for today",
+          "Looks like you have no tasks at all",
           "Grab a coffee, sit back. You deserve it!"
         );
     allTasks.classList.add("selected");
@@ -65,7 +65,7 @@ const sidenav = (() => {
       ? render(projects)
       : views.welcome(
           "fas fa-coffee",
-          "Looks like you have no tasks for today",
+          "Looks like you have no tasks for this week",
           "Grab a coffee, sit back. You deserve it!"
         );
     tasksWeek.classList.add("selected");

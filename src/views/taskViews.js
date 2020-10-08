@@ -121,9 +121,9 @@ const taskViews = (() => {
   const render = (project) => {
     if (project.tasks.length == 0) {
       defaultViews.renderWelcome(
-        "fas fa-coffee",
-        "Looks like you have no tasks for today",
-        "Grab a coffee, sit back. You deserve it!"
+        "fas fa-tasks",
+        "Wow such empty!",
+        "Let's create some tasks and Get Er' Done!"
       );
     } else {
       project.tasks.forEach((task) => renderTask(task));

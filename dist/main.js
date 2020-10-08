@@ -894,9 +894,9 @@ const taskViews = (() => {
   const render = (project) => {
     if (project.tasks.length == 0) {
       _views_defaultViews__WEBPACK_IMPORTED_MODULE_2__["default"].renderWelcome(
-        "fas fa-coffee",
-        "Looks like you have no tasks for today",
-        "Grab a coffee, sit back. You deserve it!"
+        "fas fa-tasks",
+        "Wow such empty!",
+        "Let's create some tasks and Get Er' Done!"
       );
     } else {
       project.tasks.forEach((task) => renderTask(task));
@@ -1426,7 +1426,7 @@ const projects = (() => {
     projects.push(project);
     _helpers_store__WEBPACK_IMPORTED_MODULE_1__["default"].setProjects(projects);
     _controllers_sidenav__WEBPACK_IMPORTED_MODULE_4__["default"].toggleSidenav();
-    _app__WEBPACK_IMPORTED_MODULE_2__["default"].returnToSelected(project);
+    _app__WEBPACK_IMPORTED_MODULE_2__["default"].renderProject(project);
   };
 
   const update = (data) => {
@@ -1744,7 +1744,7 @@ const sidenav = (() => {
       ? render(newProjects, "All Tasks")
       : _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].welcome(
           "fas fa-coffee",
-          "Looks like you have no tasks for today",
+          "Looks like you have no tasks at all",
           "Grab a coffee, sit back. You deserve it!"
         );
     allTasks.classList.add("selected");
@@ -1758,7 +1758,7 @@ const sidenav = (() => {
       ? render(projects)
       : _views_sidenavViews__WEBPACK_IMPORTED_MODULE_2__["default"].welcome(
           "fas fa-coffee",
-          "Looks like you have no tasks for today",
+          "Looks like you have no tasks for this week",
           "Grab a coffee, sit back. You deserve it!"
         );
     tasksWeek.classList.add("selected");
