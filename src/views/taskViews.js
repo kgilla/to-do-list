@@ -103,7 +103,7 @@ const taskViews = (() => {
       info
     );
 
-    let btn = maker("button", { class: "edit-task-button hidden" }, "", div);
+    let btn = maker("button", { class: "edit-button hidden" }, "", div);
     maker("i", { class: "fas fa-ellipsis-h" }, "", btn);
 
     btn.addEventListener("click", openDropDown);

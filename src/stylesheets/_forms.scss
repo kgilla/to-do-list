@@ -5,7 +5,7 @@ form {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: calc(100% - 2rem);
+  width: 100%;
   max-width: 30rem;
   display: flex;
   flex-direction: column;
@@ -17,6 +17,7 @@ form {
   font-family: "Roboto", sans-serif;
   z-index: 6;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 8px 16px rgba(0, 0, 0, 0.3);
+  overflow: scroll;
 }
 
 .form-heading {
@@ -30,7 +31,7 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   width: 100%;
 }
 
@@ -42,6 +43,7 @@ form {
   padding: 0.5rem;
   font-family: inherit;
   font-size: 1rem;
+  color: #444;
 }
 
 .form-label {
